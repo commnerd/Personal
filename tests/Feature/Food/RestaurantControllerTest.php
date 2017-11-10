@@ -1,18 +1,18 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature\Food;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class RestaurantControllerTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testRestaurantCreation()
     {
         $this->assertTrue(true);
     }
