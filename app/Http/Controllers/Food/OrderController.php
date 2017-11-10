@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Food\Order;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\Food\Order;
 
 class OrderController extends Controller
 {

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Food\Restaurant;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\Food\Restaurant;
 
 class RestaurantController extends Controller
 {
@@ -12,7 +13,7 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): Response
     {
         //
     }
