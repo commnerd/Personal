@@ -15,7 +15,8 @@ class RestaurantController extends FoodController
      */
     public function index(): Response
     {
-        return response()->view('food.restaurants.index');
+        $restaurants = Restaurant::paginate(self::PAGINATION_RECORD_COUNT);
+        return response()->view('food.restaurants.index', compact('restaurants'));
     }
 
     /**
