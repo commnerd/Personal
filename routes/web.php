@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::namespace('Food')->prefix('food')->group(function() {
+    Route::resource('/restaurants', 'RestaurantController');
+});
