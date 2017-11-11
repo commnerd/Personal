@@ -7,13 +7,16 @@ use Tests\TestCase;
 
 class RestaurantControllerTest extends TestCase
 {
+
     /**
-     * A basic test example.
+     * Test restaurant index page
      *
      * @return void
      */
-    public function testRestaurantCreation()
-    {
-        $this->assertTrue(true);
-    }
+     public function testGetRestaurantList()
+     {
+         $response = $this->get('/food/restaurants');
+
+         $response->assertStatus(200);
+     }
 }

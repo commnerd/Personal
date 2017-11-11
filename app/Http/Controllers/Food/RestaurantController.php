@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Food;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Food\Restaurant;
 
-class RestaurantController extends Controller
+class RestaurantController extends FoodController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class RestaurantController extends Controller
      */
     public function index(): Response
     {
-        //
+        return response()->view('food.restaurants.index');
     }
 
     /**

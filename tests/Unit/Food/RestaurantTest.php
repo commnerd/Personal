@@ -9,7 +9,7 @@ use Tests\TestCase;
 class RestaurantTest extends TestCase
 {
     private $vals = [
-        'name' => 'Test Restaurant';
+        'name' => 'Test Restaurant'
     ];
 
     /**
@@ -19,13 +19,10 @@ class RestaurantTest extends TestCase
      */
     public function testValuesFill()
     {
-        $this->assertTrue(true);
-        /*
         $restaurant = new Restaurant();
         $this->assertNotEquals($this->vals['name'], $restaurant->name);
 
         $restaurant->fill($this->vals);
         $this->assertEquals($this->vals['name'], $restaurant->name);
-        */
     }
 }
