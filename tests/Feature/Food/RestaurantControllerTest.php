@@ -43,6 +43,9 @@ class RestaurantControllerTest extends TestCase
          $response->assertSee('Create Restaurant');
 
          $response->assertSee('<input type="text" name="name"');
+
+         $response->assertSee('Submit');
+
      }
 
      /**
