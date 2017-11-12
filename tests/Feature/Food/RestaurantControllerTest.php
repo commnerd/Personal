@@ -22,7 +22,7 @@ class RestaurantControllerTest extends TestCase
 
          $response = $this->get('/food/restaurants');
 
-         $response->assertStatus(200);
+         $response->assertSuccessful();
 
          $response->assertSee('Restaurant List');
 
@@ -38,28 +38,44 @@ class RestaurantControllerTest extends TestCase
      {
          $response = $this->get('/food/restaurants/create');
 
-         $response->assertStatus(200);
+         $response->assertSuccessful();
 
          $response->assertSee('Create Restaurant');
+
+         $response->assertSee('<input name="name"');
      }
 
      /**
-      * Test restaurant Store Call
+      * Test Restaurant Store Call
       *
       * @return void
       */
      public function testPostRestaurantCreation()
      {
-         /*
          $restaurant = new Restaurant();
 
          $restaurant->fill(['name' => 'McDonalds']);
 
-         $response = $this->post('/food/restaurants');
+         $response = $this->post('/food/restaurants', $restaurant->toArray());
 
-         $response->assertStatus(200);
+         $response->assertStatus(302);
 
-         $this->assertEqual(1, Restaurants::count());
-         */
+         $this->assertEquals(1, Restaurant::count());
+     }
+
+     /**
+      * Test invalid restaurant store call
+      *
+      * @return void
+      */
+     public function testPostInvalidRestaurantCreation()
+     {
+         $restaurant = new Restaurant();
+
+         $response = $this->post('/food/restaurants', $restaurant->toArray());
+
+         $response->assertStatus(302);
+
+         $this->assertEquals(0, Restaurant::count());
      }
 }

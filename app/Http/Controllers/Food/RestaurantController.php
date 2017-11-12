@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Food;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Food\Restaurant;
@@ -24,9 +25,9 @@ class RestaurantController extends FoodController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return response()->view('food.restaurants.create');
     }
 
     /**
@@ -35,9 +36,13 @@ class RestaurantController extends FoodController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $request->validate(Restaurant::getValidationRules());
+        
+        Restaurant::create($request->all());
+
+        return redirect('food.restaurants.index');
     }
 
     /**
