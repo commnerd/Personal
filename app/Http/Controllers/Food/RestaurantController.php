@@ -27,7 +27,12 @@ class RestaurantController extends FoodController
      */
     public function create(): Response
     {
-        return response()->view('food.restaurants.create');
+        return response()->view('food.restaurants.form', [
+            'action' => route('restaurants.store'),
+            'method' => 'POST',
+            'title' => 'Create Restaurant',
+            'restaurant' => new Restaurant(),
+        ]);
     }
 
     /**
@@ -39,7 +44,7 @@ class RestaurantController extends FoodController
     public function store(Request $request): RedirectResponse
     {
         $request->validate(Restaurant::getValidationRules());
-        
+
         Restaurant::create($request->all());
 
         return redirect('food.restaurants.index');
@@ -51,7 +56,7 @@ class RestaurantController extends FoodController
      * @param  \App\Food\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function show(Restaurant $restaurant)
+    public function show(Restaurant $restaurant): Response
     {
         //
     }
@@ -62,9 +67,14 @@ class RestaurantController extends FoodController
      * @param  \App\Food\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Restaurant $restaurant)
+    public function edit(Restaurant $restaurant): Response
     {
-        //
+        return response()->view('food.restaurants.form', [
+            'action' => route('restaurants.store'),
+            'method' => 'POST',
+            'title' => "Edit $restaurant->name",
+            'restaurant' => $restaurant,
+        ]);
     }
 
     /**
@@ -74,9 +84,13 @@ class RestaurantController extends FoodController
      * @param  \App\Food\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(Request $request, Restaurant $restaurant): RedirectResponse
     {
-        //
+        $request->validate(Restaurant::getValidationRules());
+
+        $restaurant->update($request->all());
+
+        return redirect('food.restaurants.index');
     }
 
     /**
