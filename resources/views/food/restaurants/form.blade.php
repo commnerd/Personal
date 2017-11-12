@@ -5,9 +5,6 @@
 @section('method', 'POST');
 
 @section('form_content')
-    @include('shared.text_input', [
-        'slug' => 'name',
-        'label' => 'Name',
-        'classes' => '',
-    ])
+    @include('shared.form.text_input', ['slug' => 'name', 'label' => 'Name', 'classes' => '', 'value' => ''])
+    @include('shared.form.submit', ['label' => 'Submit']);
 @endsection
