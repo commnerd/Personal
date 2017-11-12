@@ -81,4 +81,38 @@ class RestaurantControllerTest extends TestCase
 
          $this->assertEquals(0, Restaurant::count());
      }
+
+     /**
+      * Test get restaurant update page
+      *
+      * @return void
+      */
+     public function testGetRestaurantEditPage()
+     {
+         Restaurant::create(['name' => 'McDonalds']);
+
+         $response = $this->get('/food/restaurants/1/edit');
+
+         $response->assertSuccessful();
+
+         $response->assertSee('Edit McDonalds');
+
+         $response->assertSee('<input type="text" name="name"');
+
+         $response->assertSee('Submit');
+     }
+
+     /**
+      * Test updating a Restaurant
+      * 
+      * @return void
+      */
+     public function testPutRestaurantUpdate()
+     {
+         Restaurant::create(['name' => 'McDonalds']);
+
+         $response = $this->put('/food/restaurants/1', ['name' => 'Taco Bell']);
+
+         $this->assertEquals('Taco Bell', Restaurant::findOrFail(1)->name);
+     }
 }

@@ -1,10 +1,15 @@
-@extends('shared.layouts.form')
+@extends('food.layouts.main')
 
-@section('action', route('restaurants.create'))
+@section('title', $title)
 
-@section('method', 'POST');
-
-@section('form_content')
-    @include('shared.form.text_input', ['slug' => 'name', 'label' => 'Name', 'classes' => '', 'value' => ''])
-    @include('shared.form.submit', ['label' => 'Submit']);
+@section('content')
+    <h1>{{ $title }}</h1>
+    <form method="POST" action="{{ $action }}">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @if($method !== 'POST')
+            <input type="hidden" name="_method" value="{{ $method }}">
+        @endif
+        @include('shared.form.text_input', ['slug' => 'name', 'label' => 'Name', 'classes' => '', 'value' => ''])
+        @include('shared.form.submit', ['label' => 'Submit']);
+    </form>
 @endsection
