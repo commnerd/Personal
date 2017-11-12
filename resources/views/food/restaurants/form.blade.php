@@ -1,13 +1,13 @@
 @extends('shared.layouts.form')
 
-@php
-  $method = isset($restaurant) ? 'PUT' : 'POST';
-@endphp
+@section('action', route('restaurants.create'))
 
-@section('action', $action)
+@section('method', 'POST');
 
-@section('method', $method)
-
-@section('content')
-
+@section('form_content')
+    @include('shared.text_input', [
+        'slug' => 'name',
+        'label' => 'Name',
+        'classes' => '',
+    ])
 @endsection

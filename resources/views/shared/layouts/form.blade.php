@@ -1,5 +1,5 @@
-<form method="get" action="@yield('action')">
+<form method="POST" action="@yield('action')">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_method" value="@yield('method')">
-    @yield('content')
+    @yield('form_content')
 </form>
