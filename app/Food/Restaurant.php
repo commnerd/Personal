@@ -2,6 +2,7 @@
 
 namespace App\Food;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
@@ -26,4 +27,9 @@ class Restaurant extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(\App\Food\Order::class);
+    }
 }
