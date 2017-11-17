@@ -1,21 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Food;
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\Food\Restaurant;
 use App\Food\Order;
 
-class OrderController extends Controller
+class OrderController extends FoodController
 {
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $restaurantId): Response
     {
-        //
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        return response()->view('food.orders.index', compact('restaurant'));
     }
 
     /**

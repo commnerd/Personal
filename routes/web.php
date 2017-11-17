@@ -16,5 +16,6 @@ Route::get('/', function () {
 })->name('home');
 
 Route::namespace('Food')->prefix('food')->group(function() {
+    Route::resource('/restaurants/{restaurantId}/orders', 'OrderController');
     Route::resource('/restaurants', 'RestaurantController');
 });
