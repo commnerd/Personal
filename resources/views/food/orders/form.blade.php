@@ -9,7 +9,9 @@
         @if($method !== 'POST')
             <input type="hidden" name="_method" value="{{ $method }}">
         @endif
-        @include('shared.form.text_input', ['slug' => 'name', 'label' => 'Name', 'value' => old('name')])
+        <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}" />
+        @include('shared.form.text_input', ['slug' => 'label', 'label' => 'Label', 'value' => old('label')])
+        @include('shared.form.text_area', ['slug' => 'notes', 'label' => 'Notes', 'value' => old('notes')])
         @include('shared.form.submit', ['label' => 'Submit']);
     </form>
 @endsection

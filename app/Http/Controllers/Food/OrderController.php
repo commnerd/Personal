@@ -27,9 +27,19 @@ class OrderController extends FoodController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(int $restaurantId)
     {
-        //
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        return response()->view('food.orders.form', [
+            'restaurant' => $restaurant,
+            'action' => route('restaurants.store'),
+            'method' => 'POST',
+            'title' => 'Create Order for '.$restaurant->name,
+            'order' => new Order(),
+        ]);
+
+        return response()->view('food.orders.form', compact('restaurant'));
     }
 
     /**
