@@ -34,4 +34,26 @@ class OrderControllerTest extends TestCase
 
          $response->assertSee('#1');
      }
+
+     /**
+      * Test order index page
+      *
+      * @return void
+      */
+      public function testCreateOrderPage()
+      {
+          Restaurant::create(['name' => 'McDonalds']);
+
+          $response = $this->get('/food/restaurants/1/orders/create');
+
+          $response->assertSuccessful();
+
+          $response->assertSee("Create Order for McDonalds");
+
+          $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
+
+          $response->assertSee('<label for="label" class="control-label col-md-2">Label</label>');
+
+          $response->assertSee('<label for="notes" class="control-label col-md-2">Notes</label>');
+      }
 }

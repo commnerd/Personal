@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('restaurant_id')->unsigned();
             $table->foreign('restaurant_id')->references('id')->on('restaurants');
-            $table->boolean('active');
+            $table->boolean('active')->default(false);
             $table->string('label');
             $table->text('notes');
             $table->timestamps();
