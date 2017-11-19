@@ -55,9 +55,7 @@ class RestaurantControllerTest extends TestCase
       */
      public function testPostRestaurantCreation()
      {
-         $restaurant = new Restaurant();
-
-         $restaurant->fill(['name' => 'McDonalds']);
+         $restaurant = new Restaurant(['name' => 'McDonalds']);
 
          $response = $this->post('/food/restaurants', $restaurant->toArray());
 
@@ -104,7 +102,7 @@ class RestaurantControllerTest extends TestCase
 
      /**
       * Test updating a Restaurant
-      * 
+      *
       * @return void
       */
      public function testPutRestaurantUpdate()
