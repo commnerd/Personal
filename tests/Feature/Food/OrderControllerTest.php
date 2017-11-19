@@ -56,4 +56,28 @@ class OrderControllerTest extends TestCase
 
           $response->assertSee('<label for="notes" class="control-label col-md-2">Notes</label>');
       }
+
+      /**
+       * Test Order Store Call
+       *
+       * @return void
+       */
+      public function testPostOrderCreation()
+      {
+          Restaurant::create([
+              'name' => 'McDonalds',
+          ]);
+
+          $order = new Order([
+              'restaurant_id' => 1,
+              'label' => '#1',
+              'notes' => 'Test notes',
+          ]);
+
+          $response = $this->post('/food/restaurants/1/orders', $order->toArray());
+
+          $response->assertStatus(302);
+
+          $this->assertEquals(1, Order::count());
+      }
 }

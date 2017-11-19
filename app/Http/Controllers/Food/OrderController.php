@@ -48,9 +48,13 @@ class OrderController extends FoodController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(int $restaurantId, Request $request)
     {
-        //
+        $request->validate(Order::getValidationRules());
+
+        Order::create($request->all());
+
+        return redirect('food.orders.index');
     }
 
     /**
