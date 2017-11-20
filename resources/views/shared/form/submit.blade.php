@@ -1,1 +1,1 @@
-<input type="submit">{{ $label }}</input>
+<input class="btn btn-default" type="submit" />
