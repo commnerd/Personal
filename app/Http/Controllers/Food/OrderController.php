@@ -34,7 +34,7 @@ class OrderController extends FoodController
 
         return response()->view('food.orders.form', [
             'restaurant' => $restaurant,
-            'action' => route('restaurants.store'),
+            'action' => route('restaurants.store', $restaurantId),
             'method' => 'POST',
             'title' => 'Create Order for '.$restaurant->name,
             'order' => new Order(),
@@ -88,7 +88,7 @@ class OrderController extends FoodController
 
         return response()->view('food.orders.form', [
             'restaurant' => $restaurant,
-            'action' => route('orders.update', $restaurant, $order),
+            'action' => route('orders.update', [$restaurantId, $orderId]),
             'method' => 'PUT',
             'title' => 'Edit order "'.$order->label.'" for '.$restaurant->name,
             'order' => $order,
