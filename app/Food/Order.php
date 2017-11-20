@@ -32,4 +32,14 @@ class Order extends Model
         'label',
         'notes',
     ];
+
+    /**
+     * Related restaurant
+     *
+     * @return HasOne
+     */
+    public function restaurant(): HasOne
+    {
+        return $this->hasOne(\App\Food\Restaurant::class);
+    }
 }

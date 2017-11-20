@@ -113,4 +113,15 @@ class RestaurantControllerTest extends TestCase
 
          $this->assertEquals('Taco Bell', Restaurant::findOrFail(1)->name);
      }
+
+     public function testDeleteRestaurant()
+     {
+         Restaurant::create(['name' => 'McDonalds']);
+
+         $response = $this->delete('/food/restaurants/1');
+
+         $response->assertStatus(302);
+
+         $this->assertEquals(0, Restaurant::count());
+     }
 }

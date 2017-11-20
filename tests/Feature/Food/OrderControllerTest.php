@@ -36,7 +36,7 @@ class OrderControllerTest extends TestCase
      }
 
      /**
-      * Test order index page
+      * Test order creation page
       *
       * @return void
       */
@@ -80,4 +80,50 @@ class OrderControllerTest extends TestCase
 
           $this->assertEquals(1, Order::count());
       }
+
+      /**
+       * Test order edit page
+       *
+       * @return void
+       */
+       public function testEditOrderPage()
+       {
+           Restaurant::create(['name' => 'McDonalds']);
+
+           Order::create([
+               'restaurant_id' => 1,
+               'label' => '#1',
+               'notes' => 'Test notes',
+           ]);
+
+           $response = $this->get('/food/restaurants/1/orders/1/edit');
+
+           die($response->dump());
+
+           $response->assertSuccessful();
+
+           $response->assertSee('Edit order "#1" for McDonalds');
+
+           $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
+
+           $response->assertSee('<label for="label" class="control-label col-md-2">Label</label>');
+
+           $response->assertSee('<label for="notes" class="control-label col-md-2">Notes</label>');
+       }
+
+       public function testDeleteOrder()
+       {
+           Restaurant::create(['name' => 'McDonalds']);
+
+           Order::create([
+               'restaurant_id' => 1,
+               'label' => '#1',
+               'notes' => 'Test notes',
+           ]);
+
+           $response = $this->delete('/food/restaurants/1/orders/1');
+
+           $this->assertEquals(0, Order::count());
+       }
+
 }

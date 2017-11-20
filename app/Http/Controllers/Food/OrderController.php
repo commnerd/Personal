@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Food;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Food\Restaurant;
@@ -27,7 +28,7 @@ class OrderController extends FoodController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(int $restaurantId)
+    public function create(int $restaurantId): Response
     {
         $restaurant = Restaurant::findOrFail($restaurantId);
 
@@ -46,9 +47,9 @@ class OrderController extends FoodController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(int $restaurantId, Request $request)
+    public function store(int $restaurantId, Request $request): RedirectResponse
     {
         $request->validate(Order::getValidationRules());
 
@@ -60,12 +61,17 @@ class OrderController extends FoodController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Food\Order  $order
+     * @param  int  $restaurantId
+     * @param  int  $orderId
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(int $restaurantId, int $orderId)
     {
-        //
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        $order = Order::findOrFail($orderId);
+
+        return view('food.orders.show', compact('restaurant', 'order'));
     }
 
     /**
@@ -74,9 +80,21 @@ class OrderController extends FoodController
      * @param  \App\Food\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(int $restaurantId, int $orderId): Response
     {
-        //
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        $order = Order::findOrFail($orderId);
+
+        return response()->view('food.orders.form', [
+            'restaurant' => $restaurant,
+            'action' => route('orders.update', $restaurant, $order),
+            'method' => 'PUT',
+            'title' => 'Edit order "'.$order->label.'" for '.$restaurant->name,
+            'order' => $order,
+        ]);
+
+        return response()->view('food.orders.form', compact('restaurant', 'order'));
     }
 
     /**
@@ -86,9 +104,9 @@ class OrderController extends FoodController
      * @param  \App\Food\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, int $restaurantId, int $orderId): RedirectResponse
     {
-        //
+        return redirect('food.orders.index', $restaurantId);
     }
 
     /**
@@ -97,8 +115,10 @@ class OrderController extends FoodController
      * @param  \App\Food\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(int $restaurantId, int $orderId): RedirectResponse
     {
-        //
+        Order::destroy($orderId);
+
+        return redirect('food.orders.index');
     }
 }

@@ -101,6 +101,8 @@ class RestaurantController extends FoodController
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        $restaurant->delete();
+
+        return redirect('food.restaurants.index');
     }
 }
