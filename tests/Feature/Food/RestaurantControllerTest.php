@@ -26,7 +26,11 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('Restaurant List');
 
-         $response->assertSee('McDonalds');
+         $response->assertSee('<a class="glyphicon glyphicon-plus" href="http://localhost/food/restaurants/create"></a>');
+
+         $response->assertSee('<a class="glyphicon glyphicon-edit" href="http://localhost/food/restaurants/1/edit"></a>');
+
+         $response->assertSee('<a href="http://localhost/food/restaurants/1">McDonalds</a>');
      }
 
      /**
@@ -44,8 +48,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('<input type="text" name="name"');
 
-         $response->assertSee('Submit');
-
+         $response->assertSee('<input class="btn btn-default" type="submit" />');
      }
 
      /**
@@ -97,7 +100,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('<input type="text" name="name"');
 
-         $response->assertSee('Submit');
+         $response->assertSee('<input class="btn btn-default" type="submit" />');
      }
 
      /**
@@ -123,5 +126,33 @@ class RestaurantControllerTest extends TestCase
          $response->assertStatus(302);
 
          $this->assertEquals(0, Restaurant::count());
+     }
+
+     /**
+      * Ensure styles and scripts are included
+      *
+      * @return null
+      */
+     public function testStyleAndScriptPresence()
+     {
+         $response = $this->get('/food/restaurants');
+
+         $response->assertSee('<link rel="stylesheet" href="'.elixir('/food/css/app.css').'">');
+
+         $response->assertSee('<script src="'.elixir('/food/js/app.js').'"></script>');
+
+         $response = $this->get('/food/restaurants/create');
+
+         $response->assertSee('<link rel="stylesheet" href="'.elixir('/food/css/app.css').'">');
+
+         $response->assertSee('<script src="'.elixir('/food/js/app.js').'"></script>');
+
+         Restaurant::create(['name' => 'Test Restaurant']);
+
+         $response = $this->get('/food/restaurants/1/edit');
+
+         $response->assertSee('<link rel="stylesheet" href="'.elixir('/food/css/app.css').'">');
+
+         $response->assertSee('<script src="'.elixir('/food/js/app.js').'"></script>');
      }
 }
