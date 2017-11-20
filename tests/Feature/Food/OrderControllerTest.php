@@ -98,11 +98,9 @@ class OrderControllerTest extends TestCase
 
            $response = $this->get('/food/restaurants/1/orders/1/edit');
 
-           die($response->dump());
-
            $response->assertSuccessful();
 
-           $response->assertSee('Edit order "#1" for McDonalds');
+           $response->assertSee('Edit order &quot;#1&quot; for McDonalds');
 
            $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
 
