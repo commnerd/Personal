@@ -18,10 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/github_event', function() {
-    return response("OK");
-});
-
 Route::middleware('github.auth')->post('/github_event', function(Request $request) {
     event(new \App\Events\GithubEvent($request->all()));
+    return response()->json(['status' => 'Success']);
 });
