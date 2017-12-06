@@ -5,4 +5,4 @@ cd $BASE_PATH;
 
 ORIGIN=$(git remote -v | grep origin | grep fetch | awk '{print $2}')
 
-git clone -b $3
+echo $3 > /tmp/test

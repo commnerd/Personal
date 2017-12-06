@@ -26,6 +26,6 @@ class GithubEventListener
      */
     public function handle(GithubEvent $event)
     {
-
+        shell_exec("bash ".base_path("/deploy.sh")." ".$event->getReleaseTarballUrl());
     }
 }
