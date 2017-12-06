@@ -3,8 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\GithubEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\Deploy;
 
 class GithubEventListener
 {
@@ -26,6 +25,6 @@ class GithubEventListener
      */
     public function handle(GithubEvent $event)
     {
-        shell_exec("bash ".base_path("/deploy.sh")." ".$event->getReleaseTarballUrl());
+        Deploy::dispatch($event);
     }
 }
