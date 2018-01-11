@@ -32,6 +32,6 @@ class Deploy implements ShouldQueue
      */
     public function handle()
     {
-        shell_exec("bash ".base_path("/deploy.sh")." ".$this->event->getReleaseTarballUrl());
+        file_put_contents(storage_path("update"), "export TARGET=".$this->event->getReleaseTarballUrl());
     }
 }
