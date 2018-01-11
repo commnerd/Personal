@@ -7,3 +7,35 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Header
+header {
+    height: $header-height;
+    background: url("/storage/me.jpg") no-repeat;
+    background-size: 100% auto;
+
+    a {
+        color: white;
+        @include fade('color', '.2s')
+
+        &:hover {
+            color:white;
+        }
+    }
+
+    .nav {
+        &:hover > li > a {
+                color: $header-hover-color;
+                @include fade('color', '.2s')
+        }
+
+        & > li > a {
+            &:hover, &:active {
+                background-color: transparent;
+                @include fade('color', '.2s')
+                color: white;
+            }
+        }
+    }
+}
+// END HEADER

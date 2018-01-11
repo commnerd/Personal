@@ -24,7 +24,7 @@ $line-height-base: 1.6;
 $text-color: #636b6f;
 
 // Navbar
-$navbar-default-bg: #fff;
+$navbar-default-bg: transparent;
 
 // Buttons
 $btn-default-color: $text-color;
@@ -35,4 +35,8 @@ $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
-$panel-default-heading-bg: #fff;
+$panel-default-heading-bg: transparent;
+
+// Header
+$header-height: 736px;
+$header-hover-color: rgba(255, 255, 255, .4);
