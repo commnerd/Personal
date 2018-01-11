@@ -13,13 +13,17 @@
         <tbody>
             @foreach($restaurant->orders as $order)
             <tr>
+                <td>
+                    <input type="radio" name="active_order" value="{{ $order->id }}" {{ ($order->active) ? 'checked="checked"' : ''}} />
+                </td>
                 <td>{{ $order->label }}</td>
                 <td>
-                    <a class="glyphicon glyphicon-edit" href="{{ route('orders.edit', [$restaurant, $order]) }}"></a>');
-                    <a href="#">Delete</a>
+                    <a class="glyphicon glyphicon-edit" href="{{ route('orders.edit', [$restaurant, $order]) }}"></a>
+                    @include('shared.form.delete_link', ['action' => route('orders.destroy', [$restaurant, $order])])
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    @include('shared.delete_modal')
 @endsection

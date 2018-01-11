@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Food Order Organizer - @yield('title')</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{ elixir('/food/css/app.css') }}">
     </head>
     <body>
