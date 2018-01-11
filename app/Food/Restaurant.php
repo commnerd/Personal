@@ -28,8 +28,23 @@ class Restaurant extends Model
         'name'
     ];
 
+    /**
+     * Orders that belong to this restaurant
+     *
+     * @return HasMany
+     */
     public function orders(): HasMany
     {
         return $this->hasMany(\App\Food\Order::class);
+    }
+
+    /**
+     * Active order belonging to this restaurant
+     *
+     * @return Order
+     */
+    public function activeOrderAttribute(): Order
+    {
+        return Order::where('active', true)->where('restaurant_id', $this->id)->firstOrFail();
     }
 }

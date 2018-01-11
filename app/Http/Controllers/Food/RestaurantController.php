@@ -47,7 +47,7 @@ class RestaurantController extends FoodController
 
         Restaurant::create($request->all());
 
-        return redirect('food.restaurants.index');
+        return redirect(route('restaurants.index'));
     }
 
     /**
@@ -58,7 +58,7 @@ class RestaurantController extends FoodController
      */
     public function show(Restaurant $restaurant): Response
     {
-        //
+        return response()->view('food.restaurants.show', compact('restaurant'));
     }
 
     /**
@@ -90,7 +90,7 @@ class RestaurantController extends FoodController
 
         $restaurant->update($request->all());
 
-        return redirect('food.restaurants.index');
+        return redirect(route('restaurants.index'));
     }
 
     /**
@@ -99,10 +99,10 @@ class RestaurantController extends FoodController
      * @param  \App\Food\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Restaurant $restaurant)
+    public function destroy(Restaurant $restaurant): RedirectResponse
     {
         $restaurant->delete();
 
-        return redirect('food.restaurants.index');
+        return redirect(route('restaurants.index'));
     }
 }

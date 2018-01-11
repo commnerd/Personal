@@ -6,3 +6,12 @@
  */
 
 require('./bootstrap');
+
+$('a[href="#delete"]').click(function() {
+    var form = $(this).parent();
+    $('.modal').modal('show');
+    $('.modal .btn-danger').click(function() {
+        $(form).submit();
+    });
+    return false;
+});

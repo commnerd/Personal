@@ -1,4 +1,4 @@
-@extends('food.layouts.main')
+@extends('food.layouts.main', ['errors' => $errors])
 
 @section('title', $title)
 
@@ -12,6 +12,6 @@
         <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}" />
         @include('shared.form.text_input', ['slug' => 'label', 'label' => 'Label', 'value' => old('label')])
         @include('shared.form.text_area', ['slug' => 'notes', 'label' => 'Notes', 'value' => old('notes')])
-        @include('shared.form.submit', ['label' => 'Submit']);
+        @include('shared.form.submit', ['label' => 'Submit'])
     </form>
 @endsection

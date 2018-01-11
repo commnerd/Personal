@@ -17,11 +17,12 @@
                 <td><a href="{{ route('restaurants.show', $restaurant) }}">{{ $restaurant->name }}</a></td>
                 <td>
                     <a class="glyphicon glyphicon-edit" href="{{ route('restaurants.edit', $restaurant) }}"></a>
-                    <a href="#">Delete</a>
+                    @include('shared.form.delete_link', ['action' => route('restaurants.destroy', $restaurant)])
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
     {{ $restaurants->links() }}
+    @include('shared.delete_modal')
 @endsection
