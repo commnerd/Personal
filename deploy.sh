@@ -27,8 +27,8 @@ CODEBASE=$(pwd)/$(ls | grep Personal)
 cp $BASEPATH/.env $CODEBASE
 cp -fR $BASEPATH/storage $CODEBASE
 cd $CODEBASE
-composer install
-npm install
+/usr/bin/composer install
+sudo /usr/local/bin/yarn install
 
 # MOVE FILES INTO PLACE
 mv $BASEPATH /tmp/backup && mv $CODEBASE $BASEPATH
@@ -36,3 +36,4 @@ mv $BASEPATH /tmp/backup && mv $CODEBASE $BASEPATH
 # RESTART WORKERS
 cd $BASEPATH
 php artisan queue:restart
+chown -fR www-data:www-data $BASEPATH
