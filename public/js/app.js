@@ -31676,7 +31676,7 @@ module.exports = function spread(callback) {
 /* 35 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \n        @include fade('color', '.2s')\n                ^\n      No mixin named fade\n\nBacktrace:\n\tstdin:19\n      in /Users/commnerd/Workspace/Personal/resources/assets/sass/app.scss (line 19, column 18)\n    at runLoaders (/Users/commnerd/Workspace/Personal/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/commnerd/Workspace/Personal/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/commnerd/Workspace/Personal/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/Users/commnerd/Workspace/Personal/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (/Users/commnerd/Workspace/Personal/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.<anonymous> (/Users/commnerd/Workspace/Personal/node_modules/async/dist/async.js:2257:31)\n    at Object.callback (/Users/commnerd/Workspace/Personal/node_modules/async/dist/async.js:958:16)\n    at options.error (/Users/commnerd/Workspace/Personal/node_modules/node-sass/lib/index.js:294:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Dancing+Script:300,400,600);@charset "UTF-8";
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -8352,14 +8352,21 @@ button.close {
 
 header {
   height: 736px;
-  background: url("/storage/me.jpg") no-repeat;
+  background: url("/storage/me.png") no-repeat;
   background-size: 100% auto;
+  color: white;
+}
+
+header h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 400%;
 }
 
 header a {
   color: white;
-  -webkit-transition: color .2s ease-in;
-  transition: color .2s ease-in;
+  -webkit-transition: "color" ".2s" ease-in;
+  transition: "color" ".2s" ease-in;
 }
 
 header a:hover {
@@ -8368,15 +8375,51 @@ header a:hover {
 
 header .nav:hover > li > a {
   color: rgba(255, 255, 255, 0.4);
-  -webkit-transition: color .2s ease-in;
-  transition: color .2s ease-in;
+  -webkit-transition: "color" ".2s" ease-in;
+  transition: "color" ".2s" ease-in;
 }
 
 header .nav > li > a:hover,
 header .nav > li > a:active {
   background-color: transparent;
-  -webkit-transition: color .2s ease-in;
-  transition: color .2s ease-in;
+  -webkit-transition: "color" ".2s" ease-in;
+  transition: "color" ".2s" ease-in;
   color: white;
+}
+
+div.divider hr {
+  border-top: thin solid #636b6f;
+  margin: 44px 0 0;
+}
+
+div.divider label {
+  background: inherit;
+  margin: 0;
+  padding: 0 5px;
+  -webkit-transform: translateY(-22px);
+          transform: translateY(-22px);
+  background-color: #f5f8fa;
+  font-size: 200%;
+}
+
+div.image-tiles > * {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 50%;
+  float: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.font-script {
+  font-family: 'Dancing Script', cursive;
+  font-size: 200%;
+}
+
+.nav-buffer {
+  margin-top: 200px;
 }
 

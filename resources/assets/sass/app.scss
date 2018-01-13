@@ -1,6 +1,9 @@
+// Mixins
+@import "mixins";
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script:300,400,600');
 
 // Variables
 @import "variables";
@@ -11,8 +14,15 @@
 // Header
 header {
     height: $header-height;
-    background: url("/storage/me.jpg") no-repeat;
+    background: url("/storage/me.png") no-repeat;
     background-size: 100% auto;
+    color: white;
+
+    h1 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 400%;
+    }
 
     a {
         color: white;
@@ -39,3 +49,37 @@ header {
     }
 }
 // END HEADER
+
+div.divider {
+    hr {
+        border-top: thin solid $text-color;
+        margin: 44px 0 0;
+    }
+    label {
+        background: inherit;
+        margin: 0;
+        padding: 0 5px;
+        transform:translateY(-22px);
+        background-color: $body-bg;
+        font-size: 200%;
+    }
+}
+
+div.image-tiles > * {
+    display: inline-flex;
+    width: 50%;
+    float: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.font-script {
+    font-family: 'Dancing Script', cursive;
+    font-size: 200%;
+}
+
+.nav-buffer {
+    margin-top: 200px;
+}
