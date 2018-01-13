@@ -9,9 +9,10 @@
 
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
-    <body>
+    <body class="home">
         <header>
             @include('partials.main-nav')
+            @yield('header')
         </header>
         <section class="container-fluid">
             @yield('content')

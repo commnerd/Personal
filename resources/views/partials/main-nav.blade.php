@@ -15,7 +15,6 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ route('home') }}">Home</a></li>
-        <li><a href="{{ route('home') }}">Home</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
