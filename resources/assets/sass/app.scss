@@ -50,17 +50,16 @@ header {
 }
 // END HEADER
 
-body > section {
-    margin-bottom: 22px;
-}
-
 div.divider {
+    padding: 44px;
+    height:44px;
+
     hr {
         border-top: thin solid $text-color;
-        margin: 44px 0 0;
+        margin: 0;
     }
     label {
-        background: inherit;
+        background-color: inherit;
         margin: 0;
         padding: 0 5px;
         transform:translateY(-22px);
@@ -69,19 +68,45 @@ div.divider {
     }
 }
 
-div.image-tiles > * {
+div.section:nth-child(odd) div.divider label {
+    background-color: $section-bg-odd;
+}
+
+section {
+    & > div.section:nth-child(odd), & > div.divider:nth-child(odd) {
+        background-color: $section-bg-odd;
+    }
+}
+
+div.section {
+    padding-bottom: 22px;
+}
+
+div.intro p {
+    margin: auto;
+    text-align: center;
+    font-size: 200%;
+}
+
+div.image-tiles > img {
     display: inline-flex;
     width: 50%;
     float: left;
 }
 
 footer {
+    clear: both;
     background-color: #26262a;
     color: white;
     text-align:center;
     padding: 20px;
     & > * {
         margin-top: 20px;
+    }
+
+    & a, & a:hover {
+        color: white;
+        text-decoration: none;
     }
 }
 

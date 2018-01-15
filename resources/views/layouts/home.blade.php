@@ -15,7 +15,7 @@
             @include('partials.main-nav')
             @yield('header')
         </header>
-        <section class="container-fluid">
+        <section>
             @yield('content')
         </section>
         <footer>

@@ -8387,17 +8387,18 @@ header .nav > li > a:active {
   color: white;
 }
 
-body > section {
-  margin-bottom: 22px;
+div.divider {
+  padding: 44px;
+  height: 44px;
 }
 
 div.divider hr {
   border-top: thin solid #636b6f;
-  margin: 44px 0 0;
+  margin: 0;
 }
 
 div.divider label {
-  background: inherit;
+  background-color: inherit;
   margin: 0;
   padding: 0 5px;
   -webkit-transform: translateY(-22px);
@@ -8406,7 +8407,26 @@ div.divider label {
   font-size: 200%;
 }
 
-div.image-tiles > * {
+div.section:nth-child(odd) div.divider label {
+  background-color: #d3e0e9;
+}
+
+section > div.section:nth-child(odd),
+section > div.divider:nth-child(odd) {
+  background-color: #d3e0e9;
+}
+
+div.section {
+  padding-bottom: 22px;
+}
+
+div.intro p {
+  margin: auto;
+  text-align: center;
+  font-size: 200%;
+}
+
+div.image-tiles > img {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -8415,6 +8435,7 @@ div.image-tiles > * {
 }
 
 footer {
+  clear: both;
   background-color: #26262a;
   color: white;
   text-align: center;
@@ -8423,6 +8444,12 @@ footer {
 
 footer > * {
   margin-top: 20px;
+}
+
+footer a,
+footer a:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .center {
