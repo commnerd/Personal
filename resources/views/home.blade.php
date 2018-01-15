@@ -7,8 +7,10 @@
 
 @section('content')
     @include('partials.section-header', ['label' => 'Family'])
-    <div class="image-tiles">
+    <div class="section image-tiles">
         <img src="/storage/family-1.png">
         <img src="/storage/family-2.png">
+        <img src="/storage/family-3.png">
+        <img src="/storage/family-4.png">
     </div>
 @endsection
