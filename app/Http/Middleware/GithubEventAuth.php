@@ -30,7 +30,7 @@ class GithubEventAuth
 
         $rawPost = file_get_contents('php://input');
         if($hash !== hash_hmac($algo, $rawPost, env('APP_KEY'))) {
-            return response()->json('Unauthorized', 403);
+            return response()->json('Unauthorized: '.$hash.' => '.hash_hmac($algo, $rawPost, env('APP_KEY')), 403);
         }
 
         return $next($request);

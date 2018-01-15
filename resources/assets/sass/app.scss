@@ -50,6 +50,10 @@ header {
 }
 // END HEADER
 
+body > section {
+    margin-bottom: 22px;
+}
+
 div.divider {
     hr {
         border-top: thin solid $text-color;
@@ -69,6 +73,16 @@ div.image-tiles > * {
     display: inline-flex;
     width: 50%;
     float: left;
+}
+
+footer {
+    background-color: #26262a;
+    color: white;
+    text-align:center;
+    padding: 20px;
+    & > * {
+        margin-top: 20px;
+    }
 }
 
 .center {

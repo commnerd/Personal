@@ -8387,6 +8387,10 @@ header .nav > li > a:active {
   color: white;
 }
 
+body > section {
+  margin-bottom: 22px;
+}
+
 div.divider hr {
   border-top: thin solid #636b6f;
   margin: 44px 0 0;
@@ -8408,6 +8412,17 @@ div.image-tiles > * {
   display: inline-flex;
   width: 50%;
   float: left;
+}
+
+footer {
+  background-color: #26262a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+footer > * {
+  margin-top: 20px;
 }
 
 .center {
