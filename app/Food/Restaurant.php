@@ -43,7 +43,7 @@ class Restaurant extends Model
      *
      * @return Order
      */
-    public function activeOrderAttribute(): Order
+    public function getActiveOrderAttribute(): Order
     {
         return Order::where('active', true)->where('restaurant_id', $this->id)->firstOrFail();
     }

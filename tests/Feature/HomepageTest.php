@@ -16,7 +16,7 @@ class HomepageTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertSee('Site Under Construction');
+        $response->assertSee('Family');
         $response->assertStatus(200);
     }
 }

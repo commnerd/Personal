@@ -8,10 +8,11 @@
 require('./bootstrap');
 
 $('a[href="#delete"]').click(function() {
-    var form = $(this).parent();
+    var action = $(this).attr('delete_action');
     $('.modal').modal('show');
+    $('.modal form').attr('action', action);
     $('.modal .btn-danger').click(function() {
-        $(form).submit();
+        $(this).parent().submit();
     });
     return false;
 });

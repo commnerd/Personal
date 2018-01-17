@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Food\Restaurant;
+use App\Food\Order;
 
 class RestaurantController extends FoodController
 {
@@ -70,8 +71,8 @@ class RestaurantController extends FoodController
     public function edit(Restaurant $restaurant): Response
     {
         return response()->view('food.restaurants.form', [
-            'action' => route('restaurants.store'),
-            'method' => 'POST',
+            'action' => route('restaurants.update', $restaurant),
+            'method' => 'PUT',
             'title' => "Edit $restaurant->name",
             'restaurant' => $restaurant,
         ]);
@@ -87,6 +88,9 @@ class RestaurantController extends FoodController
     public function update(Request $request, Restaurant $restaurant): RedirectResponse
     {
         $request->validate(Restaurant::getValidationRules());
+
+        Order::where('restaurant_id', "=", $restaurant->id)->update(['active' => false]);
+        Order::find($request->default_order)->update(['active' => true]);
 
         $restaurant->update($request->all());
 

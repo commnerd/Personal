@@ -34,7 +34,7 @@ class OrderController extends FoodController
 
         return response()->view('food.orders.form', [
             'restaurant' => $restaurant,
-            'action' => route('restaurants.store', $restaurantId),
+            'action' => route('orders.store', $restaurantId),
             'method' => 'POST',
             'title' => 'Create Order for '.$restaurant->name,
             'order' => new Order(),
@@ -55,7 +55,7 @@ class OrderController extends FoodController
 
         Order::create($request->all());
 
-        return redirect('food.orders.index');
+        return redirect(route('restaurants.edit', $restaurantId));
     }
 
     /**
@@ -104,9 +104,13 @@ class OrderController extends FoodController
      * @param  \App\Food\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $restaurantId, int $orderId): RedirectResponse
+    public function update(Request $request, int $restaurantId, Order $order): RedirectResponse
     {
-        return redirect('food.orders.index', $restaurantId);
+        $request->validate(Order::getValidationRules());
+
+        $order->update($request->all());
+
+        return redirect(route('restaurants.edit', $restaurantId));
     }
 
     /**
@@ -119,6 +123,6 @@ class OrderController extends FoodController
     {
         Order::destroy($orderId);
 
-        return redirect('food.orders.index');
+        return redirect(route('restaurants.edit', $restaurantId));
     }
 }
