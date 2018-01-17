@@ -4,6 +4,7 @@ namespace Tests\Feature\Food;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Food\Restaurant;
+use App\Food\Order;
 use Tests\TestCase;
 
 class RestaurantControllerTest extends TestCase
@@ -154,5 +155,29 @@ class RestaurantControllerTest extends TestCase
          $response->assertSee('<link rel="stylesheet" href="'.elixir('/food/css/app.css').'">');
 
          $response->assertSee('<script src="'.elixir('/food/js/app.js').'"></script>');
+     }
+
+     /**
+      * Test setting of default order
+      *
+      * @return null
+      */
+     public function testOrderSetting()
+     {
+         Restaurant::create(['name' => 'Test Restaurant']);
+
+         Order::create([
+             'restaurant_id' => 1,
+             'active' => 0,
+             'label' => 'Default Order',
+             'notes' => 'Lorum ipsum',
+         ]);
+
+         $response = $this->put('/food/restaurants/1', [
+             'name' => 'Test Restaurant',
+             
+         ]);
+
+         $this->assertEquals('Taco Bell', Restaurant::findOrFail(1)->name);
      }
 }

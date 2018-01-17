@@ -17,6 +17,7 @@
         ])
         @if(isset($restaurant->id))
             @if(count($restaurant->orders) > 0)
+            <h2 class="row col-md-12">Choose the active order for {{ $restaurant->name }}:</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -28,7 +29,7 @@
                 <tbody>
                     @foreach($restaurant->orders as $order)
                     <tr>
-                        <td><input type="radio" name="default_order" value="{{ $order->id }}" /></td>
+                        <td><input type="radio" name="default_order" value="{{ $order->id }}"{{ $order->active ? ' checked' : '' }} /></td>
                         <td>{{ $order->label }}</td>
                         <td>
                             <a class="glyphicon glyphicon-edit" href="{{ route('orders.edit', ['restaurant' => $restaurant, 'order' => $order]) }}"></a>
@@ -39,8 +40,13 @@
                 </tbody>
             </table>
             @endif
-            <a href="{{ route('orders.create', $restaurant) }}">Add Order</a>
+            <div>
+                <a href="{{ route('orders.create', $restaurant) }}">Add Order</a>
+            </div>
         @endif
-        @include('shared.form.submit', ['label' => 'Submit'])
+        <div>
+            @include('shared.form.submit', ['label' => 'Submit'])
+        </div>
     </form>
+    @include('shared.delete_modal', ['entity' => 'order'])
 @endsection
