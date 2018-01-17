@@ -6,13 +6,16 @@
 @endsection
 
 @section('content')
-        <div class="section intro">
-            @include('partials.section-header', ['label' => 'Hello'])
-            <p>
-                Currently, there is not much here.<br />
-                This is an extreme improvement over what was here.<br />
-                Please come back and view my updates.
-            </p>
+        <div class="section quote">
+            @include('partials.section-header', ['label' => 'Quote'])
+            <blockquote>
+                <p>
+                    There is a computer disease that anybody who works with computers knows about.<br />
+                    It's a very serious disease and it interferes completely with the work.<br />
+                    The trouble with computers is that you 'play' with them!
+                </p>
+            </blockquote>
+            <i>- Richard P. Feynman</i>
         </div>
 
         <div class="section image-tiles">
@@ -22,6 +25,4 @@
             <img src="/storage/family-3.png">
             <img src="/storage/family-4.png">
         </div>
-    </section>
-
 @endsection

@@ -8350,6 +8350,11 @@ button.close {
   }
 }
 
+body {
+  max-width: 1280px;
+  margin: auto;
+}
+
 header {
   height: 736px;
   background: url("/storage/me.png") no-repeat;
@@ -8420,10 +8425,17 @@ div.section {
   padding-bottom: 22px;
 }
 
-div.intro p {
+div.quote p {
   margin: auto;
   text-align: center;
-  font-size: 200%;
+  font-size: 150%;
+}
+
+div.quote i {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 150%;
 }
 
 div.image-tiles > img {

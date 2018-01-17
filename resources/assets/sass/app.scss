@@ -11,6 +11,12 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Body
+body {
+    max-width: 1280px;
+    margin: auto;
+}
+
 // Header
 header {
     height: $header-height;
@@ -82,10 +88,19 @@ div.section {
     padding-bottom: 22px;
 }
 
-div.intro p {
-    margin: auto;
-    text-align: center;
-    font-size: 200%;
+div.quote {
+    p {
+        margin: auto;
+        text-align: center;
+        font-size: 150%;
+    }
+
+    i {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 150%;
+    }
 }
 
 div.image-tiles > img {
