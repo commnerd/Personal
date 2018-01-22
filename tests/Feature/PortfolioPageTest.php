@@ -20,7 +20,6 @@ class PortfolioPageTest extends TestCase
 
         $response->assertDontSee('Portfolio');
         $response->assertStatus(200);
-        $this->assertTrue(true);
     }
 
     /**
@@ -30,10 +29,15 @@ class PortfolioPageTest extends TestCase
      */
     public function testHomepageWithPortfolioEntries()
     {
+        \App\PortfolioEntry::create([
+            'title' => "A test site",
+            'url' => 'http://localhost:8000',
+            'details' => 'Details about this site.',
+        ]);
+
         $response = $this->get('/');
 
         $response->assertSee('Portfolio');
         $response->assertStatus(200);
-        $this->assertTrue(true);
     }
 }
