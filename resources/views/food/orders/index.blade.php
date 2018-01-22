@@ -25,5 +25,5 @@
             @endforeach
         </tbody>
     </table>
-    @include('shared.delete_modal')
+    @include('shared.delete-modal', ['entity' => 'order'])
 @endsection
