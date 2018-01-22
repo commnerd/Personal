@@ -1,6 +1,3 @@
 @mixin fade($attr, $time) {
-    -moz-transition: $attr $time ease-in;
-    -o-transition: $attr $time ease-in;
-    -webkit-transition: $attr $time ease-in;
-    transition: $attr $time ease-in;
+    transition: $attr $time ease-in-out;
 }

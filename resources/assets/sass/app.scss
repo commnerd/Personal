@@ -15,13 +15,22 @@
 body {
     max-width: 1280px;
     margin: auto;
+
+    &.home header {
+        background: url("/storage/michael-j-miller-xl.png") no-repeat;
+        background-size: 100% auto;
+
+    }
+
+    &.portfolio header {
+        background: url("/storage/portfolio-xl.png") no-repeat;
+        background-size: 100% auto;
+    }
 }
 
 // Header
 header {
     height: $header-height;
-    background: url("/storage/me.png") no-repeat;
-    background-size: 100% auto;
     color: white;
 
     h1 {
@@ -32,7 +41,7 @@ header {
 
     a {
         color: white;
-        @include fade('color', '.2s')
+        @include fade(color, .2s)
 
         &:hover {
             color:white;
@@ -42,15 +51,15 @@ header {
     .nav {
         &:hover > li > a {
                 color: $header-hover-color;
-                @include fade('color', '.2s')
         }
-
-        & > li > a {
-            &:hover, &:active {
-                background-color: transparent;
-                @include fade('color', '.2s')
-                color: white;
-            }
+    }
+}
+// END HEADER
+.navbar-default {
+    border: none;
+    .navbar-brand, .navbar-nav > li > a {
+        &, &:hover, &:focus {
+            color: white;
         }
     }
 }
@@ -122,6 +131,33 @@ footer {
     & a, & a:hover {
         color: white;
         text-decoration: none;
+    }
+}
+
+.portfolio {
+    iframe {
+        width: 50%;
+        height: calc(50vw * 3/4);
+    }
+    blockquote {
+        border: none;
+    }
+    div.section {
+        overflow: hidden;
+        p {
+            width: 50%;
+        }
+        &:nth-child(odd) {
+            iframe {
+                float: left;
+            }
+            p {
+                float: right;
+            };
+        }
+        &:nth-child(even) iframe {
+            float:right;
+        }
     }
 }
 
