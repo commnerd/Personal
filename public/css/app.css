@@ -8355,10 +8355,18 @@ body {
   margin: auto;
 }
 
+body.home header {
+  background: url("/storage/michael-j-miller-xl.png") no-repeat;
+  background-size: 100% auto;
+}
+
+body.portfolio header {
+  background: url("/storage/portfolio-xl.png") no-repeat;
+  background-size: 100% auto;
+}
+
 header {
   height: 736px;
-  background: url("/storage/me.png") no-repeat;
-  background-size: 100% auto;
   color: white;
 }
 
@@ -8370,8 +8378,8 @@ header h1 {
 
 header a {
   color: white;
-  -webkit-transition: "color" ".2s" ease-in;
-  transition: "color" ".2s" ease-in;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
 }
 
 header a:hover {
@@ -8380,15 +8388,18 @@ header a:hover {
 
 header .nav:hover > li > a {
   color: rgba(255, 255, 255, 0.4);
-  -webkit-transition: "color" ".2s" ease-in;
-  transition: "color" ".2s" ease-in;
 }
 
-header .nav > li > a:hover,
-header .nav > li > a:active {
-  background-color: transparent;
-  -webkit-transition: "color" ".2s" ease-in;
-  transition: "color" ".2s" ease-in;
+.navbar-default {
+  border: none;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
   color: white;
 }
 
@@ -8462,6 +8473,35 @@ footer a,
 footer a:hover {
   color: white;
   text-decoration: none;
+}
+
+.portfolio iframe {
+  width: 50%;
+  height: calc(50vw * 3/4);
+}
+
+.portfolio blockquote {
+  border: none;
+}
+
+.portfolio div.section {
+  overflow: hidden;
+}
+
+.portfolio div.section p {
+  width: 50%;
+}
+
+.portfolio div.section:nth-child(odd) iframe {
+  float: left;
+}
+
+.portfolio div.section:nth-child(odd) p {
+  float: right;
+}
+
+.portfolio div.section:nth-child(even) iframe {
+  float: right;
 }
 
 .center {

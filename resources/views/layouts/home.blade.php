@@ -18,17 +18,7 @@
         <section>
             @yield('content')
         </section>
-        <footer>
-            <nav>
-                <a href="/">Home</a>
-            </nav>
-            <div class="copyright">
-                &copy; {{ \Carbon\Carbon::now()->year }} Michael J. Miller. All rights reserved.
-            </div>
-            <nav class="social">
-                <a href="#"><i class="fas fa-camera-retro"></i></a>
-            </nav>
-        </footer>
+        @include('partials.footer')
         <script src="{{ mix('/js/app.js') }}"></script>
     </body>
 </html>
