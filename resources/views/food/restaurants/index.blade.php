@@ -24,5 +24,5 @@
         </tbody>
     </table>
     {{ $restaurants->links() }}
-    @include('shared.delete_modal', ['entity' => 'restaurant'])
+    @include('shared.delete-modal', ['entity' => 'restaurant'])
 @endsection

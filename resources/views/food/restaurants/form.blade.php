@@ -48,5 +48,5 @@
             @include('shared.form.submit', ['label' => 'Submit'])
         </div>
     </form>
-    @include('shared.delete_modal', ['entity' => 'order'])
+    @include('shared.delete-modal', ['entity' => 'order'])
 @endsection
