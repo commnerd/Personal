@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class HomepageTest extends TestCase
 {
+    use RefreshDatabase;
+    
     /**
      * A basic test example.
      *
@@ -16,8 +18,7 @@ class HomepageTest extends TestCase
     {
         $response = $this->get('/');
 
-        // $response->assertSee('Family');
-        // $response->assertStatus(200);
-        $this->assertTrue(true);
+        $response->assertSee('Family');
+        $response->assertStatus(200);
     }
 }

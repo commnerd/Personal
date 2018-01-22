@@ -1,7 +1,9 @@
 <footer>
     <nav>
         <a href="{{ route('home') }}">Home</a>
-        <a href="{{ route('portfolio.index') }}">Portfolio</a>
+        @if(\App\PortfolioEntry::count() > 0)
+            <a href="{{ route('portfolio.index') }}">Portfolio</a>
+        @endif
     </nav>
     <div class="copyright">
         &copy; {{ \Carbon\Carbon::now()->year }} Michael J. Miller. All rights reserved.
