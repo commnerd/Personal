@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('login', 'Auth\LoginController@redirectToProvider');
+Route::get('login/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::resource('/portfolio', 'PortfolioController');
 
 Route::namespace('Food')->prefix('food')->group(function() {
