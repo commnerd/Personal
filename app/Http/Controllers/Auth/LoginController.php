@@ -47,9 +47,9 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(): RedirectResponse
     {
-        $user = User::where('email', Socialite::driver('google')->user()->email)->firstOrFail();
+        $user = User::where('email', Socialite::driver('google')->user()->email)->first();
 
-        if (Auth::loginUsingId($user->id)) {
+        if (!empty($user) && Auth::loginUsingId($user->id)) {
             return redirect()->route('home');
         }
 
