@@ -18,6 +18,16 @@
         @if(\App\PortfolioEntry::count() > 0)
             <li><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
         @endif
+        @if(Auth::check())
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Admin</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Food</a></li>
+            </ul>
+        </li>
+        @endif
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
