@@ -1,0 +1,29 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+form.inline {
+    display: inline-block;
+}
+
+a.glyphicon {
+    text-decoration: none;   
+}
+
+.glyphicon-plus::before {
+    color: $add-color;
+}
+
+.glyphicon-edit::before {
+    color: $edit-color;
+}
+
+.glyphicon-trash::before {
+    color: $delete-color;
+}
