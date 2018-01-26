@@ -90,7 +90,9 @@ class RestaurantController extends FoodController
         $request->validate(Restaurant::getValidationRules());
 
         Order::where('restaurant_id', "=", $restaurant->id)->update(['active' => false]);
-        Order::find($request->default_order)->update(['active' => true]);
+        if(!empty($request->default_order)) {
+            Order::find($request->default_order)->update(['active' => true]);
+        }
 
         $restaurant->update($request->all());
 
