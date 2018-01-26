@@ -6,11 +6,21 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Food\Restaurant;
 use App\Food\Order;
 use Tests\TestCase;
+use Auth;
 
 class RestaurantControllerTest extends TestCase
 {
 
     use RefreshDatabase;
+
+    /**
+     * Setup tests
+     */
+    public function setUp() {
+        parent::setUp();
+
+        Auth::loginUsingId(1);
+    }
 
     /**
      * Test restaurant index page
@@ -177,8 +187,22 @@ class RestaurantControllerTest extends TestCase
              'name' => 'Taco Bell',
          ]);
 
-         $this->assertTrue(true);
+         $response->assertRedirect(route('restaurants.index'));
 
-         // $this->assertEquals('Taco Bell', Restaurant::findOrFail(1)->name);
+         $this->assertEquals('Taco Bell', Restaurant::findOrFail(1)->name);
+     }
+
+     /**
+      * Test redirect when logged out
+      *
+      * @return null
+      */
+     public function testRedirectWhenLoggedOut()
+     {
+         Auth::logout();
+
+         $response = $this->get('/food/restaurants');
+
+         $response->assertRedirect(route('login'));
      }
 }

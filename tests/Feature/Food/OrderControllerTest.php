@@ -3,13 +3,23 @@
 namespace Tests\Feature\Food;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use App\Food\Restaurant;
+use Tests\TestCase;
 use App\Food\Order;
+use Auth;
 
 class OrderControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    /**
+     * Setup tests
+     */
+    public function setUp() {
+        parent::setUp();
+
+        Auth::loginUsingId(1);
+    }
 
     /**
      * Test order index page

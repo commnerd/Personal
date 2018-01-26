@@ -15,14 +15,20 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('logout', 'Auth\LogoutController@handleLogout');
-Route::get('login', 'Auth\LoginController@redirectToProvider');
+Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/callback', 'Auth\LoginController@handleProviderCallback');
-
 
 Route::resource('/portfolio', 'PortfolioController');
 
-Route::namespace('Food')->prefix('food')->group(function() {
-    Route::resource('/restaurants/{restaurantId}/orders', 'OrderController');
-    Route::resource('/restaurants', 'RestaurantController');
+Route::group(['middleware' => ['auth.custom']], function() {
+    Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
+
+    Route::get('admin', function() {
+        return view('admin.index');
+    })->name('admin');
+
+    Route::namespace('Food')->prefix('food')->group(function() {
+        Route::resource('/restaurants/{restaurantId}/orders', 'OrderController');
+        Route::resource('/restaurants', 'RestaurantController');
+    });
 });

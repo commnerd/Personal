@@ -5,8 +5,9 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Socialite;
-use Mockery;
 use App\User;
+use Mockery;
+use Auth;
 
 class AuthenticationTest extends TestCase
 {
@@ -79,6 +80,7 @@ class AuthenticationTest extends TestCase
      */
     public function testLogout()
     {
+        Auth::loginUsingId(1);
         $response = $this->get('/logout');
 
         $response->assertStatus(302);
