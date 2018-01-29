@@ -50,7 +50,11 @@ class LoginController extends Controller
         $user = User::where('email', Socialite::driver('google')->user()->email)->first();
 
         if (!empty($user) && Auth::loginUsingId($user->id)) {
-            return redirect()->route('home');
+            if(!empty(request()->session()->get('intended'))) {
+                $uri = request()->session()->get('intended');
+                request()->session()->put('intended', null);
+                return redirect($uri);
+            }
         }
 
         return redirect()->route('home');

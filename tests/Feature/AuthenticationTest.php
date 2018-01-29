@@ -89,4 +89,28 @@ class AuthenticationTest extends TestCase
         $response = $this->get(route('home'));
         $response->assertDontSee('Tools');
     }
+
+    /**
+     * Test redirect to intended page after login
+     *
+     * @return void
+     */
+    public function testLoginToIntendedRedirect()
+    {
+        $response = $this->get('/admin');
+        $response->assertStatus(302);
+
+        $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
+        $abstractUser->email = 'commnerd@gmail.com';
+
+        $provider = Mockery::mock('Laravel\Socialite\Contracts\Provider');
+        $provider->shouldReceive('user')->andReturn($abstractUser);
+
+        Socialite::shouldReceive('driver')->with('google')->andReturn($provider);
+
+        $response = $this->get('/login/callback');
+
+        $response->assertStatus(302);
+        $response->assertRedirect(route('admin'));
+    }
 }
