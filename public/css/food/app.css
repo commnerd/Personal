@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Dancing+Script:300,400,600);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -5688,7 +5688,7 @@ tbody.collapse.in {
 }
 
 .navbar-default {
-  background-color: transparent;
+  background-color: #fff;
   border-color: #d3e0e9;
 }
 
@@ -5720,7 +5720,7 @@ tbody.collapse.in {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #555;
-  background-color: transparent;
+  background-color: #eeeeee;
 }
 
 .navbar-default .navbar-nav > .disabled > a,
@@ -5751,7 +5751,7 @@ tbody.collapse.in {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  background-color: transparent;
+  background-color: #eeeeee;
   color: #555;
 }
 
@@ -5770,7 +5770,7 @@ tbody.collapse.in {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #555;
-    background-color: transparent;
+    background-color: #eeeeee;
   }
 
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
@@ -7117,7 +7117,7 @@ button.list-group-item-danger.active:focus {
 
 .panel-default > .panel-heading {
   color: #333333;
-  background-color: transparent;
+  background-color: #fff;
   border-color: #d3e0e9;
 }
 
@@ -7126,7 +7126,7 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-default > .panel-heading .badge {
-  color: transparent;
+  color: #fff;
   background-color: #333333;
 }
 
@@ -8350,194 +8350,27 @@ button.close {
   }
 }
 
-body {
-  max-width: 1280px;
-  min-width: 400px;
-  margin: auto;
+form.inline {
+  display: inline-block;
 }
 
-body.home header {
-  background: url("/storage/michael-j-miller-xl.png") no-repeat;
-  background-size: 100% auto;
-}
-
-body.portfolio header {
-  background: url("/storage/portfolio-xl.png") no-repeat;
-  background-size: 100% auto;
-}
-
-header {
-  height: 736px;
-  color: white;
-}
-
-header h1 {
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 400%;
-}
-
-header a {
-  color: white;
-  -webkit-transition: color 0.2s ease-in-out;
-  transition: color 0.2s ease-in-out;
-}
-
-header a:hover {
-  color: white;
-}
-
-header .nav:hover > li > a {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.navbar-default {
-  border: none;
-}
-
-.navbar-default .navbar-brand,
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-nav > li > a,
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: white;
-}
-
-div.divider {
-  padding: 44px;
-  height: 44px;
-}
-
-div.divider hr {
-  border-top: thin solid #636b6f;
-  margin: 0;
-}
-
-div.divider label {
-  background-color: inherit;
-  margin: 0;
-  padding: 0 5px;
-  -webkit-transform: translateY(-22px);
-          transform: translateY(-22px);
-  background-color: #f5f8fa;
-  font-size: 200%;
-}
-
-div.section:nth-child(odd) div.divider label {
-  background-color: #d3e0e9;
-}
-
-section > div.section:nth-child(odd),
-section > div.divider:nth-child(odd) {
-  background-color: #d3e0e9;
-}
-
-div.section {
-  padding-bottom: 22px;
-}
-
-div.quote p {
-  margin: auto;
-  text-align: center;
-  font-size: 150%;
-}
-
-div.quote i {
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 150%;
-}
-
-div.resume .header-img {
-  background-image: url("/storage/resume.png");
-  background-repeat: no-repeat;
-  background-size: 100% 150%;
-  background-position: 0 0;
-  padding: 200px;
-}
-
-div.resume .body {
-  padding-top: 22px;
-}
-
-div.image-tiles > img {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  width: 50%;
-  float: left;
-}
-
-footer {
-  clear: both;
-  background-color: #26262a;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-footer > * {
-  margin-top: 20px;
-}
-
-footer a,
-footer a:hover {
-  color: white;
+a.glyphicon {
   text-decoration: none;
 }
 
-.portfolio iframe {
-  width: 50%;
-  height: calc(50vw * 3/4);
+.glyphicon-plus::before {
+  color: #468847;
 }
 
-.portfolio blockquote {
-  border: none;
+.glyphicon-edit::before {
+  color: #3A87AD;
 }
 
-.portfolio div.section {
-  overflow: hidden;
-}
-
-.portfolio div.section p {
-  width: 50%;
-}
-
-.portfolio div.section:nth-child(odd) iframe {
-  float: left;
-}
-
-.portfolio div.section:nth-child(odd) p {
-  float: right;
-}
-
-.portfolio div.section:nth-child(even) iframe {
-  float: right;
+.glyphicon-trash::before {
+  color: #D14;
 }
 
 .center {
   text-align: center;
-}
-
-.font-script {
-  font-family: 'Dancing Script', cursive;
-  font-size: 200%;
-}
-
-.nav-buffer {
-  margin-top: 200px;
-}
-
-.navbar-brand {
-  padding: 7px 15px;
-}
-
-.navbar-center {
-  position: static;
-  margin: 0 auto;
-  float: none;
-  display: table;
 }
 

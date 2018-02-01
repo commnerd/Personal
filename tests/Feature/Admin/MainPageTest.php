@@ -36,11 +36,27 @@ class MainPageTest extends TestCase
 
     /**
      * Basic page load test
+     *
+     * @return void
      */
     public function testAuthorizedAccess()
     {
         $response = $this->get(route('admin'));
 
         $response->assertSuccessful();
+    }
+
+    /**
+     * Basic test for resume link
+     *
+     * @return void
+     */
+    public function testResumeLink()
+    {
+        $response = $this->get(route('admin'));
+
+        $response->assertSee('<legend>Resume</legend>');
+        $response->assertSee('<a href="'.route('resume.index').'" class="list-group-item">Edit Resume</a>');
+        $response->assertSee('<a href="'.route('resume.create').'" class="list-group-item">Add Employment Record</a>');
     }
 }

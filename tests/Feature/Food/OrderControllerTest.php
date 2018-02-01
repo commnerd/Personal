@@ -66,9 +66,9 @@ class OrderControllerTest extends TestCase
 
           $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
 
-          $response->assertSee('<label for="label" class="control-label col-md-2">Label</label>');
+          $response->assertSee('<label for="label" class="control-label col-sm-2">Label</label>');
 
-          $response->assertSee('<label for="notes" class="control-label col-md-2">Notes</label>');
+          $response->assertSee('<label for="notes" class="control-label col-sm-2">Notes</label>');
 
           $response->assertSee('<input class="btn btn-default" type="submit" />');
       }
@@ -120,9 +120,9 @@ class OrderControllerTest extends TestCase
 
            $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
 
-           $response->assertSee('<label for="label" class="control-label col-md-2">Label</label>');
+           $response->assertSee('<label for="label" class="control-label col-sm-2">Label</label>');
 
-           $response->assertSee('<label for="notes" class="control-label col-md-2">Notes</label>');
+           $response->assertSee('<label for="notes" class="control-label col-sm-2">Notes</label>');
 
            $response->assertSee('<input class="btn btn-default" type="submit" />');
        }
@@ -153,15 +153,15 @@ class OrderControllerTest extends TestCase
 
            $response = $this->get('/food/restaurants/1/orders');
 
-           $response->assertSee('<link rel="stylesheet" href="'.elixir('/food/css/app.css').'">');
+           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-           $response->assertSee('<script src="'.elixir('/food/js/app.js').'"></script>');
+           $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
 
            $response = $this->get('/food/restaurants/1/orders/create');
 
-           $response->assertSee('<link rel="stylesheet" href="'.elixir('/food/css/app.css').'">');
+           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-           $response->assertSee('<script src="'.elixir('/food/js/app.js').'"></script>');
+           $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
 
            Order::create([
                'restaurant_id' => 1,
@@ -172,9 +172,9 @@ class OrderControllerTest extends TestCase
 
            $response = $this->get('/food/restaurants/1/orders/1/edit');
 
-           $response->assertSee('<link rel="stylesheet" href="'.elixir('/food/css/app.css').'">');
+           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-           $response->assertSee('<script src="'.elixir('/food/js/app.js').'"></script>');
+           $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
        }
 
 }

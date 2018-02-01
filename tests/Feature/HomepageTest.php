@@ -8,9 +8,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class HomepageTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /**
-     * A basic test example.
+     * Home page tests
      *
      * @return void
      */
@@ -20,5 +20,7 @@ class HomepageTest extends TestCase
 
         $response->assertSee('Family');
         $response->assertStatus(200);
+
+        $response->assertSee('<a class="navbar-brand" href="'.route('home').'"><img height="100%" alt="Michael J. Miller" src="/storage/michael-j-miller-logo.png"></a>');
     }
 }

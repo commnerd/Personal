@@ -8,12 +8,8 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-form.inline {
-    display: inline-block;
-}
-
 a.glyphicon {
-    text-decoration: none;   
+    text-decoration: none;
 }
 
 .glyphicon-plus::before {
@@ -26,4 +22,8 @@ a.glyphicon {
 
 .glyphicon-trash::before {
     color: $delete-color;
+}
+
+.center {
+    text-align: center;
 }

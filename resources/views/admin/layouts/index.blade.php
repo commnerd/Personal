@@ -2,12 +2,13 @@
 <html>
     <head>
         <title>Admin</title>
-        <link rel="stylesheet" href="{{ elixir('/food/css/app.css') }}">
+        <link rel="stylesheet" href="{{ elixir('/css/admin/app.css') }}">
+        <link rel="stylesheet" href="{{ elixir('/css/admin/etc.css') }}">
     </head>
     <body>
         <div class="container-fluid">
             @yield('content')
         </div>
-        <script src="{{ elixir('/admin/js/app.js') }}"></script>
+        <script src="{{ elixir('/js/admin/app.js') }}"></script>
     </body>
 </html>

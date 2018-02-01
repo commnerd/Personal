@@ -18,14 +18,15 @@ Route::get('/', function () {
 Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::resource('/portfolio', 'PortfolioController');
-
 Route::group(['middleware' => ['auth.custom']], function() {
-    Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
-
-    Route::get('admin', function() {
+    Route::get('/admin', function() {
         return view('admin.index');
     })->name('admin');
+    Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
+    Route::namespace('Admin')->prefix('admin')->group(function() {
+        Route::resource('/resume', 'ResumeController');
+        Route::resource('/portfolio', 'PortfolioController');
+    });
 
     Route::namespace('Food')->prefix('food')->group(function() {
         Route::resource('/restaurants/{restaurantId}/orders', 'OrderController');

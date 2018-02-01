@@ -15,10 +15,13 @@
         "cross-env": "^5.0.1",
         "jquery": "^3.1.1",
         "laravel-mix": "^1.0",
+        "less": "^2.7.3",
+        "less-loader": "^4.0.5",
         "lodash": "^4.17.4",
         "vue": "^2.1.10"
     },
     "dependencies": {
-        "@fortawesome/fontawesome": "^1.1.2"
+        "@fortawesome/fontawesome": "^1.1.2",
+        "bootstrap-sass-datepicker": "^1.0.0"
     }
 }

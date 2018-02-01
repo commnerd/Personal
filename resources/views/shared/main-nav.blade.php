@@ -8,14 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="{{ route('home') }}"><img height="100%" alt="Michael J. Miller" src="/storage/michael-j-miller-logo.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="main-nav">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ route('home') }}">Home</a></li>
-        @if(\App\PortfolioEntry::count() > 0)
+        @if(\App\Work\PortfolioEntry::count() > 0)
             <li><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
         @endif
         @if(Auth::check())

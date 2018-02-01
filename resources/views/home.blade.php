@@ -7,7 +7,7 @@
 
 @section('content')
         <div class="section quote">
-            @include('partials.section-header', ['label' => 'Quote'])
+            @include('shared.section-header', ['label' => 'Quote'])
             <blockquote>
                 <p>
                     There is a computer disease that anybody who works with computers knows about.<br />
@@ -18,8 +18,16 @@
             <i>- Richard P. Feynman</i>
         </div>
 
+        <div class="section resume">
+            @include('shared.section-header', ['label' => 'Resume'])
+            <div class="header-img center">&nbsp;</div>
+            <div class="body center">
+                <a class="btn btn-primary" href="/storage/resume.pdf">Download</a>
+            </div>
+        </div>
+
         <div class="section image-tiles">
-            @include('partials.section-header', ['label' => 'Family'])
+            @include('shared.section-header', ['label' => 'Family'])
             <img src="/storage/family-1.png">
             <img src="/storage/family-2.png">
             <img src="/storage/family-3.png">

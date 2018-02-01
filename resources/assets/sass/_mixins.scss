@@ -1,3 +1,11 @@
 @mixin fade($attr, $time) {
     transition: $attr $time ease-in-out;
 }
+
+@mixin screen-size($size) {
+    @media (min-width: $size) {
+        @at-root & {
+            @content
+        }
+    }
+}
