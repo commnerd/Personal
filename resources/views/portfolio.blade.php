@@ -2,6 +2,6 @@
 
 @section('content')
     @foreach($entries as $entry)
-        @include('partials.portfolio-entry', $entry->toArray())
+        @include('shared.portfolio-entry', $entry->toArray())
     @endforeach
 @endsection

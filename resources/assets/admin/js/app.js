@@ -16,3 +16,11 @@ $('a[href="#delete"]').click(function() {
     });
     return false;
 });
+
+$('.month-picker').datepicker({
+    format: 'mm/yyyy',
+    autoclose: true,
+    viewMode: 'months',
+    minViewMode: 'months',
+    maxViewMode: 'months'
+});

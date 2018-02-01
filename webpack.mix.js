@@ -13,7 +13,15 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
-   .js('resources/assets/food/js/app.js', 'public/food/js')
-   .sass('resources/assets/food/sass/app.scss', 'public/food/css')
-   .js('resources/assets/admin/js/app.js', 'public/admin/js')
-   .sass('resources/assets/admin/sass/app.scss', 'public/admin/css');
+   .js('resources/assets/food/js/app.js', 'public/js/food')
+   .sass('resources/assets/food/sass/app.scss', 'public/css/food')
+   .js('resources/assets/admin/js/app.js', 'public/js/admin')
+   .sass('resources/assets/admin/sass/app.scss', 'public/css/admin')
+   .styles([
+       'node_modules/bootstrap-sass-datepicker/css/datepicker.css',
+       'node_modules/bootstrap-sass-datepicker/css/datepicker3.css'
+   ], 'public/css/admin/etc.css');
+
+if (mix.inProduction()) {
+    mix.version();
+}

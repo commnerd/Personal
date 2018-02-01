@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-class PortfolioController extends Controller
+class PortfolioController extends AdminController
 {
     /**
      * Display a listing of the resource.

@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>{{ $title }}</h1>
-    <form method="POST" action="{{ $action }}">
+    <form method="POST" class="form-horizontal" action="{{ $action }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         @if($method !== 'POST')
             <input type="hidden" name="_method" value="{{ $method }}">
@@ -17,7 +17,7 @@
         ])
         @if(isset($restaurant->id))
             @if(count($restaurant->orders) > 0)
-            <h2 class="row col-md-12">Choose the active order for {{ $restaurant->name }}:</h2>
+            <h2 class="row col-sm-12">Choose the active order for {{ $restaurant->name }}:</h2>
             <table class="table">
                 <thead>
                     <tr>

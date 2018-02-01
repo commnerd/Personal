@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PortfolioPageTest extends TestCase
 {
@@ -18,8 +18,8 @@ class PortfolioPageTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertDontSee('Portfolio');
         $response->assertStatus(200);
+        $response->assertDontSee('Portfolio');
     }
 
     /**
@@ -29,7 +29,7 @@ class PortfolioPageTest extends TestCase
      */
     public function testHomepageWithPortfolioEntries()
     {
-        \App\PortfolioEntry::create([
+        \App\Work\PortfolioEntry::create([
             'title' => "A test site",
             'url' => 'http://localhost:8000',
             'details' => 'Details about this site.',

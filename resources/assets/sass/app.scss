@@ -14,6 +14,7 @@
 // Body
 body {
     max-width: 1280px;
+    min-width: 400px;
     margin: auto;
 
     &.home header {
@@ -112,6 +113,20 @@ div.quote {
     }
 }
 
+div.resume {
+    .header-img {
+        background-image: url('/storage/resume.png');
+        background-repeat: no-repeat;
+        background-size: 100% 150%;
+        background-position: 0 0;
+        padding: 200px;
+    }
+
+    .body {
+        padding-top: 22px;
+    }
+}
+
 div.image-tiles > img {
     display: inline-flex;
     width: 50%;
@@ -172,4 +187,15 @@ footer {
 
 .nav-buffer {
     margin-top: 200px;
+}
+
+.navbar-brand {
+    padding: 7px 15px;
+}
+
+.navbar-center {
+    position: static;
+    margin: 0 auto;
+    float: none;
+    display: table;
 }

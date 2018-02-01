@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Work;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,8 @@ class PortfolioEntry extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'url', 'details',
+        'title',
+        'url',
+        'details',
     ];
 }

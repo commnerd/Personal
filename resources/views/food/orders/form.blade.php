@@ -3,8 +3,8 @@
 @section('title', $title)
 
 @section('content')
-    <h1>{{ $title }}</h1>
-    <form method="POST" action="{{ $action }}">
+    <h1 class="center">{{ $title }}</h1>
+    <form method="POST" class="form-horizontal" action="{{ $action }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         @if($method !== 'POST')
             <input type="hidden" name="_method" value="{{ $method }}">
