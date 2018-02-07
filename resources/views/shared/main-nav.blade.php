@@ -15,6 +15,9 @@
     <div class="collapse navbar-collapse" id="main-nav">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ route('home') }}">Home</a></li>
+        @if(\App\Work\EmploymentRecord::count() > 0)
+            <li><a href="{{ route('resume') }}">Resume</a></li>
+        @endif
         @if(\App\Work\PortfolioEntry::count() > 0)
             <li><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
         @endif

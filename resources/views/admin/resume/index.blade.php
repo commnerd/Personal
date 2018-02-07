@@ -3,7 +3,7 @@
 @section('title', 'Employment Record List')
 
 @section('content')
-<h1 class="center">Employment Record List</h1>
+<h1 class="center">Employment Record List <a class="glyphicon glyphicon-plus" href="{{ route('resume.create') }}"></a></h1>
 <table class="table">
     <thead>
         <tr>
@@ -12,20 +12,22 @@
         </tr>
     </thead>
     <tbody>
-        @if(empty($records))
+        @if($records->count() <= 0)
             <tr>
                 <td colspan="2" class="center">No Records</td>
             </tr>
         @else
-            <tr>
-                <td>{{ $record->employer }}</td>
-                <td>
-                    <a class="glyphicon glyphicon-edit" href="{{ route('resume.edit', [$record]) }}"></a>
-                    @include('shared.form.delete_link', ['action' => route('resume.destroy', [$record])])
-                </td>
-            </tr>
+            @foreach($records as $record)
+                <tr>
+                    <td>{{ $record->employer }}</td>
+                    <td>
+                        <a class="glyphicon glyphicon-edit" href="{{ route('resume.edit', [$record]) }}"></a>
+                        @include('shared.form.delete_link', ['action' => route('resume.destroy', [$record])])
+                    </td>
+                </tr>
+            @endforeach
         @endif
-
     </tbody>
 </table>
+@include('shared.delete-modal', ['entity' => 'record'])
 @endsection

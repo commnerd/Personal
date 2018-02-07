@@ -20,12 +20,16 @@ body {
     &.home header {
         background: url("/storage/michael-j-miller-xl.png") no-repeat;
         background-size: 100% auto;
-
     }
 
     &.portfolio header {
         background: url("/storage/portfolio-xl.png") no-repeat;
         background-size: 100% auto;
+    }
+
+    &.resume header {
+        background: url("/storage/resume.png") no-repeat;
+        background-size: 100% 150%;
     }
 }
 
@@ -96,41 +100,46 @@ section {
 
 div.section {
     padding-bottom: 22px;
+
+    &.quote {
+        p {
+            margin: auto;
+            text-align: center;
+            font-size: 150%;
+        }
+
+        i {
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 150%;
+        }
+    }
+
+    &.social {
+        svg {
+            margin: 0 30px;
+        }
+    }
+
+    &.resume {
+        a {
+            svg {
+                display:block;
+            }
+            margin: 0 80px;
+        }
+    }
 }
 
-div.quote {
-    p {
-        margin: auto;
-        text-align: center;
-        font-size: 150%;
+div.image-tiles {
+    overflow:hidden;
+    padding-bottom: 0;
+    & > img {
+        display: inline-flex;
+        width: 50%;
+        float: left;
     }
-
-    i {
-        display: block;
-        width: 100%;
-        text-align: center;
-        font-size: 150%;
-    }
-}
-
-div.resume {
-    .header-img {
-        background-image: url('/storage/resume.png');
-        background-repeat: no-repeat;
-        background-size: 100% 150%;
-        background-position: 0 0;
-        padding: 200px;
-    }
-
-    .body {
-        padding-top: 22px;
-    }
-}
-
-div.image-tiles > img {
-    display: inline-flex;
-    width: 50%;
-    float: left;
 }
 
 footer {
@@ -176,6 +185,10 @@ footer {
     }
 }
 
+.bold {
+    font-weight:bold;
+}
+
 .center {
     text-align: center;
 }
@@ -198,4 +211,11 @@ footer {
     margin: 0 auto;
     float: none;
     display: table;
+}
+
+.header-content {
+    height: calc(100% - 72px);
+    display : flex;
+    align-items : center;
+    margin:0 50%;
 }

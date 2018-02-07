@@ -12,6 +12,10 @@ a.glyphicon {
     text-decoration: none;
 }
 
+form.inline {
+    display: inline-block;
+}
+
 .glyphicon-plus::before {
     color: $add-color;
 }
