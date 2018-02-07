@@ -16,7 +16,7 @@ class ResumeController extends AdminController
      */
     public function index(): Response
     {
-        $records = EmploymentRecord::orderBy('start_date')->all();
+        $records = EmploymentRecord::orderBy('start_date')->get();
 
         return response()->view('admin.resume.index', compact('records'));
     }

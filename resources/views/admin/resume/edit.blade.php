@@ -6,7 +6,7 @@
     @include('admin.resume.form', [
         'title' => "Edit Employment Record ($record->employer)",
         'action' => route('resume.update', $record),
-        'method' => 'POST',
+        'method' => 'PUT',
         'record' => $record,
     ])
 @endsection

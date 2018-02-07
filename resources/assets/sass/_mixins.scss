@@ -9,3 +9,8 @@
         }
     }
 }
+
+@mixin headers($img) {
+    background: url($img) no-repeat;
+    background-size: 100% auto;
+}

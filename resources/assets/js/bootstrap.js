@@ -13,7 +13,22 @@ try {
     require('bootstrap-sass');
 } catch (e) {}
 
-require('@fortawesome/fontawesome');
+import fontawesome from '@fortawesome/fontawesome';
+import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
+import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
+import faLinkedin from '@fortawesome/fontawesome-free-brands/faLinkedin';
+import faFileAlt from '@fortawesome/fontawesome-free-solid/faFileAlt';
+import faDownload from '@fortawesome/fontawesome-free-solid/faDownload';
+
+
+fontawesome.dom.i2svg();
+fontawesome.library.add([
+    faFacebook,
+    faGithub,
+    faLinkedin,
+    faFileAlt,
+    faDownload
+]);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -8366,6 +8366,11 @@ body.portfolio header {
   background-size: 100% auto;
 }
 
+body.resume header {
+  background: url("/storage/resume.png") no-repeat;
+  background-size: 100% 150%;
+}
+
 header {
   height: 736px;
   color: white;
@@ -8437,29 +8442,34 @@ div.section {
   padding-bottom: 22px;
 }
 
-div.quote p {
+div.section.quote p {
   margin: auto;
   text-align: center;
   font-size: 150%;
 }
 
-div.quote i {
+div.section.quote i {
   display: block;
   width: 100%;
   text-align: center;
   font-size: 150%;
 }
 
-div.resume .header-img {
-  background-image: url("/storage/resume.png");
-  background-repeat: no-repeat;
-  background-size: 100% 150%;
-  background-position: 0 0;
-  padding: 200px;
+div.section.social svg {
+  margin: 0 30px;
 }
 
-div.resume .body {
-  padding-top: 22px;
+div.section.resume a {
+  margin: 0 80px;
+}
+
+div.section.resume a svg {
+  display: block;
+}
+
+div.image-tiles {
+  overflow: hidden;
+  padding-bottom: 0;
 }
 
 div.image-tiles > img {
@@ -8517,6 +8527,10 @@ footer a:hover {
   float: right;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .center {
   text-align: center;
 }
@@ -8539,5 +8553,16 @@ footer a:hover {
   margin: 0 auto;
   float: none;
   display: table;
+}
+
+.header-content {
+  height: calc(100% - 72px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 50%;
 }
 
