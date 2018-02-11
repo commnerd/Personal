@@ -18,7 +18,7 @@ $('a[href="#delete"]').click(function() {
 });
 
 $('.month-picker').datepicker({
-    format: 'mm/yyyy',
+    format: 'M yyyy',
     autoclose: true,
     viewMode: 'months',
     minViewMode: 'months',

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -31732,14 +31732,17 @@ module.exports = function spread(callback) {
 /* 41 */,
 /* 42 */,
 /* 43 */,
-/* 44 */
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(45);
+module.exports = __webpack_require__(48);
 
 
 /***/ }),
-/* 45 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -31749,7 +31752,7 @@ module.exports = __webpack_require__(45);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(46);
+__webpack_require__(49);
 
 $('a[href="#delete"]').click(function () {
     var action = $(this).attr('delete_action');
@@ -31762,7 +31765,7 @@ $('a[href="#delete"]').click(function () {
 });
 
 $('.month-picker').datepicker({
-    format: 'mm/yyyy',
+    format: 'M yyyy',
     autoclose: true,
     viewMode: 'months',
     minViewMode: 'months',
@@ -31770,7 +31773,7 @@ $('.month-picker').datepicker({
 });
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -31786,7 +31789,7 @@ try {
   window.$ = window.jQuery = __webpack_require__(10);
 
   __webpack_require__(11);
-  __webpack_require__(47);
+  __webpack_require__(50);
 } catch (e) {}
 
 /**
@@ -31829,7 +31832,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports) {
 
 /* =========================================================

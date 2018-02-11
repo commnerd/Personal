@@ -20,5 +20,6 @@
         </section>
         @include('shared.footer')
         <script src="{{ mix('/js/app.js') }}"></script>
+        @include('shared.google-analytics')
     </body>
 </html>
