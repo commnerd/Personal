@@ -8371,6 +8371,10 @@ body.resume header {
   background-size: 100% 150%;
 }
 
+body.resume div.record {
+  margin-top: 22px;
+}
+
 header {
   height: 736px;
   color: white;

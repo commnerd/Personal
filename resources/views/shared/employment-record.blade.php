@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid record">
     <div class="col-lg-12 bold">
         {{ $position }}, {{ $employer }}
     </div>
