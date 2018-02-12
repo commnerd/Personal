@@ -20,8 +20,8 @@ class ResumeAdminTest extends TestCase
         'employer' => 'Test Employer',
         'position' => 'Test Position',
         'location' => 'Test Location, ST',
-        'start_date' => '06/2017',
-        'end_date' => '12/2017',
+        'start_date' => 'Jun 2017',
+        'end_date' => 'Dec 2017',
         'bullets' => 'Test content for job',
     ];
 
@@ -69,8 +69,8 @@ class ResumeAdminTest extends TestCase
         $this->assertEquals($record->employer, 'Test Employer');
         $this->assertEquals($record->position, 'Test Position');
         $this->assertEquals($record->location, 'Test Location, ST');
-        $this->assertEquals($record->start_date, '06/2017');
-        $this->assertEquals($record->end_date, '12/2017');
+        $this->assertEquals($record->start_date, 'Jun 2017');
+        $this->assertEquals($record->end_date, 'Dec 2017');
         $this->assertEquals($record->bullets, 'Test content for job');
     }
 
@@ -103,8 +103,8 @@ class ResumeAdminTest extends TestCase
         $response->assertSee('<input type="text" name="employer" value="Test Employer" class="form-control">');
         $response->assertSee('<input type="text" name="position" value="Test Position" class="form-control">');
         $response->assertSee('<input type="text" name="location" value="Test Location, ST" class="form-control">');
-        $response->assertSee('<input type="text" name="start_date" value="06/2017" class="form-control month-picker">');
-        $response->assertSee('<input type="text" name="end_date" value="12/2017" class="form-control month-picker">');
+        $response->assertSee('<input type="text" name="start_date" value="Jun 2017" class="form-control month-picker">');
+        $response->assertSee('<input type="text" name="end_date" value="Dec 2017" class="form-control month-picker">');
         $response->assertSee('<textarea name="bullets" class="form-control">Test content for job</textarea>');
         $response->assertSee('<input class="btn btn-default" type="submit" />');
     }
@@ -122,8 +122,8 @@ class ResumeAdminTest extends TestCase
             'employer' => 'Test Employer change',
             'position' => 'Test Position change',
             'location' => 'Test Location, ST change',
-            'start_date' => '06/2018',
-            'end_date' => '12/2018',
+            'start_date' => 'Jun 2018',
+            'end_date' => 'Dec 2018',
             'bullets' => 'Test content for job change',
         ]);
 
@@ -134,8 +134,8 @@ class ResumeAdminTest extends TestCase
         $this->assertEquals($record->employer, 'Test Employer change');
         $this->assertEquals($record->position, 'Test Position change');
         $this->assertEquals($record->location, 'Test Location, ST change');
-        $this->assertEquals($record->start_date, '06/2018');
-        $this->assertEquals($record->end_date, '12/2018');
+        $this->assertEquals($record->start_date, 'Jun 2018');
+        $this->assertEquals($record->end_date, 'Dec 2018');
         $this->assertEquals($record->bullets, 'Test content for job change');
     }
 
@@ -152,5 +152,27 @@ class ResumeAdminTest extends TestCase
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
         $response = $this->get(route('resume.index'));
         $response->assertSee($record->employer);
+    }
+
+    /**
+     * Test resume record sort
+     */
+    public function testResumeRecordSort()
+    {
+        EmploymentRecord::create(self::TEST_RECORD_ARRAY);
+        EmploymentRecord::create([
+            'employer' => 'Test Employer Number 2',
+            'position' => 'Test Position Number 2',
+            'location' => 'Test Location, Ave',
+            'start_date' => 'Aug 2016',
+            'end_date' => 'Dec 2016',
+            'bullets' => 'Test content for job',
+        ]);
+
+        $records = EmploymentRecord::all()->sortBy('sortDate');
+
+        $this->assertEquals($records->shift()->employer, 'Test Employer Number 2');
+
+        $this->assertEquals($records->shift()->employer, 'Test Employer');
     }
 }

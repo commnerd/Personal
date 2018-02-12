@@ -14,7 +14,7 @@
         <h1>Work Experience</h1>
     </div>
     <div class="col-lg-8">
-        @foreach(\App\Work\EmploymentRecord::orderBy('start_date')->get() as $record)
+        @foreach(\App\Work\EmploymentRecord::all()->sortBy('sortDate') as $record)
             @include('shared.employment-record', $record->toArray())
         @endforeach
     </div>
