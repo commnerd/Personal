@@ -17,9 +17,11 @@ body {
     min-width: 400px;
     margin: auto;
 
-    &.home header {
-        background: url("/storage/michael-j-miller-xl.png") no-repeat;
-        background-size: 100% auto;
+    &.home {
+        header {
+            background: url("/storage/michael-j-miller-xl.png") no-repeat;
+            background-size: 100% auto;
+        }
     }
 
     &.portfolio header {
@@ -132,8 +134,15 @@ div.section {
         a {
             svg {
                 display:block;
+                &.fa-8x {
+                    font-size: 4em;
+                    @include screen-size($screen-lg-min) {
+                        font-size: 8em;
+                        margin: 0 80px;
+                    }
+                }
             }
-            margin: 0 80px;
+            margin: 0 5%;
         }
     }
 }
@@ -143,8 +152,12 @@ div.image-tiles {
     padding-bottom: 0;
     & > img {
         display: inline-flex;
-        width: 50%;
+        width: 100%;
         float: left;
+
+        @include screen-size($screen-lg-min) {
+            width: 50%;
+        }
     }
 }
 

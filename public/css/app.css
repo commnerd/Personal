@@ -8464,11 +8464,22 @@ div.section.social svg {
 }
 
 div.section.resume a {
-  margin: 0 80px;
+  margin: 0 5%;
 }
 
 div.section.resume a svg {
   display: block;
+}
+
+div.section.resume a svg.fa-8x {
+  font-size: 4em;
+}
+
+@media (min-width: 1200px) {
+  div.section.resume a svg.fa-8x {
+    font-size: 8em;
+    margin: 0 80px;
+  }
 }
 
 div.image-tiles {
@@ -8480,8 +8491,14 @@ div.image-tiles > img {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  width: 50%;
+  width: 100%;
   float: left;
+}
+
+@media (min-width: 1200px) {
+  div.image-tiles > img {
+    width: 50%;
+  }
 }
 
 footer {
