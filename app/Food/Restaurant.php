@@ -3,7 +3,7 @@
 namespace App\Food;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class Restaurant extends Model
 {

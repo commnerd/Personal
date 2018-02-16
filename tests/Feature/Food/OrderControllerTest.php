@@ -66,9 +66,9 @@ class OrderControllerTest extends TestCase
 
           $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
 
-          $response->assertSee('<label for="label" class="control-label col-sm-2">Label</label>');
+          $response->assertSee('<label for="label" class="control-label col-lg-12">Label</label>');
 
-          $response->assertSee('<label for="notes" class="control-label col-sm-2">Notes</label>');
+          $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>');
 
           $response->assertSee('<input class="btn btn-default" type="submit" />');
       }
@@ -120,9 +120,9 @@ class OrderControllerTest extends TestCase
 
            $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
 
-           $response->assertSee('<label for="label" class="control-label col-sm-2">Label</label>');
+           $response->assertSee('<label for="label" class="control-label col-lg-12">Label</label>');
 
-           $response->assertSee('<label for="notes" class="control-label col-sm-2">Notes</label>');
+           $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>');
 
            $response->assertSee('<input class="btn btn-default" type="submit" />');
        }

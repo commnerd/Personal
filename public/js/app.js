@@ -31740,6 +31740,16 @@ module.exports = __webpack_require__(43);
 
 __webpack_require__(34);
 
+if ($('.flash-message .alert').length > 0) {
+    setTimeout(function () {
+        $('.flash-message .alert').fadeOut('slow');
+    }, 5000);
+
+    $('html, body').animate({
+        scrollTop: $(".form-group.has-error").offset().top
+    }, 2000);
+}
+
 /***/ }),
 /* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

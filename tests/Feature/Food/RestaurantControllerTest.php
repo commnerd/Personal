@@ -187,6 +187,7 @@ class RestaurantControllerTest extends TestCase
              'name' => 'Taco Bell',
          ]);
 
+         // dd($response);
          $response->assertRedirect(route('restaurants.index'));
 
          $this->assertEquals('Taco Bell', Restaurant::findOrFail(1)->name);

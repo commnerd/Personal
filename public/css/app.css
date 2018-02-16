@@ -8433,6 +8433,10 @@ div.divider label {
   font-size: 200%;
 }
 
+div.section {
+  overflow: hidden;
+}
+
 div.section:nth-child(odd) div.divider label {
   background-color: #d3e0e9;
 }
@@ -8478,6 +8482,11 @@ div.section.resume a svg.fa-8x {
 @media (min-width: 1200px) {
   div.section.resume a svg.fa-8x {
     font-size: 8em;
+  }
+}
+
+@media (min-width: 1200px) {
+  div.section.resume a {
     margin: 0 80px;
   }
 }
@@ -8548,6 +8557,10 @@ footer a:hover {
   float: right;
 }
 
+.form-horizontal .control-label {
+  text-align: left;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -8585,5 +8598,34 @@ footer a:hover {
       -ms-flex-align: center;
           align-items: center;
   margin: 0 50%;
+}
+
+.flash-message {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.flash-message p.alert {
+  margin: 0;
+  border-radius: 0;
+}
+
+@media (min-width: 1200px) {
+  .flash-message p.alert {
+    border-radius: 4px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .flash-message {
+    top: 20px;
+    width: 100%;
+  }
+
+  .flash-message p.alert {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 

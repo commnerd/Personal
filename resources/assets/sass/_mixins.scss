@@ -14,3 +14,9 @@
     background: url($img) no-repeat;
     background-size: 100% auto;
 }
+
+@mixin border-radius($rad) {
+    -webkit-border-radius: $rad;
+    -moz-border-radius: $rad;
+    border-radius: $rad;
+}

@@ -96,8 +96,11 @@ div.divider {
     }
 }
 
-div.section:nth-child(odd) div.divider label {
-    background-color: $section-bg-odd;
+div.section {
+    overflow:hidden;
+    &:nth-child(odd) div.divider label {
+        background-color: $section-bg-odd;
+    }
 }
 
 section {
@@ -138,11 +141,13 @@ div.section {
                     font-size: 4em;
                     @include screen-size($screen-lg-min) {
                         font-size: 8em;
-                        margin: 0 80px;
                     }
                 }
             }
             margin: 0 5%;
+            @include screen-size($screen-lg-min) {
+                margin: 0 80px;
+            }
         }
     }
 }
@@ -204,6 +209,10 @@ footer {
     }
 }
 
+.form-horizontal .control-label {
+    text-align: left;
+}
+
 .bold {
     font-weight:bold;
 }
@@ -237,4 +246,25 @@ footer {
     display : flex;
     align-items : center;
     margin:0 50%;
+}
+
+.flash-message {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    p.alert {
+        margin: 0;
+        @include border-radius(0);
+        @include screen-size($screen-lg-min) {
+            @include border-radius(4px);
+        }
+    }
+    @include screen-size($screen-lg-min) {
+        top: 20px;
+        width: 100%;
+        p.alert {
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
 }

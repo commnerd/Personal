@@ -2,7 +2,7 @@
 
 namespace App\Food;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class Order extends Model
 {

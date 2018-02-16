@@ -2,7 +2,7 @@
 
 namespace App\Work;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class EmploymentRecord extends Model
 {
@@ -44,6 +44,20 @@ class EmploymentRecord extends Model
         'bullets',
     ];
 
+    /**
+     * Get validation rules for model
+     * 
+     * @return array Validation rules
+     */
+    public static function getValidationRules(): array
+    {
+        return [];
+    }
+
+    /**
+     * Get sorting date attribute
+     * @return string Date
+     */
     public function getSortDateAttribute(): string
     {
         if(preg_match('/(\w{3})\s(\d{4})/', $this->start_date, $matches)) {
