@@ -2,7 +2,7 @@
 
 namespace App\Work;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class PortfolioEntry extends Model
 {
@@ -16,4 +16,14 @@ class PortfolioEntry extends Model
         'url',
         'details',
     ];
+
+    /**
+     * Get validation rules for model
+     * 
+     * @return array Validation rules
+     */
+    public static function getValidationRules(): array
+    {
+        return [];
+    }
 }

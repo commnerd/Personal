@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.home', ['errors' => $errors])
 
 @section('header')
 <h1 class="nav-buffer">Welcome!</h1>
@@ -44,4 +44,40 @@
         </div>
     </div>
     @endif
+
+    <div class="section contact">
+        @include('shared.section-header', ['label' => 'Contact'])
+        <form id="contact" class="form-horizontal col-lg-12" method="POST" action="{{ route('contact.store') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            @include('shared.form.text_input', [
+                'label' => 'Name',
+                'slug' => 'name',
+                'value' => old('name'),
+                'errors' => $errors->get('name')
+            ])
+            @include('shared.form.text_input', [
+                'label' => 'Email/Phone',
+                'slug' => 'email_phone',
+                'value' => old('email_phone'),
+                'errors' => $errors->get('email_phone')
+            ])
+            @include('shared.form.text_area', [
+                'label' => 'Message',
+                'slug' => 'message',
+                'value' => old('message'),
+                'errors' => $errors->get('message')
+            ])
+            <button
+                class="btn btn-primary g-recaptcha"
+                data-sitekey="6LehkkYUAAAAAHFNjT-D6-NX1sCRjU0H9o4lQ0Cs"
+                data-callback="recaptcha_callback_handler">
+                Submit
+            </button>
+            <script type="text/javascript">
+            function recaptcha_callback_handler() {
+                document.getElementById("contact").submit();
+            }
+            </script>
+        </form>
+    </div>
 @endsection
