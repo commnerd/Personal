@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Resume', 'slug' => 'resume'])
+@extends('layouts.main', ['title' => 'Resume', 'slug' => 'resume', 'error' => null])
 
 @section('title', 'Resume')
 
