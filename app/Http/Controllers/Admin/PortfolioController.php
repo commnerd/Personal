@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class PortfolioController extends AdminController
@@ -11,7 +12,7 @@ class PortfolioController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): Response
     {
         return response()->view('portfolio');
     }

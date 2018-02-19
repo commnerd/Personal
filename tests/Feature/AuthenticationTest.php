@@ -98,6 +98,7 @@ class AuthenticationTest extends TestCase
     public function testLoginToIntendedRedirect()
     {
         $response = $this->get('/admin');
+
         $response->assertStatus(302);
 
         $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
@@ -111,6 +112,6 @@ class AuthenticationTest extends TestCase
         $response = $this->get('/login/callback');
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('admin'));
+        $response->assertRedirect(route('admin.index'));
     }
 }

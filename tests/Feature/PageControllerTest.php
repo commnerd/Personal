@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Work\EmploymentRecord;
 use Tests\TestCase;
+use Auth;
 
 class PageControllerTest extends TestCase
 {
@@ -56,6 +57,28 @@ class PageControllerTest extends TestCase
         $response->assertSee('Social');
         $response->assertSee('Contact');
         $response->assertSee('Resume');
+        $response->assertDontSee('Portfolio');
+    }
+
+    /**
+     * Home page tests
+     *
+     * @return void
+     */
+    public function testHomePageWhileLoggedIn()
+    {
+        Auth::loginUsingId(1);
+        
+        $response = $this->get(route('home'));
+
+        $response->assertSuccessful();
+
+        $response->assertSee('<a class="navbar-brand" href="'.route('home').'"><img height="100%" alt="Michael J. Miller" src="/storage/michael-j-miller-logo.png"></a>');
+        $response->assertSee('Family');
+        $response->assertSee('Quote');
+        $response->assertSee('Social');
+        $response->assertSee('Contact');
+        $response->assertDontSee('Resume');
         $response->assertDontSee('Portfolio');
     }
 

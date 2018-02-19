@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\ContactMessage;
 use GuzzleHttp\Client;
@@ -14,75 +15,24 @@ class ContactMessageController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): Response
     {
-        //
-    }
+        $messages = ContactMessage::orderBy('created_at', 'desc')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(): Response
-    {
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        dd('hi');
-        $client = new Client();
-        dd($request);
-        $client->post(env('GOOGLE_RECAPTHCA_TARGET'), [
-            'body' => [
-                'secret' => env('GOOGLE_RECAPTHCA_SECRET'),
-                'response' => $response->get('g-recaptcha-response'),
-                'remoteip' => '88.88.88.88',
-            ]
-        ]);
-
-        return redirect(route('home'));
+        return response()->view('admin.messages.index', compact('messages'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ContactMessage  $contactMessage
+     * @param  int  $contactMessage
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactMessage $contactMessage)
+    public function show(int $id): Response
     {
-        //
-    }
+        $message = ContactMessage::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ContactMessage  $contactMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ContactMessage $contactMessage)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ContactMessage  $contactMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ContactMessage $contactMessage)
-    {
-        //
+        return response()->view('admin.messages.show', compact('message'));
     }
 
     /**
@@ -91,8 +41,10 @@ class ContactMessageController extends AdminController
      * @param  \App\ContactMessage  $contactMessage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactMessage $contactMessage)
+    public function destroy(int $id): RedirectResponse
     {
-        //
+        ContactMessage::destroy($id);
+
+        return redirect()->back();
     }
 }

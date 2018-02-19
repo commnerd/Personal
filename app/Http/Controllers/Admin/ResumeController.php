@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\RedirectResponse;
+use App\Work\EmploymentRecord;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use App\Work\EmploymentRecord;
 
 class ResumeController extends AdminController
 {
@@ -16,9 +16,7 @@ class ResumeController extends AdminController
      */
     public function index(): Response
     {
-        $records = EmploymentRecord::all()->sortBy('sortDate');
-
-        return response()->view('admin.resume.index', compact('records'));
+        return response()->view('admin.resume.index');
     }
 
     /**
@@ -42,17 +40,6 @@ class ResumeController extends AdminController
         EmploymentRecord::create($request->all());
 
         return redirect(route('resume.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id): Response
-    {
-        //
     }
 
     /**
@@ -86,9 +73,9 @@ class ResumeController extends AdminController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
         EmploymentRecord::destroy($id);
 

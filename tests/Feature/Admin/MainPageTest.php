@@ -29,7 +29,7 @@ class MainPageTest extends TestCase
     {
         Auth::logout();
 
-        $response = $this->get(route('admin'));
+        $response = $this->get(route('admin.index'));
 
         $response->assertRedirect(route('login'));
     }
@@ -41,9 +41,23 @@ class MainPageTest extends TestCase
      */
     public function testAuthorizedAccess()
     {
-        $response = $this->get(route('admin'));
+        $response = $this->get(route('admin.index'));
 
         $response->assertSuccessful();
+    }
+
+    /**
+     * Basic test for messaging
+     *
+     * @return void
+     */
+    public function testMessageSection()
+    {
+        $response = $this->get(route('admin.index'));
+
+        $response->assertSee('<legend>Messages</legend>');
+        // $response->assertSee('<a href="'.route('contact.index').'" class="list-group-item">Edit Resume</a>');
+        // $response->assertSee('<a href="'.route('contact.create').'" class="list-group-item">Add Employment Record</a>');
     }
 
     /**
@@ -51,9 +65,9 @@ class MainPageTest extends TestCase
      *
      * @return void
      */
-    public function testResumeLink()
+    public function testResumeLinks()
     {
-        $response = $this->get(route('admin'));
+        $response = $this->get(route('admin.index'));
 
         $response->assertSee('<legend>Resume</legend>');
         $response->assertSee('<a href="'.route('resume.index').'" class="list-group-item">Edit Resume</a>');
