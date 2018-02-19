@@ -26,14 +26,12 @@ Route::group(['middleware' => ['recaptcha']], function() {
 });
 
 Route::group(['middleware' => ['auth.custom']], function() {
-    Route::get('/admin', function() {
-        return view('admin.index');
-    })->name('admin');
+    Route::resource('/admin', 'Admin\AdminController')->only(['index']);
     Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
     Route::namespace('Admin')->prefix('admin')->group(function() {
         Route::resource('/resume', 'ResumeController');
         Route::resource('/portfolio', 'PortfolioController');
-        Route::resource('/contact', 'ContactMessageController')->except(['store']);
+        Route::resource('/contact', 'ContactMessageController')->only(['index', 'show', 'destroy']);
     });
 
     Route::namespace('Food')->prefix('food')->group(function() {
