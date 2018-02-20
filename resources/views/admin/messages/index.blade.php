@@ -27,7 +27,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="3">No messages.</td>
+                <td colspan="5">No messages.</td>
             </tr>
         @endif
     </tbody>
