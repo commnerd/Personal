@@ -30,7 +30,7 @@ class EmailOrPhone implements Rule
             return true;
         }
 
-        $value = preg_replace('/^[0-9]/', '', $value);
+        $value = preg_replace('/[^0-9]/', '', $value);
         $length = strlen($value);
 
         if($length === 10) {

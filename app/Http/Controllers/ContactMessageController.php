@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMessageNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\ContactMessage;
+use Mail;
 
 class ContactMessageController extends Controller
 {
@@ -18,7 +20,9 @@ class ContactMessageController extends Controller
     {
         $request->validate(ContactMessage::getValidationRules());
 
-        ContactMessage::create($request->all());
+        $message = ContactMessage::create($request->all());
+
+        Mail::to(env('APP_ADMIN_EMAIL'))->send(new ContactMessageNotification($message));
 
         $request->session()->flash('success', 'Successfully sent message.');
 

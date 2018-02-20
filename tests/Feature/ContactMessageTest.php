@@ -3,9 +3,11 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Mail\ContactMessageNotification;
 use App\ContactMessage;
 use Tests\TestCase;
 use Mockery;
+use Mail;
 
 class ContactMessageTest extends TestCase
 {
@@ -47,7 +49,7 @@ class ContactMessageTest extends TestCase
      *
      * @return void
      */
-    public function testContactSubmission()
+    public function testContactEmailSubmission()
     {
         $postData = [
             'name' => 'Mike Miller',
@@ -56,7 +58,44 @@ class ContactMessageTest extends TestCase
             'g-recaptcha-response' => 'abcdefg',
         ];
 
+        Mail::fake();
+
         $response = $this->post(route('contact.store'), $postData);
+
+        $message = ContactMessage::firstOrFail();
+
+        Mail::assertSent(ContactMessageNotification::class, function ($mail) use ($message) {
+            return $mail->msg->id === $message->id;
+        });
+
+        $response->assertRedirect(route('home'));
+
+        $this->assertEquals(1, ContactMessage::count());
+    }
+
+    /**
+     * Client contact submission
+     *
+     * @return void
+     */
+    public function testContactPhoneSubmission()
+    {
+        $postData = [
+            'name' => 'Mike Miller',
+            'email_phone' => 'f9d9s9a8f7g6d6a5g4s4',
+            'message' => 'My name is Mike.',
+            'g-recaptcha-response' => 'abcdefg',
+        ];
+
+        Mail::fake();
+
+        $response = $this->post(route('contact.store'), $postData);
+
+        $message = ContactMessage::firstOrFail();
+
+        Mail::assertSent(ContactMessageNotification::class, function ($mail) use ($message) {
+            return $mail->msg->id === $message->id;
+        });
 
         $response->assertRedirect(route('home'));
 
