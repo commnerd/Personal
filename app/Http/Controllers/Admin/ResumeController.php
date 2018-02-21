@@ -16,7 +16,9 @@ class ResumeController extends AdminController
      */
     public function index(): Response
     {
-        return response()->view('admin.resume.index');
+        $records = EmploymentRecord::all();
+        
+        return response()->view('admin.resume.index', compact('records'));
     }
 
     /**
