@@ -147,10 +147,12 @@ class ResumeAdminTest extends TestCase
     public function testResumeIndexPage()
     {
         $response = $this->get(route('resume.index'));
+        $response->assertSuccessful();
         $response->assertSee('No Records');
 
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
         $response = $this->get(route('resume.index'));
+        $response->assertSuccessful();
         $response->assertSee($record->employer);
     }
 
