@@ -15,7 +15,6 @@ class Order extends Model
     {
         return [
             'restaurant_id' => 'required|integer|exists:restaurants,id',
-            'active' => 'boolean',
             'label' => 'required|max:191',
             'notes' => 'required|string',
         ];
@@ -28,7 +27,6 @@ class Order extends Model
      */
     protected $fillable = [
         'restaurant_id',
-        'active',
         'label',
         'notes',
     ];

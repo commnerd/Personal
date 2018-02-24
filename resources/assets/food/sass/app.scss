@@ -8,6 +8,17 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Jquery-UI themes
+@import '~jquery-ui/themes/base/all.css';
+
+ol.orders {
+    font-size: 24px;
+
+    div {
+        font-size: 14px;
+    }
+}
+
 form.inline {
     display: inline-block;
 }
@@ -30,4 +41,8 @@ a.glyphicon {
 
 .center {
     text-align: center;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
 }

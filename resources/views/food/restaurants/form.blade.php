@@ -17,11 +17,10 @@
         ])
         @if(isset($restaurant->id))
             @if(count($restaurant->orders) > 0)
-            <h2 class="row col-sm-12">Choose the active order for {{ $restaurant->name }}:</h2>
+            <h2 class="row col-sm-12">Orders for {{ $restaurant->name }}:</h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Default</th>
                         <th>Order</th>
                         <th>Actions</th>
                     </tr>
@@ -29,7 +28,6 @@
                 <tbody>
                     @foreach($restaurant->orders as $order)
                     <tr>
-                        <td><input type="radio" name="default_order" value="{{ $order->id }}"{{ $order->active ? ' checked' : '' }} /></td>
                         <td>{{ $order->label }}</td>
                         <td>
                             <a class="glyphicon glyphicon-edit" href="{{ route('orders.edit', ['restaurant' => $restaurant, 'order' => $order]) }}"></a>

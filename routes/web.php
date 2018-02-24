@@ -35,7 +35,8 @@ Route::group(['middleware' => ['auth.custom']], function() {
     });
 
     Route::namespace('Food')->prefix('food')->group(function() {
-        Route::resource('/restaurants/{restaurantId}/orders', 'OrderController');
+        Route::get('', 'SearchController@index')->name('food.search');
         Route::resource('/restaurants', 'RestaurantController');
+        Route::resource('/restaurants/{restaurantId}/orders', 'OrderController');
     });
 });
