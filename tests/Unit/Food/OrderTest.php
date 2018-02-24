@@ -24,13 +24,11 @@ class OrderTest extends TestCase
     {
         $order = new Order();
         $this->assertNotEquals($this->vals['restaurant_id'], $order->restaurant_id);
-        $this->assertNotEquals($this->vals['active'], $order->active);
         $this->assertNotEquals($this->vals['label'], $order->label);
         $this->assertNotEquals($this->vals['notes'], $order->notes);
 
         $order->fill($this->vals);
         $this->assertEquals($this->vals['restaurant_id'], $order->restaurant_id);
-        $this->assertEquals($this->vals['active'], $order->active);
         $this->assertEquals($this->vals['label'], $order->label);
         $this->assertEquals($this->vals['notes'], $order->notes);
     }

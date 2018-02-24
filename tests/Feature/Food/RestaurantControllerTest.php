@@ -57,6 +57,8 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('Create Restaurant');
 
+         $response->assertDontSee('<input type="radio" name="default_order"');
+
          $response->assertSee('<input type="text" name="name"');
 
          $response->assertSee('<input class="btn btn-default" type="submit" />');
@@ -79,6 +81,58 @@ class RestaurantControllerTest extends TestCase
      }
 
      /**
+      * Test restaurant show page sans order
+      *
+      * @return void
+      */
+     public function testGetRestaurantShowPageSansOrder()
+     {
+         $restaurant = Restaurant::create(['name' => 'McDonalds']);
+
+         $response = $this->get('/food/restaurants/'.$restaurant->id);
+
+         $response->assertSuccessful();
+
+         $response->assertSee('McDonalds');
+
+         $response->assertDontSee('No active order');
+
+         $response->assertSee('No Orders');
+     }
+
+     /**
+      * Test restaurant show page with order
+      *
+      * @return void
+      */
+     public function testGetRestaurantShowPageWithOrder()
+     {
+         $restaurant = Restaurant::create(['name' => 'McDonalds']);
+
+         $order = Order::create([
+             'restaurant_id' => $restaurant->id,
+             'label' => 'Default Order',
+             'notes' => 'Lorum ipsum',
+         ]);
+
+         $response = $this->get('/food/restaurants/'.$restaurant->id);
+
+         $response->assertSuccessful();
+
+         $response->assertSee('McDonalds');
+
+         $response->assertDontSee('No Active Order');
+
+         $response->assertDontSee('No Orders');
+
+         $response->assertSee($order->label);
+
+         $response->assertSee($order->notes);
+
+         $response->assertSee('<input class="btn btn-default" type="submit" />');
+     }
+
+     /**
       * Test invalid restaurant store call
       *
       * @return void
@@ -95,11 +149,11 @@ class RestaurantControllerTest extends TestCase
      }
 
      /**
-      * Test get restaurant update page
+      * Test get restaurant update page sans order
       *
       * @return void
       */
-     public function testGetRestaurantEditPage()
+     public function testGetRestaurantEditPageSansOrder()
      {
          Restaurant::create(['name' => 'McDonalds']);
 
@@ -108,6 +162,40 @@ class RestaurantControllerTest extends TestCase
          $response->assertSuccessful();
 
          $response->assertSee('Edit McDonalds');
+
+         $response->assertDontSee('<input type="radio" name="default_order"');
+
+         $response->assertSee('<input type="text" name="name"');
+
+         $response->assertSee('<input class="btn btn-default" type="submit" />');
+     }
+
+     /**
+      * Test get restaurant update page with order
+      *
+      * @return void
+      */
+     public function testGetRestaurantEditPageWithOrder()
+     {
+         $restaurant = Restaurant::create(['name' => 'McDonalds']);
+
+         $order = Order::create([
+             'restaurant_id' => $restaurant->id,
+             'label' => 'Default Order',
+             'notes' => 'Lorum ipsum',
+         ]);
+
+         $response = $this->get('/food/restaurants/1/edit');
+
+         $response->assertSuccessful();
+
+         $response->assertSee('Edit McDonalds');
+
+         $response->assertDontSee("Choose the active order for $restaurant->name:");
+
+         $response->assertSee("Orders for $restaurant->name:");
+
+         $response->assertDontSee('<input type="radio" name="default_order"');
 
          $response->assertSee('<input type="text" name="name"');
 
@@ -174,11 +262,10 @@ class RestaurantControllerTest extends TestCase
       */
      public function testOrderSetting()
      {
-         Restaurant::create(['name' => 'Test Restaurant']);
+         $restaurant = Restaurant::create(['name' => 'Test Restaurant']);
 
          Order::create([
-             'restaurant_id' => 1,
-             'active' => 0,
+             'restaurant_id' => $restaurant->id,
              'label' => 'Default Order',
              'notes' => 'Lorum ipsum',
          ]);
@@ -187,7 +274,6 @@ class RestaurantControllerTest extends TestCase
              'name' => 'Taco Bell',
          ]);
 
-         // dd($response);
          $response->assertRedirect(route('restaurants.index'));
 
          $this->assertEquals('Taco Bell', Restaurant::findOrFail(1)->name);

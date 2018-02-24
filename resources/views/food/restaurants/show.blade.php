@@ -5,13 +5,19 @@
 @section('content')
 <h1>{{ $restaurant->name }}</h1>
 <div>
-    @if(isset($restaurant->active_order))
-        <h3>{{ $restaurant->active_order->label}}</h3>
-        <div>
-            {!! nl2br($restaurant->active_order->notes) !!}
-        </div>
+    @if($restaurant->orders->count() > 0)
+        <ol class="orders">
+        @foreach($restaurant->orders as $order)
+            <li>
+                <h3>{{ $order->label}}</h3>
+                <div>
+                    {!! nl2br($order->notes) !!}
+                </div>
+            </li>
+        @endforeach
+        </ol>
     @else
-        No active order
+        No Orders
     @endif
 
 </div>
