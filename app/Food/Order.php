@@ -2,6 +2,7 @@
 
 namespace App\Food;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Model;
 
 class Order extends Model
@@ -34,10 +35,10 @@ class Order extends Model
     /**
      * Related restaurant
      *
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function restaurant(): HasOne
+    public function restaurant(): BelongsTo
     {
-        return $this->hasOne(\App\Food\Restaurant::class);
+        return $this->belongsTo(\App\Food\Restaurant::class);
     }
 }

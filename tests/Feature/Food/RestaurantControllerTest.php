@@ -129,7 +129,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee($order->notes);
 
-         $response->assertSee('<input class="btn btn-default" type="submit" />');
+         $response->assertDontSee('<input class="btn btn-default" type="submit" />');
      }
 
      /**

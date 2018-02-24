@@ -16,3 +16,13 @@ $('a[href="#delete"]').click(function() {
     });
     return false;
 });
+
+$( "#term" ).autocomplete({
+    source: "/api/food/search",
+    minLength: 1,
+    select: function(clickEvent, target) {
+        var val = target.item.value;
+        $('#term').val(val);
+        $('form').submit();
+    }
+});
