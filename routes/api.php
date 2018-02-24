@@ -22,3 +22,10 @@ Route::middleware('github.auth')->post('/github_event', function(Request $reques
     event(new \App\Events\GithubEvent($request->all()));
     return response()->json(['status' => 'Success']);
 });
+
+
+Route::namespace('Api')->group(function() {
+    Route::namespace('Food')->prefix('food')->group( function() {
+        Route::get('/search', 'FoodController@search');
+    });
+});
