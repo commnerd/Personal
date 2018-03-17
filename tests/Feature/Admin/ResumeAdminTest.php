@@ -43,6 +43,7 @@ class ResumeAdminTest extends TestCase
     public function testResumeCreationPage()
     {
         $response = $this->get(route('resume.create'));
+        $response->assertSuccessful();
 
         $response->assertSee('Create Employment Record');
         $response->assertSee('<input type="text" name="employer" value="" class="form-control">');
@@ -62,7 +63,6 @@ class ResumeAdminTest extends TestCase
     public function testResumeCreation()
     {
         $response = $this->post(route('resume.store'), self::TEST_RECORD_ARRAY);
-
         $response->assertRedirect(route('resume.index'));
 
         $record = EmploymentRecord::where('employer', 'Test Employer')->firstOrFail();

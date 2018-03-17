@@ -54,23 +54,39 @@ class MainPageTest extends TestCase
     public function testMessageSection()
     {
         $response = $this->get(route('admin.index'));
+        $response->assertSuccessful();
 
         $response->assertSee('<legend>Messages</legend>');
-        // $response->assertSee('<a href="'.route('contact.index').'" class="list-group-item">Edit Resume</a>');
-        // $response->assertSee('<a href="'.route('contact.create').'" class="list-group-item">Add Employment Record</a>');
+        $response->assertSee('<a href="'.route('contact.index').'" class="list-group-item">View All Messages</a>');
     }
 
     /**
-     * Basic test for resume link
+     * Basic test for resume links
      *
      * @return void
      */
     public function testResumeLinks()
     {
         $response = $this->get(route('admin.index'));
+        $response->assertSuccessful();
 
         $response->assertSee('<legend>Resume</legend>');
         $response->assertSee('<a href="'.route('resume.index').'" class="list-group-item">Edit Resume</a>');
         $response->assertSee('<a href="'.route('resume.create').'" class="list-group-item">Add Employment Record</a>');
+    }
+
+    /**
+     * Basic test for daily reminder link
+     *
+     * @return void
+     */
+    public function testDailyReminderLinks()
+    {
+        $response = $this->get(route('admin.index'));
+        $response->assertSuccessful();
+
+        $response->assertSee('<legend>Daily Reminders</legend>');
+        $response->assertSee('<a href="'.route('daily_reminder.index').'" class="list-group-item">Manage Daily Reminders</a>');
+        $response->assertSee('<a href="'.route('daily_reminder.create').'" class="list-group-item">Add Daily Reminder</a>');
     }
 }

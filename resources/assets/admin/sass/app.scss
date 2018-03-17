@@ -16,6 +16,10 @@ form.inline {
     display: inline-block;
 }
 
+.form-horizontal .control-label {
+    text-align: left;
+}
+
 .glyphicon-plus::before {
     color: $add-color;
 }

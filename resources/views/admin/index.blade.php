@@ -41,4 +41,13 @@
         </div>
     </fieldset>
 </div>
+<div class="row">
+    <fieldset class="col-sm-6">
+        <legend>Daily Reminders</legend>
+        <div class="list-group">
+            <a href="{{ route('daily_reminder.index') }}" class="list-group-item">Manage Daily Reminders</a>
+            <a href="{{ route('daily_reminder.create') }}" class="list-group-item">Add Daily Reminder</a>
+        </div>
+    </fieldset>
+</div>
 @endsection
