@@ -12,7 +12,7 @@
         @if(isset($employmentRecord))
             <input type="hidden" name="employment_record_id" value="{{ $employmentRecord->id }}" />
         @endif
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             @include('shared.form.text_input', [
                 'slug' => 'employer',
                 'label' => 'Employer',
@@ -20,7 +20,7 @@
                 'errors' => $errors->get('employer')
             ])
         </div>
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             @include('shared.form.text_input', [
                 'slug' => 'position',
                 'label' => 'Position',
@@ -28,7 +28,7 @@
                 'errors' => $errors->get('position')
             ])
         </div>
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             @include('shared.form.text_input', [
                 'slug' => 'location',
                 'label' => 'Location',
@@ -36,7 +36,7 @@
                 'errors' => $errors->get('location')
             ])
         </div>
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             <div class="col-lg-6">
                 @include('shared.form.month-picker_input', [
                     'slug' => 'start_date',
@@ -54,7 +54,7 @@
                 ])
             </div>
         </div>
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             @include('shared.form.text_area', [
                 'slug' => 'bullets',
                 'label' => 'Bullets',
@@ -62,7 +62,7 @@
                 'errors' => $errors->get('bullets'),
             ])
         </div>
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             @include('shared.form.submit', ['label' => 'Submit'])
         </div>
     </form>

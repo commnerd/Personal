@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth.custom']], function() {
     Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
     Route::namespace('Admin')->prefix('admin')->group(function() {
         Route::resource('/resume', 'ResumeController');
+        Route::resource('/daily_reminder', 'DailyReminderController');
         Route::resource('/portfolio', 'PortfolioController');
         Route::resource('/contact', 'ContactMessageController')->only(['index', 'show', 'destroy']);
     });
