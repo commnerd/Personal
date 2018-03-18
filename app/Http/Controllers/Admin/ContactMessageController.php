@@ -25,25 +25,23 @@ class ContactMessageController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  int  $contactMessage
+     * @param  int  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id): Response
+    public function show(ContactMessage $message): Response
     {
-        $message = ContactMessage::findOrFail($id);
-
         return response()->view('admin.messages.show', compact('message'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ContactMessage  $contactMessage
+     * @param  \App\ContactMessage  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id): RedirectResponse
+    public function destroy(ContactMessage $message): RedirectResponse
     {
-        ContactMessage::destroy($id);
+        $message->delete();
 
         return redirect()->back();
     }

@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth.custom']], function() {
         Route::resource('/resume', 'ResumeController');
         Route::resource('/daily_reminder', 'DailyReminderController');
         Route::resource('/portfolio', 'PortfolioController');
-        Route::resource('/contact', 'ContactMessageController')->only(['index', 'show', 'destroy']);
+        Route::resource('/contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
     });
 
     Route::namespace('Food')->prefix('food')->group(function() {
