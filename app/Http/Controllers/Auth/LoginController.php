@@ -49,6 +49,7 @@ class LoginController extends Controller
     {
         $user = User::where('email', Socialite::driver('google')->user()->email)->first();
 
+
         if (!empty($user) && Auth::loginUsingId($user->id)) {
             if(!empty(request()->session()->get('intended'))) {
                 $uri = request()->session()->get('intended');
