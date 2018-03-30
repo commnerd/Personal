@@ -2,47 +2,22 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Mail\ContactMessageNotification;
+use Illuminate\Http\Request;
 use App\ContactMessage;
 use Tests\TestCase;
+use Session;
 use Mockery;
 use Mail;
 
 class ContactMessageTest extends TestCase
 {
+    use WithoutMiddleware;
     use RefreshDatabase;
 
-    /**
-     * Set up test
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        // Pass ReCaptcha
-        $recaptchaJsonResponse = json_encode([
-            "success" => true,
-            "challenge_ts" => "2018-02-17T06:10:13Z",
-            "hostname" => "localhost",
-        ]);
-
-        $stream = Mockery::mock('overload:GuzzleHttp\Psr7\Stream');
-        $stream->shouldReceive('getContents')->andReturn($recaptchaJsonResponse);
-
-        $response = Mockery::mock('overload:GuzzleHttp\Psr7\Response');
-        $response->shouldReceive('getBody')->andReturn($stream);
-
-        $client = Mockery::instanceMock('overload:GuzzleHttp\Client');
-        $client->shouldReceive('post')->withArgs([env('GOOGLE_RECAPTCHA_TARGET'), [
-            'query' => [
-                'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
-                'response' => 'abcdefg',
-            ]
-        ]])->andReturn($response);
-    }
+    const MOCK_RECAPTCHA_RESPONSE = 'abcdefg';
 
     /**
      * Client contact submission
@@ -55,10 +30,12 @@ class ContactMessageTest extends TestCase
             'name' => 'Mike Miller',
             'email_phone' => 'commnerd@gmail.com',
             'message' => 'My name is Mike.',
-            'g-recaptcha-response' => 'abcdefg',
+            'g-recaptcha-response' => self::MOCK_RECAPTCHA_RESPONSE,
         ];
 
         Mail::fake();
+
+        $this->mockSessionFlash();
 
         $response = $this->post(route('contact.store'), $postData);
 
@@ -84,11 +61,13 @@ class ContactMessageTest extends TestCase
             'name' => 'Mike Miller',
             'email_phone' => 'f9d9s9a8f7g6d6a5g4s4',
             'message' => 'My name is Mike.',
-            'g-recaptcha-response' => 'abcdefg',
+            'g-recaptcha-response' => self::MOCK_RECAPTCHA_RESPONSE,
         ];
 
         Mail::fake();
 
+        $this->mockSessionFlash();
+        
         $response = $this->post(route('contact.store'), $postData);
 
         $message = ContactMessage::firstOrFail();
@@ -100,5 +79,16 @@ class ContactMessageTest extends TestCase
         $response->assertRedirect(route('home'));
 
         $this->assertEquals(1, ContactMessage::count());
+    }
+
+    public function mockSessionFlash()
+    {
+        $store = Mockery::mock('Illuminate\Session\Store');
+        Session::shouldReceive('driver')
+            ->once()
+            ->andReturn($store)
+            ->shouldReceive('flash')
+            ->once()
+            ->andReturn(null);
     }
 }

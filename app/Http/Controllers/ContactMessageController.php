@@ -6,6 +6,7 @@ use App\Mail\ContactMessageNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\ContactMessage;
+use Session;
 use Mail;
 
 class ContactMessageController extends Controller
@@ -18,13 +19,14 @@ class ContactMessageController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request);
+
         $request->validate(ContactMessage::getValidationRules());
 
         $message = ContactMessage::create($request->all());
 
         Mail::to(env('APP_ADMIN_EMAIL'))->send(new ContactMessageNotification($message));
-
-        $request->session()->flash('success', 'Successfully sent message.');
+        Session::flash('success', 'Successfully sent message.');
 
         return redirect(route('home'));
     }
