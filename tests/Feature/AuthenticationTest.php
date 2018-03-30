@@ -56,13 +56,7 @@ class AuthenticationTest extends TestCase
      */
     public function testSuccessfulAuthenticationRedirect()
     {
-        $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
-        $abstractUser->email = 'commnerd@gmail.com';
-
-        $provider = Mockery::mock('Laravel\Socialite\Contracts\Provider');
-        $provider->shouldReceive('user')->andReturn($abstractUser);
-
-        Socialite::shouldReceive('driver')->with('google')->andReturn($provider);
+        $this->mockSocialiteCall('commnerd@gmail.com');
 
         $response = $this->get('/login/callback');
 
@@ -101,17 +95,27 @@ class AuthenticationTest extends TestCase
 
         $response->assertStatus(302);
 
+        $this->mockSocialiteCall('commnerd@gmail.com');
+        $response = $this->get('/login/callback');
+
+        $response->assertStatus(302);
+        $response->assertRedirect(route('admin.index'));
+    }
+
+    /**
+     * Setup socialite faker
+     *
+     * @param  string $email Email to have mockery return
+     * @return void
+     */
+    private function mockSocialiteCall(string $email)
+    {
         $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
-        $abstractUser->email = 'commnerd@gmail.com';
+        $abstractUser->email = $email;
 
         $provider = Mockery::mock('Laravel\Socialite\Contracts\Provider');
         $provider->shouldReceive('user')->andReturn($abstractUser);
 
         Socialite::shouldReceive('driver')->with('google')->andReturn($provider);
-
-        $response = $this->get('/login/callback');
-
-        $response->assertStatus(302);
-        $response->assertRedirect(route('admin.index'));
     }
 }
