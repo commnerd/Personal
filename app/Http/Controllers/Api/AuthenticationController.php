@@ -7,9 +7,9 @@ use GuzzleHttp\Exception\RequestException;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Socialite;
+use GuzzleHttp\Client;
+use App\Models\User;
 use Validator;
-use App\User;
 use JWTAuth;
 
 /**
@@ -17,6 +17,17 @@ use JWTAuth;
  */
 class AuthenticationController extends Controller
 {
+    const ID_TOKEN_URI = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=";
+
+    /**
+     * Set local variables
+     *
+     * @param Client $client Guzzle client to consume idToken from Google
+     */
+    public function __construct(Client $client) {
+        $this->client = $client;
+    }
+
     /**
      * Retrieve JWT Token
      * @param  Request $request Request with args
@@ -40,7 +51,17 @@ class AuthenticationController extends Controller
         $credentials['is_verified'] = 1;
 
         try {
-            $email = Socialite::driver('google')->userFromToken($request->token)->email;
+            $response = $this->client->get(self::ID_TOKEN_URI.$request->token, [
+                'headers' => [
+                    'Accept' => 'application/json',
+                ],
+            ]);
+
+            $userObject = $response->getBody();
+
+            dd($userObject);
+
+            $email = $userObject->email;
 
             $user = User::where('email', $email)->firstOrFail();
 
