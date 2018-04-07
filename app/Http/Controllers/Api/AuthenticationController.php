@@ -17,7 +17,7 @@ use JWTAuth;
  */
 class AuthenticationController extends Controller
 {
-    const ID_TOKEN_URI = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=";
+    const ID_TOKEN_URI = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=ya29.Gl2VBebBTFEiX39q_08lir3mjVC05x3K8igbmRrFIoLett1xH47bTH6WP8fw3VzHBCqIi67UnWne2_8ol6Xe7QzfcOS8ncW0B7xVRMCCz5Y_yFBMKbY9lgB6GPQwVcE";
 
     /**
      * Set local variables
@@ -51,11 +51,7 @@ class AuthenticationController extends Controller
         $credentials['is_verified'] = 1;
 
         try {
-            $response = $this->client->get(self::ID_TOKEN_URI.$request->token, [
-                'headers' => [
-                    'Accept' => 'application/json',
-                ],
-            ]);
+            $response = $this->client->get(self::ID_TOKEN_URI);
 
             $userObject = $response->getBody();
 
