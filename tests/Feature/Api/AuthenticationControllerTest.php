@@ -5,7 +5,6 @@ namespace Tests\Feature\Api;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Socialite;
 use App\User;
 use Mockery;
 use JWTAuth;
@@ -61,14 +60,14 @@ class AuthenticationControllerTest extends TestCase
      */
     public function testInvalidTokenLogin()
     {
-        $this->mockSocialiteCall('');
+        $this->mockGuzzleCall('test@test.com');
 
         $response = $this->post(route('api.login'), ['token' => 'abcdefg']);
 
         $response->assertStatus(401);
 
         $response->assertJson([
-            'error' => 'Invalid login attempt.  Something went wrong.'
+            'error' => 'Invalid token.  Something went wrong.'
         ]);
     }
 
@@ -79,7 +78,7 @@ class AuthenticationControllerTest extends TestCase
      */
     public function testValidTokenLogin()
     {
-        $this->mockSocialiteCall('commnerd@gmail.com');
+        $this->mockGuzzleCall('commnerd@gmail.com');
 
         $response = $this->post(route('api.login'), ['token' => 'abcdefg']);
 
@@ -115,18 +114,18 @@ class AuthenticationControllerTest extends TestCase
      * @param  string $email Email to have mockery return
      * @return void
      */
-    private function mockSocialiteCall(string $email)
+    private function mockGuzzleCall(string $email)
     {
-        $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
-        $abstractUser->email = $email;
+        $stream = Mockery::mock('GuzzleHttp\Stream\Stream');
+        $stream->shouldReceive('getContent')->andReturn(json_encode([
+            'email' => $email,
+        ]));
 
-        $provider = Mockery::mock('Laravel\Socialite\Contracts\Provider');
-        $provider->shouldReceive('userFromToken')
-            ->withAnyArgs()
-            ->andReturn($abstractUser);
+        $response = Mockery::mock('GuzzleHttp\Response');
+        $response->shouldReceive('getBody')->andReturn($stream);
 
-        $socialite = Socialite::shouldReceive('driver')
-            ->with('google')
-            ->andReturn($provider);
+        $client = Mockery::instanceMock('GuzzleHttp\Client');
+        $client->shouldReceive('get')->withArgs("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=abcdefg");
+        $client->andReturns($response);
     }
 }
