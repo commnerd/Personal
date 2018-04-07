@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use App\Models\User;
 use Validator;
+use App\User;
 use JWTAuth;
 
 /**

@@ -60,7 +60,7 @@ class AuthenticationControllerTest extends TestCase
      */
     public function testInvalidTokenLogin()
     {
-        $this->mockGuzzleCall('test@test.com');
+        $this->mockGuzzleResponse(['email' => 'test@test.com'], 401);
 
         $response = $this->post(route('api.login'), ['token' => 'abcdefg']);
 
@@ -78,7 +78,7 @@ class AuthenticationControllerTest extends TestCase
      */
     public function testValidTokenLogin()
     {
-        $this->mockGuzzleCall('commnerd@gmail.com');
+        $this->mockGuzzleResponse(['email' => 'commnerd@gmail.com'], 200);
 
         $response = $this->post(route('api.login'), ['token' => 'abcdefg']);
 
@@ -106,26 +106,5 @@ class AuthenticationControllerTest extends TestCase
         ])->get(route('api.logout'), ["token" => $token]);
 
         $response->assertStatus(401);
-    }
-
-    /**
-     * Setup socialite faker
-     *
-     * @param  string $email Email to have mockery return
-     * @return void
-     */
-    private function mockGuzzleCall(string $email)
-    {
-        $stream = Mockery::mock('GuzzleHttp\Stream\Stream');
-        $stream->shouldReceive('getContent')->andReturn(json_encode([
-            'email' => $email,
-        ]));
-
-        $response = Mockery::mock('GuzzleHttp\Response');
-        $response->shouldReceive('getBody')->andReturn($stream);
-
-        $client = Mockery::instanceMock('GuzzleHttp\Client');
-        $client->shouldReceive('get')->withArgs("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=abcdefg");
-        $client->andReturns($response);
     }
 }
