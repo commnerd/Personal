@@ -93,7 +93,7 @@ class AuthenticationControllerTest extends TestCase
         $user = User::firstOrFail();
 
         $token = JWTAuth::fromUser($user);
-        // dd($token);
+
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$token
         ])->get(route('api.logout'), ["token" => $token]);

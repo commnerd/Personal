@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use App\Models\User;
 use Validator;
+use App\User;
 use JWTAuth;
 
 /**
@@ -51,15 +51,9 @@ class AuthenticationController extends Controller
         $credentials['is_verified'] = 1;
 
         try {
-            $response = $this->client->get(self::ID_TOKEN_URI.$request->token, [
-                'headers' => [
-                    'Accept' => 'application/json',
-                ],
-            ]);
+            $response = $this->client->get(self::ID_TOKEN_URI.$request->token);
 
-            $userObject = $response->getBody();
-
-            dd($userObject);
+            $userObject = json_decode($response->getBody()->getContents());
 
             $email = $userObject->email;
 
