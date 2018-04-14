@@ -25,8 +25,10 @@ Route::name('api.')->group(function() {
 
         Route::middleware('jwt.auth')->group(function() {
             Route::get('logout', 'AuthenticationController@logout')->name('logout');
-            Route::namespace('Food')->prefix('food')->group( function() {
+            Route::namespace('Food')->prefix('food')->group(function() {
                 Route::get('/search', 'FoodController@search')->name('food.search');
+                Route::resource('/restaurants', 'RestaurantController')->except(['create', 'edit']);
+                Route::resource('/restaurants/{restaurantId}/orders', 'OrderController')->except(['create', 'edit']);
             });
         });
 

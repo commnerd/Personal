@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\User;
@@ -11,8 +10,6 @@ use JWTAuth;
 
 class AuthenticationControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Default invalid test record values
      *

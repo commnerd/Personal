@@ -2,14 +2,11 @@
 
 namespace Tests\Feature\Api;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\DailyReminder;
 use Tests\TestCase;
 
 class DailyReminderTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Default test record values
      *

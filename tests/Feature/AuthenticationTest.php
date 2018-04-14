@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Socialite;
 use App\User;
@@ -11,8 +10,6 @@ use Auth;
 
 class AuthenticationTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Test login redirect to Google.
      *

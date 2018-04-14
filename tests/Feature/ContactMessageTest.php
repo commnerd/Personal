@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Mail\ContactMessageNotification;
 use Illuminate\Http\Request;
 use App\ContactMessage;
@@ -15,7 +14,6 @@ use Mail;
 class ContactMessageTest extends TestCase
 {
     use WithoutMiddleware;
-    use RefreshDatabase;
 
     const MOCK_RECAPTCHA_RESPONSE = 'abcdefg';
 
@@ -67,7 +65,7 @@ class ContactMessageTest extends TestCase
         Mail::fake();
 
         $this->mockSessionFlash();
-        
+
         $response = $this->post(route('contact.store'), $postData);
 
         $message = ContactMessage::firstOrFail();

@@ -2,15 +2,12 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Work\EmploymentRecord;
 use Tests\TestCase;
 use Auth;
 
 class PageControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Home page tests
      *
@@ -68,7 +65,7 @@ class PageControllerTest extends TestCase
     public function testHomePageWhileLoggedIn()
     {
         Auth::loginUsingId(1);
-        
+
         $response = $this->get(route('home'));
 
         $response->assertSuccessful();

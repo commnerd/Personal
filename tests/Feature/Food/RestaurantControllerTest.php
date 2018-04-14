@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Food;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Food\Restaurant;
 use App\Food\Order;
 use Tests\TestCase;
@@ -10,9 +9,6 @@ use Auth;
 
 class RestaurantControllerTest extends TestCase
 {
-
-    use RefreshDatabase;
-
     /**
      * Setup tests
      */

@@ -2,16 +2,13 @@
 
 namespace Tests\Feature\Food;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Food\Restaurant;
-use Tests\TestCase;
 use App\Food\Order;
+use Tests\TestCase;
 use Auth;
 
 class OrderControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Setup tests
      */
