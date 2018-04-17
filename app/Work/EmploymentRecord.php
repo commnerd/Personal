@@ -46,7 +46,7 @@ class EmploymentRecord extends Model
 
     /**
      * Get validation rules for model
-     * 
+     *
      * @return array Validation rules
      */
     public static function getValidationRules(): array

@@ -26,6 +26,19 @@ class ResumeAdminTest extends TestCase
     ];
 
     /**
+     * Default second test record values
+     *
+     * @var array
+     */
+    const SECOND_TEST_RECORD_ARRAY = [
+        'employer' => 'Second Test Employer',
+        'position' => 'Second Test Position',
+        'location' => 'Second Test Location, ST',
+        'start_date' => 'Jan 2018',
+        'bullets' => 'Awesome thingz',
+    ];
+
+    /**
      * Setup for admin access
      */
     public function setUp()
@@ -151,7 +164,7 @@ class ResumeAdminTest extends TestCase
         $response->assertSee('No Records');
 
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
-        $response = $this->get(route('resume.index'));
+        $response = $this->get(route('resume'));
         $response->assertSuccessful();
         $response->assertSee($record->employer);
     }

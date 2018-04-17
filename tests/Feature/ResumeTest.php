@@ -1,13 +1,15 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use App\Work\EmploymentRecord;
 use Tests\TestCase;
 
-class EmploymentRecordTest extends TestCase
+class ResumeTest extends TestCase
 {
+
     use RefreshDatabase;
 
     /**
@@ -20,18 +22,15 @@ class EmploymentRecordTest extends TestCase
         'position' => 'Test Position',
         'location' => 'Test Location, ST',
         'start_date' => 'Jun 2017',
-        'end_date' => 'Dec 2017',
         'bullets' => 'Test content for job',
     ];
 
-    /**
-     * Test date conversion
-     *
-     * @return void
-     */
-    public function testYearMonthConversion()
+    public function testDateDisplay()
     {
-        $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
-        $this->assertEquals($record->sortDate, "2017-06");
+        EmploymentRecord::create(self::TEST_RECORD_ARRAY);
+
+        $response = $this->get(route('resume'));
+
+        $response->assertSee('Jun 2017 - Present');
     }
 }
