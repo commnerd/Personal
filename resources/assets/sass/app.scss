@@ -54,7 +54,7 @@ header {
 
     a {
         color: white;
-        @include fade(color, .2s)
+        @include fade(color, .2s);
 
         &:hover {
             color:white;
