@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Quote;
 use Session;
 
 class PageController extends Controller
@@ -18,7 +19,8 @@ class PageController extends Controller
         if(Session::get('errors')) {
             $error = 'Your form submission was invalid.';
         }
-        return view('home', ['error' => $error]);
+        $quote = Quote::where('active', true)->firstOrFail();
+        return view('home', compact('quote', 'error'));
     }
 
     /**

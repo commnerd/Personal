@@ -49,5 +49,12 @@
             <a href="{{ route('daily_reminder.create') }}" class="list-group-item">Add Daily Reminder</a>
         </div>
     </fieldset>
+    <fieldset class="col-sm-6">
+        <legend>Quotes</legend>
+        <div class="list-group">
+            <a href="{{ route('quotes.index') }}" class="list-group-item">Manage Quotes</a>
+            <a href="{{ route('quotes.create') }}" class="list-group-item">Add Quote</a>
+        </div>
+    </fieldset>
 </div>
 @endsection

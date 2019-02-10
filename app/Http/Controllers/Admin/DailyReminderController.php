@@ -45,17 +45,6 @@ class DailyReminderController extends AdminController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\DailyReminder  $dailyReminder
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DailyReminder $dailyReminder)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\DailyReminder  $dailyReminder

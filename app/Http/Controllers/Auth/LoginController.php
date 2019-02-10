@@ -37,7 +37,9 @@ class LoginController extends Controller
      */
     public function redirectToProvider(): RedirectResponse
     {
-        return Socialite::driver('google')->redirect();
+        return env('APP_ENV') == 'production' ?
+            Socialite::driver('google')->redirect() :
+            redirect()->route('login.callback');
     }
 
     /**
@@ -47,7 +49,9 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(): RedirectResponse
     {
-        $user = User::where('email', Socialite::driver('google')->user()->email)->first();
+        $user = env('APP_ENV') == 'production' ?
+            User::where('email', Socialite::driver('google')->user()->email)->first() :
+            User::findOrFail(1);
 
         if (!empty($user) && Auth::loginUsingId($user->id)) {
             if(!empty(request()->session()->get('intended'))) {
