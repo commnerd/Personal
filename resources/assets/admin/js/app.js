@@ -24,3 +24,8 @@ $('.month-picker').datepicker({
     minViewMode: 'months',
     maxViewMode: 'months'
 });
+
+$('input[name="active"]').change(function() {
+    var val = $(this).val();
+    $('form.activate').append('<input type="hidden" name="activate" value="'+val+'" />').submit();
+});

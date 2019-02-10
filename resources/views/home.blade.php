@@ -17,13 +17,9 @@
     <div class="section quote">
         @include('shared.section-header', ['label' => 'Quote'])
         <blockquote>
-            <p>
-                There is a computer disease that anybody who works with computers knows about.<br />
-                It's a very serious disease and it interferes completely with the work.<br />
-                The trouble with computers is that you 'play' with them!
-            </p>
+            <p>{!! $quote->quote !!}</p>
         </blockquote>
-        <i>- Richard P. Feynman</i>
+        <i>- {{ $quote->source }}</i>
     </div>
 
     <div class="section social">

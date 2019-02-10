@@ -19,7 +19,7 @@ Route::get('/', 'PageController@home')->name('home');
 Route::get('/resume', 'PageController@resume')->name('resume');
 
 Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
-Route::get('login/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/callback', 'Auth\LoginController@handleProviderCallback')->name('login.callback');
 
 Route::group(['middleware' => ['recaptcha']], function() {
     Route::resource('/contact', 'ContactMessageController')->only(['store']);
@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth.custom']], function() {
     Route::namespace('Admin')->prefix('admin')->group(function() {
         Route::resource('/resume', 'ResumeController');
         Route::resource('/daily_reminder', 'DailyReminderController');
+        Route::put('/quotes/activate', 'QuotesController@activate')->name('quotes.activate');
+        Route::resource('/quotes', 'QuotesController');
         Route::resource('/portfolio', 'PortfolioController');
         Route::resource('/contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
     });
