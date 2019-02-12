@@ -21,7 +21,7 @@ class CreateQuotesTable extends Migration
             $table->boolean('active')->default(false);
             $table->timestamps();
         });
-        factory(Quote::class)->create([
+        Quote::create([
             'quote' => "There is a computer disease that anybody who works with computers knows about.<br />
 It's a very serious disease and it interferes completely with the work.<br />
 The trouble with computers is that you 'play' with them!",
