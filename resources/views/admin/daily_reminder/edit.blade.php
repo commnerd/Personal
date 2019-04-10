@@ -5,7 +5,7 @@
 @section('content')
     @include('admin.daily_reminder.form', [
         'title' => "Edit Daily Reminder",
-        'action' => route('daily_reminder.update', $dailyReminder),
+        'action' => route('admin.daily_reminder.update', $dailyReminder),
         'method' => 'PUT',
         'dailyReminder' => $dailyReminder,
     ])

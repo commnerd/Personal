@@ -57,7 +57,7 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('<legend>Messages</legend>');
-        $response->assertSee('<a href="'.route('contact.index').'" class="list-group-item">View All Messages</a>');
+        $response->assertSee('<a href="'.route('admin.contact.index').'" class="list-group-item">View All Messages</a>');
     }
 
     /**
@@ -71,12 +71,12 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('<legend>Resume</legend>');
-        $response->assertSee('<a href="'.route('resume.index').'" class="list-group-item">Edit Resume</a>');
-        $response->assertSee('<a href="'.route('resume.create').'" class="list-group-item">Add Employment Record</a>');
+        $response->assertSee('<a href="'.route('admin.resume.index').'" class="list-group-item">Edit Resume</a>');
+        $response->assertSee('<a href="'.route('admin.resume.create').'" class="list-group-item">Add Employment Record</a>');
     }
 
     /**
-     * Basic test for daily reminder link
+     * Basic test for daily reminder links
      *
      * @return void
      */
@@ -86,7 +86,22 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('<legend>Daily Reminders</legend>');
-        $response->assertSee('<a href="'.route('daily_reminder.index').'" class="list-group-item">Manage Daily Reminders</a>');
-        $response->assertSee('<a href="'.route('daily_reminder.create').'" class="list-group-item">Add Daily Reminder</a>');
+        $response->assertSee('<a href="'.route('admin.daily_reminder.index').'" class="list-group-item">Manage Daily Reminders</a>');
+        $response->assertSee('<a href="'.route('admin.daily_reminder.create').'" class="list-group-item">Add Daily Reminder</a>');
+    }
+
+    /**
+     * Basic test for quote links
+     *
+     * @return void
+     */
+    public function testQuoteLinks()
+    {
+        $response = $this->get(route('admin.index'));
+        $response->assertSuccessful();
+
+        $response->assertSee('<legend>Quotes</legend>');
+        $response->assertSee('<a href="'.route('admin.quotes.index').'" class="list-group-item">Manage Quotes</a>');
+        $response->assertSee('<a href="'.route('admin.quotes.create').'" class="list-group-item">Add Quote</a>');
     }
 }

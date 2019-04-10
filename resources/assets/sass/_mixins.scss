@@ -10,9 +10,11 @@
     }
 }
 
-@mixin headers($img) {
-    background: url($img) no-repeat;
-    background-size: 100% auto;
+@mixin header($cls, $img) {
+    &.#{$cls} header {
+        background: url($img) no-repeat;
+        background-size: 100% auto;
+    }
 }
 
 @mixin border-radius($rad) {

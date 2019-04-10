@@ -19,8 +19,8 @@
             @foreach($messages as $message)
                 <tr>
                     <td><input type="checkbox" </td>
-                    <td><a href="{{ route('contact.show', $message) }}">{{ $message->name }}</a></td>
-                    <td><a href="{{ route('contact.show', $message) }}">{{ $message->email_phone }}</a></td>
+                    <td><a href="{{ route('admin.contact.show', $message) }}">{{ $message->name }}</a></td>
+                    <td><a href="{{ route('admin.contact.show', $message) }}">{{ $message->email_phone }}</a></td>
                     <td>{{ $message->created_at->format('d/m/Y') }}</td>
                     <td>@include('shared.form.delete_link', ['action' => route('contact.destroy', $message)])</td>
                 </tr>

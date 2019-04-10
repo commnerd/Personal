@@ -3,7 +3,7 @@
 @section('title', 'Daily Reminder List')
 
 @section('content')
-<h1 class="center">Daily Reminder List <a class="glyphicon glyphicon-plus" href="{{ route('daily_reminder.create') }}"></a></h1>
+<h1 class="center">Daily Reminder List <a class="glyphicon glyphicon-plus" href="{{ route('admin.daily_reminder.create') }}"></a></h1>
 {{ $dailyReminders->links() }}
 <table class="table">
     <thead>
@@ -24,8 +24,8 @@
                     <td>{{ $reminder->reference }}</td>
                     <td>{{ $reminder->reminder }}</td>
                     <td>
-                        <a class="glyphicon glyphicon-edit" href="{{ route('daily_reminder.edit', [$reminder]) }}"></a>
-                        @include('shared.form.delete_link', ['action' => route('daily_reminder.destroy', [$reminder])])
+                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.daily_reminder.edit', [$reminder]) }}"></a>
+                        @include('shared.form.delete_link', ['action' => route('admin.daily_reminder.destroy', [$reminder])])
                     </td>
                 </tr>
             @endforeach

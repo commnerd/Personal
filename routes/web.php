@@ -17,6 +17,8 @@ use App\ContactMessage;
 
 Route::get('/', 'PageController@home')->name('home');
 Route::get('/resume', 'PageController@resume')->name('resume');
+Route::get('/portfolio', 'PageController@portfolio')->name('portfolio');
+Route::get('/quotes', 'PageController@quotes')->name('quotes');
 
 Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/callback', 'Auth\LoginController@handleProviderCallback')->name('login.callback');
@@ -28,7 +30,7 @@ Route::group(['middleware' => ['recaptcha']], function() {
 Route::group(['middleware' => ['auth.custom']], function() {
     Route::resource('/admin', 'Admin\AdminController')->only(['index']);
     Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
-    Route::namespace('Admin')->prefix('admin')->group(function() {
+    Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::resource('/resume', 'ResumeController');
         Route::resource('/daily_reminder', 'DailyReminderController');
         Route::put('/quotes/activate', 'QuotesController@activate')->name('quotes.activate');
