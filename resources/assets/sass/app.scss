@@ -17,27 +17,17 @@ body {
     min-width: 400px;
     margin: auto;
 
-    &.home {
-        header {
-            background: url("/storage/michael-j-miller-xl.png") no-repeat;
-            background-size: 100% auto;
-        }
+    @include header("home", "/storage/michael-j-miller-xl.png");
+    @include header("portfolio", "/storage/portfolio-xl.png");
+    @include header("resume", "/storage/resume.png");
+    @include header("quotes", "/storage/quote-header.jpg");
+
+    &.quotes header {
+        background-size: 100% 100%;
     }
 
-    &.portfolio header {
-        background: url("/storage/portfolio-xl.png") no-repeat;
-        background-size: 100% auto;
-    }
-
-    &.resume {
-        header {
-            background: url("/storage/resume.png") no-repeat;
-            background-size: 100% 150%;
-        }
-
-        div.record {
-            margin-top: 22px;
-        }
+    &.resume div.record {
+        margin-top: 22px;
     }
 }
 

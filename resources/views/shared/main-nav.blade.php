@@ -15,19 +15,22 @@
     <div class="collapse navbar-collapse" id="main-nav">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ route('home') }}">Home</a></li>
+        @if(\App\Work\PortfolioEntry::count() > 0)
+            <li><a href="{{ route('portfolio') }}">Portfolio</a></li>
+        @endif
         @if(\App\Work\EmploymentRecord::count() > 0)
             <li><a href="{{ route('resume') }}">Resume</a></li>
         @endif
-        @if(\App\Work\PortfolioEntry::count() > 0)
-            <li><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
+        @if(\App\Quote::count() > 0)
+            <li><a href="{{ route('quotes') }}">Quotes</a></li>
         @endif
         @if(Auth::check())
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="{{ route('admin.index') }}">Admin</a></li>
-                <li role="separator" class="divider"></li>
                 <li><a href="{{ route('restaurants.index') }}">Food</a></li>
+                <li role="separator" class="divider"></li>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
         </li>

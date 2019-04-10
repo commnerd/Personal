@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Work\EmploymentRecord;
 use Tests\TestCase;
+use App\Quote;
 use Auth;
 
 class PageControllerTest extends TestCase
@@ -47,14 +48,25 @@ class PageControllerTest extends TestCase
         $response = $this->get(route('home'));
 
         $response->assertSuccessful();
-
-        $response->assertSee('<a class="navbar-brand" href="'.route('home').'"><img height="100%" alt="Michael J. Miller" src="/storage/michael-j-miller-logo.png"></a>');
-        $response->assertSee('Family');
-        $response->assertSee('Quote');
-        $response->assertSee('Social');
-        $response->assertSee('Contact');
         $response->assertSee('Resume');
-        $response->assertDontSee('Portfolio');
+    }
+
+    /**
+     * Home page tests with quote
+     *
+     * @return void
+     */
+    public function testHomePageWithQuote()
+    {
+        Quote::create([
+            'source' => 'test',
+            'quote' => 'This is a test',
+        ]);
+
+        $response = $this->get(route('home'));
+
+        $response->assertSuccessful();
+        $response->assertSee('Quotes');
     }
 
     /**
@@ -87,6 +99,18 @@ class PageControllerTest extends TestCase
     public function testResumePage()
     {
         $response = $this->get(route('resume'));
+
+        $response->assertSuccessful();
+    }
+
+    /**
+     * Test basic quotes page functionality
+     *
+     * @return void
+     */
+    public function testQuotesPage()
+    {
+        $response = $this->get(route('quotes'));
 
         $response->assertSuccessful();
     }

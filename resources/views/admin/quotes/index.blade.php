@@ -3,7 +3,7 @@
 @section('title', 'Quote List')
 
 @section('content')
-<h1 class="center">Quote List <a class="glyphicon glyphicon-plus" href="{{ route('quotes.create') }}"></a></h1>
+<h1 class="center">Quote List <a class="glyphicon glyphicon-plus" href="{{ route('admin.quotes.create') }}"></a></h1>
 {{ $quotes->links() }}
 <table class="table">
     <thead>
@@ -27,21 +27,21 @@
                             name="active"
                             value="{{ $quote->id }}"
                             {{ $quote->active ? ' checked' : '' }}
-                            data-route="{{ route('quotes.update', ['quote' => $quote]) }}"
+                            data-route="{{ route('admin.quotes.update', ['quote' => $quote]) }}"
                         >
                     </td>
                     <td>{{ $quote->source }}</td>
                     <td>{!! $quote->quote !!}</td>
                     <td>
                         <a class="glyphicon glyphicon-edit" href="{{ route('quotes.edit', [$quote]) }}"></a>
-                        @include('shared.form.delete_link', ['action' => route('quotes.destroy', [$quote])])
+                        @include('shared.form.delete_link', ['action' => route('admin.quotes.destroy', [$quote])])
                     </td>
                 </tr>
             @endforeach
         @endif
     </tbody>
 </table>
-<form method="POST" class="activate" action="{{ route('quotes.activate') }}">
+<form method="POST" class="activate" action="{{ route('admin.quotes.activate') }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_method" value="PUT">
 </form>

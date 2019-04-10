@@ -55,7 +55,7 @@ class ResumeAdminTest extends TestCase
      */
     public function testResumeCreationPage()
     {
-        $response = $this->get(route('resume.create'));
+        $response = $this->get(route('admin.resume.create'));
         $response->assertSuccessful();
 
         $response->assertSee('Create Employment Record');
@@ -75,8 +75,8 @@ class ResumeAdminTest extends TestCase
      */
     public function testResumeCreation()
     {
-        $response = $this->post(route('resume.store'), self::TEST_RECORD_ARRAY);
-        $response->assertRedirect(route('resume.index'));
+        $response = $this->post(route('admin.resume.store'), self::TEST_RECORD_ARRAY);
+        $response->assertRedirect(route('admin.resume.index'));
 
         $record = EmploymentRecord::where('employer', 'Test Employer')->firstOrFail();
         $this->assertEquals($record->employer, 'Test Employer');
@@ -95,9 +95,9 @@ class ResumeAdminTest extends TestCase
     public function testResumeDeletion()
     {
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
-        $response = $this->delete(route('resume.destroy', $record));
+        $response = $this->delete(route('admin.resume.destroy', $record));
 
-        $response->assertRedirect(route('resume.index'));
+        $response->assertRedirect(route('admin.resume.index'));
         $this->assertEmpty(EmploymentRecord::all());
     }
 
@@ -110,7 +110,7 @@ class ResumeAdminTest extends TestCase
     {
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->get(route('resume.edit', ['record' => $record]));
+        $response = $this->get(route('admin.resume.edit', ['record' => $record]));
 
         $response->assertSee('Edit Employment Record (Test Employer)');
         $response->assertSee('<input type="text" name="employer" value="Test Employer" class="form-control">');
@@ -131,7 +131,7 @@ class ResumeAdminTest extends TestCase
     {
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->put(route('resume.update', ['id' => $record->id]), [
+        $response = $this->put(route('admin.resume.update', ['id' => $record->id]), [
             'employer' => 'Test Employer change',
             'position' => 'Test Position change',
             'location' => 'Test Location, ST change',
@@ -140,7 +140,7 @@ class ResumeAdminTest extends TestCase
             'bullets' => 'Test content for job change',
         ]);
 
-        $response->assertRedirect(route('resume.index'));
+        $response->assertRedirect(route('admin.resume.index'));
 
         $record = EmploymentRecord::findOrFail($record->id);
 
@@ -159,7 +159,7 @@ class ResumeAdminTest extends TestCase
      */
     public function testResumeIndexPage()
     {
-        $response = $this->get(route('resume.index'));
+        $response = $this->get(route('admin.resume.index'));
         $response->assertSuccessful();
         $response->assertSee('No Records');
 

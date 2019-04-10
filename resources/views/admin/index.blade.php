@@ -30,14 +30,14 @@
             </tbody>
         </table>
         <div class="list-group">
-            <a href="{{ route('contact.index') }}" class="list-group-item">View All Messages</a>
+            <a href="{{ route('admin.contact.index') }}" class="list-group-item">View All Messages</a>
         </div>
     </fieldset>
     <fieldset class="col-sm-6">
         <legend>Resume</legend>
         <div class="list-group">
-            <a href="{{ route('resume.index') }}" class="list-group-item">Edit Resume</a>
-            <a href="{{ route('resume.create') }}" class="list-group-item">Add Employment Record</a>
+            <a href="{{ route('admin.resume.index') }}" class="list-group-item">Edit Resume</a>
+            <a href="{{ route('admin.resume.create') }}" class="list-group-item">Add Employment Record</a>
         </div>
     </fieldset>
 </div>
@@ -45,15 +45,15 @@
     <fieldset class="col-sm-6">
         <legend>Daily Reminders</legend>
         <div class="list-group">
-            <a href="{{ route('daily_reminder.index') }}" class="list-group-item">Manage Daily Reminders</a>
-            <a href="{{ route('daily_reminder.create') }}" class="list-group-item">Add Daily Reminder</a>
+            <a href="{{ route('admin.daily_reminder.index') }}" class="list-group-item">Manage Daily Reminders</a>
+            <a href="{{ route('admin.daily_reminder.create') }}" class="list-group-item">Add Daily Reminder</a>
         </div>
     </fieldset>
     <fieldset class="col-sm-6">
         <legend>Quotes</legend>
         <div class="list-group">
-            <a href="{{ route('quotes.index') }}" class="list-group-item">Manage Quotes</a>
-            <a href="{{ route('quotes.create') }}" class="list-group-item">Add Quote</a>
+            <a href="{{ route('admin.quotes.index') }}" class="list-group-item">Manage Quotes</a>
+            <a href="{{ route('admin.quotes.create') }}" class="list-group-item">Add Quote</a>
         </div>
     </fieldset>
 </div>

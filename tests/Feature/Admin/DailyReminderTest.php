@@ -38,7 +38,7 @@ class DailyReminderTest extends TestCase
      */
     public function testDailyReminderCreationPage()
     {
-        $response = $this->get(route('daily_reminder.create'));
+        $response = $this->get(route('admin.daily_reminder.create'));
         $response->assertSuccessful();
 
         $response->assertSee('Create Daily Reminder');
@@ -54,8 +54,8 @@ class DailyReminderTest extends TestCase
      */
     public function testDailyReminderCreation()
     {
-        $response = $this->post(route('daily_reminder.store'), self::TEST_RECORD_ARRAY);
-        $response->assertRedirect(route('daily_reminder.index'));
+        $response = $this->post(route('admin.daily_reminder.store'), self::TEST_RECORD_ARRAY);
+        $response->assertRedirect(route('admin.daily_reminder.index'));
 
         $record = DailyReminder::where('reference', 'Test Reference')->firstOrFail();
         $this->assertEquals($record->reminder, 'Test Reminder');
@@ -69,9 +69,9 @@ class DailyReminderTest extends TestCase
     public function testDailyReminderDeletion()
     {
         $record = DailyReminder::create(self::TEST_RECORD_ARRAY);
-        $response = $this->delete(route('daily_reminder.destroy', $record));
+        $response = $this->delete(route('admin.daily_reminder.destroy', $record));
 
-        $response->assertRedirect(route('daily_reminder.index'));
+        $response->assertRedirect(route('admin.daily_reminder.index'));
         $this->assertEmpty(DailyReminder::all());
     }
 
@@ -83,7 +83,7 @@ class DailyReminderTest extends TestCase
     public function testDailyReminderEditPage()
     {
         $reminder = DailyReminder::create(self::TEST_RECORD_ARRAY);
-        $response = $this->get(route('daily_reminder.edit', ['dailyReminder' => $reminder]));
+        $response = $this->get(route('admin.daily_reminder.edit', ['dailyReminder' => $reminder]));
 
         $response->assertSee('Edit Daily Reminder');
         $response->assertSee('<input type="text" name="reference" value="Test Reference" class="form-control">');
@@ -100,12 +100,12 @@ class DailyReminderTest extends TestCase
     {
         $reminder = DailyReminder::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->put(route('daily_reminder.update', ['id' => $reminder->id]), [
+        $response = $this->put(route('admin.daily_reminder.update', ['id' => $reminder->id]), [
             'reference' => 'Test Reference change',
             'reminder' => 'Test Reminder change',
-        ], ['HTTP_REFERER' => route('daily_reminder.index')]);
+        ], ['HTTP_REFERER' => route('admin.daily_reminder.index')]);
 
-        $response->assertRedirect(route('daily_reminder.index'));
+        $response->assertRedirect(route('admin.daily_reminder.index'));
 
         $reminder = DailyReminder::findOrFail($reminder->id);
 
@@ -120,12 +120,12 @@ class DailyReminderTest extends TestCase
      */
     public function testDailyReminderIndexPage()
     {
-        $response = $this->get(route('daily_reminder.index'));
+        $response = $this->get(route('admin.daily_reminder.index'));
         $response->assertSuccessful();
         $response->assertSee('No Reminders');
 
         $reminder = DailyReminder::create(self::TEST_RECORD_ARRAY);
-        $response = $this->get(route('daily_reminder.index'));
+        $response = $this->get(route('admin.daily_reminder.index'));
         $response->assertSuccessful();
         $response->assertSee($reminder->reference);
         $response->assertSee($reminder->reminder);

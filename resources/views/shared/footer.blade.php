@@ -6,10 +6,13 @@
           <ul class="nav navbar-nav navbar-center">
             <li><a href="{{ route('home') }}">Home</a></li>
             @if(\App\Work\PortfolioEntry::count() > 0)
-                <li><a href="{{ route('portfolio.index') }}">Portfolio</a></li>
+                <li><a href="{{ route('portfolio') }}">Portfolio</a></li>
             @endif
             @if(\App\Work\EmploymentRecord::count() > 0)
-                <li><a href="{{ route('resume.index') }}">Resume</a></li>
+                <li><a href="{{ route('resume') }}">Resume</a></li>
+            @endif
+            @if(\App\Quote::count() > 0)
+                <li><a href="{{ route('quotes') }}">Quotes</a></li>
             @endif
             @if(!Auth::check())
             <li>
