@@ -23,30 +23,6 @@ class AuthenticationTest extends TestCase
     }
 
     /**
-     * Test failed authentication
-     *
-     * @return void
-     */
-    public function testFailedAuthenticationRedirect()
-    {
-        $abstractUser = Mockery::mock('Laravel\Socialite\Two\User');
-        $abstractUser->email = 'user@gmail.com';
-
-        $provider = Mockery::mock('Laravel\Socialite\Contracts\Provider');
-        $provider->shouldReceive('user')->andReturn($abstractUser);
-
-        Socialite::shouldReceive('driver')->with('google')->andReturn($provider);
-
-        $response = $this->get('/login/callback');
-
-        $response->assertStatus(302);
-        $response->assertRedirect(route('home'));
-
-        $response = $this->get(route('home'));
-        $response->assertDontSee('Tools');
-    }
-
-    /**
      * Test successful authentication
      *
      * @return void
