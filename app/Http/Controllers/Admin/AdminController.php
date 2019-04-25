@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\Converters\Calculator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\Models\ContactMessage;
@@ -17,6 +18,10 @@ class AdminController extends Controller
     {
         $messages = ContactMessage::orderBy('created_at', 'desc')->limit(5)->get();
 
-        return response()->view('admin.index', compact('messages'));
+        $usedSpace = Calculator::metric(disk_total_space('/') - disk_free_space('/'), 2)."B";
+        $totalSpace = Calculator::metric(disk_total_space('/'), 2)."B";
+        $diskUsage = $usedSpace." / ".$totalSpace;
+
+        return response()->view('admin.index', compact('messages', 'diskUsage'));
     }
 }

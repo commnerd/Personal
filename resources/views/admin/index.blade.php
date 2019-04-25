@@ -2,6 +2,20 @@
 
 @section('content')
 <div class="row">
+    <fieldset class="col-sm-12">
+        <legend>System</legend>
+        <div class="col-sm-4">
+            <div class="list-group">
+                <span class="list-group-item">
+                    <span class="item-label">Disk Usage:</span>
+                    <span class="item-value">{{ $diskUsage }}</span>
+                </span>
+                <span class="list-group-item">Moar</span>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="row">
     <fieldset class="col-sm-6">
         <legend>Messages</legend>
         <table class="table table-bordered table-striped">
