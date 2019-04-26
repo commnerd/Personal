@@ -19,7 +19,7 @@ class Calculator
 	public static function metric($value, $precision = 0) {
 		$scale = 0;
 
-		while($value > 1000) {
+		while($value >= 1000) {
 			$value = $value / 1000;
 			$scale++;
 		}
