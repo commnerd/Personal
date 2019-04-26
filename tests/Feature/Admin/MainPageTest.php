@@ -46,6 +46,14 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
     }
 
+    public function testSystemMonitorDiskUsageSection()
+    {
+        $freeSpace = disk_free_space('/');
+        $totalSpace = disk_total_space('/');
+        $usedSpace = $totalSpace - $freeSpace;
+        $diskUsage = $usedSpace / $totalSpace;
+    }
+
     /**
      * Basic test for messaging
      *
