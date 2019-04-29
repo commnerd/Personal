@@ -3,6 +3,8 @@
 namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Services\Converters\Calculator;
+use App\Services\System;
 use Tests\TestCase;
 use Auth;
 
@@ -46,12 +48,35 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
     }
 
+    public function testSystemMonitorOSSection(System $system)
+    {
+        $response = $this->get(route('admin.index'));
+        $response->assertSuccessful();
+        $response->assertSee('OS:');
+        $response->assertSee($system->getOS());
+
+        dd(file_get_contents('/proc/meminfo'));
+    }
+
     public function testSystemMonitorDiskUsageSection()
     {
         $freeSpace = disk_free_space('/');
         $totalSpace = disk_total_space('/');
         $usedSpace = $totalSpace - $freeSpace;
-        $diskUsage = $usedSpace / $totalSpace;
+
+        $diskUsagePercent = number_format(100 * ($usedSpace / $totalSpace))."%";
+        $usedSpace = Calculator::metric($usedSpace, 1)."B";
+        $totalSpace = Calculator::metric($totalSpace, 1)."B";
+        $diskUsage = $usedSpace." / ".$totalSpace;
+
+        $response = $this->get(route('admin.index'));
+        $response->assertSee('Disk Usage:');
+        $response->assertSee($usedSpace);
+        $response->assertSee($totalSpace);
+        $response->assertSee($diskUsagePercent);
+        $response->assertSee($diskUsage);
+
+        dd(file_get_contents('/proc/meminfo'));
     }
 
     /**

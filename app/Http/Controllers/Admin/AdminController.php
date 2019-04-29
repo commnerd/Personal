@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Services\Converters\Calculator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
-use App\Models\ContactMessage;
+use App\Services\System;
+use App\ContactMessage;
 
 class AdminController extends Controller
 {
@@ -14,14 +14,14 @@ class AdminController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(): Response
+    public function main(System $system): Response
     {
         $messages = ContactMessage::orderBy('created_at', 'desc')->limit(5)->get();
+        $os = $system->getOS();
+        $diskUsage = $system->getDiskUsage();
+        $memUsage = $system->getMemUsage();
 
-        $usedSpace = Calculator::metric(disk_total_space('/') - disk_free_space('/'), 2)."B";
-        $totalSpace = Calculator::metric(disk_total_space('/'), 2)."B";
-        $diskUsage = $usedSpace." / ".$totalSpace;
-
-        return response()->view('admin.index', compact('messages', 'diskUsage'));
+        $vals = compact('messages', 'os', 'diskUsage', 'memUsage');
+        return response()->view('admin.index', $vals);
     }
 }

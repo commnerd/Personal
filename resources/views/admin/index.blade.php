@@ -7,10 +7,25 @@
         <div class="col-sm-4">
             <div class="list-group">
                 <span class="list-group-item">
+                    <span class="item-label">OS:</span>
+                    <span class="item-value">{{ $os }}</span>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="list-group">
+                <span class="list-group-item">
                     <span class="item-label">Disk Usage:</span>
                     <span class="item-value">{{ $diskUsage }}</span>
                 </span>
-                <span class="list-group-item">Moar</span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="list-group">
+                <span class="list-group-item">
+                    <span class="item-label">Memory Usage:</span>
+                    <span class="item-value">{{ $memUsage }}</span>
+                </span>
             </div>
         </div>
     </fieldset>
