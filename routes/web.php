@@ -28,7 +28,7 @@ Route::group(['middleware' => ['recaptcha']], function() {
 });
 
 Route::group(['middleware' => ['auth.custom']], function() {
-    Route::resource('/admin', 'Admin\AdminController')->only(['index']);
+    Route::get('/admin', 'Admin\AdminController@main')->name('admin.index');
     Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
     Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::resource('/resume', 'ResumeController');
