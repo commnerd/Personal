@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use \App\Events\GithubEvent;
+use Illuminate\Http\Request;
+
+class GithubController extends Controller
+{
+    public function execute(Request $request) {
+    	event(new GithubEvent($request->all()));
+        return response()->json(['status' => 'Success']);
+    }
+}
