@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Food;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Food\Order;
+use App\Models\Food\Order;
 
 class OrderController extends Controller
 {
@@ -36,7 +36,7 @@ class OrderController extends Controller
      * Display the specified resource.
      *
      * @param  int                   $restaurantId
-     * @param  \App\Food\Order       $order
+     * @param  \App\Models\Food\Order       $order
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(int $restaurantId, Order $order): JsonResponse
@@ -49,7 +49,7 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int                       $restaurantId
-     * @param  \App\Food\Order           $order
+     * @param  \App\Models\Food\Order           $order
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, int $restaurantId, Order $order): JsonResponse
@@ -65,7 +65,7 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int                   $restaurantId
-     * @param  \App\Food\Order  $order
+     * @param  \App\Models\Food\Order  $order
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(int $restaurantId, Order $order): JsonResponse

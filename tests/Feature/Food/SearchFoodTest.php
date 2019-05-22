@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Food;
 
-use App\Food\Restaurant;
+use App\Models\Food\Restaurant;
 use Tests\TestCase;
-use App\Food\Order;
+use App\Models\Food\Order;
 use Auth;
 
 class SearchFoodTest extends TestCase

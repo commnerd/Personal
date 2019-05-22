@@ -5,8 +5,8 @@ namespace Tests\Feature\Api;
 use Tests\Feature\Api\AuthenticatedResourceControllerTest;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Model;
-use App\User;
+use App\Models\Model;
+use App\Models\User;
 use JWTAuth;
 
 abstract class AuthenticatedResourceControllerTest extends TestCase
@@ -35,7 +35,7 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
      /**
       * Ensure derivative classes implement createObject() function
       *
-      * @return App\Model
+      * @return App\Models\Model
       */
      protected abstract function createObject(): Model;
 

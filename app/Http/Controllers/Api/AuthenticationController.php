@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Validator;
-use App\User;
+use App\Models\User;
 use JWTAuth;
 
 /**

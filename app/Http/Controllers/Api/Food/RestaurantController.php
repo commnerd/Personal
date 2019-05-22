@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Food;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Food\Restaurant;
+use App\Models\Food\Restaurant;
 
 class RestaurantController extends Controller
 {
@@ -35,7 +35,7 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Food\Restaurant       $restaurant
+     * @param  \App\Models\Food\Restaurant       $restaurant
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Restaurant $restaurant): JsonResponse
@@ -49,7 +49,7 @@ class RestaurantController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Food\Restaurant      $restaurant
+     * @param  \App\Models\Food\Restaurant      $restaurant
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Restaurant $restaurant): JsonResponse
@@ -64,7 +64,7 @@ class RestaurantController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Food\Restaurant  $restaurant
+     * @param  \App\Models\Food\Restaurant  $restaurant
      *
      * @return \Illuminate\Http\JsonResponse
      */

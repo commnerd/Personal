@@ -13,7 +13,7 @@
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\ContactMessage;
+use App\Models\ContactMessage;
 
 Route::get('/', 'PageController@home')->name('home');
 Route::get('/resume', 'PageController@resume')->name('resume');

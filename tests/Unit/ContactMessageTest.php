@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\ContactMessage;
+use App\Models\ContactMessage;
 use Tests\TestCase;
 
 class ContactMessageTest extends TestCase

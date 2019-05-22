@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ContactMessageNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\ContactMessage;
+use App\Models\ContactMessage;
 use Session;
 use Mail;
 

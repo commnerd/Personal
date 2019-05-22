@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Work;
+namespace App\Models\Work;
 
-use App\Model;
+use App\Models\Model;
 
 class PortfolioEntry extends Model
 {
@@ -19,7 +19,7 @@ class PortfolioEntry extends Model
 
     /**
      * Get validation rules for model
-     * 
+     *
      * @return array Validation rules
      */
     public static function getValidationRules(): array

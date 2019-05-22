@@ -3,7 +3,7 @@
 namespace Tests\Unit\Food;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Food\Restaurant;
+use App\Models\Food\Restaurant;
 use Tests\TestCase;
 
 class RestaurantTest extends TestCase

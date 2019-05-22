@@ -4,7 +4,7 @@ namespace Tests\Feature\Api;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\User;
+use App\Models\User;
 use Mockery;
 use JWTAuth;
 

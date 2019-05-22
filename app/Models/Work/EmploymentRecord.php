@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Work;
+namespace App\Models\Work;
 
-use App\Model;
+use App\Models\Model;
 
 class EmploymentRecord extends Model
 {

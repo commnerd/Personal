@@ -5,7 +5,7 @@ namespace Tests\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\Browser\Pages\FoodSearch;
 use Laravel\Dusk\Browser;
-use App\Food\Restaurant;
+use App\Models\Food\Restaurant;
 use Tests\DuskTestCase;
 
 class FoodSearchTest extends DuskTestCase

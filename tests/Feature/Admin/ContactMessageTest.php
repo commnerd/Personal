@@ -3,7 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\ContactMessage;
+use App\Models\ContactMessage;
 use Tests\TestCase;
 use Auth;
 

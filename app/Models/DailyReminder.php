@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Quote extends Model
+class DailyReminder extends Model
 {
     /**
      * Get validation rules for model
@@ -15,7 +15,7 @@ class Quote extends Model
     {
         return [
             'reference' => 'required|string|min:1|max:255',
-            'quote' => 'required|string',
+            'reminder' => 'required|string',
         ];
     }
 
@@ -25,6 +25,6 @@ class Quote extends Model
      * @var array
      */
     protected $fillable = [
-        'active', 'quote', 'source'
+        'reference', 'reminder',
     ];
 }

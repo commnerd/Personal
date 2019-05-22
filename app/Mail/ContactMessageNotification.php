@@ -4,7 +4,7 @@ namespace App\Mail;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
-use App\ContactMessage as Message;
+use App\Models\ContactMessage as Message;
 use Illuminate\Mail\Mailable;
 use Illuminate\Bus\Queueable;
 

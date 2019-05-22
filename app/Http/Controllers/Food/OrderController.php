@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Food;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use App\Food\Restaurant;
-use App\Food\Order;
+use App\Models\Food\Restaurant;
+use App\Models\Food\Order;
 
 class OrderController extends FoodController
 {
@@ -77,7 +77,7 @@ class OrderController extends FoodController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Food\Order  $order
+     * @param  \App\Models\Food\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function edit(int $restaurantId, int $orderId): Response
@@ -101,7 +101,7 @@ class OrderController extends FoodController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Food\Order  $order
+     * @param  \App\Models\Food\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $restaurantId, Order $order): RedirectResponse
@@ -116,7 +116,7 @@ class OrderController extends FoodController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Food\Order  $order
+     * @param  \App\Models\Food\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function destroy(int $restaurantId, int $orderId): RedirectResponse

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
-use App\ContactMessage;
+use App\Models\ContactMessage;
 
 class AdminController extends Controller
 {

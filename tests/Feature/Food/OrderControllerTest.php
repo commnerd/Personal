@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Food;
 
-use App\Food\Restaurant;
-use App\Food\Order;
+use App\Models\Food\Restaurant;
+use App\Models\Food\Order;
 use Tests\TestCase;
 use Auth;
 

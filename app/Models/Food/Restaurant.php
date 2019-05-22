@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Food;
+namespace App\Models\Food;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Model;
+use App\Models\Model;
 
 class Restaurant extends Model
 {
@@ -35,6 +35,6 @@ class Restaurant extends Model
      */
     public function orders(): HasMany
     {
-        return $this->hasMany(\App\Food\Order::class);
+        return $this->hasMany(\App\Models\Food\Order::class);
     }
 }

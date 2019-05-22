@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Work\PortfolioEntry;
+use App\Models\Work\PortfolioEntry;
 use Illuminate\View\View;
-use App\Quote;
+use App\Models\Quote;
 use Session;
 
 class PageController extends Controller

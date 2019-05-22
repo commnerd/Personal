@@ -3,7 +3,7 @@
 namespace Tests\Unit\Food;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Food\Order;
+use App\Models\Food\Order;
 use Tests\TestCase;
 
 class OrderTest extends TestCase

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use App\DailyReminder;
+use App\Models\DailyReminder;
 
 class DailyReminderController extends AdminController
 {
@@ -47,7 +47,7 @@ class DailyReminderController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DailyReminder  $dailyReminder
+     * @param  \App\Models\DailyReminder  $dailyReminder
      * @return \Illuminate\Http\Response
      */
     public function edit(DailyReminder $dailyReminder): Response
@@ -59,7 +59,7 @@ class DailyReminderController extends AdminController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DailyReminder  $dailyReminder
+     * @param  \App\Models\DailyReminder  $dailyReminder
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, DailyReminder $dailyReminder): RedirectResponse
@@ -72,7 +72,7 @@ class DailyReminderController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DailyReminder  $dailyReminder
+     * @param  \App\Models\DailyReminder  $dailyReminder
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(DailyReminder $dailyReminder): RedirectResponse

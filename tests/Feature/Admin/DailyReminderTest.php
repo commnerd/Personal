@@ -3,7 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\DailyReminder;
+use App\Models\DailyReminder;
 use Tests\TestCase;
 use Auth;
 

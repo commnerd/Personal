@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use App\ContactMessage;
+use App\Models\ContactMessage;
 use GuzzleHttp\Client;
 
 class ContactMessageController extends AdminController
@@ -36,7 +36,7 @@ class ContactMessageController extends AdminController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ContactMessage  $message
+     * @param  \App\Models\ContactMessage  $message
      * @return \Illuminate\Http\Response
      */
     public function destroy(ContactMessage $message): RedirectResponse

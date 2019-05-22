@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Socialite;
-use App\User;
+use App\Models\User;
 use Mockery;
 use Auth;
 

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Work\EmploymentRecord;
+use App\Models\Work\EmploymentRecord;
 use Tests\TestCase;
-use App\Quote;
+use App\Models\Quote;
 use Auth;
 
 class PageControllerTest extends TestCase

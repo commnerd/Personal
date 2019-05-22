@@ -26,7 +26,7 @@ class PortfolioPageTest extends TestCase
      */
     public function testHomepageWithPortfolioEntries()
     {
-        \App\Work\PortfolioEntry::create([
+        \App\Models\Work\PortfolioEntry::create([
             'title' => "A test site",
             'url' => 'http://localhost:8000',
             'details' => 'Details about this site.',

@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Work\EmploymentRecord;
+use App\Models\Work\EmploymentRecord;
 use Tests\TestCase;
 
 class ResumeTest extends TestCase

@@ -4,8 +4,8 @@ namespace Tests\Feature\Api\Food;
 
 use Tests\Feature\Api\AuthenticatedResourceControllerTest;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Food\Restaurant;
-use App\Model;
+use App\Models\Food\Restaurant;
+use App\Models\Model;
 
 class RestaurantControllerTest extends AuthenticatedResourceControllerTest
 {
@@ -35,7 +35,7 @@ class RestaurantControllerTest extends AuthenticatedResourceControllerTest
     /**
      * Create test object
      *
-     * @return \App\Model
+     * @return \App\Models\Model
      */
     protected function createObject(): Model
     {

@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use App\Mail\ContactMessageNotification;
 use Illuminate\Http\Request;
-use App\ContactMessage;
+use App\Models\ContactMessage;
 use Tests\TestCase;
 use Session;
 use Mockery;

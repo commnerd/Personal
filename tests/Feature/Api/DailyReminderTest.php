@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Api;
 
-use App\DailyReminder;
+use App\Models\DailyReminder;
 use Tests\TestCase;
 
 class DailyReminderTest extends TestCase

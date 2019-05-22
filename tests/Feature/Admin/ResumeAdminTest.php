@@ -3,7 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Work\EmploymentRecord;
+use App\Models\Work\EmploymentRecord;
 use Tests\TestCase;
 use Auth;
 

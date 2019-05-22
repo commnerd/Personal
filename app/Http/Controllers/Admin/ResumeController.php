@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\RedirectResponse;
-use App\Work\EmploymentRecord;
+use App\Models\Work\EmploymentRecord;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 

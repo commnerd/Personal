@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use Socialite;
-use App\User;
+use App\Models\User;
 use Auth;
 
 class LoginController extends Controller

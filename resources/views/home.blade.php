@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    @if(\App\Work\EmploymentRecord::count() > 0)
+    @if(\App\Models\Work\EmploymentRecord::count() > 0)
     <div class="section resume">
         @include('shared.section-header', ['label' => 'Resume'])
         <div class="center">

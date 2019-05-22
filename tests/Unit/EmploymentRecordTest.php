@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Work\EmploymentRecord;
+use App\Models\Work\EmploymentRecord;
 use Tests\TestCase;
 
 class EmploymentRecordTest extends TestCase

@@ -3,8 +3,8 @@
 namespace App\Services\Food;
 
 use Illuminate\Support\Collection;
-use App\Food\Restaurant;
-use App\Food\Order;
+use App\Models\Food\Restaurant;
+use App\Models\Food\Order;
 
 class Search
 {

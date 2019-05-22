@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Food\Restaurant;
-use App\Food\Order;
+use App\Models\Food\Restaurant;
+use App\Models\Food\Order;
 
 class FoodController extends Controller
 {

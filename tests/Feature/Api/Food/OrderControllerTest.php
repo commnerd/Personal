@@ -4,9 +4,9 @@ namespace Tests\Feature\Api\Food;
 
 use Tests\Feature\Api\AuthenticatedResourceControllerTest;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Food\Restaurant;
-use App\Food\Order;
-use App\Model;
+use App\Models\Food\Restaurant;
+use App\Models\Food\Order;
+use App\Models\Model;
 
 class OrderControllerTest extends AuthenticatedResourceControllerTest
 {

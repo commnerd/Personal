@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Food;
+namespace App\Models\Food;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Model;
+use App\Models\Model;
 
 class Order extends Model
 {
@@ -39,6 +39,6 @@ class Order extends Model
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(\App\Food\Restaurant::class);
+        return $this->belongsTo(\App\Models\Food\Restaurant::class);
     }
 }
