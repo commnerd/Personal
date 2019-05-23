@@ -20,7 +20,7 @@
             @yield('content')
         </section>
         @include('shared.footer')
-        <script src="{{ mix('/js/app.js') }}"></script>
+        <script src="{{ mix('/js/app.js') }}" async></script>
         @include('shared.google-analytics')
     </body>
 </html>

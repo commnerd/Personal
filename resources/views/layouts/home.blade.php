@@ -10,7 +10,7 @@
         <link rel="icon" href="/storage/michael-j-miller-logo.ico">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script async src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body class="home">
         @include('shared.flash-message', ['error' => $error])
@@ -22,7 +22,7 @@
             @yield('content')
         </section>
         @include('shared.footer')
-        <script src="{{ mix('/js/app.js') }}"></script>
+        <script src="{{ mix('/js/app.js') }}" async></script>
         @include('shared.google-analytics')
     </body>
 </html>
