@@ -33,7 +33,7 @@
                     <td>{{ $quote->source }}</td>
                     <td>{!! $quote->quote !!}</td>
                     <td>
-                        <a class="glyphicon glyphicon-edit" href="{{ route('quotes.edit', [$quote]) }}"></a>
+                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.quotes.edit', [$quote]) }}"></a>
                         @include('shared.form.delete_link', ['action' => route('admin.quotes.destroy', [$quote])])
                     </td>
                 </tr>
