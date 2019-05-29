@@ -38,6 +38,22 @@ class ContactMessageTest extends TestCase
         $response->assertSee('No messages.');
     }
 
+    public function testPopulatedContactMessagesOnMessageManagement()
+    {
+        $message = ContactMessage::create([
+            'name' => 'Test Name',
+            'email_phone' => 'f1k3k6k2k1k2k3k4k5k1',
+            'message' => 'Now is the time for all good men to come to the aid of their country and stuff',
+        ]);
+
+        $response = $this->get(route('admin.contact.index'));
+
+        $response->assertSuccessful();
+
+        $response->assertSee('Messages');
+        $response->assertSee('Test Name');
+    }
+
     public function testContactMessagesShow()
     {
         $message = ContactMessage::create([
