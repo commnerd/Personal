@@ -32,17 +32,21 @@ class Deploy implements ShouldQueue
      */
     public function handle()
     {
-      $target = $this->event->getReleaseTarballUrl();
+        $target = urlencode($this->event->getReleaseTarballUrl());
 
-      $ch = curl_init();
+        $username = env("JENKINS_USERNAME");
+        $user_token = env("JENKINS_USER_TOKEN");
+        $build_token = env("JENKINS_BUILD_TOKEN");
 
-      $url = "https://michaeljmiller.net/jenkins/job/Personal%20Website%20Triggered/buildWithParameters";
-      $url .= "?token=".env("JENKINS_AUTH_TOKEN")."&srcPath=".urlencode($target);
+        $url = "https://$username:$user_token@michaeljmiller.net/jenkins/job/Personal%20Website%20Triggered/buildWithParameters?token=$build_token";
 
-      curl_setopt($ch, CURLOPT_URL, $url);
+        $ch = curl_init();
 
-      curl_exec($ch);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "srcPath=$target");
+        curl_exec($ch);
 
-      curl_close($ch);
+        curl_close($ch);
     }
 }
