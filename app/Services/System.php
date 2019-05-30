@@ -23,32 +23,4 @@ class System
 
         return $used." / ".$total." (".$usagePercent.")";
     }
-
-    public function getMemUsage(): string
-    {
-        switch($this->getOS()) {
-            case 'Linux':
-                [$free, $total] = $this->_getLinuxMemUsage();
-                break;
-                
-        }
-        $used = $total - $free;
-
-        $usagePercent = number_format(100 * ($used / $total))."%";
-        $used = Calculator::metric($used, 1)."B";
-        $total = Calculator::metric($total, 1)."B";
-
-        return $used." / ".$total." (".$usagePercent.")";
-    }
-
-    private function _getLinuxMemUsage(): array
-    {
-        $data = explode("\n", file_get_contents("/proc/meminfo"));
-        $memInfo = array();
-        foreach ($data as $line) {
-            list($key, $val) = explode(":", $line);
-            $memInfo[$key] = trim($val);
-        }
-        return [$memInfo['MemFree'], $memInfo['MemTotal']];
-    }
 }

@@ -48,14 +48,13 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function testSystemMonitorOSSection(System $system)
+    public function testSystemMonitorOSSection()
     {
+        $system = new System();
         $response = $this->get(route('admin.index'));
         $response->assertSuccessful();
         $response->assertSee('OS:');
         $response->assertSee($system->getOS());
-
-        dd(file_get_contents('/proc/meminfo'));
     }
 
     public function testSystemMonitorDiskUsageSection()
@@ -75,8 +74,6 @@ class MainPageTest extends TestCase
         $response->assertSee($totalSpace);
         $response->assertSee($diskUsagePercent);
         $response->assertSee($diskUsage);
-
-        dd(file_get_contents('/proc/meminfo'));
     }
 
     /**

@@ -4,7 +4,7 @@
 <div class="row">
     <fieldset class="col-sm-12">
         <legend>System</legend>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="list-group">
                 <span class="list-group-item">
                     <span class="item-label">OS:</span>
@@ -12,19 +12,11 @@
                 </span>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="list-group">
                 <span class="list-group-item">
                     <span class="item-label">Disk Usage:</span>
                     <span class="item-value">{{ $diskUsage }}</span>
-                </span>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="list-group">
-                <span class="list-group-item">
-                    <span class="item-label">Memory Usage:</span>
-                    <span class="item-value">{{ $memUsage }}</span>
                 </span>
             </div>
         </div>
