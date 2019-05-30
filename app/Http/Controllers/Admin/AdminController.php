@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactMessage;
 use Illuminate\Http\Response;
 use App\Services\System;
-use App\ContactMessage;
 
 class AdminController extends Controller
 {
@@ -19,9 +19,8 @@ class AdminController extends Controller
         $messages = ContactMessage::orderBy('created_at', 'desc')->limit(5)->get();
         $os = $system->getOS();
         $diskUsage = $system->getDiskUsage();
-        $memUsage = $system->getMemUsage();
 
-        $vals = compact('messages', 'os', 'diskUsage', 'memUsage');
+        $vals = compact('messages', 'os', 'diskUsage');
         return response()->view('admin.index', $vals);
     }
 }
