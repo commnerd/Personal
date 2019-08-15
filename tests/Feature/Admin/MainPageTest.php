@@ -134,4 +134,19 @@ class MainPageTest extends TestCase
         $response->assertSee('<a href="'.route('admin.quotes.index').'" class="list-group-item">Manage Quotes</a>');
         $response->assertSee('<a href="'.route('admin.quotes.create').'" class="list-group-item">Add Quote</a>');
     }
+
+    /**
+     * Basic test for drink links
+     *
+     * @return void
+     */
+    public function testDrinkLinks()
+    {
+        $response = $this->get(route('admin.index'));
+        $response->assertSuccessful();
+
+        $response->assertSee('<legend>Drinks</legend>');
+        $response->assertSee('<a href="'.route('admin.drinks.index').'" class="list-group-item">Manage Drinks</a>');
+        $response->assertSee('<a href="'.route('admin.drinks.create').'" class="list-group-item">Add Drink</a>');
+    }
 }

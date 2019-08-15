@@ -78,4 +78,13 @@
         </div>
     </fieldset>
 </div>
+<div class="row">
+    <fieldset class="col-sm-6">
+        <legend>Drinks</legend>
+        <div class="list-group">
+            <a href="{{ route('admin.drink.index') }}" class="list-group-item">Manage Drinks</a>
+            <a href="{{ route('admin.drink.create') }}" class="list-group-item">Add Drink</a>
+        </div>
+    </fieldset>
+</div>
 @endsection

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Drinks;
+namespace Tests\Feature\Admin;
 
 use App\Models\Drink;
 use Tests\TestCase;
