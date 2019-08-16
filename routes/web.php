@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth.custom']], function() {
         Route::resource('/resume', 'ResumeController');
         Route::resource('/daily_reminder', 'DailyReminderController');
         Route::put('/quotes/activate', 'QuotesController@activate')->name('quotes.activate');
+        Route::resource('/drinks', 'DrinksController');
         Route::resource('/quotes', 'QuotesController');
         Route::resource('/portfolio', 'PortfolioController');
         Route::resource('/contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
