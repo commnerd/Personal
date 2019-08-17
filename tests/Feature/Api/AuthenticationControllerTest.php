@@ -98,7 +98,7 @@ class AuthenticationControllerTest extends TestCase
 
         $response->assertJson(['message'=> "You have successfully logged out."]);
 
-        $response = $response = $this->withHeaders([
+        $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$token
         ])->get(route('api.logout'), ["token" => $token]);
 
