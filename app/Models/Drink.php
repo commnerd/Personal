@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Quote extends Model
+class Drink extends Model
 {
     /**
      * Get validation rules for model
@@ -14,8 +14,8 @@ class Quote extends Model
     public static function getValidationRules(): array
     {
         return [
-            'source' => 'required|string|min:1|max:255',
-            'quote' => 'required|string',
+            'name' => 'required|string|min:1|max:255',
+            'recipe' => 'required|string',
         ];
     }
 
@@ -25,6 +25,6 @@ class Quote extends Model
      * @var array
      */
     protected $fillable = [
-        'active', 'quote', 'source'
+        'name', 'recipe'
     ];
 }

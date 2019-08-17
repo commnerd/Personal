@@ -54,6 +54,8 @@ class QuotesController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->validate(Quote::getValidationRules());
+
         if($request->active) {
             Quote::where('active', true)->firstOrFail()->update(['active' => false]);
         }
@@ -82,6 +84,8 @@ class QuotesController extends Controller
      */
     public function update(Request $request, Quote $quote): RedirectResponse
     {
+        $request->validate(Quote::getValidationRules());
+
         if($request->get('active')) {
             Quote::where('active', true)->firstOrFail()->update(['active' => false]);
         }
@@ -101,6 +105,6 @@ class QuotesController extends Controller
     {
         $quote->delete();
 
-        return redirect(route('admin.quotes.index'));
+        return redirect()->route('admin.quotes.index');
     }
 }
