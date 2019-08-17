@@ -5929,58 +5929,6 @@
                 "validate"
             ],
             "time": "2018-12-25T11:19:39+00:00"
-        },
-        {
-            "name": "writingink/wink",
-            "version": "v0.0.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/writingink/wink.git",
-                "reference": "1c72a4626a122fc3999886a8ed70f1ab2794755c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/writingink/wink/zipball/1c72a4626a122fc3999886a8ed70f1ab2794755c",
-                "reference": "1c72a4626a122fc3999886a8ed70f1ab2794755c",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "~5.7",
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "nunomaduro/larastan": "^0.3.8"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Wink\\WinkServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Wink\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mohamed Said",
-                    "email": "mohamed@laravel.com"
-                }
-            ],
-            "description": "Wink Publishing Framework.",
-            "keywords": [
-                "blog",
-                "framework",
-                "laravel"
-            ],
-            "time": "2019-01-11T08:32:41+00:00"
         }
     ],
     "aliases": [],
