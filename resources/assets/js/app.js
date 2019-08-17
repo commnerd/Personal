@@ -5,6 +5,14 @@
 
 require('./bootstrap');
 
+require('./quill');
+
+window.Quill = require('quill');
+
+var quill = new Quill('.quill', {
+    theme: 'snow'
+});
+
 if($('.flash-message .alert').length > 0) {
     setTimeout(function() {
         $('.flash-message .alert').fadeOut('slow');
