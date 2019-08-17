@@ -12,7 +12,8 @@ class SearchFoodTest extends TestCase
     /**
      * Setup tests
      */
-    public function setUp() {
+    protected function setUp(): void
+    {
         parent::setUp();
 
         $restaurant = Restaurant::create([

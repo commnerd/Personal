@@ -51,7 +51,7 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $user = User::findOrFail(1);
@@ -64,7 +64,7 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

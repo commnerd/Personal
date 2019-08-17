@@ -36,7 +36,7 @@ class OrderControllerTest extends AuthenticatedResourceControllerTest
      */
     protected $resourceBaseRoute = "/api/food/restaurants";
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

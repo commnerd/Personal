@@ -11,7 +11,7 @@ class ContactMessageTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

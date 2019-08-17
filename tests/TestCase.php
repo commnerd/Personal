@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, RefreshDatabase;
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         Mockery::close();
