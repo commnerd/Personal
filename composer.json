@@ -10,11 +10,11 @@
         "fideloper/proxy": "^4.0",
         "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "~6.0",
-        "laravel/framework": "5.7.*",
+        "laravel/framework": "5.8.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
-        "tymon/jwt-auth": "^0.5.12",
-        "writingink/wink": "^0.0.11"
+        "spatie/laravel-backup": "^6.3",
+        "tymon/jwt-auth": "^0.5.12"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

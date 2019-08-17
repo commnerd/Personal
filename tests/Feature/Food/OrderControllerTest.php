@@ -12,7 +12,8 @@ class OrderControllerTest extends TestCase
     /**
      * Setup tests
      */
-    public function setUp() {
+    protected function setUp(): void
+    {
         parent::setUp();
 
         Auth::loginUsingId(1);

@@ -41,7 +41,7 @@ class ResumeAdminTest extends TestCase
     /**
      * Setup for admin access
      */
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

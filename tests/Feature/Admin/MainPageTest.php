@@ -15,7 +15,7 @@ class MainPageTest extends TestCase
     /**
      * Setup for admin page
      */
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
