@@ -14,7 +14,7 @@ class Quote extends Model
     public static function getValidationRules(): array
     {
         return [
-            'reference' => 'required|string|min:1|max:255',
+            'source' => 'required|string|min:1|max:255',
             'quote' => 'required|string',
         ];
     }

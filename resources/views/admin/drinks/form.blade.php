@@ -1,9 +1,9 @@
 @extends('admin.layouts.main', ['errors' => $errors])
 
-@section('title', $name)
+@section('title', $title)
 
 @section('content')
-    <h1 class="center">{{ $name }}</h1>
+    <h1 class="center">{{ $title }}</h1>
     <form method="POST" class="form-horizontal" action="{{ $action }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         @if($method !== 'POST')
@@ -14,7 +14,7 @@
         @endif
         <div class="col-lg-12">
             @include('shared.form.text_input', [
-                'slug' => 'drink',
+                'slug' => 'name',
                 'label' => 'Drink',
                 'value' => $drink->name ?? old('name'),
                 'errors' => $errors->get('name')
@@ -24,7 +24,7 @@
             @include('shared.form.text_area', [
                 'slug' => 'recipe',
                 'label' => 'Recipe',
-                'value' => drink->recipe ?? old('recipe'),
+                'value' => $drink->recipe ?? old('recipe'),
                 'errors' => $errors->get('bullets'),
             ])
         </div>

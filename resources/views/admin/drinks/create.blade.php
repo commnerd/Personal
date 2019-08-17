@@ -1,11 +1,11 @@
 @extends('admin.layouts.main')
 
-@section('title', $name)
+@section('title', $title)
 
 @section('content')
-    @include('admin.drink.form', [
+    @include('admin.drinks.form', [
         'title' => $title,
-        'action' => route('admin.drink.store'),
+        'action' => route('admin.drinks.store'),
         'method' => 'POST',
     ])
 @endsection

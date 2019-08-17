@@ -25,6 +25,6 @@ class Drink extends Model
      * @var array
      */
     protected $fillable = [
-        'drink', 'recipe'
+        'name', 'recipe'
     ];
 }

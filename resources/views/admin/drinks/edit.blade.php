@@ -3,9 +3,9 @@
 @section('title', "Recipe for $drink->name")
 
 @section('content')
-    @include('admin.drink.form', [
-        'title' => "Edit Employment Record ($drink->name)",
-        'action' => route('admin.drink.update', $drink),
+    @include('admin.drinks.form', [
+        'title' => "Edit Drink ($drink->name)",
+        'action' => route('admin.drinks.update', $drink),
         'method' => 'PUT',
         'record' => $drink,
     ])

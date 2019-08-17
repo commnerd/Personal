@@ -3,7 +3,7 @@
 @section('title', 'Drink List')
 
 @section('content')
-<h1 class="center">Drink List <a class="glyphicon glyphicon-plus" href="{{ route('admin.drink.create') }}"></a></h1>
+<h1 class="center">Drink List <a class="glyphicon glyphicon-plus" href="{{ route('admin.drinks.create') }}"></a></h1>
 <table class="table">
     <thead>
         <tr>
@@ -19,10 +19,10 @@
         @else
             @foreach($drinks as $drink)
                 <tr>
-                    <td>{{ $drinks->name }}</td>
+                    <td><a href="{{ route('admin.drinks.show', $drink) }}">{{ $drink->name }}</a></td>
                     <td>
-                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.drink.edit', [$drink]) }}"></a>
-                        @include('shared.form.delete_link', ['action' => route('admin.drink.destroy', [$drink])])
+                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.drinks.edit', [$drink]) }}"></a>
+                        @include('shared.form.delete_link', ['action' => route('admin.drinks.destroy', [$drink])])
                     </td>
                 </tr>
             @endforeach

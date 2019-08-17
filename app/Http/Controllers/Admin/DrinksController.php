@@ -23,6 +23,17 @@ class DrinksController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  Drink  $drink
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Drink $drink): Response
+    {
+        return response()->view('admin.drinks.show', compact('drink'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,6 +51,8 @@ class DrinksController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->validate(Drink::getValidationRules());
+
         $drink = Drink::create($request->all());
 
         return redirect()->route('admin.drinks.index');
@@ -65,6 +78,8 @@ class DrinksController extends Controller
      */
     public function update(Request $request, Drink $drink): RedirectResponse
     {
+        $request->validate(Drink::getValidationRules());
+
         $drink->update($request->all());
 
         return redirect()->route('admin.drinks.index');

@@ -9,9 +9,9 @@ use Auth;
 class DrinksControllerTest extends TestCase
 {
     const TEST_DRINK = [
-        "name" => "Long Island"
-        "recipe" => "Some recipe here"
-    ]
+        "name" => "Long Island",
+        "recipe" => "Some recipe here",
+    ];
 
     /**
      * Setup tests
@@ -31,17 +31,17 @@ class DrinksControllerTest extends TestCase
      {
          Drink::create(self::TEST_DRINK);
 
-         $response = $this->get('/drinks');
+         $response = $this->get(route("admin.drinks.index"));
 
          $response->assertSuccessful();
 
          $response->assertSee(self::TEST_DRINK["name"]);
 
-         $response->assertSee('<a class="glyphicon glyphicon-plus" href="http://localhost/drinks/create"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-plus" href="http://localhost/admin/drinks/create"></a>');
 
-         $response->assertSee('<a class="glyphicon glyphicon-edit" href="http://localhost/drinks/1/edit"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-edit" href="http://localhost/admin/drinks/1/edit"></a>');
 
-         $response->assertSee('<a href="http://localhost/drinks/1">'.self::TEST_DRINK["name"].'</a>');
+         $response->assertSee('<a href="http://localhost/admin/drinks/1">'.self::TEST_DRINK["name"].'</a>');
      }
 
      /**
@@ -51,7 +51,7 @@ class DrinksControllerTest extends TestCase
       */
      public function testGetDrinkCreationPage()
      {
-         $response = $this->get('/drinks/create');
+         $response = $this->get(route("admin.drinks.create"));
 
          $response->assertSuccessful();
 
@@ -73,7 +73,7 @@ class DrinksControllerTest extends TestCase
      {
          $drink = new Drink(self::TEST_DRINK);
 
-         $response = $this->post('/drinks', $drink->toArray());
+         $response = $this->post(route("admin.drinks.store"), $drink->toArray());
 
          $response->assertStatus(302);
 
@@ -89,7 +89,7 @@ class DrinksControllerTest extends TestCase
      {
          $drink = Drink::create(self::TEST_DRINK);
 
-         $response = $this->get('/drinks/'.$drink->id);
+         $response = $this->get(route("admin.drinks.show", $drink));
 
          $response->assertSuccessful();
 
@@ -107,9 +107,9 @@ class DrinksControllerTest extends TestCase
       */
      public function testPostInvalidDrinkCreation()
      {
-         $drink = new Drink();
+         $drink = new Drink(["name" => "blah"]);
 
-         $response = $this->post('/drinks', $drink->toArray());
+         $response = $this->post(route("admin.drinks.update", $drink), $drink->toArray());
 
          $response->assertStatus(302);
 
@@ -125,11 +125,11 @@ class DrinksControllerTest extends TestCase
      {
          $drink = Drink::create(self::TEST_DRINK);
 
-         $response = $this->get('/drinks/1/edit');
+         $response = $this->get(route("admin.drinks.edit", $drink));
 
          $response->assertSuccessful();
 
-         $response->assertSee('Edit ' . self::TEST_DRINK["name"]);
+         $response->assertSee('Edit Drink (' . self::TEST_DRINK["name"] . ')');
 
          $response->assertSee('<input type="text" name="name"');
 
@@ -143,20 +143,20 @@ class DrinksControllerTest extends TestCase
       *
       * @return void
       */
-     public function testPutRestaurantUpdate()
+     public function testPutDrinkUpdate()
      {
-         Drink::create(self::TEST_DRINK);
+         $drink = Drink::create(self::TEST_DRINK);
 
-         $response = $this->put('/drinks/1', ['name' => 'Moscow Mule']);
+         $response = $this->put(route("admin.drinks.update", $drink), ['name' => 'Moscow Mule', 'recipe' => 'something']);
 
-         $this->assertEquals('Moscow Mule', Drink::findOrFail(1)->name);
+         $this->assertEquals('Moscow Mule', Drink::findOrFail($drink->id)->name);
      }
 
      public function testDeleteDrink()
      {
-         Restaurant::create(self::TEST_DRINK);
+         $drink = Drink::create(self::TEST_DRINK);
 
-         $response = $this->delete('/drinks/1');
+         $response = $this->delete(route("admin.drinks.destroy", $drink));
 
          $response->assertStatus(302);
 
@@ -172,7 +172,7 @@ class DrinksControllerTest extends TestCase
      {
          Auth::logout();
 
-         $response = $this->get('/drinks');
+         $response = $this->get(route("admin.drinks.index"));
 
          $response->assertRedirect(route('login'));
      }
