@@ -7,6 +7,10 @@
 
 require('./bootstrap');
 
+var quill = new Quill('textarea', {
+    theme: 'snow'
+});
+
 $('a[href="#delete"]').click(function() {
     var action = $(this).attr('delete_action');
     $('.modal').modal('show');

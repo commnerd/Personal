@@ -5,11 +5,7 @@
 
 require('./bootstrap');
 
-require('./quill');
-
-window.Quill = require('quill');
-
-var quill = new Quill('.quill', {
+var quill = new Quill('textarea', {
     theme: 'snow'
 });
 
