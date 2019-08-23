@@ -43,9 +43,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * Bootstrap quill.js into application
  */
- require('./quill');
+import Quill from './quill'
 
- window.Quill = require('quill');
+window.Quill = Quill
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
