@@ -1,1 +1,1 @@
-{!! nl2br($msg->message) !!}
+{!! $msg->message !!}

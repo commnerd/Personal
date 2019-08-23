@@ -8,13 +8,13 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="icon" href="/storage/michael-j-miller-logo.ico">
-        <link rel="stylesheet" href="{{ elixir('/css/admin/app.css') }}">
-        <link rel="stylesheet" href="{{ elixir('/css/admin/etc.css') }}">
+        <link rel="stylesheet" href="{{ mix('/css/admin/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('/css/admin/etc.css') }}">
     </head>
     <body>
         <div class="container-fluid">
             @yield('content')
         </div>
-        <script src="{{ elixir('/js/admin/app.js') }}"></script>
+        <script src="{{ mix('/js/admin/app.js') }}"></script>
     </body>
 </html>

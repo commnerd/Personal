@@ -6,6 +6,6 @@
         {{ $location }} | {{ $start_date}} - {{ $end_date ?? "Present" }}
     </div>
     <div class="col-lg-12">
-        {!! nl2br($bullets) !!}
+        {!! $bullets !!}
     </div>
 </div>

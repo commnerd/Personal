@@ -11,7 +11,7 @@
             <li>
                 <h3>{{ $order->label}}</h3>
                 <div>
-                    {!! nl2br($order->notes) !!}
+                    {!! $order->notes !!}
                 </div>
             </li>
         @endforeach

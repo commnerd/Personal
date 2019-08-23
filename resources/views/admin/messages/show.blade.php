@@ -5,6 +5,6 @@
 @section('content')
 <h1>Message - From: {{ $message->name }} ({{ $message->email_phone }})</h1>
 <p class="message">
-    {!! nl2br($message->message) !!}
+    {!! $message->message !!}
 </p>
 @endsection
