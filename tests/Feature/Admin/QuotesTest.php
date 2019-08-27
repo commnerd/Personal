@@ -44,7 +44,7 @@ class QuotesTest extends TestCase
 
         $response->assertSee('Create Quote');
         $response->assertSee('<input type="text" name="source" value="" class="form-control">');
-        $response->assertSee('<textarea name="quote" class="form-control"></textarea>');
+        $response->assertSee('<input type="hidden" name="quote" value="" class="quill-contents" />');
         $response->assertSee('<input class="btn btn-default" type="submit" />');
     }
 
@@ -90,7 +90,7 @@ class QuotesTest extends TestCase
 
         $response->assertSee('Edit Quote');
         $response->assertSee('<input type="text" name="source" value="Test Source" class="form-control">');
-        $response->assertSee('<textarea name="quote" class="form-control">Test Quote</textarea>');
+        $response->assertSee('<input type="hidden" name="quote" value="Test Quote" class="quill-contents" />');
         $response->assertSee('<input class="btn btn-default" type="submit" />');
     }
 

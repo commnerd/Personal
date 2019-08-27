@@ -7,8 +7,13 @@
 
 require('./bootstrap');
 
-var quill = new Quill('textarea', {
+var quill = new Quill('.quill-editor', {
     theme: 'snow'
+});
+
+quill.setText($(quill).next().val())
+quill.on('text-change', function(delta, oldDelta, source) {
+    $(source).next().val($(source).val())
 });
 
 $('a[href="#delete"]').click(function() {

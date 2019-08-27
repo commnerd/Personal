@@ -51,7 +51,14 @@ class EmploymentRecord extends Model
      */
     public static function getValidationRules(): array
     {
-        return [];
+        return [
+            'employer' => 'required|string',
+            'position' => 'required|string',
+            'location' => 'required|string',
+            'start_date' => 'required|string',
+            'end_date' => 'required|string',
+            'bullets' => 'required|string',
+        ];
     }
 
     /**

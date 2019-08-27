@@ -59,7 +59,7 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee('<input type="text" name="name"');
 
-         $response->assertSee('<textarea name="recipe"');
+         $response->assertSee('<input type="hidden" name="recipe" value="" class="quill-contents" />');
 
          $response->assertSee('<input class="btn btn-default" type="submit" />');
      }
@@ -133,7 +133,7 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee('<input type="text" name="name"');
 
-         $response->assertSee('<textarea name="recipe"');
+         $response->assertSee('<input type="hidden" name="recipe" value="Some recipe here" class="quill-contents" />');
 
          $response->assertSee('<input class="btn btn-default" type="submit" />');
      }

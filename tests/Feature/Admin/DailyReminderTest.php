@@ -43,7 +43,7 @@ class DailyReminderTest extends TestCase
 
         $response->assertSee('Create Daily Reminder');
         $response->assertSee('<input type="text" name="reference" value="" class="form-control">');
-        $response->assertSee('<textarea name="reminder" class="form-control"></textarea>');
+        $response->assertSee('<input type="hidden" name="reminder" value="" class="quill-contents" />');
         $response->assertSee('<input class="btn btn-default" type="submit" />');
     }
 
@@ -87,7 +87,7 @@ class DailyReminderTest extends TestCase
 
         $response->assertSee('Edit Daily Reminder');
         $response->assertSee('<input type="text" name="reference" value="Test Reference" class="form-control">');
-        $response->assertSee('<textarea name="reminder" class="form-control">Test Reminder</textarea>');
+        $response->assertSee('<input type="hidden" name="reminder" value="Test Reminder" class="quill-contents" />');
         $response->assertSee('<input class="btn btn-default" type="submit" />');
     }
 

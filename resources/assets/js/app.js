@@ -5,8 +5,12 @@
 
 require('./bootstrap');
 
-var quill = new Quill('textarea', {
+var quill = new Quill('.quill-editor', {
     theme: 'snow'
+})
+.format({ height: '700px' })
+.on('text-change', function(delta, oldDelta, source) {
+    $(source).next().val($(source).val())
 });
 
 if($('.flash-message .alert').length > 0) {
