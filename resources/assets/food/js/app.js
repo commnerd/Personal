@@ -7,12 +7,18 @@
 
 require('./bootstrap');
 
-var quill = new Quill('.quill-editor', {
-    theme: 'snow'
-});
-quill.setText($(quill).next().val())
-quill.on('text-change', function(delta, oldDelta, source) {
-    $(source).next().val($(source).val())
+$('.quill-editor').each(function() {
+    var editor = this;
+
+    var quill = new Quill(editor, {
+        theme: 'snow'
+    });
+
+    quill.setText($(editor).next().val());
+
+    quill.on('text-change', function(delta, oldDelta, source) {
+        $(editor).next().val(quill.getText());
+    });
 });
 
 $('a[href="#delete"]').click(function() {
