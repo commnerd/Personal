@@ -44,7 +44,7 @@ class QuotesTest extends TestCase
 
         $response->assertSee('Create Quote');
         $response->assertSee('<input type="text" name="source" value="" class="form-control">');
-        $response->assertSee('<input type="hidden" name="quote" value="" class="quill-contents" />');
+        $response->assertSee('<div class="quill-editor form-control" data-name="quote"></div>');
         $response->assertSee('<input class="btn btn-default" type="submit" />');
     }
 
@@ -90,7 +90,7 @@ class QuotesTest extends TestCase
 
         $response->assertSee('Edit Quote');
         $response->assertSee('<input type="text" name="source" value="Test Source" class="form-control">');
-        $response->assertSee('<input type="hidden" name="quote" value="Test Quote" class="quill-contents" />');
+        $response->assertSee('<div class="quill-editor form-control" data-name="quote">Test Quote</div>');
         $response->assertSee('<input class="btn btn-default" type="submit" />');
     }
 

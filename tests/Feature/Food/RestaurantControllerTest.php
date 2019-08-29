@@ -26,19 +26,19 @@ class RestaurantControllerTest extends TestCase
      */
      public function testGetRestaurantIndexPage()
      {
-         Restaurant::create(['name' => 'McDonalds']);
+         $restaurant = Restaurant::create(['name' => 'McDonalds']);
 
-         $response = $this->get('/food/restaurants');
+         $response = $this->get(route('restaurants.index'));
 
          $response->assertSuccessful();
 
          $response->assertSee('Restaurant List');
 
-         $response->assertSee('<a class="glyphicon glyphicon-plus" href="http://localhost/food/restaurants/create"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route('restaurants.create').'"></a>');
 
-         $response->assertSee('<a class="glyphicon glyphicon-edit" href="http://localhost/food/restaurants/1/edit"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route('restaurants.edit', [$restaurant]).'"></a>');
 
-         $response->assertSee('<a href="http://localhost/food/restaurants/1">McDonalds</a>');
+         $response->assertSee('<a href="'.route('restaurants.show', [$restaurant]).'">McDonalds</a>');
      }
 
      /**

@@ -13,10 +13,16 @@ $('.quill-editor').each(function() {
     var quill = new Quill(editor, {
         theme: 'snow'
     });
+});
 
-    quill.on('text-change', function(delta, oldDelta, source) {
-        $(editor).next().val(quill.getText());
-    });
+$("form").on("submit", function () {
+    var form = this;
+    $('.quill-editor', this).each(function() {
+        var editor = this;
+        var content = $(editor).html();
+        var name = $(editor).prop("data-name");
+        $(form).append('<textarea name="'+name+'" style="display:none">'+content+'</textarea>');
+   });
 });
 
 $('a[href="#delete"]').click(function() {

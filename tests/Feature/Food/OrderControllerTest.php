@@ -26,23 +26,23 @@ class OrderControllerTest extends TestCase
      */
      public function testGetRestaurantOrdersPage()
      {
-         Restaurant::create(['name' => 'McDonalds']);
-         Order::create([
+         $restaurant = Restaurant::create(['name' => 'McDonalds']);
+         $order = Order::create([
              'restaurant_id' => 1,
              'active' => 0,
              'label' => '#1',
              'notes' => 'Test notes',
          ]);
 
-         $response = $this->get('/food/restaurants/1/orders');
+         $response = $this->get(route('orders.index', [$restaurant]));
 
          $response->assertSuccessful();
 
          $response->assertSee("McDonalds Orders List");
 
-         $response->assertSee('<a class="glyphicon glyphicon-plus" href="http://localhost/food/restaurants/1/orders/create"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route('orders.create', [$restaurant]).'"></a>');
 
-         $response->assertSee('<a class="glyphicon glyphicon-edit" href="http://localhost/food/restaurants/1/orders/1/edit"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route('orders.edit', [$restaurant, $order]).'"></a>');
 
          $response->assertSee('#1');
      }

@@ -9,26 +9,18 @@ $('.quill-editor').each(function() {
     var editor = this;
 
     var quill = new Quill(editor, {
-        theme: 'snow',
-        toolbar: {
-          container: [
-              ['header'],
-              ['bold', 'italic', 'underline', 'link'],
-              ['list'],
-              ['clean'],
-              ['customControl']
-          ],
-          handlers: {
-            'customControl': function() { console.log('customControl was clicked') }
-          }
-        }
+        theme: 'snow'
     });
+});
 
-    $(editor).next().val(quill.getText());
-
-    quill.on('text-change', function(delta, oldDelta, source) {
-        $(editor).next().val(quill.getText());
-    });
+$("form").on("submit", function () {
+    var form = this;
+    $('.quill-editor', this).each(function() {
+        var editor = this;
+        var content = $(editor).html();
+        var name = $(editor).prop("data-name");
+        $(form).append('<textarea name="'+name+'" style="display:none">'+content+'</textarea>');
+   });
 });
 
 if($('.flash-message .alert').length > 0) {
