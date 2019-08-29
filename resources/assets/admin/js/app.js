@@ -14,8 +14,6 @@ $('.quill-editor').each(function() {
         theme: 'snow'
     });
 
-    quill.setText($(editor).next().val());
-
     quill.on('text-change', function(delta, oldDelta, source) {
         $(editor).next().val(quill.getText());
     });

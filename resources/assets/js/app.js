@@ -9,10 +9,22 @@ $('.quill-editor').each(function() {
     var editor = this;
 
     var quill = new Quill(editor, {
-        theme: 'snow'
+        theme: 'snow',
+        toolbar: {
+          container: [
+              ['header'],
+              ['bold', 'italic', 'underline', 'link'],
+              ['list'],
+              ['clean'],
+              ['customControl']
+          ],
+          handlers: {
+            'customControl': function() { console.log('customControl was clicked') }
+          }
+        }
     });
 
-    quill.setText($(editor).next().val());
+    $(editor).next().val(quill.getText());
 
     quill.on('text-change', function(delta, oldDelta, source) {
         $(editor).next().val(quill.getText());

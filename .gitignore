@@ -4,7 +4,9 @@
 /public/storage
 /public/**/*.css
 /public/**/*.js
+/public/mix-manifest.json
 /storage/*.key
+/tests/Browser/screenshots
 /vendor
 /.idea
 /.vagrant
