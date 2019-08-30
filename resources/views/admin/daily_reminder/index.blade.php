@@ -22,7 +22,7 @@
             @foreach($dailyReminders as $reminder)
                 <tr>
                     <td>{{ $reminder->reference }}</td>
-                    <td>{{ $reminder->reminder }}</td>
+                    <td>{!! $reminder->reminder !!}</td>
                     <td>
                         <a class="glyphicon glyphicon-edit" href="{{ route('admin.daily_reminder.edit', [$reminder]) }}"></a>
                         @include('shared.form.delete_link', ['action' => route('admin.daily_reminder.destroy', [$reminder])])
