@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Browser\Pages;
+namespace Tests\Browser\Pages\Admin\Drinks;
 
+use Tests\Browser\Pages\Page;
 use Laravel\Dusk\Browser;
-use Laravel\Dusk\Page as BasePage;
 
-class FoodSearch extends BasePage
+class Create extends Page
 {
     /**
      * Get the URL for the page.
@@ -14,7 +14,7 @@ class FoodSearch extends BasePage
      */
     public function url()
     {
-        return '/food';
+        return "/admin/drinks/create";
     }
 
     /**
@@ -35,6 +35,10 @@ class FoodSearch extends BasePage
      */
     public function elements()
     {
-        return [];
+        return [
+            '@name' => 'input[name="name"]',
+            '@recipe' => 'div[data-name="recipe"]',
+            '@submit' => 'input[type="submit"]',
+        ];
     }
 }

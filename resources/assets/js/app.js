@@ -18,7 +18,7 @@ $("form").on("submit", function () {
     $('.quill-editor', this).each(function() {
         var editor = this;
         var content = $(editor).html();
-        var name = $(editor).prop("data-name");
+        var name = $(editor).attr("data-name");
         $(form).append('<textarea name="'+name+'" style="display:none">'+content+'</textarea>');
    });
 });

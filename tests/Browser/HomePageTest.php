@@ -2,15 +2,12 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\Browser\Pages\HomePage;
+use Tests\Browser\Pages\Home as HomePage;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class HomePageTest extends DuskTestCase
 {
-    use DatabaseMigrations;
-
     /**
      * A basic home page load test
      *

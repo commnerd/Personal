@@ -4,7 +4,7 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 
-class HomePage extends Page
+class Home extends Page
 {
     /**
      * Get the URL for the page.
@@ -41,6 +41,8 @@ class HomePage extends Page
     public function elements()
     {
         return [
+            '@name' => 'input[name="name"]',
+            '@contact' => 'input[name="contact"]',
             '@submit' => 'button.btn-primary',
         ];
     }
