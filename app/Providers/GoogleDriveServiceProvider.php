@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Hypweb\Flysystem\GoogleDrive\GoogleDriveAdapter;
 use Illuminate\Support\ServiceProvider;
+use Storage;
 
 class GoogleDriveServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,9 @@ class GoogleDriveServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Storage::disk('local')->put('client_secret.json', json_encode([
+            'web' => config('services.google')
+        ]));
         $this->app->singleton(Google_Client::class, function ($app) {
             $client = new Google_Client();
             Storage::disk('local')->put('client_secret.json', json_encode([
