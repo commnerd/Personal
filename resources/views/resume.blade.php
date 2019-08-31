@@ -27,16 +27,19 @@
     <div class="col-lg-8">
         <div class="container-fluid">
             <div class="col-lg-12 bold">
-                Bachelor of Science, Computer Science
+                Bachelors of Science, Computer Science
             </div>
             <div class="col-lg-12">
-                Corvallis, Oregon | 2003 - 2008
+                Corvallis, OR | Mar 2003 - Jun 2008
             </div>
             <div class="col-lg-12">
-                * Graduated with a 3.0 GPA<br />
-                * Senior Capstone ­ Developed a web­based visual web development toolkit using PHP, JavaScript/AJAX, MySQL, and Apache
+                <ul>
+                    <li>Graduated with a 3.0 GPA</li>
+                    <li>Senior Capstone ­ Developed a web­based visual web development toolkit using PHP, JavaScript/AJAX, MySQL, and Apache</li>
+                </ul>
             </div>
         </div>
+
     </div>
 </div>
 @endsection
