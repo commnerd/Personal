@@ -169,7 +169,7 @@ return [
          */
          // Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
          Laravel\Socialite\SocialiteServiceProvider::class,
-         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+         // Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...

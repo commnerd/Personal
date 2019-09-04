@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'github.auth' => \App\Http\Middleware\GithubEventAuth::class,
         'recaptcha' => \App\Http\Middleware\Recaptcha::class,
-        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-	    'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+        // 'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+	// 'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
     ];
 }
