@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api;
+namespace Tests\Feature\Api\V1;
 
 use App\Models\DailyReminder;
 use Tests\TestCase;
@@ -26,7 +26,7 @@ class DailyReminderTest extends TestCase
     {
         DailyReminder::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->get(route('api.daily_reminder.index'));
+        $response = $this->get(route('api.v1.daily_reminder.index'));
         $response->assertSuccessful();
 
         $response->assertJson(self::TEST_RECORD_ARRAY);

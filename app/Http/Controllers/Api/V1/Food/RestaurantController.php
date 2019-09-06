@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Food;
+namespace App\Http\Controllers\Api\V1\Food;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;

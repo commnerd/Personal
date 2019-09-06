@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature\Api\Food;
+namespace Tests\Feature\Api\V1\Food;
 
-use Tests\Feature\Api\AuthenticatedResourceControllerTest;
+use Tests\Feature\Api\V1\AuthenticatedResourceControllerTest;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Food\Restaurant;
 use App\Models\Food\Order;
@@ -34,7 +34,7 @@ class OrderControllerTest extends AuthenticatedResourceControllerTest
      *
      * @var string
      */
-    protected $resourceBaseRoute = "/api/food/restaurants";
+    protected $resourceBaseRoute = "/api/v1/food/restaurants";
 
     protected function setUp(): void
     {

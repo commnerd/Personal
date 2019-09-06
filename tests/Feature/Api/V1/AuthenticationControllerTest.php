@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api;
+namespace Tests\Feature\Api\V1;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -37,7 +37,7 @@ class AuthenticationControllerTest extends TestCase
      */
     public function testNoTokenLogin()
     {
-        $response = $this->post(route('api.login'));
+        $response = $this->post(route('api.v1.login'));
 
         $response->assertStatus(400);
 

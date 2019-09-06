@@ -1,13 +1,12 @@
 <?php
 
-namespace Tests\Feature\Api;
+namespace Tests\Feature\Api\V1;
 
-use Tests\Feature\Api\AuthenticatedResourceControllerTest;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Laravel\Passport\Passport;
 use App\Models\Model;
 use App\Models\User;
-use JWTAuth;
+use Tests\TestCase;
 
 abstract class AuthenticatedResourceControllerTest extends TestCase
 {
@@ -54,9 +53,7 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $user = User::findOrFail(1);
-        $this->jwtToken = JWTAuth::fromUser($user);
-        $this->defaultHeaders['Authorization'] = "Bearer $this->jwtToken";
+        Passport::actingAs(User::findOrFail(1));
     }
 
     /**
@@ -152,6 +149,8 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
             $this->resourceBaseRoute.'/'.$id,
             $update
         );
+
+        dd($response);
 
         $response->assertSuccessful();
 

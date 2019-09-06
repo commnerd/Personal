@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use GuzzleHttp\Exception\RequestException;
@@ -8,9 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use Validator;
 use App\Models\User;
-use JWTAuth;
+use Validator;
 
 /**
  * AuthenticationController for API
@@ -59,7 +58,9 @@ class AuthenticationController extends Controller
 
             $user = User::where('email', $email)->firstOrFail();
 
-            return response()->json([ 'token' => JWTAuth::fromUser($user) ]);
+            $token = $user->createToken('Michael J. Miller API Auth Client', ['search-orders'])->accessToken;
+
+            return response()->json([ 'token' => $token ]);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Invalid login attempt.  Something went wrong.'], 401);
         } catch (RequestException $e) {

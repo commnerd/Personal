@@ -11,15 +11,15 @@
 |
 */
 
-Route::name('api.')->group(function() {
-    Route::namespace('Api')->group(function() {
+Route::name('api.')->namespace('Api')->group(function() {
+    Route::name('v1.')->namespace('V1')->prefix('v1')->group(function() {
         Route::post('login', 'AuthenticationController@login')->name('login');
         Route::middleware('github.auth')->post('/github_event', 'GithubController@execute')->name('github.auth');
 
-        Route::middleware('jwt.auth')->group(function() {
+        Route::middleware('scope:manage-restaurants,search-orders')->group(function() {
             Route::get('logout', 'AuthenticationController@logout')->name('logout');
             Route::namespace('Food')->prefix('food')->group(function() {
-                Route::get('/search', 'FoodController@search')->name('food.search');
+                Route::get('/search', 'FoodController@search')->middleware('scope:search-orders')->name('food.search');
                 Route::resource('/restaurants', 'RestaurantController')->except(['create', 'edit']);
                 Route::resource('/restaurants/{restaurantId}/orders', 'OrderController')->except(['create', 'edit']);
             });
