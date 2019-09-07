@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use GuzzleHttp\Exception\RequestException;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Laravel\Passport\Passport;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Models\User;
 use Validator;
+use Exception;
 
 /**
  * AuthenticationController for API
@@ -65,10 +67,10 @@ class AuthenticationController extends Controller
             return response()->json(['error' => 'Invalid login attempt.  Something went wrong.'], 401);
         } catch (RequestException $e) {
             return response()->json(['error' => 'Invalid token.  Something went wrong.'], 401);
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'Problem creating JWToken.  Try again?'], 500);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Problem creating token.  Try again? '.$e], 500);
         }
-        return response()->json(['error' => 'Problem creating JWToken.  Try again?'], 500);
+        return response()->json(['error' => 'Problem creating token.  Try again?'], 500);
     }
 
     /**
@@ -79,10 +81,19 @@ class AuthenticationController extends Controller
     public function logout(Request $request): JsonResponse
     {
         try {
-            $token = substr($request->header('Authorization'), 7);
-            JWTAuth::invalidate($token);
+            $user = $request->user();
+
+            if(empty($user)) {
+                return response()->json(['error' => 'User not logged in.'], 401);
+            }
+
+            $tokens = $user->tokens();
+
+            foreach($tokens as $token) {
+                $token->revoke();
+            }
             return response()->json(['message'=> "You have successfully logged out."]);
-        } catch (JWTException $e) {
+        } catch (Exception $e) {
             // something went wrong whilst attempting to encode the token
             return response()->json(['error' => 'Failed to logout, please try again.'], 500);
         }

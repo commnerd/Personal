@@ -53,7 +53,6 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Passport::actingAs(User::findOrFail(1));
     }
 
     /**
@@ -149,8 +148,6 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
             $this->resourceBaseRoute.'/'.$id,
             $update
         );
-
-        dd($response);
 
         $response->assertSuccessful();
 

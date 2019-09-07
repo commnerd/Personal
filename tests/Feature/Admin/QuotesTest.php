@@ -103,7 +103,7 @@ class QuotesTest extends TestCase
     {
         $quote = Quote::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->put(route('admin.quotes.update', ['id' => $quote->id]), [
+        $response = $this->put(route('admin.quotes.update', [$quote->id]), [
             'source' => 'Test Source change',
             'quote' => 'Test Quote change',
             'active' => 0,

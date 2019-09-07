@@ -83,7 +83,7 @@ class DailyReminderTest extends TestCase
     public function testDailyReminderEditPage()
     {
         $reminder = DailyReminder::create(self::TEST_RECORD_ARRAY);
-        $response = $this->get(route('admin.daily_reminder.edit', ['dailyReminder' => $reminder]));
+        $response = $this->get(route('admin.daily_reminder.edit', [$reminder]));
 
         $response->assertSee('Edit Daily Reminder');
         $response->assertSee('<input type="text" name="reference" value="Test Reference" class="form-control">');
@@ -100,11 +100,11 @@ class DailyReminderTest extends TestCase
     {
         $reminder = DailyReminder::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->put(route('admin.daily_reminder.update', ['id' => $reminder->id]), [
+        $response = $this->put(route('admin.daily_reminder.update', [$reminder->id]), [
             'reference' => 'Test Reference change',
             'reminder' => 'Test Reminder change',
         ], ['HTTP_REFERER' => route('admin.daily_reminder.index')]);
-
+        // dd($response);
         $response->assertRedirect(route('admin.daily_reminder.index'));
 
         $reminder = DailyReminder::findOrFail($reminder->id);

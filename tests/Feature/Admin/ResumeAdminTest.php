@@ -110,7 +110,7 @@ class ResumeAdminTest extends TestCase
     {
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->get(route('admin.resume.edit', ['record' => $record]));
+        $response = $this->get(route('admin.resume.edit', [$record]));
 
         $response->assertSee('Edit Employment Record (Test Employer)');
         $response->assertSee('<input type="text" name="employer" value="Test Employer" class="form-control">');
@@ -131,7 +131,7 @@ class ResumeAdminTest extends TestCase
     {
         $record = EmploymentRecord::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->put(route('admin.resume.update', ['id' => $record->id]), [
+        $response = $this->put(route('admin.resume.update', [$record->id]), [
             'employer' => 'Test Employer change',
             'position' => 'Test Position change',
             'location' => 'Test Location, ST change',

@@ -3,10 +3,10 @@
 namespace Tests\Feature\Api\V1;
 
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Laravel\Passport\Passport;
 use App\Models\User;
+use Tests\TestCase;
 use Mockery;
-use JWTAuth;
 
 class AuthenticationControllerTest extends TestCase
 {
@@ -59,7 +59,7 @@ class AuthenticationControllerTest extends TestCase
     {
         $this->mockGuzzleResponse(['email' => 'test@test.com'], 401);
 
-        $response = $this->post(route('api.login'), ['token' => 'abcdefg']);
+        $response = $this->post(route('api.v1.login'), ['token' => 'abcdefg']);
 
         $response->assertStatus(401);
 
@@ -77,30 +77,37 @@ class AuthenticationControllerTest extends TestCase
     {
         $this->mockGuzzleResponse(['email' => 'commnerd@gmail.com'], 200);
 
-        $response = $this->post(route('api.login'), ['token' => 'abcdefg']);
+        $response = $this->post(route('api.v1.login'), ['token' => 'abcdefg']);
+
+        dd($response);
 
         $response->assertSuccessful();
 
         $response->assertStatus(200);
     }
 
-    public function testLogout()
+    public function testLogoutUser()
     {
         $user = User::firstOrFail();
 
-        $token = JWTAuth::fromUser($user);
+        Passport::actingAs(
+            User::findOrFail(1),
+            [
+                'search-orders',
+                'manage-restaurants',
+            ]
+        );
 
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer '.$token
-        ])->get(route('api.logout'), ["token" => $token]);
+        $response = $this->get(route('api.v1.logout'));
 
         $response->assertSuccessful();
 
         $response->assertJson(['message'=> "You have successfully logged out."]);
+    }
 
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer '.$token
-        ])->get(route('api.logout'), ["token" => $token]);
+    public function testLogoutGuest()
+    {
+        $response = $this->get(route('api.v1.logout'));
 
         $response->assertStatus(401);
     }

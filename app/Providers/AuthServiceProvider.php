@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Passport::ignoreMigrations();
+
         Passport::tokensCan([
             'manage-restaurants' => 'Manage restaurants and their orders',
             'search-orders' => 'Search for restaurants\' orders',
@@ -33,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::setDefaultScope([
             'search-orders',
-            'manage-restaurants', 
+            'manage-restaurants',
         ]);
     }
 }
