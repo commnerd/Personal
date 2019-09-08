@@ -104,7 +104,7 @@ class DailyReminderTest extends TestCase
             'reference' => 'Test Reference change',
             'reminder' => 'Test Reminder change',
         ], ['HTTP_REFERER' => route('admin.daily_reminder.index')]);
-        // dd($response);
+
         $response->assertRedirect(route('admin.daily_reminder.index'));
 
         $reminder = DailyReminder::findOrFail($reminder->id);

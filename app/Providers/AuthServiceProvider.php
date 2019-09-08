@@ -26,8 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::ignoreMigrations();
-
         Passport::tokensCan([
             'manage-restaurants' => 'Manage restaurants and their orders',
             'search-orders' => 'Search for restaurants\' orders',

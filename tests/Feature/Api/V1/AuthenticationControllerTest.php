@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use App\Models\User;
 use Tests\TestCase;
+use Artisan;
 use Mockery;
 
 class AuthenticationControllerTest extends TestCase
@@ -29,6 +30,11 @@ class AuthenticationControllerTest extends TestCase
         'name' => 'Michael J. Miller',
         'email' => 'commnerd@gmail.com',
     ];
+
+    protected function setUp(): void {
+        parent::setUp();
+        Artisan::call('passport:client --personal --name="Michael J. Miller API Auth Client"');
+    }
 
     /**
      * Test logging in with token
@@ -78,8 +84,6 @@ class AuthenticationControllerTest extends TestCase
         $this->mockGuzzleResponse(['email' => 'commnerd@gmail.com'], 200);
 
         $response = $this->post(route('api.v1.login'), ['token' => 'abcdefg']);
-
-        dd($response);
 
         $response->assertSuccessful();
 

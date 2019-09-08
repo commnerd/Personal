@@ -11,13 +11,6 @@ use Tests\TestCase;
 abstract class AuthenticatedResourceControllerTest extends TestCase
 {
     /**
-     * JWT for accessing API endpoints
-     *
-     * @var string
-     */
-    private $jwtToken;
-
-    /**
      * Base route for resource
      *
      * @var string
@@ -53,6 +46,13 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Passport::actingAs(
+            User::findOrFail(1),
+            [
+                'search-orders',
+                'manage-restaurants',
+            ]
+        );
     }
 
     /**
