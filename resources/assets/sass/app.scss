@@ -2,15 +2,18 @@
 @import "~quill/dist/quill.core.css";
 @import '~quill/dist/quill.snow.css';
 
+// Variables
+@import "variables";
+
+// Functions
+@import "functions";
+
 // Mixins
 @import "mixins";
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script:300,400,600');
-
-// Variables
-@import "variables";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";

@@ -14,6 +14,7 @@
     &.#{$cls} header {
         background: url($img) no-repeat;
         background-size: 100% auto;
+        height: header_height(#{$cls});
     }
 }
 
