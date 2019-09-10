@@ -30,6 +30,22 @@ class PageControllerTest extends TestCase
     }
 
     /**
+     * Test empty quote homepage
+     *
+     * @return void
+     */
+    public function testQuotelessHomePage()
+    {
+        Quote::query()->truncate();
+        
+        $response = $this->get(route('home'));
+
+        $response->assertSuccessful();
+
+        $response->assertDontSee('Quote');
+    }
+
+    /**
      * Home page tests with resume
      *
      * @return void

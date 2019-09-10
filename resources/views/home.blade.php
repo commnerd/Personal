@@ -14,6 +14,7 @@
         <img src="/storage/family-4.png">
     </div>
 
+    @if($quote)
     <div class="section quote">
         @include('shared.section-header', ['label' => 'Quote'])
         <blockquote>
@@ -21,6 +22,7 @@
         </blockquote>
         <i>- {{ $quote->source }}</i>
     </div>
+    @endif
 
     <div class="section social">
         @include('shared.section-header', ['label' => 'Social'])

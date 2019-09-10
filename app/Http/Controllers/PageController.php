@@ -20,7 +20,14 @@ class PageController extends Controller
         if(Session::get('errors')) {
             $error = 'Your form submission was invalid.';
         }
-        $quote = Quote::where('active', true)->firstOrFail();
+
+        $quote = null;
+        $quoteCount = Quote::where('active', true)->count();
+
+        if($quoteCount > 0) {
+            $quote = Quote::where('active', true)->firstOrFail();
+        }
+
         return view('home', compact('quote', 'error'));
     }
 
