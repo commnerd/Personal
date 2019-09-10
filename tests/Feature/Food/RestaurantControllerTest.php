@@ -235,13 +235,13 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-         $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
+         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
 
          $response = $this->get('/food/restaurants/create');
 
          $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-         $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
+         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
 
          Restaurant::create(['name' => 'Test Restaurant']);
 
@@ -249,7 +249,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-         $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
+         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
      }
 
      /**

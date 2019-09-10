@@ -153,13 +153,13 @@ class OrderControllerTest extends TestCase
 
            $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-           $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
+           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
 
            $response = $this->get('/food/restaurants/1/orders/create');
 
            $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-           $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
+           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
 
            Order::create([
                'restaurant_id' => 1,
@@ -172,7 +172,7 @@ class OrderControllerTest extends TestCase
 
            $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
 
-           $response->assertSee('<script src="'.elixir('/js/food/app.js').'"></script>');
+           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
        }
 
 }
