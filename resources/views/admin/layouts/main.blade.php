@@ -15,6 +15,6 @@
         <div class="container-fluid">
             @yield('content')
         </div>
-        <script src="{{ mix('/js/admin/app.js') }}"></script>
+        <script async src="{{ mix('/js/admin/app.js') }}"></script>
     </body>
 </html>

@@ -71,7 +71,7 @@
                 data-callback="recaptcha_callback_handler">
                 Submit
             </button>
-            <script type="text/javascript">
+            <script async type="text/javascript">
             function recaptcha_callback_handler() {
                 document.getElementById("contact").submit();
             }

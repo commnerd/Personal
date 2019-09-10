@@ -15,6 +15,6 @@
         <div class="container">
             @yield('content')
         </div>
-        <script src="{{ elixir('/js/food/app.js') }}"></script>
+        <script async src="{{ elixir('/js/food/app.js') }}"></script>
     </body>
 </html>
