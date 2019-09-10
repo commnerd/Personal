@@ -1,5 +1,5 @@
 @function header_height($page_label) {
-    @if $page_label == quote {
+    @if $page_label == quotes {
         @return $quote-height;
     } @else if $page_label == resume {
         @return $resume-height;
