@@ -68,7 +68,7 @@ class OrderControllerTest extends TestCase
 
           $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>');
 
-          $response->assertSee('<input class="btn btn-default" type="submit" />');
+          $response->assertSee(view('shared.form.submit'));
       }
 
       /**
@@ -122,7 +122,7 @@ class OrderControllerTest extends TestCase
 
            $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>');
 
-           $response->assertSee('<input class="btn btn-default" type="submit" />');
+           $response->assertSee(view('shared.form.submit'));
        }
 
        public function testDeleteOrder()

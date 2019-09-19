@@ -65,7 +65,7 @@ class ResumeAdminTest extends TestCase
         $response->assertSee('<input type="text" name="start_date" value="" class="form-control month-picker">');
         $response->assertSee('<input type="text" name="end_date" value="" class="form-control month-picker">');
         $response->assertSee('<div class="quill-editor form-control" data-name="bullets"></div>');
-        $response->assertSee('<input class="btn btn-default" type="submit" />');
+        $response->assertSee(view('shared.form.submit'));
     }
 
     /**
@@ -119,7 +119,7 @@ class ResumeAdminTest extends TestCase
         $response->assertSee('<input type="text" name="start_date" value="Jun 2017" class="form-control month-picker">');
         $response->assertSee('<input type="text" name="end_date" value="Dec 2017" class="form-control month-picker">');
         $response->assertSee('<div class="quill-editor form-control" data-name="bullets">Test content for job</div>');
-        $response->assertSee('<input class="btn btn-default" type="submit" />');
+        $response->assertSee(view('shared.form.submit'));
     }
 
     /**

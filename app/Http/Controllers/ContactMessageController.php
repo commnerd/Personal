@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactMessageNotification;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use App\Models\ContactMessage;
+use Illuminate\Http\Request;
 use Session;
 use Mail;
 

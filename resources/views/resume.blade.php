@@ -25,21 +25,18 @@
         <h1>Education</h1>
     </div>
     <div class="col-lg-8">
-        <div class="container-fluid">
-            <div class="col-lg-12 bold">
-                Bachelors of Science, Computer Science
-            </div>
-            <div class="col-lg-12">
-                Corvallis, OR | Mar 2003 - Jun 2008
-            </div>
-            <div class="col-lg-12">
-                <ul>
-                    <li>Graduated with a 3.0 GPA</li>
-                    <li>Senior Capstone ­ Developed a web­based visual web development toolkit using PHP, JavaScript/AJAX, MySQL, and Apache</li>
-                </ul>
-            </div>
+        <div class="col-lg-12 bold">
+            Bachelors of Science, Computer Science
         </div>
-
+        <div class="col-lg-12">
+            Corvallis, OR | Mar 2003 - Jun 2008
+        </div>
+        <div class="col-lg-12">
+            <ul>
+                <li>Graduated with a 3.0 GPA</li>
+                <li>Senior Capstone ­ Developed a web­based visual web development toolkit using PHP, JavaScript/AJAX, MySQL, and Apache</li>
+            </ul>
+        </div>
     </div>
 </div>
 @endsection

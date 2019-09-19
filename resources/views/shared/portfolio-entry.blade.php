@@ -1,4 +1,4 @@
-<div class="section container-fluid">
+<div class="section">
     @include('shared.section-header', ['label' => $title])
     <iframe src="{{ $url }}"></iframe>
     <p class="col-sm-6">

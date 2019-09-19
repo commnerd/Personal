@@ -86,8 +86,6 @@ class AuthenticationControllerTest extends TestCase
         $response = $this->post(route('api.v1.login'), ['token' => 'abcdefg']);
 
         $response->assertSuccessful();
-
-        $response->assertStatus(200);
     }
 
     public function testLogoutUser()

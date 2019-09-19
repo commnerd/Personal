@@ -1,1 +1,1 @@
-<input class="btn btn-default" type="submit" />
+<input class="btn btn-submit btn-default" type="submit" />

@@ -38,7 +38,7 @@ class Create extends Page
         return [
             '@name' => 'input[name="name"]',
             '@recipe' => 'div[data-name="recipe"]',
-            '@submit' => 'input[type="submit"]',
+            '@submit' => 'input.btn-submit',
         ];
     }
 }

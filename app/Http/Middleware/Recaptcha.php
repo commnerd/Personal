@@ -17,6 +17,10 @@ class Recaptcha
      */
     public function handle(Request $request, Closure $next)
     {
+        if(config('app.env') !== 'production') {
+            return $next($request);
+        }
+
         $client = new Client();
 
         // Confirm recaptcha

@@ -61,7 +61,7 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee('<div class="quill-editor form-control" data-name="recipe"></div>');
 
-         $response->assertSee('<input class="btn btn-default" type="submit" />');
+         $response->assertSee(view('shared.form.submit'));
      }
 
      /**
@@ -97,7 +97,7 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee(self::TEST_DRINK["recipe"]);
 
-         $response->assertDontSee('<input class="btn btn-default" type="submit" />');
+         $response->assertDontSee(view('shared.form.submit'));
      }
 
      /**
@@ -135,7 +135,7 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee('<div class="quill-editor form-control" data-name="recipe">Some recipe here</div>');
 
-         $response->assertSee('<input class="btn btn-default" type="submit" />');
+         $response->assertSee(view('shared.form.submit'));
      }
 
      /**

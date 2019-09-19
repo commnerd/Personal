@@ -58,7 +58,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('<input type="text" name="name"');
 
-         $response->assertSee('<input class="btn btn-default" type="submit" />');
+         $response->assertSee(view('shared.form.submit'));
      }
 
      /**
@@ -164,7 +164,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('<input type="text" name="name"');
 
-         $response->assertSee('<input class="btn btn-default" type="submit" />');
+         $response->assertSee(view('shared.form.submit'));
      }
 
      /**
@@ -196,7 +196,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('<input type="text" name="name"');
 
-         $response->assertSee('<input class="btn btn-default" type="submit" />');
+         $response->assertSee(view('shared.form.submit'));
      }
 
      /**

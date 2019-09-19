@@ -247,22 +247,15 @@ footer {
 
 .flash-message {
     position: fixed;
-    width: 100%;
     z-index: 1;
-    p.alert {
-        margin: 0;
-        @include border-radius(0);
-        @include screen-size($screen-lg-min) {
-            @include border-radius(4px);
-        }
-    }
+    @include border-radius(4px);
+    top: 20px;
+    margin-left: 2%;
+    width: 96%;
+    max-width: 1280px;
+    min-width: 400px;
     @include screen-size($screen-lg-min) {
-        top: 20px;
-        width: 100%;
-        p.alert {
-            width: 80%;
-            margin: 0 auto;
-        }
+        margin-left: 0;
     }
 }
 

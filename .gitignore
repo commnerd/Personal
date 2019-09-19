@@ -6,11 +6,14 @@
 /public/**/*.js
 /public/mix-manifest.json
 /storage/*.key
+/tests/Browser/console
 /tests/Browser/screenshots
+/storage/debugbar
 /vendor
 /.idea
 /.vagrant
 .DS_Store
+.phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log

@@ -66,16 +66,18 @@
                 'errors' => $errors->get('message')
             ])
             <button
-                class="btn btn-primary g-recaptcha"
+                class="btn btn-submit btn-primary g-recaptcha"
                 data-sitekey="6LehkkYUAAAAAHFNjT-D6-NX1sCRjU0H9o4lQ0Cs"
                 data-callback="recaptcha_callback_handler">
                 Submit
             </button>
+            @if(config('app.env') === 'production')
             <script async type="text/javascript">
             function recaptcha_callback_handler() {
                 document.getElementById("contact").submit();
             }
             </script>
+            @endif
         </form>
     </div>
 @endsection
