@@ -11,16 +11,18 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body class="{{ $slug }}">
-        <div class="row container-fluid">
-            @include('shared.flash-message')
-            <header>
-                @include('shared.main-nav')
-                @yield('header')
-            </header>
-            <section>
-                @yield('content')
-            </section>
-            @include('shared.footer')
+        <div class="container-fluid">
+            <div class="row">
+                @include('shared.flash-message')
+                <header>
+                    @include('shared.main-nav')
+                    @yield('header')
+                </header>
+                <section>
+                    @yield('content')
+                </section>
+                @include('shared.footer')
+            </div>
         </div>
         <script async src="{{ mix('/js/app.js') }}"></script>
         @include('shared.google-analytics')
