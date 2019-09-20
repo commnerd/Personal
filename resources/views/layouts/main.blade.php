@@ -12,17 +12,15 @@
     </head>
     <body class="{{ $slug }}">
         <div class="container-fluid">
-            <div class="row">
-                @include('shared.flash-message')
-                <header>
-                    @include('shared.main-nav')
-                    @yield('header')
-                </header>
-                <section>
-                    @yield('content')
-                </section>
-                @include('shared.footer')
-            </div>
+            @include('shared.flash-message')
+            <header class="row">
+                @include('shared.main-nav')
+                @yield('header')
+            </header>
+            <section class="row">
+                @yield('content')
+            </section>
+            @include('shared.footer')
         </div>
         <script async src="{{ mix('/js/app.js') }}"></script>
         @include('shared.google-analytics')
