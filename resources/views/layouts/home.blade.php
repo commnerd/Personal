@@ -9,7 +9,7 @@
         <title>{{ config('app.name') }}</title>
         <link rel="icon" href="/storage/michael-j-miller-logo.ico">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-        @if(config('app.env') !== 'production')
+        @if(config('app.env') === 'production')
         <script async src='https://www.google.com/recaptcha/api.js'></script>
         @endif
     </head>

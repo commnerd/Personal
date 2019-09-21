@@ -37,7 +37,7 @@ class LoginController extends Controller
      */
     public function redirectToProvider(): RedirectResponse
     {
-        return env('APP_ENV') == 'production' ?
+        return config('app.env') === 'production' ?
             Socialite::driver('google')->redirect() :
             redirect()->route('login.callback');
     }
@@ -49,7 +49,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(): RedirectResponse
     {
-        $user = env('APP_ENV') == 'production' ?
+        $user = config('app.env') === 'production' ?
             User::where('email', Socialite::driver('google')->user()->email)->first() :
             User::findOrFail(1);
 

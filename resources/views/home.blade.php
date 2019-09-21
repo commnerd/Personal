@@ -71,7 +71,7 @@
                 data-callback="recaptcha_callback_handler">
                 Submit
             </button>
-            @if(config('app.env') !== 'production')
+            @if(config('app.env') === 'production')
             <script async type="text/javascript">
                 function recaptcha_callback_handler() {
                     var form = $("form#contact");
