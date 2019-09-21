@@ -11,13 +11,13 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body class="{{ $slug }}">
-        <div class="container-fluid">
+        <div class="container-fluid row">
             @include('shared.flash-message')
-            <header class="row">
+            <header>
                 @include('shared.main-nav')
                 @yield('header')
             </header>
-            <section class="row">
+            <section>
                 @yield('content')
             </section>
             @include('shared.footer')

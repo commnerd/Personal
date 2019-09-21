@@ -23,7 +23,10 @@ class ContactMessageController extends Controller
 
         $message = ContactMessage::create($request->all());
 
-        Mail::to(env('APP_ADMIN_EMAIL'))->send(new ContactMessageNotification($message));
+        if(filter_var($request->get('email_phone'), FILTER_VALIDATE_EMAIL)) {
+            Mail::to(env('APP_ADMIN_EMAIL'))->send(new ContactMessageNotification($message));
+        }
+
         Session::flash('success', 'Successfully sent message.');
 
         return redirect(route('home'));

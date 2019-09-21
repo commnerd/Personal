@@ -71,11 +71,21 @@
                 data-callback="recaptcha_callback_handler">
                 Submit
             </button>
-            @if(config('app.env') === 'production')
+            @if(config('app.env') !== 'production')
             <script async type="text/javascript">
-            function recaptcha_callback_handler() {
-                document.getElementById("contact").submit();
-            }
+                function recaptcha_callback_handler() {
+                    var form = $("form#contact");
+                    $('.quill-editor', form).each(function() {
+                        var editor = this;
+                        var content = $('.ql-editor', editor).html();
+                        var name = $(editor).attr("data-name");
+                        if($('.ql-editor', editor).text().trim() == "") {
+                            content = "";
+                        }
+                        $(form).append('<textarea name="'+name+'" style="display:none">'+content+'</textarea>');
+                   });
+                   form.submit();
+                }
             </script>
             @endif
         </form>

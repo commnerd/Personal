@@ -1,4 +1,4 @@
-<footer class="row">
+<footer>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Collect the nav links, forms, and other content for toggling -->

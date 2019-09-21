@@ -57,7 +57,7 @@ class ContactMessageTest extends TestCase
     {
         $postData = [
             'name' => 'Mike Miller',
-            'email_phone' => 'f9d9s9a8f7g6d6a5g4s4',
+            'email_phone' => '555-555-5555',
             'message' => 'My name is Mike.',
             'g-recaptcha-response' => self::MOCK_RECAPTCHA_RESPONSE,
         ];
@@ -70,7 +70,7 @@ class ContactMessageTest extends TestCase
 
         $message = ContactMessage::firstOrFail();
 
-        Mail::assertSent(ContactMessageNotification::class, function ($mail) use ($message) {
+        Mail::assertNotSent(ContactMessageNotification::class, function ($mail) use ($message) {
             return $mail->msg->id === $message->id;
         });
 

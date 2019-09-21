@@ -13,16 +13,6 @@ $('.quill-editor').each(function() {
     });
 });
 
-$("form").on("submit", function () {
-    var form = this;
-    $('.quill-editor', this).each(function() {
-        var editor = this;
-        var content = $('.ql-editor', editor).html();
-        var name = $(editor).attr("data-name");
-        $(form).append('<textarea name="'+name+'" style="display:none">'+content+'</textarea>');
-   });
-});
-
 if($('.flash-message .alert').length > 0) {
     setTimeout(function() {
         $('.flash-message .alert').fadeOut('slow');
