@@ -30,7 +30,7 @@
                     <tr>
                         <td>{{ $order->label }}</td>
                         <td>
-                            <a class="glyphicon glyphicon-edit" href="{{ route('orders.edit', ['restaurant' => $restaurant, 'order' => $order]) }}"></a>
+                            <a class="glyphicon glyphicon-edit" href="{{ route('orders.edit', [$restaurant, $order]) }}"></a>
                             @include('shared.form.delete_link', ['action' => route('orders.destroy', [$restaurant, $order])])
                             </td>
                     </tr>
