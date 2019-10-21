@@ -28,21 +28,27 @@ Route::group(['middleware' => ['recaptcha']], function() {
 });
 
 Route::group(['middleware' => ['auth.custom']], function() {
-    Route::get('/admin', 'Admin\AdminController@main')->name('admin.index');
-    Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
-    Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
-        Route::resource('/resume', 'ResumeController');
-        Route::resource('/daily_reminder', 'DailyReminderController');
-        Route::put('/quotes/activate', 'QuotesController@activate')->name('quotes.activate');
-        Route::resource('/drinks', 'DrinksController');
-        Route::resource('/quotes', 'QuotesController');
-        Route::resource('/portfolio', 'PortfolioController');
-        Route::resource('/contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
-    });
 
-    Route::namespace('Food')->prefix('food')->group(function() {
-        Route::get('/', 'SearchController@index')->name('food.search');
-        Route::resource('/restaurants', 'RestaurantController');
-        Route::resource('/restaurants/{restaurantId}/orders', 'OrderController');
+    Route::get('admin', 'Admin\AdminController@main');
+    Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
+
+    Route::prefix('admin')->group(function() {
+        Voyager::routes();
+
+        Route::namespace('Admin')->name('admin.')->group(function() {
+            Route::resource('resume', 'ResumeController');
+            Route::resource('daily_reminder', 'DailyReminderController');
+            Route::put('quotes/activate', 'QuotesController@activate')->name('quotes.activate');
+            Route::resource('drinks', 'DrinksController');
+            Route::resource('quotes', 'QuotesController');
+            Route::resource('portfolio', 'PortfolioController');
+            Route::resource('contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
+        });
+
+        Route::namespace('Food')->prefix('food')->group(function() {
+            Route::get('/', 'SearchController@index')->name('food.search');
+            Route::resource('restaurants', 'RestaurantController');
+            Route::resource('restaurants/{restaurantId}/orders', 'OrderController');
+        });
     });
 });
