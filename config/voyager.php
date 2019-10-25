@@ -144,7 +144,12 @@ return [
         ],
 
         'widgets' => [
-
+            \App\Voyager\Widgets\SystemDimmer::class,
+            \App\Voyager\Widgets\MessagesDimmer::class,
+            \App\Voyager\Widgets\ResumeDimmer::class,
+            \App\Voyager\Widgets\DailyReminderDimmer::class,
+            \App\Voyager\Widgets\QuotesDimmer::class,
+            \App\Voyager\Widgets\DrinksDimmer::class,
         ],
 
     ],

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60c54d683b1d2a2c9e1ba60914936876",
+    "content-hash": "2470249066c2b2bbb3c43ee462f362b1",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -3415,6 +3415,61 @@
                 "shell"
             ],
             "time": "2018-10-13T15:16:03+00:00"
+        },
+        {
+            "name": "pvtl/voyager-blog",
+            "version": "0.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pvtl/voyager-blog.git",
+                "reference": "c6876927bb2c8a55c7f002b5a5c8fc8ed65684cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pvtl/voyager-blog/zipball/c6876927bb2c8a55c7f002b5a5c8fc8ed65684cf",
+                "reference": "c6876927bb2c8a55c7f002b5a5c8fc8ed65684cf",
+                "shasum": ""
+            },
+            "require": {
+                "tcg/voyager": "^1.1.8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pvtl\\VoyagerBlog\\Providers\\BlogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "Pvtl\\VoyagerBlog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pivotal Agency",
+                    "email": "tech@pivotalagency.com.au",
+                    "homepage": "http://pivotalagency.com.au"
+                }
+            ],
+            "description": "Ahoy! - A package to provide a blog to Voyager",
+            "keywords": [
+                "blog",
+                "frontend",
+                "laravel",
+                "posts",
+                "voyager"
+            ],
+            "time": "2019-03-14T04:50:54+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
