@@ -29,7 +29,7 @@ class SystemDimmer extends BaseDimmer
         $os = SystemStats::getOS();
         $diskUsage = SystemStats::getDiskUsage();
 
-        return view('voyager.widgets.system-dimmer', array_merge($this->config, [
+        return view('vendor.voyager.widgets.system-dimmer', array_merge($this->config, [
             'icon'   => 'voyager-group',
             'title'  => "{$string}",
             'os' => "{$os}",

@@ -29,7 +29,7 @@ class DailyReminderDimmer extends BaseDimmer
           $string .= "s";
         }
 
-        return view('voyager.widgets.dimmer', array_merge($this->config, [
+        return view('vendor.voyager.widgets.dimmer', array_merge($this->config, [
             'icon'   => 'voyager-group',
             'title'  => "{$count} {$string}",
             'button' => [
