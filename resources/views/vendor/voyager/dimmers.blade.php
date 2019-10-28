@@ -1,5 +1,4 @@
 @php
-$dimmers = Voyager::dimmers();
 $count = $dimmers->count();
 $classes = [
     'col-xs-12',
@@ -10,8 +9,13 @@ $class = implode(' ', $classes);
 $prefix = "<div class='{$class}'>";
 $surfix = '</div>';
 @endphp
-@if ($dimmers->any())
+@if ($dimmers->count() > 0)
 <div class="clearfix container-fluid row">
-    {!! $prefix.$dimmers->setSeparator($surfix.$prefix)->display().$surfix !!}
+    @foreach($dimmers as $index => $dimmer)
+        {!! $prefix.$dimmer->run().$surfix !!}
+        @if($index % 4 && $index < $dimmers->count() - 2)
+            </div><div class="row">
+        @endif
+    @endforeach
 </div>
 @endif
