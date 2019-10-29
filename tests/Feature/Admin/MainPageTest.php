@@ -31,7 +31,7 @@ class MainPageTest extends TestCase
     {
         Auth::logout();
 
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
 
         $response->assertRedirect(route('login'));
     }
@@ -43,7 +43,7 @@ class MainPageTest extends TestCase
      */
     public function testAuthorizedAccess()
     {
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
 
         $response->assertSuccessful();
     }
@@ -51,7 +51,7 @@ class MainPageTest extends TestCase
     public function testSystemMonitorOSSection()
     {
         $system = new System();
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
         $response->assertSuccessful();
         $response->assertSee('OS:');
         $response->assertSee($system->getOS());
@@ -68,7 +68,7 @@ class MainPageTest extends TestCase
         $totalSpace = Calculator::metric($totalSpace, 1)."B";
         $diskUsage = $usedSpace." / ".$totalSpace;
 
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
         $response->assertSee('Disk Usage:');
         $response->assertSee($usedSpace);
         $response->assertSee($totalSpace);
@@ -83,11 +83,12 @@ class MainPageTest extends TestCase
      */
     public function testMessageSection()
     {
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
         $response->assertSuccessful();
 
-        $response->assertSee('<legend>Messages</legend>');
-        $response->assertSee('<a href="'.route('admin.contact.index').'" class="list-group-item">View All Messages</a>');
+        $response->assertSee('Messages');
+        $response->assertSee(route('admin.contact.index'));
+        $response->assertSee('voyager-mail');
     }
 
     /**
@@ -97,12 +98,12 @@ class MainPageTest extends TestCase
      */
     public function testResumeLinks()
     {
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
         $response->assertSuccessful();
 
-        $response->assertSee('<legend>Resume</legend>');
-        $response->assertSee('<a href="'.route('admin.resume.index').'" class="list-group-item">Edit Resume</a>');
-        $response->assertSee('<a href="'.route('admin.resume.create').'" class="list-group-item">Add Employment Record</a>');
+        $response->assertSee('Employment Record');
+        $response->assertSee(route('admin.resume.index'));
+        $response->assertSee('voyager-certificate');
     }
 
     /**
@@ -112,12 +113,12 @@ class MainPageTest extends TestCase
      */
     public function testDailyReminderLinks()
     {
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
         $response->assertSuccessful();
 
-        $response->assertSee('<legend>Daily Reminders</legend>');
-        $response->assertSee('<a href="'.route('admin.daily_reminder.index').'" class="list-group-item">Manage Daily Reminders</a>');
-        $response->assertSee('<a href="'.route('admin.daily_reminder.create').'" class="list-group-item">Add Daily Reminder</a>');
+        $response->assertSee('Daily Reminders');
+        $response->assertSee(route('admin.daily_reminder.index'));
+        $response->assertSee('voyager-receipt');
     }
 
     /**
@@ -127,12 +128,12 @@ class MainPageTest extends TestCase
      */
     public function testQuoteLinks()
     {
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
         $response->assertSuccessful();
 
-        $response->assertSee('<legend>Quotes</legend>');
-        $response->assertSee('<a href="'.route('admin.quotes.index').'" class="list-group-item">Manage Quotes</a>');
-        $response->assertSee('<a href="'.route('admin.quotes.create').'" class="list-group-item">Add Quote</a>');
+        $response->assertSee('Quote');
+        $response->assertSee(route('admin.quotes.index'));
+        $response->assertSee('voyager-bubble');
     }
 
     /**
@@ -142,11 +143,12 @@ class MainPageTest extends TestCase
      */
     public function testDrinkLinks()
     {
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
+        // dd($response);
         $response->assertSuccessful();
 
-        $response->assertSee('<legend>Drinks</legend>');
-        $response->assertSee('<a href="'.route('admin.drinks.index').'" class="list-group-item">Manage Drinks</a>');
-        $response->assertSee('<a href="'.route('admin.drinks.create').'" class="list-group-item">Add Drink</a>');
+        $response->assertSee('Drinks');
+        $response->assertSee(route('admin.drinks.index'));
+        $response->assertSee('voyager-rum');
     }
 }

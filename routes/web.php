@@ -43,11 +43,11 @@ Route::group(['middleware' => ['auth.custom']], function() {
             Route::resource('portfolio', 'PortfolioController');
             Route::resource('contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
         });
+    });
 
-        Route::namespace('Food')->prefix('food')->group(function() {
-            Route::get('/', 'SearchController@index')->name('food.search');
-            Route::resource('restaurants', 'RestaurantController');
-            Route::resource('restaurants/{restaurantId}/orders', 'OrderController');
-        });
+    Route::namespace('Food')->prefix('food')->group(function() {
+        Route::get('/', 'SearchController@index')->name('food.search');
+        Route::resource('restaurants', 'RestaurantController');
+        Route::resource('restaurants/{restaurantId}/orders', 'OrderController');
     });
 });

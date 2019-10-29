@@ -81,11 +81,7 @@ class ContactMessageTest extends TestCase
 
     public function mockSessionFlash()
     {
-        $store = Mockery::mock('Illuminate\Session\Store');
-        Session::shouldReceive('driver')
-            ->once()
-            ->andReturn($store)
-            ->shouldReceive('flash')
+        Session::shouldReceive('flash')
             ->once()
             ->andReturn(null);
     }

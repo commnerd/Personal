@@ -72,7 +72,7 @@ class AuthenticationTest extends TestCase
         $response = $this->get('/login/callback');
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('admin.index'));
+        $response->assertRedirect(route('voyager.dashboard'));
     }
 
     /**

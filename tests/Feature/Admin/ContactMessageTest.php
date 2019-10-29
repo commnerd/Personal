@@ -15,17 +15,16 @@ class ContactMessageTest extends TestCase
     {
         parent::setUp();
 
-        Auth::loginUsingId(1);
+        $user = Auth::loginUsingId(1);
     }
 
     public function testEmptyContactMessagesOnIndex()
     {
-        $response = $this->get(route('admin.index'));
+        $response = $this->get(route('voyager.dashboard'));
 
         $response->assertSuccessful();
 
         $response->assertSee('Messages');
-        $response->assertSee('No new messages.');
     }
 
     public function testEmptyContactMessagesOnMessageManagement()
