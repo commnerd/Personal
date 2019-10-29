@@ -28,16 +28,17 @@ class ResumeDimmer extends BaseDimmer
         if($count != 1) {
             $string .= "s";
         }
+        $lower = Str::lower($string);
 
         return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-group',
+            'icon'   => 'voyager-certificate',
             'title'  => "{$count} {$string}",
-            'text'   => "You have {$count} {$string}",
+            'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
-                'text' => __('voyager::dimmer.user_link_text'),
-                'link' => route('voyager.users.index'),
+                'text' => "View {$lower}",
+                'link' => route('admin.resume.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
+            'image' => '/storage/resume.png',
         ]));
     }
 
@@ -48,6 +49,6 @@ class ResumeDimmer extends BaseDimmer
      */
     public function shouldBeDisplayed()
     {
-        return Auth::user()->can('browse', Voyager::model('User'));
+        return Auth::user()->hasRole('admin');
     }
 }

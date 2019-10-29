@@ -28,15 +28,17 @@ class DailyReminderDimmer extends BaseDimmer
         if($count != 1) {
           $string .= "s";
         }
+        $lower = Str::lower($string);
 
-        return view('vendor.voyager.widgets.dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-group',
+        return view('voyager::dimmer', array_merge($this->config, [
+            'icon'   => 'voyager-receipt',
             'title'  => "{$count} {$string}",
+            'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
-                'text' => __('voyager::dimmer.user_link_text'),
+                'text' => "View {$lower}",
                 'link' => route('admin.daily_reminder.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
+            'image' => '/storage/admin/reminders.jpg',
         ]));
     }
 
@@ -47,6 +49,6 @@ class DailyReminderDimmer extends BaseDimmer
      */
     public function shouldBeDisplayed()
     {
-        return Auth::user()->can('browse', Voyager::model('User'));
+        return Auth::user()->hasRole('admin');
     }
 }

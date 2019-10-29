@@ -24,17 +24,21 @@ class MessagesDimmer extends BaseDimmer
     public function run()
     {
         $count = ContactMessage::count();
-        $string = 'Contact Messages';
+        $string = 'Contact Message';
+        if($count !== 1) {
+            $string .= "s";
+        }
+        $lower = Str::lower($string);
 
         return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-group',
+            'icon'   => 'voyager-mail',
             'title'  => "{$count} {$string}",
-            'text'   => __('voyager::dimmer.user_text', ['count' => $count, 'string' => Str::lower($string)]),
+            'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
-                'text' => __('voyager::dimmer.user_link_text'),
-                'link' => route('voyager.users.index'),
+                'text' => "View {$lower}",
+                'link' => route('admin.contact.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
+            'image' => '/storage/admin/messages.jpg',
         ]));
     }
 
@@ -45,6 +49,6 @@ class MessagesDimmer extends BaseDimmer
      */
     public function shouldBeDisplayed()
     {
-        return Auth::user()->can('browse', Voyager::model('User'));
+        return Auth::user()->hasRole('admin');
     }
 }

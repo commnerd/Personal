@@ -3,14 +3,13 @@
 namespace App\Voyager\Widgets;
 
 use Illuminate\Support\Facades\Auth;
-use TCG\Voyager\Widgets\BaseDimmer;
 use TCG\Voyager\Facades\Voyager;
 use App\Models\ContactMessage;
 use App\Facades\SystemStats;
 use Illuminate\Support\Str;
 
 
-class SystemDimmer extends BaseDimmer
+class SystemDimmer extends SpanningDimmer
 {
     /**
      * The configuration array.
@@ -30,11 +29,12 @@ class SystemDimmer extends BaseDimmer
         $diskUsage = SystemStats::getDiskUsage();
 
         return view('vendor.voyager.widgets.system-dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-group',
+            'icon'   => 'voyager-laptop',
             'title'  => "{$string}",
             'os' => "{$os}",
             'diskUsage' => "{$diskUsage}",
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
+            'image' => '/storage/admin/system.jpg',
+            'width' => 12,
         ]));
     }
 
@@ -43,8 +43,8 @@ class SystemDimmer extends BaseDimmer
      *
      * @return bool
      */
-    public function shouldBeDisplayed()
+    public function shouldBeDisplayed(): bool
     {
-        return Auth::user()->can('browse', Voyager::model('User'));
+        return Auth::user()->hasRole('admin');
     }
 }

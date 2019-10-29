@@ -5,17 +5,35 @@ $classes = [
     'col-sm-'.($count >= 2 ? '6' : '12'),
     'col-md-'.($count >= 3 ? '4' : ($count >= 2 ? '6' : '12')),
 ];
-$class = implode(' ', $classes);
+$class = $class ?? implode(' ', $classes);
 $prefix = "<div class='{$class}'>";
 $surfix = '</div>';
+$indexOffset = 0;
 @endphp
 @if ($dimmers->count() > 0)
-<div class="clearfix container-fluid row">
     @foreach($dimmers as $index => $dimmer)
-        {!! $prefix.$dimmer->run().$surfix !!}
-        @if($index % 4 && $index < $dimmers->count() - 2)
-            </div><div class="row">
+        @if(($index - $indexOffset) % 3 == 0)
+            <div class="clearfix container-fluid row">
+        @endif
+        @if($dimmer instanceof \App\Voyager\Widgets\SpanningDimmer)
+          @php
+              $indexOffset += 1;
+          @endphp
+          @if(($index - $indexOffset) % 3 > 0)
+            </div><div class="clearfix container-fluid row">
+          @endif
+          <div class="col-xs-12 col-sm-12 col-md-12">
+              {!! $dimmer->run() !!}
+          </div>
+          @if(($index - $indexOffset) % 3 < 2)
+              </div><div class="clearfix container-fluid row">
+          @endif
+        @else
+            {!! $prefix.$dimmer->run().$surfix !!}
+        @endif
+
+        @if(($index - $indexOffset) % 3 == 2 || $index >= $count - 1)
+            </div>
         @endif
     @endforeach
-</div>
 @endif
