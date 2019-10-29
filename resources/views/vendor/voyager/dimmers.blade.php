@@ -16,22 +16,21 @@ $indexOffset = 0;
             <div class="clearfix container-fluid row">
         @endif
         @if($dimmer instanceof \App\Voyager\Widgets\SpanningDimmer)
-          @php
-              $indexOffset += 1;
-          @endphp
-          @if(($index - $indexOffset) % 3 > 0)
-            </div><div class="clearfix container-fluid row">
-          @endif
-          <div class="col-xs-12 col-sm-12 col-md-12">
-              {!! $dimmer->run() !!}
-          </div>
-          @if(($index - $indexOffset) % 3 < 2)
-              </div><div class="clearfix container-fluid row">
-          @endif
+            @php
+                $indexOffset = ($index + 1) % 3;
+            @endphp
+            @if(($index - $indexOffset) % 3 > 0)
+                <div class="clearfix container-fluid row">
+            @endif
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                {!! $dimmer->run() !!}
+            </div>
+            @if(($index - $indexOffset) % 3 < 2 || $index >= $count - 1)
+                </div>
+            @endif
         @else
             {!! $prefix.$dimmer->run().$surfix !!}
         @endif
-
         @if(($index - $indexOffset) % 3 == 2 || $index >= $count - 1)
             </div>
         @endif
