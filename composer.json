@@ -9,6 +9,7 @@
     "type": "project",
     "require": {
         "php": "^7.2",
+        "cnvs/canvas": "^4.2",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^4.0",
         "google/apiclient": "^2.0",

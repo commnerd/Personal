@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60c54d683b1d2a2c9e1ba60914936876",
+    "content-hash": "1c0bc0bc0748b6473d3a5135ef2b1ed8",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -67,6 +67,64 @@
                 "widgets"
             ],
             "time": "2019-03-25T14:20:55+00:00"
+        },
+        {
+            "name": "cnvs/canvas",
+            "version": "v4.2.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cnvs/canvas.git",
+                "reference": "7e36724f69b5a3aa697f7fdc01f65633bbc17a39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cnvs/canvas/zipball/7e36724f69b5a3aa697f7fdc01f65633bbc17a39",
+                "reference": "7e36724f69b5a3aa697f7fdc01f65633bbc17a39",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.6|^2.7|^2.8|^2.9",
+                "ext-json": "*",
+                "illuminate/support": "^5.6|^5.7|^5.8|^6.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "^3.6|^3.7|^3.8|^4.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Canvas\\CanvasServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Canvas\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Todd Austin",
+                    "email": "austin.todd.j@gmail.com"
+                }
+            ],
+            "description": "A Laravel publishing platform",
+            "homepage": "https://cnvs.io",
+            "keywords": [
+                "canvas",
+                "laravel",
+                "platform",
+                "publishing"
+            ],
+            "time": "2019-09-20T14:49:20+00:00"
         },
         {
             "name": "composer/ca-bundle",
