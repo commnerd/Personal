@@ -25,14 +25,9 @@
                         <a class="dropdown-item" href="{{ route('canvas.topic.index') }}">{{ __('canvas::blog.nav.user.topics') }}</a>
                         <a class="dropdown-item" href="{{ route('canvas.index') }}">{{ __('canvas::blog.nav.user.stats') }}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <a class="dropdown-item" href="{{ route('logout') }}">
                             {{ __('canvas::blog.nav.user.logout') }}
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                              style="display: none;">
-                            @csrf
-                        </form>
                     </div>
                 </div>
             </div>

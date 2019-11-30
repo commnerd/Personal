@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ setting('site.title', config('app.name')) }}</title>
         <link rel="icon" href="/storage/michael-j-miller-logo.ico">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
         @if(config('app.env') === 'production')
@@ -17,7 +17,7 @@
         <div class="container-fluid row">
             @include('shared.flash-message', ['error' => $error])
             <header>
-                @include('shared.main-nav')
+                {{ menu('primary') }}
                 @yield('header')
             </header>
             <section>

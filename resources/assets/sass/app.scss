@@ -63,13 +63,43 @@ header {
                 color: $header-hover-color;
         }
     }
+
+
+
+
 }
+
 // END HEADER
 .navbar-default {
     border: none;
     .navbar-brand, .navbar-nav > li > a {
         &, &:hover, &:focus {
             color: white;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .navbar-nav > .active > a {
+          color: black;
+          background-image: radial-gradient(white 30%, transparent 70%);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .navbar-collapse {
+            position: absolute;
+            width: 100%;
+            background-color: #ddd;
+            .navbar-nav > li {
+                & > a {
+                    color: black;
+                }
+
+                &.active > a {
+                    background-color: black;
+                    color: #ddd;
+                }
+            }
         }
     }
 }
@@ -239,10 +269,10 @@ footer {
 }
 
 .header-content {
-    height: calc(100% - 72px);
+    height: calc(100% - 144px);
     display : flex;
-    align-items : center;
-    margin:0 50%;
+    align-items: center;
+    justify-content: center;
 }
 
 .flash-message {
