@@ -14,17 +14,17 @@
         @endif
     </head>
     <body class="home">
-        <div class="container-fluid row">
-            @include('shared.flash-message', ['error' => $error])
-            <header>
-                {{ menu('primary') }}
+        @include('shared.flash-message', ['error' => $error])
+        <header>
+            {{ menu('primary') }}
+            <div class="header-content">
                 @yield('header')
-            </header>
-            <section>
-                @yield('content')
-            </section>
-            @include('shared.footer')
-        </div>
+            </div>
+        </header>
+        <section>
+            @yield('content')
+        </section>
+        @include('shared.footer')
         <script async src="{{ mix('/js/app.js') }}"></script>
         @include('shared.google-analytics')
     </body>

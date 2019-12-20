@@ -3,7 +3,7 @@
 @section('title', 'Resume')
 
 @section('header')
-<div class="row header-content center">
+<div class="header-center-content">
     <a class="btn btn-default" href="/storage/Resume.pdf"><i class="fas fa-download fa-4x"></i><br />Download</a>
 </div>
 @endsection

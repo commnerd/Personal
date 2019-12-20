@@ -1,8 +1,10 @@
 @extends('layouts.home', ['errors' => $errors])
 
 @section('header')
-<h1 class="nav-buffer">{{ setting('site.greeting', "Welcome!") }}</h1>
-<div class="center font-script">{{ setting('site.description', "Look around to find out what I'm up to!") }}</div>
+<div class="header-center-content">
+    <h1>{{ setting('site.greeting', "Welcome!") }}</h1>
+    <div class="center font-script">{{ setting('site.description', "Look around to find out what I'm up to!") }}</div>
+</div>
 @endsection
 
 @section('content')

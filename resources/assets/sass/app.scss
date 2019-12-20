@@ -28,6 +28,7 @@ body {
     @include header("portfolio", "/storage/portfolio-xl.png");
     @include header("resume", "/storage/resume.png");
     @include header("quotes", "/storage/quote-header.jpg");
+    @include header("blog", "/storage/blog.jpg");
 
     &.quotes header {
         background-size: 100% 100%;
@@ -35,6 +36,16 @@ body {
 
     &.resume div.record {
         margin-top: 22px;
+    }
+
+    &.blog header {
+        h1 {
+            margin: 0;
+        }
+
+        .nav-scroller a {
+            margin: 0 5px;
+        }
     }
 }
 
@@ -64,13 +75,11 @@ header {
         }
     }
 
-
-
-
 }
 
 // END HEADER
 .navbar-default {
+    z-index: 1;
     border: none;
     .navbar-brand, .navbar-nav > li > a {
         &, &:hover, &:focus {
@@ -253,10 +262,6 @@ footer {
     font-size: 200%;
 }
 
-.nav-buffer {
-    margin-top: 200px;
-}
-
 .navbar-brand {
     padding: 7px 15px;
 }
@@ -269,10 +274,17 @@ footer {
 }
 
 .header-content {
-    height: calc(100% - 144px);
+    transform:translateY(-72px);
+    height:100%;
     display : flex;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+}
+
+.header-center-content {
+    z-index: -1;
+    display: block;
 }
 
 .flash-message {
@@ -291,4 +303,8 @@ footer {
 
 .quill-editor {
     height: $quill-height;
+}
+
+.jumbotron {
+    overflow: hidden;
 }
