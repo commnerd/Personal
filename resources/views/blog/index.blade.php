@@ -54,6 +54,8 @@
                         {{ __('canvas::blog.posts.label') }}
                     </h3>
                     @if(count($data['posts']) > 0)
+                        {{ $data['posts']->links() }}
+
                         @foreach($data['posts'] as $post)
                             @if(!$loop->first)
                                 <div class="blog-post">
@@ -63,24 +65,11 @@
                                 </div>
                             @endif
                         @endforeach
-
-                        {{ $data['posts']->links() }}
                     @else
                         <p class="mt-4">{{ __('canvas::blog.empty.description') }} <a href="{{ route('canvas.post.create') }}">
                                 {{ __('canvas::blog.empty.action') }}</a>.</p>
                     @endif
                 </div>
-
-                <aside class="col-md-4">
-                    <div class="p-4">
-                        <h4 class="font-italic">{{ __('canvas::blog.tags.label') }}</h4>
-                        <ol class="list-unstyled mb-0">
-                            @foreach($data['tags'] as $tag)
-                                <li><a href="{{ route('blog.tag', $tag->slug) }}">{{ $tag->name }}</a></li>
-                            @endforeach
-                        </ol>
-                    </div>
-                </aside>
             </div>
         </main>
     </div>

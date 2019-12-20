@@ -1,0 +1,7 @@
+.text-white, .text-white:hover {
+    color: white;
+}
+
+.blank-link-decorations {
+    text-decoration: none;
+}

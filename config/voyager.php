@@ -138,13 +138,15 @@ return [
                 'target_blank' => true,
             ],
             'voyager::generic.logout' => [
-                'route'      => 'voyager.logout',
+                'route'      => 'logout',
                 'icon_class' => 'voyager-power',
+                'classes'    => 'btn btn-danger btn-block text-white blank-link-decorations',
             ],
         ],
 
         'widgets' => [
             \App\Voyager\Widgets\SystemDimmer::class,
+            \App\Voyager\Widgets\BlogDimmer::class,
             \App\Voyager\Widgets\MessagesDimmer::class,
             \App\Voyager\Widgets\ResumeDimmer::class,
             \App\Voyager\Widgets\DailyReminderDimmer::class,
@@ -192,7 +194,7 @@ return [
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
-        //'css/custom.css',
+        'css/voyager/main.css',
     ],
 
     'additional_js' => [

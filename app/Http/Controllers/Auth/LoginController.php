@@ -37,9 +37,11 @@ class LoginController extends Controller
      */
     public function redirectToProvider(): RedirectResponse
     {
-        return config('app.env') === 'production' ?
-            Socialite::driver('google')->redirect() :
-            redirect()->route('login.callback');
+        if(config('app.env') === 'production') {
+            return Socialite::driver('google')->redirect();
+        }
+        request()->session()->put('intended', url()->previous());
+        return redirect()->route('login.callback', );
     }
 
     /**

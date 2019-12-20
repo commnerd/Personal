@@ -38,7 +38,11 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .styles([
        'node_modules/bootstrap-sass-datepicker/css/datepicker.css',
        'node_modules/bootstrap-sass-datepicker/css/datepicker3.css'
-   ], 'public/css/admin/etc.css').quill();
+   ], 'public/css/admin/etc.css')
+   .styles([
+      'resources/assets/voyager/css/main.css'
+   ], 'public/css/voyager/main.css')
+   .quill();
 
 if (mix.inProduction()) {
     mix.version();
