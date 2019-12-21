@@ -107,9 +107,7 @@ class DrinksControllerTest extends TestCase
       */
      public function testPostInvalidDrinkCreation()
      {
-         $drink = new Drink(["name" => "blah"]);
-
-         $response = $this->post(route("admin.drinks.update", $drink), $drink->toArray());
+         $response = $this->post(route("admin.drinks.store", ["name" => "blah"]));
 
          $response->assertStatus(302);
 

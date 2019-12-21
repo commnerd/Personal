@@ -20,7 +20,6 @@ class PageControllerTest extends TestCase
 
         $response->assertSuccessful();
 
-        $response->assertSee('<a class="navbar-brand" href="'.route('home').'"><img height="100%" alt="Michael J. Miller" src="/storage/michael-j-miller-logo.png"></a>');
         $response->assertSee('Family');
         $response->assertSee('Quote');
         $response->assertSee('Social');
@@ -37,7 +36,7 @@ class PageControllerTest extends TestCase
     public function testQuotelessHomePage()
     {
         Quote::query()->truncate();
-        
+
         $response = $this->get(route('home'));
 
         $response->assertSuccessful();
@@ -98,7 +97,6 @@ class PageControllerTest extends TestCase
 
         $response->assertSuccessful();
 
-        $response->assertSee('<a class="navbar-brand" href="'.route('home').'"><img height="100%" alt="Michael J. Miller" src="/storage/michael-j-miller-logo.png"></a>');
         $response->assertSee('Family');
         $response->assertSee('Quote');
         $response->assertSee('Social');
