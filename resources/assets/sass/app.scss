@@ -305,6 +305,10 @@ footer {
     height: $quill-height;
 }
 
-.jumbotron {
-    overflow: hidden;
+.container-fluid, .container {
+    .jumbotron {
+        overflow: hidden;
+        margin: 0;
+        padding: 24px 30px;
+    }
 }

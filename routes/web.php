@@ -29,7 +29,7 @@ Route::group(['middleware' => ['recaptcha']], function() {
 
 Route::group(['middleware' => ['auth.custom']], function() {
 
-    Route::get('logout', 'Auth\LogoutController@handleLogout')->name('logout');
+    Route::any('logout', 'Auth\LogoutController@handleLogout')->name('logout');
 
     Route::prefix('admin')->group(function() {
         Voyager::routes();

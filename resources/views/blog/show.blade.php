@@ -1,10 +1,6 @@
-@extends('blog.layouts.app')
+@extends('layouts.main', ['slug' => 'blog', 'title' => sprintf('%s — %s', config('app.name'), $data['post']->title)])
 
-@section('title', $data['post']->title)
-
-@push('styles')
-    @include('blog.partials.styles')
-@endpush
+@section('title', sprintf('%s — %s', config('app.name'),  $data['post']->title))
 
 @push('meta')
 
@@ -19,47 +15,25 @@
     @isset($data['meta']['canonical_link'])
         <link rel="canonical" href="{{ $data['meta']['canonical_link'] }}" />
     @endisset
-    
+
     @isset($data['post']->featured_image)
         <meta name="og:image" content="{{ url($data['post']->featured_image) }}">
         <meta name="twitter:image" content="{{ url($data['post']->featured_image) }}">
     @endisset
 @endpush
 
-@section('actions')
-    <div class="dropdown">
-        <a href="#" id="navbarDropdown" class="nav-link px-3 text-secondary" role="button" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false" v-pre>
-            <i class="fas fa-cog fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a href="{{ route('canvas.post.edit', $data['post']->id) }}"
-               class="dropdown-item sans-serif">{{ __('canvas::blog.buttons.edit') }}</a>
-            <a href="{{ route('canvas.stats.show', $data['post']->id) }}"
-               class="dropdown-item sans-serif">{{ __('canvas::blog.buttons.stats') }}</a>
-        </div>
-    </div>
+@section('header')
+    <div class="header-center-content">
+        <h1 class="center">{{ $data['post']->title }}</h1>
+        <h3 class="center">{{ \Carbon\Carbon::parse($data['post']->published_at)->format('M d, Y') }}</h3>
+        <h5 class="center">{{ $data['author']->name }}</h5>
+  </div>
 @endsection
 
 @section('content')
-    <div class="container">
-        @include('blog.partials.navbar')
-
+    <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col col-lg-8">
-                <h1 class="content-title serif pt-5 mb-4 @unless($data['post']->summary) mb-4 @endif">{{ $data['post']->title }}</h1>
-
-                <div class="media py-1">
-                    <img src="{{ sprintf('%s%s%s', 'https://secure.gravatar.com/avatar/', md5(strtolower(trim($data['author']->email))), '?s=200') }}"
-                         class="mr-3 rounded-circle"
-                         style="width: 50px"
-                         alt="{{ $data['author']->name }}">
-                    <div class="media-body">
-                        <p class="mt-0 mb-1 font-weight-bold">{{ $data['author']->name }}</p>
-                        <span class="text-muted">{{ \Carbon\Carbon::parse($data['post']->published_at)->format('M d, Y') }} — {{ $data['post']->read_time }}</span>
-                    </div>
-                </div>
-
                 @isset($data['post']->featured_image)
                     <img src="{{ $data['post']->featured_image }}" class="w-100 pt-4"
                          @isset($data['post']->featured_image_caption) alt="{{ $data['post']->featured_image_caption }}"

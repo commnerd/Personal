@@ -25,49 +25,19 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            @if(count($data['posts']) > 0)
-                @foreach($data['posts'] as $post)
-                    @if($loop->first)
-                        <div class="jumbotron p-4 p-md-5 text-white rounded @if(empty($post->featured_image)) bg-dark @endif"
-                             @if(!empty($post->featured_image)) style="background: linear-gradient(rgba(0, 0, 0, 0.85),rgba(0, 0, 0, 0.85)),url({{ $post->featured_image }}); background-size: cover" @endif>
-                            <div class="col-md-8 px-0">
-                                <h1 class="display-4 font-italic"><a href="{{ route('blog.post', $post->slug) }}"
-                                                                     class="text-white text-decoration-none">{{ $post->title }}</a>
-                                </h1>
-                                <p class="lead my-3"><a href="{{ route('blog.post', $post->slug) }}"
-                                                        class="text-white text-decoration-none">{{ $post->summary }}</a></p>
-                                <p class="lead mb-0"><a href="{{ route('blog.post', $post->slug) }}"
-                                                        class="text-white font-weight-bold">Continue reading...</a></p>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            @endif
-        </div>
-
         <main role="main">
             <div class="row">
                 <div class="col-md-8 blog-main">
-                    <h3 class="pb-4 mb-4 font-italic border-bottom">
-                        {{ __('canvas::blog.posts.label') }}
-                    </h3>
                     @if(count($data['posts']) > 0)
-                        {{ $data['posts']->links() }}
-
                         @foreach($data['posts'] as $post)
-                            @if(!$loop->first)
-                                <div class="blog-post">
-                                    <h2 class="blog-post-title"><a href="{{ route('blog.post', $post->slug) }}" class="text-dark text-decoration-none">{{ $post->title }}</a></h2>
-                                    <p class="blog-post-meta small">{{ $post->published_at->format('M d') }} — {{ $post->read_time }}</p>
-                                    <p><a href="{{ route('blog.post', $post->slug) }}" class="text-dark text-decoration-none">{{ $post->summary }}</a></p>
-                                </div>
-                            @endif
+                            <div class="blog-post">
+                                <h2 class="blog-post-title"><a href="{{ route('blog.post', $post->slug) }}" class="text-dark text-decoration-none">{{ $post->title }}</a></h2>
+                                <p class="blog-post-meta small">Published {{ $post->published_at->format('M d') }} by {{ $post->author->name }} </p>
+                                <p><a href="{{ route('blog.post', $post->slug) }}" class="text-dark text-decoration-none">{{ $post->summary }}</a></p>
+                            </div>
                         @endforeach
                     @else
-                        <p class="mt-4">{{ __('canvas::blog.empty.description') }} <a href="{{ route('canvas.post.create') }}">
-                                {{ __('canvas::blog.empty.action') }}</a>.</p>
+                        <p class="mt-4">No blog posts available.</p>
                     @endif
                 </div>
             </div>
