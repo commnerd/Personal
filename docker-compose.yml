@@ -1,0 +1,20 @@
+version: "3"
+services:
+    nginx:
+        image: nginx:1.14.0
+        volumes:
+            - ./docker/nginx/personal:/etc/nginx/conf.d/default.conf
+            - .:/var/www/personal
+        ports:
+            - ${WEB_PORT}:80
+    php-fpm:
+        build: docker/php-fpm
+        volumes:
+            - .:/var/www/personal
+    mysql:
+        image: mysql:5.7.29
+        environment:
+            - MYSQL_RANDOM_ROOT_PASSWORD=true
+            - MYSQL_DATABASE=${DB_CONNECTION}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
