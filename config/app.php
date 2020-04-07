@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
          Laravel\Socialite\SocialiteServiceProvider::class,
+         TCG\Voyager\VoyagerServiceProvider::class,
 
         /*
          * Application Service Providers...
