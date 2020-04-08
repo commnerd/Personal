@@ -20,10 +20,10 @@
                         >
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ route('canvas.post.index') }}">{{ __('canvas::blog.nav.user.posts') }}</a>
-                        <a class="dropdown-item" href="{{ route('canvas.tag.index') }}">{{ __('canvas::blog.nav.user.tags') }}</a>
-                        <a class="dropdown-item" href="{{ route('canvas.topic.index') }}">{{ __('canvas::blog.nav.user.topics') }}</a>
-                        <a class="dropdown-item" href="{{ route('canvas.index') }}">{{ __('canvas::blog.nav.user.stats') }}</a>
+                        <a class="dropdown-item" href="{{ route('blog.post.index') }}">{{ __('canvas::blog.nav.user.posts') }}</a>
+                        <a class="dropdown-item" href="{{ route('blog.tag.index') }}">{{ __('canvas::blog.nav.user.tags') }}</a>
+                        <a class="dropdown-item" href="{{ route('blog.topic.index') }}">{{ __('canvas::blog.nav.user.topics') }}</a>
+                        <a class="dropdown-item" href="{{ route('blog.index') }}">{{ __('canvas::blog.nav.user.stats') }}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}">
                             {{ __('canvas::blog.nav.user.logout') }}
@@ -35,7 +35,7 @@
 
         @guest()
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="text-muted" href="{{ route('canvas.index') }}">{{ __('canvas::blog.nav.user.login') }}</a>
+                <a class="text-muted" href="{{ route('blog.index') }}">{{ __('canvas::blog.nav.user.login') }}</a>
             </div>
         @endguest
     </div>

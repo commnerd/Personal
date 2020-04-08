@@ -43,8 +43,8 @@ class QuotesTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Create Quote');
-        $response->assertSee('<input type="text" name="source" value="" class="form-control">');
-        $response->assertSee('<div class="quill-editor form-control" data-name="quote"></div>');
+        $response->assertSee('<input type="text" name="source" value="" class="form-control">', false);
+        $response->assertSee('<div class="quill-editor form-control" data-name="quote"></div>', false);
         $response->assertSee(view('shared.form.submit'));
     }
 
@@ -89,8 +89,8 @@ class QuotesTest extends TestCase
         $response = $this->get(route('admin.quotes.edit', ['quote' => $quote]));
 
         $response->assertSee('Edit Quote');
-        $response->assertSee('<input type="text" name="source" value="Test Source" class="form-control">');
-        $response->assertSee('<div class="quill-editor form-control" data-name="quote">Test Quote</div>');
+        $response->assertSee('<input type="text" name="source" value="Test Source" class="form-control">', false);
+        $response->assertSee('<div class="quill-editor form-control" data-name="quote">Test Quote</div>', false);
         $response->assertSee(view('shared.form.submit'));
     }
 

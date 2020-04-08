@@ -42,8 +42,8 @@ class DailyReminderTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Create Daily Reminder');
-        $response->assertSee('<input type="text" name="reference" value="" class="form-control">');
-        $response->assertSee('<div class="quill-editor form-control" data-name="reminder"></div>');
+        $response->assertSee('<input type="text" name="reference" value="" class="form-control">', false);
+        $response->assertSee('<div class="quill-editor form-control" data-name="reminder"></div>', false);
         $response->assertSee(view('shared.form.submit'));
     }
 
@@ -86,8 +86,8 @@ class DailyReminderTest extends TestCase
         $response = $this->get(route('admin.daily_reminder.edit', [$reminder]));
 
         $response->assertSee('Edit Daily Reminder');
-        $response->assertSee('<input type="text" name="reference" value="Test Reference" class="form-control">');
-        $response->assertSee('<div class="quill-editor form-control" data-name="reminder">Test Reminder</div>');
+        $response->assertSee('<input type="text" name="reference" value="Test Reference" class="form-control">', false);
+        $response->assertSee('<div class="quill-editor form-control" data-name="reminder">Test Reminder</div>', false);
         $response->assertSee(view('shared.form.submit'));
     }
 

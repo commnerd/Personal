@@ -40,9 +40,9 @@ class OrderControllerTest extends TestCase
 
          $response->assertSee("McDonalds Orders List");
 
-         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route('orders.create', [$restaurant]).'"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route('orders.create', [$restaurant]).'"></a>', false);
 
-         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route('orders.edit', [$restaurant, $order]).'"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route('orders.edit', [$restaurant, $order]).'"></a>', false);
 
          $response->assertSee('#1');
      }
@@ -62,11 +62,11 @@ class OrderControllerTest extends TestCase
 
           $response->assertSee("Create Order for McDonalds");
 
-          $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
+          $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />', false);
 
-          $response->assertSee('<label for="label" class="control-label col-lg-12">Label</label>');
+          $response->assertSee('<label for="label" class="control-label col-lg-12">Label</label>', false);
 
-          $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>');
+          $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>', false);
 
           $response->assertSee(view('shared.form.submit'));
       }
@@ -114,13 +114,13 @@ class OrderControllerTest extends TestCase
 
            $response->assertSuccessful();
 
-           $response->assertSee('Edit order &quot;#1&quot; for McDonalds');
+           $response->assertSee('Edit order "#1" for McDonalds');
 
-           $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />');
+           $response->assertSee('<input type="hidden" name="restaurant_id" value="1" />', false);
 
-           $response->assertSee('<label for="label" class="control-label col-lg-12">Label</label>');
+           $response->assertSee('<label for="label" class="control-label col-lg-12">Label</label>', false);
 
-           $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>');
+           $response->assertSee('<label for="notes" class="control-label col-lg-12">Notes</label>', false);
 
            $response->assertSee(view('shared.form.submit'));
        }
@@ -151,15 +151,15 @@ class OrderControllerTest extends TestCase
 
            $response = $this->get('/food/restaurants/1/orders');
 
-           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
+           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
 
-           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
+           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
 
            $response = $this->get('/food/restaurants/1/orders/create');
 
-           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
+           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
 
-           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
+           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
 
            Order::create([
                'restaurant_id' => 1,
@@ -170,9 +170,9 @@ class OrderControllerTest extends TestCase
 
            $response = $this->get('/food/restaurants/1/orders/1/edit');
 
-           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
+           $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
 
-           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
+           $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
        }
 
 }

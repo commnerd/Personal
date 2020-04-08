@@ -37,11 +37,11 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee(self::TEST_DRINK["name"]);
 
-         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route("admin.drinks.create").'"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route("admin.drinks.create").'"></a>', false);
 
-         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route("admin.drinks.edit", 1).'"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route("admin.drinks.edit", 1).'"></a>', false);
 
-         $response->assertSee('<a href="'.route("admin.drinks.show", 1).'">'.self::TEST_DRINK["name"].'</a>');
+         $response->assertSee('<a href="'.route("admin.drinks.show", 1).'">'.self::TEST_DRINK["name"].'</a>', false);
      }
 
      /**
@@ -57,9 +57,9 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee('Create Drink');
 
-         $response->assertSee('<input type="text" name="name"');
+         $response->assertSee('<input type="text" name="name"', false);
 
-         $response->assertSee('<div class="quill-editor form-control" data-name="recipe"></div>');
+         $response->assertSee('<div class="quill-editor form-control" data-name="recipe"></div>', false);
 
          $response->assertSee(view('shared.form.submit'));
      }
@@ -129,9 +129,9 @@ class DrinksControllerTest extends TestCase
 
          $response->assertSee('Edit Drink (' . self::TEST_DRINK["name"] . ')');
 
-         $response->assertSee('<input type="text" name="name"');
+         $response->assertSee('<input type="text" name="name"', false);
 
-         $response->assertSee('<div class="quill-editor form-control" data-name="recipe">Some recipe here</div>');
+         $response->assertSee('<div class="quill-editor form-control" data-name="recipe">Some recipe here</div>', false);
 
          $response->assertSee(view('shared.form.submit'));
      }

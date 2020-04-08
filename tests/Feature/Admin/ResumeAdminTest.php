@@ -59,12 +59,12 @@ class ResumeAdminTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Create Employment Record');
-        $response->assertSee('<input type="text" name="employer" value="" class="form-control">');
-        $response->assertSee('<input type="text" name="position" value="" class="form-control">');
-        $response->assertSee('<input type="text" name="location" value="" class="form-control">');
-        $response->assertSee('<input type="text" name="start_date" value="" class="form-control month-picker">');
-        $response->assertSee('<input type="text" name="end_date" value="" class="form-control month-picker">');
-        $response->assertSee('<div class="quill-editor form-control" data-name="bullets"></div>');
+        $response->assertSee('<input type="text" name="employer" value="" class="form-control">', false);
+        $response->assertSee('<input type="text" name="position" value="" class="form-control">', false);
+        $response->assertSee('<input type="text" name="location" value="" class="form-control">', false);
+        $response->assertSee('<input type="text" name="start_date" value="" class="form-control month-picker">', false);
+        $response->assertSee('<input type="text" name="end_date" value="" class="form-control month-picker">', false);
+        $response->assertSee('<div class="quill-editor form-control" data-name="bullets"></div>', false);
         $response->assertSee(view('shared.form.submit'));
     }
 
@@ -113,12 +113,12 @@ class ResumeAdminTest extends TestCase
         $response = $this->get(route('admin.resume.edit', [$record]));
 
         $response->assertSee('Edit Employment Record (Test Employer)');
-        $response->assertSee('<input type="text" name="employer" value="Test Employer" class="form-control">');
-        $response->assertSee('<input type="text" name="position" value="Test Position" class="form-control">');
-        $response->assertSee('<input type="text" name="location" value="Test Location, ST" class="form-control">');
-        $response->assertSee('<input type="text" name="start_date" value="Jun 2017" class="form-control month-picker">');
-        $response->assertSee('<input type="text" name="end_date" value="Dec 2017" class="form-control month-picker">');
-        $response->assertSee('<div class="quill-editor form-control" data-name="bullets">Test content for job</div>');
+        $response->assertSee('<input type="text" name="employer" value="Test Employer" class="form-control">', false);
+        $response->assertSee('<input type="text" name="position" value="Test Position" class="form-control">', false);
+        $response->assertSee('<input type="text" name="location" value="Test Location, ST" class="form-control">', false);
+        $response->assertSee('<input type="text" name="start_date" value="Jun 2017" class="form-control month-picker">', false);
+        $response->assertSee('<input type="text" name="end_date" value="Dec 2017" class="form-control month-picker">', false);
+        $response->assertSee('<div class="quill-editor form-control" data-name="bullets">Test content for job</div>', false);
         $response->assertSee(view('shared.form.submit'));
     }
 

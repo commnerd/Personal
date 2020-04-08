@@ -144,7 +144,7 @@ class MainPageTest extends TestCase
     public function testDrinkLinks()
     {
         $response = $this->get(route('voyager.dashboard'));
-        // dd($response);
+
         $response->assertSuccessful();
 
         $response->assertSee('Drinks');

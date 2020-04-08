@@ -34,11 +34,11 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('Restaurant List');
 
-         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route('restaurants.create').'"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-plus" href="'.route('restaurants.create').'"></a>', false);
 
-         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route('restaurants.edit', [$restaurant]).'"></a>');
+         $response->assertSee('<a class="glyphicon glyphicon-edit" href="'.route('restaurants.edit', [$restaurant]).'"></a>', false);
 
-         $response->assertSee('<a href="'.route('restaurants.show', [$restaurant]).'">McDonalds</a>');
+         $response->assertSee('<a href="'.route('restaurants.show', [$restaurant]).'">McDonalds</a>', false);
      }
 
      /**
@@ -54,9 +54,9 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('Create Restaurant');
 
-         $response->assertDontSee('<input type="radio" name="default_order"');
+         $response->assertDontSee('<input type="radio" name="default_order"', false);
 
-         $response->assertSee('<input type="text" name="name"');
+         $response->assertSee('<input type="text" name="name"', false);
 
          $response->assertSee(view('shared.form.submit'));
      }
@@ -126,7 +126,7 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee($order->notes);
 
-         $response->assertDontSee('<input class="btn btn-default" type="submit" />');
+         $response->assertDontSee('<input class="btn btn-default" type="submit" />', false);
      }
 
      /**
@@ -160,9 +160,9 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee('Edit McDonalds');
 
-         $response->assertDontSee('<input type="radio" name="default_order"');
+         $response->assertDontSee('<input type="radio" name="default_order"', false);
 
-         $response->assertSee('<input type="text" name="name"');
+         $response->assertSee('<input type="text" name="name"', false);
 
          $response->assertSee(view('shared.form.submit'));
      }
@@ -192,9 +192,9 @@ class RestaurantControllerTest extends TestCase
 
          $response->assertSee("Orders for $restaurant->name:");
 
-         $response->assertDontSee('<input type="radio" name="default_order"');
+         $response->assertDontSee('<input type="radio" name="default_order"', false);
 
-         $response->assertSee('<input type="text" name="name"');
+         $response->assertSee('<input type="text" name="name"', false);
 
          $response->assertSee(view('shared.form.submit'));
      }
@@ -233,23 +233,23 @@ class RestaurantControllerTest extends TestCase
      {
          $response = $this->get('/food/restaurants');
 
-         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
+         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
 
-         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
+         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
 
          $response = $this->get('/food/restaurants/create');
 
-         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
+         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
 
-         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
+         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
 
          Restaurant::create(['name' => 'Test Restaurant']);
 
          $response = $this->get('/food/restaurants/1/edit');
 
-         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">');
+         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
 
-         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>');
+         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
      }
 
      /**
