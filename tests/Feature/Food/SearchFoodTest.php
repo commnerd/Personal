@@ -48,7 +48,7 @@ class SearchFoodTest extends TestCase
     {
         Auth::logout();
 
-        $response = $this->get('/food', ['term' => 'Restaurant']);
+        $response = $this->get('/food', ['q' => 'Restaurant']);
 
         $response->assertStatus(302);
     }
@@ -60,7 +60,7 @@ class SearchFoodTest extends TestCase
      */
     public function testEmptyFoodSearch()
     {
-        $response = $this->get('/food', ['term' => 'Bilbo']);
+        $response = $this->get('/food', ['q' => 'Bilbo']);
 
         $response->assertSuccessful();
 
@@ -74,7 +74,7 @@ class SearchFoodTest extends TestCase
      */
     public function testMultipleFoodSearchRestaurantResults()
     {
-        $response = $this->get('/food?term=Restaurant');
+        $response = $this->get('/food?q=Restaurant');
 
         $response->assertSuccessful();
 
@@ -89,7 +89,7 @@ class SearchFoodTest extends TestCase
      */
     public function testSingleFoodSearchRestaurantResult()
     {
-        $response = $this->get('/food?term=Restaurant+1');
+        $response = $this->get('/food?q=Restaurant+1');
 
         $response->assertStatus(302);
 
@@ -103,7 +103,7 @@ class SearchFoodTest extends TestCase
      */
     public function testMultipleFoodSearchOrderResults()
     {
-        $response = $this->get('/food?term=order');
+        $response = $this->get('/food?q=order');
 
         $response->assertSuccessful();
 
@@ -120,7 +120,7 @@ class SearchFoodTest extends TestCase
      */
     public function testSingleFoodSearchOrderResult()
     {
-        $response = $this->get('/food?term=order+1');
+        $response = $this->get('/food?q=order+1');
 
         $response->assertStatus(302);
 

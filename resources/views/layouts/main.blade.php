@@ -13,7 +13,7 @@
     <body class="{{ $slug }}">
         @include('shared.flash-message')
         <header>
-            {{ menu('primary') }}
+            {{ menu('primary', ($searchable ?? false) ? 'vendor.voyager.menu.search' : 'vendor.voyager.menu.default') }}
             <div class="header-content">
                 @yield('header')
             </div>

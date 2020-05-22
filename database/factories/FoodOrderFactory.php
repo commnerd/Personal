@@ -6,6 +6,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Food\Order::class, function (Faker $faker) {
     return [
-        //
+        "label" => $faker->name,
+        "notes" => $faker->paragraph,
     ];
 });

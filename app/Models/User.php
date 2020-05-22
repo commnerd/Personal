@@ -5,7 +5,6 @@ namespace App\Models;
 use TCG\Voyager\Models\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Laravel\Passport\Passport;
 
 class User extends Authenticatable
 {

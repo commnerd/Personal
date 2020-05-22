@@ -38,7 +38,7 @@ class LoginController extends Controller
     public function redirectToProvider(): RedirectResponse
     {
         if(config('app.env') === 'production') {
-            return Socialite::driver('google')->redirect();
+            return Socialite::driver('google')->stateless()->redirect();
         }
         request()->session()->put('intended', url()->previous());
         return redirect()->route('login.callback', );
@@ -52,13 +52,12 @@ class LoginController extends Controller
     public function handleProviderCallback(): RedirectResponse
     {
         $user = config('app.env') === 'production' ?
-            User::where('email', Socialite::driver('google')->user()->email)->first() :
+            User::where('email', Socialite::driver('google')->stateless()->user()->email)->first() :
             User::findOrFail(1);
 
-        if (!empty($user) && Auth::loginUsingId($user->id)) {
+        if (!empty($user) && Auth::loginUsingId($user->id, true)) {
             if(!empty(request()->session()->get('intended'))) {
-                $uri = request()->session()->get('intended');
-                request()->session()->put('intended', null);
+                $uri = request()->session()->pull('intended');
                 return redirect($uri);
             }
         }

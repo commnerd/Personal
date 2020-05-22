@@ -16,8 +16,8 @@ class FoodController extends Controller
     {
         $results = new Collection();
 
-        if(!empty($request->term)) {
-            $results = SearchService::find($request->term);
+        if(!empty($request->q)) {
+            $results = SearchService::find($request->q);
         }
 
         return response()->json($results->map(function($item) { return $item['label']; }));

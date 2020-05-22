@@ -4,6 +4,17 @@
 
 @section('content')
 <h1 class="center">Drink List <a class="glyphicon glyphicon-plus" href="{{ route('admin.drinks.create') }}"></a></h1>
+<form method="GET" class="form-horizontal">
+    <div class="col-xs-12 col-md-10">
+        <input type="text" class="form-control" name="q" value="{{ request()->q }}" id="query" placeholder="Search" />
+    </div>
+    <div class="col-xs-12 col-md-2">
+        <button type="submit" class="btn btn-primary col-xs-12">Submit</button>
+    </div>
+</form>
+<div class="center">
+    {{ $drinks->links() }}
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -29,5 +40,8 @@
         @endif
     </tbody>
 </table>
+<div class="center">
+    {{ $drinks->links() }}
+</div>
 @include('shared.delete-modal', ['entity' => 'drink'])
 @endsection

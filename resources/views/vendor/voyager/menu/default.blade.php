@@ -66,15 +66,17 @@
           </li>
 
         @endforeach
-
         @if(Auth::check())
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 @if(Auth::user()->hasPermission('browse_admin'))
-                <li><a href="{{ url('/admin') }}">Admin</a></li>
+                    <li><a href="{{ url('/admin') }}">Admin</a></li>
+                    <li role="separator" class="divider"></li>
                 @endif
-                <li><a href="{{ route('restaurants.index') }}">Food</a></li>
+                <li><p class="navbar-text">Food</p></li>
+                <li><a href="{{ route('restaurants.index') }}">Edit</a></li>
+                <li><a href="{{ route('food.search') }}">Search</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>

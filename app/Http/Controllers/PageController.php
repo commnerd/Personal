@@ -21,12 +21,9 @@ class PageController extends Controller
             $error = 'Your form submission was invalid.';
         }
 
-        $quote = null;
-        $quoteCount = Quote::where('active', true)->count();
-
-        if($quoteCount > 0) {
-            $quote = Quote::where('active', true)->firstOrFail();
-        }
+        $quote = Quote::where("active", true)
+            ->orderBy("created_at", "DESC")
+            ->first();
 
         return view('home', compact('quote', 'error'));
     }
@@ -57,7 +54,7 @@ class PageController extends Controller
      * @return View Display resume page
      */
     public function quotes(): View {
-        $quotes = Quote::paginate(self::PAGE_COUNT);
+        $quotes = Quote::orderBy("created_at", "DESC")->paginate(self::PAGE_COUNT);
 
         return view('quotes', compact('quotes'));
     }

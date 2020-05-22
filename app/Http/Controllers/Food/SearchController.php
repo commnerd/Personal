@@ -21,8 +21,8 @@ class SearchController extends FoodController
         {
             $results = new Collection();
 
-            if(!empty($request->term)) {
-                $results = SearchService::find($request->term);
+            if(!empty($request->q)) {
+                $results = SearchService::collect();
             }
 
             if($results->count() === 1) {
@@ -32,8 +32,6 @@ class SearchController extends FoodController
                 return response(null, 302)->withHeaders($headers);
             }
 
-            return response()->view('food.search', [
-                'results' => $results->map(function($item) { return $item['label']; }),
-            ]);
+            return response()->view('food.search', compact('results'));
         }
 }

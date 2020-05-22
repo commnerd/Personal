@@ -8,11 +8,11 @@ use App\Models\Food\Order;
 
 class Search
 {
-    public static function find(string $term): Collection
+    public static function collect(): Collection
     {
         $collection = new Collection();
 
-        $restaurants = Restaurant::where('name', 'like', '%'.$term.'%')->get();
+        $restaurants = Restaurant::all();
         foreach($restaurants as $restaurant) {
             if(!$collection->contains($restaurant->name)) {
                 $collection = $collection->push([
@@ -22,9 +22,7 @@ class Search
             }
         }
 
-        $orders = Order::where('label', 'like', '%'.$term.'%')
-                        ->orWhere('notes', 'like', '%'.$term.'%')
-                        ->get();
+        $orders = Order::all();
         foreach($orders as $order) {
             if(!$collection->contains($order->label)) {
                 $collection = $collection->push([

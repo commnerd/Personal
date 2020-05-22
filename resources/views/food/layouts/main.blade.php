@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{{ elixir('/css/food/app.css') }}">
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             @yield('content')
         </div>
         <script async src="{{ elixir('/js/food/app.js') }}"></script>
