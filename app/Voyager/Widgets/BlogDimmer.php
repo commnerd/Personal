@@ -36,7 +36,7 @@ class BlogDimmer extends BaseDimmer
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => __("Manage Blog"),
-                'link' => route('blog.index'),
+                'link' => route('canvas'),
             ],
             'image' => 'storage/admin/blog.jpg',
         ]));
