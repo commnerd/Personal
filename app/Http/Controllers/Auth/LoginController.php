@@ -41,7 +41,7 @@ class LoginController extends Controller
             return Socialite::driver('google')->stateless()->redirect();
         }
         request()->session()->put('intended', url()->previous());
-        return redirect()->route('login.callback', );
+        return redirect()->route('login.callback');
     }
 
     /**

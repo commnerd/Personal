@@ -11,10 +11,6 @@
 |
 */
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Models\ContactMessage;
-
 Route::get('/', 'PageController@home')->name('home');
 Route::get('/resume', 'PageController@resume')->name('resume');
 Route::get('/portfolio', 'PageController@portfolio')->name('portfolio');
@@ -32,7 +28,6 @@ Route::group(['middleware' => ['auth.custom']], function() {
     Route::any('logout', 'Auth\LogoutController@handleLogout')->name('logout');
 
     Route::prefix('admin')->group(function() {
-        Voyager::routes();
 
         Route::namespace('Admin')->name('admin.')->group(function() {
             Route::resource('resume', 'ResumeController');
@@ -43,6 +38,9 @@ Route::group(['middleware' => ['auth.custom']], function() {
             Route::resource('portfolio', 'PortfolioController');
             Route::resource('contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
         });
+
+        Voyager::routes();
+
     });
 
     Route::namespace('Food')->prefix('food')->group(function() {
