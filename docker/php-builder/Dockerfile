@@ -1,4 +1,4 @@
-FROM php:7.3.11-cli
+FROM php:7.2.24-cli
 
 VOLUME /var/www/personal
 
