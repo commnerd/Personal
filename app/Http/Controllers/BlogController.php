@@ -64,7 +64,7 @@ class BlogController extends Controller
             }
 
             $data = [
-                'author' => $post->author,
+                'author' => $post->user,
                 'post'   => $post,
                 'meta'   => $post->meta,
                 'next'   => $next,

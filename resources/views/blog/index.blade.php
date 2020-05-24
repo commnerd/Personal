@@ -32,7 +32,7 @@
                         @foreach($data['posts'] as $post)
                             <div class="blog-post">
                                 <h2 class="blog-post-title"><a href="{{ route('blog.post', $post->slug) }}" class="text-dark text-decoration-none">{{ $post->title }}</a></h2>
-                                <p class="blog-post-meta small">Published {{ $post->published_at->format('M d') }} by {{ $post->author->name }} </p>
+                                <p class="blog-post-meta small">Published {{ $post->published_at->format('M d') }} by {{ $post->user->name }} </p>
                                 <p><a href="{{ route('blog.post', $post->slug) }}" class="text-dark text-decoration-none">{{ $post->summary }}</a></p>
                             </div>
                         @endforeach
