@@ -3,7 +3,7 @@
 @section('title', 'Drink List')
 
 @section('content')
-<h1 class="center">Drink List <a class="glyphicon glyphicon-plus" href="{{ route('admin.drinks.create') }}"></a></h1>
+<h1 class="center">Drink List <a class="glyphicon glyphicon-plus" href="{{ route('admin.manage.drinks.create') }}"></a></h1>
 <form method="GET" class="form-horizontal">
     <div class="col-xs-12 col-md-10">
         <input type="text" class="form-control" name="q" value="{{ request()->q }}" id="query" placeholder="Search" />
@@ -30,10 +30,10 @@
         @else
             @foreach($drinks as $drink)
                 <tr>
-                    <td><a href="{{ route('admin.drinks.show', $drink) }}">{{ $drink->name }}</a></td>
+                    <td><a href="{{ route('admin.manage.drinks.show', $drink) }}">{{ $drink->name }}</a></td>
                     <td>
-                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.drinks.edit', [$drink]) }}"></a>
-                        @include('shared.form.delete_link', ['action' => route('admin.drinks.destroy', [$drink])])
+                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.manage.drinks.edit', [$drink]) }}"></a>
+                        @include('shared.form.delete_link', ['action' => route('admin.manage.drinks.destroy', [$drink])])
                     </td>
                 </tr>
             @endforeach

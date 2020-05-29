@@ -5,7 +5,7 @@
 @section('content')
     @include('admin.resume.form', [
         'title' => $title,
-        'action' => route('admin.resume.store'),
+        'action' => route('admin.manage.resume.store'),
         'method' => 'POST',
     ])
 @endsection

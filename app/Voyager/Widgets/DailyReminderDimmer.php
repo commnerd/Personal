@@ -36,7 +36,7 @@ class DailyReminderDimmer extends BaseDimmer
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => "View {$lower}",
-                'link' => route('admin.daily_reminder.index'),
+                'link' => route('admin.manage.daily_reminder.index'),
             ],
             'image' => '/storage/admin/reminders.jpg',
         ]));

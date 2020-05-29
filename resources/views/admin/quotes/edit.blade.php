@@ -5,7 +5,7 @@
 @section('content')
     @include('admin.quotes.form', [
         'title' => "Edit Quote",
-        'action' => route('admin.quotes.update', $quote),
+        'action' => route('admin.manage.quotes.update', $quote),
         'method' => 'PUT',
         'dailyReminder' => $quote,
     ])

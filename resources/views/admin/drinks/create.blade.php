@@ -5,7 +5,7 @@
 @section('content')
     @include('admin.drinks.form', [
         'title' => $title,
-        'action' => route('admin.drinks.store'),
+        'action' => route('admin.manage.drinks.store'),
         'method' => 'POST',
     ])
 @endsection

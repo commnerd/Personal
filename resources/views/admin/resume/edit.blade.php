@@ -5,7 +5,7 @@
 @section('content')
     @include('admin.resume.form', [
         'title' => "Edit Employment Record ($record->employer)",
-        'action' => route('admin.resume.update', $record),
+        'action' => route('admin.manage.resume.update', $record),
         'method' => 'PUT',
         'record' => $record,
     ])

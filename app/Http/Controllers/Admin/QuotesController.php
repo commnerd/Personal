@@ -33,7 +33,7 @@ class QuotesController extends Controller
 
         Quote::findOrFail($request->activate)->update(['active' => true]);
 
-        return redirect()->route('admin.quotes.index');
+        return redirect()->route('admin.manage.quotes.index');
     }
 
     /**
@@ -61,7 +61,7 @@ class QuotesController extends Controller
         }
         $quote = Quote::create($request->all());
 
-        return redirect()->route('admin.quotes.index');
+        return redirect()->route('admin.manage.quotes.index');
     }
 
     /**
@@ -92,7 +92,7 @@ class QuotesController extends Controller
 
         $quote->update($request->all());
 
-        return redirect()->route('admin.quotes.index');
+        return redirect()->route('admin.manage.quotes.index');
     }
 
     /**
@@ -105,6 +105,6 @@ class QuotesController extends Controller
     {
         $quote->delete();
 
-        return redirect()->route('admin.quotes.index');
+        return redirect()->route('admin.manage.quotes.index');
     }
 }

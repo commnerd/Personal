@@ -29,7 +29,7 @@ class CreateTest extends DuskTestCase
         $drink = Drink::where('name', 'Test Drink')->firstOrFail();
 
         $this->browse(function (Browser $browser) use ($drink) {
-            $browser->visit(route('admin.drinks.show', [$drink]))
+            $browser->visit(route('admin.manage.drinks.show', [$drink]))
                     ->assertSee('Test Drink')
                     ->assertSee('Test Recipe');
         });

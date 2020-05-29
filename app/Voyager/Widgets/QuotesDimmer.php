@@ -36,7 +36,7 @@ class QuotesDimmer extends BaseDimmer
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => "View {$lower}",
-                'link' => route('admin.quotes.index'),
+                'link' => route('admin.manage.quotes.index'),
             ],
             'image' => 'storage/admin/quotes.jpg',
         ]));

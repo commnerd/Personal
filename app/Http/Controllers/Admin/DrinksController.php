@@ -55,7 +55,7 @@ class DrinksController extends Controller
 
         $drink = Drink::create($request->all());
 
-        return redirect()->route('admin.drinks.index');
+        return redirect()->route('admin.manage.drinks.index');
     }
 
     /**
@@ -82,7 +82,7 @@ class DrinksController extends Controller
 
         $drink->update($request->all());
 
-        return redirect()->route('admin.drinks.index');
+        return redirect()->route('admin.manage.drinks.index');
     }
 
     /**
@@ -95,6 +95,6 @@ class DrinksController extends Controller
     {
         $drink->delete();
 
-        return redirect(route('admin.drinks.index'));
+        return redirect()->route('admin.manage.drinks.index');
     }
 }

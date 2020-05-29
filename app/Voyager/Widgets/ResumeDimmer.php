@@ -36,7 +36,7 @@ class ResumeDimmer extends BaseDimmer
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => "View {$lower}",
-                'link' => route('admin.resume.index'),
+                'link' => route('admin.manage.resume.index'),
             ],
             'image' => '/storage/resume.png',
         ]));

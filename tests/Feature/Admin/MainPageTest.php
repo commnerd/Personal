@@ -87,7 +87,7 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Messages');
-        $response->assertSee(route('admin.contact.index'));
+        $response->assertSee(route('admin.manage.contact.index'));
         $response->assertSee('voyager-mail');
     }
 
@@ -102,7 +102,7 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Employment Record');
-        $response->assertSee(route('admin.resume.index'));
+        $response->assertSee(route('admin.manage.resume.index'));
         $response->assertSee('voyager-certificate');
     }
 
@@ -117,7 +117,7 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Daily Reminders');
-        $response->assertSee(route('admin.daily_reminder.index'));
+        $response->assertSee(route('admin.manage.daily_reminder.index'));
         $response->assertSee('voyager-receipt');
     }
 
@@ -132,7 +132,7 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Quote');
-        $response->assertSee(route('admin.quotes.index'));
+        $response->assertSee(route('admin.manage.quotes.index'));
         $response->assertSee('voyager-bubble');
     }
 
@@ -148,7 +148,7 @@ class MainPageTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertSee('Drinks');
-        $response->assertSee(route('admin.drinks.index'));
+        $response->assertSee(route('admin.manage.drinks.index'));
         $response->assertSee('voyager-rum');
     }
 }

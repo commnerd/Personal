@@ -41,7 +41,7 @@ class DailyReminderController extends AdminController
     {
         DailyReminder::create($request->all());
 
-        return redirect()->route('admin.daily_reminder.index');
+        return redirect()->route('admin.manage.daily_reminder.index');
     }
 
     /**
@@ -66,7 +66,7 @@ class DailyReminderController extends AdminController
     {
         $dailyReminder->update($request->all());
 
-        return redirect()->route('admin.daily_reminder.index');
+        return redirect()->route('admin.manage.daily_reminder.index');
     }
 
     /**
@@ -79,6 +79,6 @@ class DailyReminderController extends AdminController
     {
         $dailyReminder->delete();
 
-        return redirect(route('admin.daily_reminder.index'));
+        return redirect()->route('admin.manage.daily_reminder.index');
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
     @include('admin.drinks.form', [
         'title' => "Edit Drink ($drink->name)",
-        'action' => route('admin.drinks.update', $drink),
+        'action' => route('admin.manage.drinks.update', $drink),
         'method' => 'PUT',
         'record' => $drink,
     ])

@@ -41,7 +41,7 @@ class ResumeController extends AdminController
     {
         EmploymentRecord::create($request->all());
 
-        return redirect(route('admin.resume.index'));
+        return redirect()->route('admin.manage.resume.index');
     }
 
     /**
@@ -68,7 +68,7 @@ class ResumeController extends AdminController
     {
         EmploymentRecord::findOrFail($id)->update($request->all());
 
-        return redirect(route('admin.resume.index'));
+        return redirect()->route('admin.manage.resume.index');
     }
 
     /**
@@ -81,6 +81,6 @@ class ResumeController extends AdminController
     {
         EmploymentRecord::destroy($id);
 
-        return redirect(route('admin.resume.index'));
+        return redirect()->route('admin.manage.resume.index');
     }
 }

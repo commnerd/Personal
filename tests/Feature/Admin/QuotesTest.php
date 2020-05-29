@@ -39,7 +39,7 @@ class QuotesTest extends TestCase
      */
     public function testQuoteCreationPage()
     {
-        $response = $this->get(route('admin.quotes.create'));
+        $response = $this->get(route('admin.manage.quotes.create'));
         $response->assertSuccessful();
 
         $response->assertSee('Create Quote');
@@ -55,8 +55,8 @@ class QuotesTest extends TestCase
      */
     public function testQuoteCreation()
     {
-        $response = $this->post(route('admin.quotes.store'), self::TEST_RECORD_ARRAY);
-        $response->assertRedirect(route('admin.quotes.index'));
+        $response = $this->post(route('admin.manage.quotes.store'), self::TEST_RECORD_ARRAY);
+        $response->assertRedirect(route('admin.manage.quotes.index'));
 
         $record = Quote::where('source', 'Test Source')->firstOrFail();
         $this->assertEquals($record->quote, 'Test Quote');
@@ -70,11 +70,11 @@ class QuotesTest extends TestCase
     public function testQuoteDeletion()
     {
         $record = Quote::create(self::TEST_RECORD_ARRAY);
-        $response = $this->delete(route('admin.quotes.destroy', $record));
+        $response = $this->delete(route('admin.manage.quotes.destroy', $record));
 
         $quote = Quote::where('id', $record->id)->first();
 
-        $response->assertRedirect(route('admin.quotes.index'));
+        $response->assertRedirect(route('admin.manage.quotes.index'));
         $this->assertEmpty($quote);
     }
 
@@ -86,7 +86,7 @@ class QuotesTest extends TestCase
     public function testQuoteEditPage()
     {
         $quote = Quote::create(self::TEST_RECORD_ARRAY);
-        $response = $this->get(route('admin.quotes.edit', ['quote' => $quote]));
+        $response = $this->get(route('admin.manage.quotes.edit', ['quote' => $quote]));
 
         $response->assertSee('Edit Quote');
         $response->assertSee('<input type="text" name="source" value="Test Source" class="form-control">', false);
@@ -103,13 +103,13 @@ class QuotesTest extends TestCase
     {
         $quote = Quote::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->put(route('admin.quotes.update', [$quote->id]), [
+        $response = $this->put(route('admin.manage.quotes.update', [$quote->id]), [
             'source' => 'Test Source change',
             'quote' => 'Test Quote change',
             'active' => 0,
-        ], ['HTTP_REFERER' => route('admin.quotes.index')]);
+        ], ['HTTP_REFERER' => route('admin.manage.quotes.index')]);
 
-        $response->assertRedirect(route('admin.quotes.index'));
+        $response->assertRedirect(route('admin.manage.quotes.index'));
 
         $quote = Quote::findOrFail($quote->id);
 
@@ -126,12 +126,12 @@ class QuotesTest extends TestCase
     public function testQuoteIndexPage()
     {
         Quote::truncate();
-        $response = $this->get(route('admin.quotes.index'));
+        $response = $this->get(route('admin.manage.quotes.index'));
         $response->assertSuccessful();
         $response->assertSee('No Quotes');
 
         $quote = Quote::create(self::TEST_RECORD_ARRAY);
-        $response = $this->get(route('admin.quotes.index'));
+        $response = $this->get(route('admin.manage.quotes.index'));
         $response->assertSuccessful();
         $response->assertSee($quote->source);
         $response->assertSee($quote->quote);

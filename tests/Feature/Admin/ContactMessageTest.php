@@ -29,7 +29,7 @@ class ContactMessageTest extends TestCase
 
     public function testEmptyContactMessagesOnMessageManagement()
     {
-        $response = $this->get(route('admin.contact.index'));
+        $response = $this->get(route('admin.manage.contact.index'));
 
         $response->assertSuccessful();
 
@@ -45,7 +45,7 @@ class ContactMessageTest extends TestCase
             'message' => 'Now is the time for all good men to come to the aid of their country and stuff',
         ]);
 
-        $response = $this->get(route('admin.contact.index'));
+        $response = $this->get(route('admin.manage.contact.index'));
 
         $response->assertSuccessful();
 
@@ -61,7 +61,7 @@ class ContactMessageTest extends TestCase
             'message' => 'Now is the time for all good men to come to the aid of their country and stuff',
         ]);
 
-        $response = $this->get(route('admin.contact.show', $message));
+        $response = $this->get(route('admin.manage.contact.show', $message));
 
         $response->assertSuccessful();
 
@@ -77,7 +77,7 @@ class ContactMessageTest extends TestCase
             'message' => 'Now is the time for all good men to come to the aid of their country and stuff',
         ]);
 
-        $response = $this->delete(route('admin.contact.destroy', $message));
+        $response = $this->delete(route('admin.manage.contact.destroy', $message));
 
         $response->assertStatus(302);
 

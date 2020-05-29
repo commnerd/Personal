@@ -38,7 +38,7 @@ class HomePageTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::findOrFail(1));
-            $browser->visit(route('admin.index'))
+            $browser->visit(route('admin.manage.index'))
                     ->assertSee('Test Person')
                     ->assertSee('555-555-5555');
         });

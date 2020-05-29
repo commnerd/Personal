@@ -36,7 +36,7 @@ class DrinksDimmer extends BaseDimmer
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => "View {$lower}",
-                'link' => route('admin.drinks.index'),
+                'link' => route('admin.manage.drinks.index'),
             ],
             'image' => '/storage/admin/drinks.jpg',
         ]));

@@ -1,4 +1,4 @@
-FROM php:7.2.24-fpm
+FROM php:7.3.18-fpm
 
 VOLUME /var/www/personal
 

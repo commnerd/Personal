@@ -36,7 +36,7 @@ class MessagesDimmer extends BaseDimmer
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => "View {$lower}",
-                'link' => route('admin.contact.index'),
+                'link' => route('admin.manage.contact.index'),
             ],
             'image' => '/storage/admin/messages.jpg',
         ]));
