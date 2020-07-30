@@ -24,6 +24,6 @@ Route::name('api.')->namespace('Api')->group(function() {
             });
         });
 
-        Route::resource('/daily_reminder', 'DailyReminderController')->only(['index']);
+        Route::resource('/reminder', 'ReminderController')->only(['index', 'show']);
     });
 });

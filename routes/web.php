@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth.custom']], function() {
 
         Route::namespace('Admin')->prefix("admin/manage")->name('admin.manage.')->group(function() {
             Route::resource('resume', 'ResumeController');
-            Route::resource('daily_reminder', 'DailyReminderController');
+            Route::resource('reminder', 'ReminderController');
             Route::put('quotes/activate', 'QuotesController@activate')->name('quotes.activate');
             Route::resource('drinks', 'DrinksController');
             Route::resource('quotes', 'QuotesController');

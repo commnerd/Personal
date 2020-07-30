@@ -7,6 +7,6 @@
         'title' => "Edit Quote",
         'action' => route('admin.manage.quotes.update', $quote),
         'method' => 'PUT',
-        'dailyReminder' => $quote,
+        'reminder' => $quote,
     ])
 @endsection

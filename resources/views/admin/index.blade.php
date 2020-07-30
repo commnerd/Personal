@@ -64,10 +64,10 @@
 </div>
 <div class="row">
     <fieldset class="col-sm-6">
-        <legend>Daily Reminders</legend>
+        <legend>Reminders</legend>
         <div class="list-group">
-            <a href="{{ route('admin.manage.daily_reminder.index') }}" class="list-group-item">Manage Daily Reminders</a>
-            <a href="{{ route('admin.manage.daily_reminder.create') }}" class="list-group-item">Add Daily Reminder</a>
+            <a href="{{ route('admin.manage.reminder.index') }}" class="list-group-item">Manage Reminders</a>
+            <a href="{{ route('admin.manage.reminder.create') }}" class="list-group-item">Add Reminder</a>
         </div>
     </fieldset>
     <fieldset class="col-sm-6">

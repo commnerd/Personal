@@ -149,7 +149,7 @@ return [
             \App\Voyager\Widgets\BlogDimmer::class,
             \App\Voyager\Widgets\MessagesDimmer::class,
             \App\Voyager\Widgets\ResumeDimmer::class,
-            \App\Voyager\Widgets\DailyReminderDimmer::class,
+            \App\Voyager\Widgets\ReminderDimmer::class,
             \App\Voyager\Widgets\QuotesDimmer::class,
             \App\Voyager\Widgets\DrinksDimmer::class,
         ],

@@ -1,10 +1,10 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Daily Reminder List')
+@section('title', 'Reminder List')
 
 @section('content')
-<h1 class="center">Daily Reminder List <a class="glyphicon glyphicon-plus" href="{{ route('admin.manage.daily_reminder.create') }}"></a></h1>
-{{ $dailyReminders->links() }}
+<h1 class="center">Reminder List <a class="glyphicon glyphicon-plus" href="{{ route('admin.manage.reminder.create') }}"></a></h1>
+{{ $reminders->links() }}
 <table class="table">
     <thead>
         <tr>
@@ -14,24 +14,24 @@
         </tr>
     </thead>
     <tbody>
-        @if($dailyReminders->count() <= 0)
+        @if($reminders->count() <= 0)
             <tr>
                 <td colspan="2" class="center">No Reminders</td>
             </tr>
         @else
-            @foreach($dailyReminders as $reminder)
+            @foreach($reminders as $reminder)
                 <tr>
                     <td>{{ $reminder->reference }}</td>
                     <td>{!! $reminder->reminder !!}</td>
                     <td>
-                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.manage.daily_reminder.edit', [$reminder]) }}"></a>
-                        @include('shared.form.delete_link', ['action' => route('admin.manage.daily_reminder.destroy', [$reminder])])
+                        <a class="glyphicon glyphicon-edit" href="{{ route('admin.manage.reminder.edit', [$reminder]) }}"></a>
+                        @include('shared.form.delete_link', ['action' => route('admin.manage.reminder.destroy', [$reminder])])
                     </td>
                 </tr>
             @endforeach
         @endif
     </tbody>
 </table>
-{{ $dailyReminders->links() }}
+{{ $reminders->links() }}
 @include('shared.delete-modal', ['entity' => 'reminder'])
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class DailyReminder extends Model
+class Reminder extends Model
 {
     /**
      * Get validation rules for model

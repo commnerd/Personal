@@ -107,17 +107,17 @@ class MainPageTest extends TestCase
     }
 
     /**
-     * Basic test for daily reminder links
+     * Basic test for reminder links
      *
      * @return void
      */
-    public function testDailyReminderLinks()
+    public function testReminderLinks()
     {
         $response = $this->get(route('voyager.dashboard'));
         $response->assertSuccessful();
 
-        $response->assertSee('Daily Reminders');
-        $response->assertSee(route('admin.manage.daily_reminder.index'));
+        $response->assertSee('Reminders');
+        $response->assertSee(route('admin.manage.reminder.index'));
         $response->assertSee('voyager-receipt');
     }
 
@@ -144,11 +144,11 @@ class MainPageTest extends TestCase
     public function testDrinkLinks()
     {
         $response = $this->get(route('voyager.dashboard'));
-
         $response->assertSuccessful();
 
         $response->assertSee('Drinks');
         $response->assertSee(route('admin.manage.drinks.index'));
+
         $response->assertSee('voyager-rum');
     }
 }

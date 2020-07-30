@@ -3,9 +3,9 @@
 @section('title', $title)
 
 @section('content')
-    @include('admin.daily_reminder.form', [
+    @include('admin.reminder.form', [
         'title' => $title,
-        'action' => route('admin.manage.daily_reminder.store'),
+        'action' => route('admin.manage.reminder.store'),
         'method' => 'POST',
     ])
 @endsection

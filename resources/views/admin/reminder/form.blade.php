@@ -16,7 +16,7 @@
             @include('shared.form.text_input', [
                 'slug' => 'reference',
                 'label' => 'Reference',
-                'value' => $dailyReminder->reference ?? old('reference'),
+                'value' => $reminder->reference ?? old('reference'),
                 'errors' => $errors->get('reference')
             ])
         </div>
@@ -24,7 +24,7 @@
             @include('shared.form.text_area', [
                 'slug' => 'reminder',
                 'label' => 'Reminder',
-                'value' => $dailyReminder->reminder ?? old('reminder'),
+                'value' => $reminder->reminder ?? old('reminder'),
                 'errors' => $errors->get('reminder'),
             ])
         </div>
