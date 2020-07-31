@@ -18,15 +18,15 @@ class ReminderTest extends TestCase
     ];
 
     /**
-     * A basic reminder retrieval.
+     * A basic reminder listing.
      *
      * @return void
      */
-    public function testReminderRetrieval()
+    public function testReminderPagedRetrieval()
     {
         Reminder::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->get(route('api.v1.reminder.index'));
+        $response = $this->get(route('api.v1.reminders.index'));
         $response->assertSuccessful();
 
         $response->assertJson([ "data" => [self::TEST_RECORD_ARRAY]]);
@@ -37,11 +37,11 @@ class ReminderTest extends TestCase
      *
      * @return void
      */
-    public function testShowRetrieval()
+    public function testReminderShowRetrieval()
     {
         $reminder = Reminder::create(self::TEST_RECORD_ARRAY);
 
-        $response = $this->get(route('api.v1.reminder.show', $reminder));
+        $response = $this->get(route('api.v1.reminders.show', $reminder));
         $response->assertSuccessful();
 
         $response->assertJson(self::TEST_RECORD_ARRAY);

@@ -24,6 +24,7 @@ Route::name('api.')->namespace('Api')->group(function() {
             });
         });
 
-        Route::resource('/reminder', 'ReminderController')->only(['index', 'show']);
+        Route::resource('/reminders', 'ReminderController')->only(['index', 'show']);
+        Route::resource('/quotes', 'QuoteController')->only(['index', 'show']);
     });
 });
