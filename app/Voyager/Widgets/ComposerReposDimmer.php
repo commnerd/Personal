@@ -2,12 +2,12 @@
 
 namespace App\Voyager\Widgets;
 
-use App\Models\Work\EmploymentRecord;
 use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Widgets\BaseDimmer;
+use App\Models\ComposerRepo;
 use Illuminate\Support\Str;
 
-class ResumeDimmer extends BaseDimmer
+class ComposerReposDimmer extends BaseDimmer
 {
     /**
      * The configuration array.
@@ -22,22 +22,22 @@ class ResumeDimmer extends BaseDimmer
      */
     public function run()
     {
-        $count = EmploymentRecord::count();
-        $string = 'Employment Record';
-        if($count != 1) {
+        $count = ComposerRepo::count();
+        $string = 'Composer Repo';
+        if($count !== 1) {
             $string .= "s";
         }
         $lower = Str::lower($string);
 
         return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-certificate',
+            'icon'   => 'voyager-rum',
             'title'  => "{$count} {$string}",
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => "View {$lower}",
-                'link' => route('admin.manage.resume.index'),
+                'link' => route('admin.manage.composer_repos.index'),
             ],
-            'image' => '/storage/resume.png',
+            'image' => '/storage/admin/composer.png',
         ]));
     }
 

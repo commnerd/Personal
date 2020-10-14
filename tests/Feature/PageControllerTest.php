@@ -3,8 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Work\EmploymentRecord;
-use Tests\TestCase;
+use App\Models\ComposerRepo;
 use App\Models\Quote;
+use Tests\TestCase;
 use Auth;
 
 class PageControllerTest extends TestCase
@@ -127,5 +128,28 @@ class PageControllerTest extends TestCase
         $response = $this->get(route('quotes'));
 
         $response->assertSuccessful();
+    }
+
+    /**
+     * Test basic packages.json functionality
+     *
+     * @return void
+     */
+    public function testPackagesJson()
+    {
+        ComposerRepo::create([
+            "type" => ComposerRepo::TYPE_VCS,
+            "url" => "https://test.com",
+        ]);
+        $response = $this->get(route('composer_packages'));
+        $response->assertSuccessful();
+        $response->assertJson([
+            "repositories" => [
+                [
+                    "type" => ComposerRepo::TYPE_VCS,
+                    "url" => "https://test.com",
+                ],
+            ],
+        ]);
     }
 }

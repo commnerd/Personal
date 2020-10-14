@@ -72,6 +72,10 @@
         "hooks": {
             "type": "composer",
             "url": "https://larapack.io"
+        },
+        "personal": {
+            "type": "composer",
+            "url": "https://michaeljmiller.net"
         }
     }
 }

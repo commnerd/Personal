@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', 'PageController@home')->name('home');
-Route::get('/resume', 'PageController@resume')->name('resume');
+Route::get('/packages.json', 'PageController@composer_packages')->name('composer_packages');
 Route::get('/portfolio', 'PageController@portfolio')->name('portfolio');
 Route::get('/quotes', 'PageController@quotes')->name('quotes');
+Route::get('/resume', 'PageController@resume')->name('resume');
+Route::get('/', 'PageController@home')->name('home');
 
 Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/callback', 'Auth\LoginController@handleProviderCallback')->name('login.callback');

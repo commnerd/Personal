@@ -4,7 +4,6 @@ namespace App\Voyager\Widgets;
 
 use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Widgets\BaseDimmer;
-use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Str;
 use App\Models\Drink;
 
