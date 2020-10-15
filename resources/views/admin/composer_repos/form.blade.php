@@ -9,23 +9,24 @@
         @if($method !== 'POST')
             <input type="hidden" name="_method" value="{{ $method }}">
         @endif
-        @if(isset($drink))
-            <input type="hidden" name="drink_id" value="{{ $drink->id }}" />
+        @if(isset($composer_repo))
+            <input type="hidden" name="repo_id" value="{{ $composer_repo->id }}" />
         @endif
         <div class="col-lg-12">
-            @include('shared.form.text_input', [
-                'slug' => 'name',
-                'label' => 'Drink',
-                'value' => $drink->name ?? old('name'),
-                'errors' => $errors->get('name')
+            @include('shared.form.select_input', [
+                'slug' => 'type',
+                'label' => 'Type',
+                'value' => $composer_repo->type ?? old('type'),
+                'options' => $composer_repo::TYPES,
+                'errors' => $errors->get('type'),
             ])
         </div>
         <div class="col-lg-12">
-            @include('shared.form.text_area', [
-                'slug' => 'recipe',
-                'label' => 'Recipe',
-                'value' => $drink->recipe ?? old('recipe'),
-                'errors' => $errors->get('recipe'),
+            @include('shared.form.text_input', [
+                'slug' => 'url',
+                'label' => 'Repo',
+                'value' => $composer_repo->url ?? old('url'),
+                'errors' => $errors->get('url')
             ])
         </div>
         <div class="col-lg-12">
