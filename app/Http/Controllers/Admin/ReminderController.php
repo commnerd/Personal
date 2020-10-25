@@ -28,7 +28,11 @@ class ReminderController extends AdminController
      */
     public function create(): Response
     {
-        return response()->view('admin.reminder.create', ['title' => 'Create Reminder']);
+        $title = 'Create Reminder';
+
+        $latest = Reminder::latest()->first();
+
+        return response()->view('admin.reminder.create', compact('title', 'latest'));
     }
 
     /**
@@ -52,7 +56,9 @@ class ReminderController extends AdminController
      */
     public function edit(Reminder $reminder): Response
     {
-        return response()->view('admin.reminder.edit', compact('reminder'));
+        $latest = null;
+
+        return response()->view('admin.reminder.edit', compact('reminder', 'latest'));
     }
 
     /**

@@ -36,13 +36,31 @@ class ReminderTest extends TestCase
      *
      * @return void
      */
-    public function testReminderCreationPage()
+    public function testInitialReminderCreationPage()
     {
         $response = $this->get(route('admin.manage.reminder.create'));
         $response->assertSuccessful();
 
         $response->assertSee('Create Reminder');
         $response->assertSee('<input type="text" name="reference" value="" class="form-control">', false);
+        $response->assertSee('<div class="quill-editor form-control" data-name="reminder"></div>', false);
+        $response->assertSee(view('shared.form.submit'));
+    }
+
+    /**
+     * A test for the reminder entry creation page after the table has entries in it
+     *
+     * @return void
+     */
+    public function testPopulatedReminderCreationPage()
+    {
+        $record = Reminder::create(self::TEST_RECORD_ARRAY);
+        $response = $this->get(route('admin.manage.reminder.create'));
+        $response->assertSuccessful();
+
+        $response->assertSee('Create Reminder');
+        $response->assertSee($record->reference);
+        $response->assertSee('<input type="text" name="reference" value="'.$record->reference.'" class="form-control">', false);
         $response->assertSee('<div class="quill-editor form-control" data-name="reminder"></div>', false);
         $response->assertSee(view('shared.form.submit'));
     }

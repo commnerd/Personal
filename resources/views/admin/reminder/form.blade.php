@@ -16,7 +16,7 @@
             @include('shared.form.text_input', [
                 'slug' => 'reference',
                 'label' => 'Reference',
-                'value' => $reminder->reference ?? old('reference'),
+                'value' => $latest ? $latest->reference : $reminder->reference ?? old('reference'),
                 'errors' => $errors->get('reference')
             ])
         </div>
