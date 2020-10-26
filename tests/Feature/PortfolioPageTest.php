@@ -34,7 +34,7 @@ class PortfolioPageTest extends TestCase
 
         $response = $this->get('/');
 
+        $response->assertSuccessful();
         $response->assertSee('Portfolio');
-        $response->assertStatus(200);
     }
 }

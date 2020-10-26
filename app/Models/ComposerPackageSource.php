@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ComposerRepo extends Model
+class ComposerPackageSource extends Model
 {
-    const TYPE_VCS = "vcs";
+    const TYPE_GIT = "git";
+    const TYPE_SVN = "svn";
 
     const TYPES = [
-        self::TYPE_VCS => "Version Control System",
+        self::TYPE_GIT => "Git",
+        self::TYPE_SVN => "Subversion",
     ];
 
     /**
@@ -20,6 +22,7 @@ class ComposerRepo extends Model
     public static function getValidationRules(): array
     {
         return [
+            'reference' => 'required',
             'type' => 'required|in:'.implode(",", array_keys(self::TYPES)),
             'url' => 'required|url',
         ];
@@ -31,6 +34,6 @@ class ComposerRepo extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'url'
+        'composer_package_id', 'reference', 'type', 'url'
     ];
 }

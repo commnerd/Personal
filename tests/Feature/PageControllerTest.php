@@ -3,7 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Work\EmploymentRecord;
-use App\Models\ComposerRepo;
+use App\Models\ComposerPackageSource;
+use App\Models\ComposerPackage;
 use App\Models\Quote;
 use Tests\TestCase;
 use Auth;
@@ -137,17 +138,32 @@ class PageControllerTest extends TestCase
      */
     public function testPackagesJson()
     {
-        ComposerRepo::create([
-            "type" => ComposerRepo::TYPE_VCS,
+        $package = ComposerPackage::create([
+            "name" => "test/package",
+            "version" => "dev-master",
+            "type" => ComposerPackage::TYPE_PROJECT,
+        ]);
+        ComposerPackageSource::create([
+            'composer_package_id' => $package->id,
+            "reference" => "882816c7c05b5b5704e84bdb0f7ad69230df3c0c",
+            "type" => "git",
             "url" => "https://test.com",
         ]);
         $response = $this->get(route('composer_packages'));
         $response->assertSuccessful();
         $response->assertJson([
-            "repositories" => [
-                [
-                    "type" => ComposerRepo::TYPE_VCS,
-                    "url" => "https://test.com",
+            "packages" => [
+                "test/package" => [
+                    "dev-master" => [
+                        "name" => "test/package",
+                        "version" => "dev-master",
+                        "type" => ComposerPackage::TYPE_PROJECT,
+                        "source" => [
+                            "reference" => "882816c7c05b5b5704e84bdb0f7ad69230df3c0c",
+                            "type" => "git",
+                            "url" => "https://test.com",
+                        ],
+                    ],
                 ],
             ],
         ]);

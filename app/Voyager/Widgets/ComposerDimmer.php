@@ -4,10 +4,10 @@ namespace App\Voyager\Widgets;
 
 use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Widgets\BaseDimmer;
-use App\Models\ComposerRepo;
+use App\Models\ComposerPackage;
 use Illuminate\Support\Str;
 
-class ComposerReposDimmer extends BaseDimmer
+class ComposerDimmer extends BaseDimmer
 {
     /**
      * The configuration array.
@@ -22,8 +22,8 @@ class ComposerReposDimmer extends BaseDimmer
      */
     public function run()
     {
-        $count = ComposerRepo::count();
-        $string = 'Composer Repo';
+        $count = ComposerPackage::count();
+        $string = 'Composer Package';
         if($count !== 1) {
             $string .= "s";
         }
@@ -35,7 +35,7 @@ class ComposerReposDimmer extends BaseDimmer
             'text'   => "You have {$count} {$lower} in your database. Click on button below to view {$lower}.",
             'button' => [
                 'text' => "View {$lower}",
-                'link' => route('admin.manage.composer_repos.index'),
+                'link' => route('admin.manage.composer.index'),
             ],
             'image' => '/storage/admin/composer.png',
         ]));

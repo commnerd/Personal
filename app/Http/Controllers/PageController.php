@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Work\PortfolioEntry;
+use App\Services\ComposerService;
 use Illuminate\Http\JsonResponse;
-use App\Models\ComposerRepo;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Quote;
@@ -72,18 +72,6 @@ class PageController extends Controller
      */
     public function composer_packages(): JsonResponse
     {
-        $repos = ComposerRepo::get();
-
-        $listing = [];
-
-        foreach($repos as $repo) {
-            $listing[] = [
-                "type" => $repo->type,
-                "url" => $repo->url,
-            ];
-        }
-        return response()->json([
-            "repositories" => $listing,
-        ]);
+        return response()->json(ComposerService::buildJsonStructure());
     }
 }

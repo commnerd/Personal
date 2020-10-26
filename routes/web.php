@@ -38,7 +38,10 @@ Route::group(['middleware' => ['auth.custom']], function() {
             Route::resource('quotes', 'QuotesController');
             Route::resource('portfolio', 'PortfolioController');
             Route::resource('contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
-            Route::resource('composer_repos', 'ComposerRepoController');
+            Route::namespace('Composer')->prefix("composer")->name('composer.')->group(function() {
+                Route::get('/', 'MainController@index')->name('index');
+                Route::resource('packages', 'PackageController')->except(['index']);
+            });
         });
 
         Voyager::routes();
