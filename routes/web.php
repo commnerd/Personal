@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth.custom']], function() {
 
     Route::prefix('admin')->group(function() {
 
-        Route::namespace('Admin')->prefix("admin/manage")->name('admin.manage.')->group(function() {
+        Route::namespace('Admin')->prefix("manage")->name('admin.manage.')->group(function() {
             Route::resource('resume', 'ResumeController');
             Route::resource('reminder', 'ReminderController');
             Route::put('quotes/activate', 'QuotesController@activate')->name('quotes.activate');

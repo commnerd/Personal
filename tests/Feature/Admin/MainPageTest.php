@@ -99,6 +99,7 @@ class MainPageTest extends TestCase
     public function testResumeLinks()
     {
         $response = $this->get(route('voyager.dashboard'));
+        // dd($response);
         $response->assertSuccessful();
 
         $response->assertSee('Employment Record');

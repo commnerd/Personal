@@ -233,23 +233,23 @@ class RestaurantControllerTest extends TestCase
      {
          $response = $this->get('/food/restaurants');
 
-         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
+         $response->assertSee('<link rel="stylesheet" href="/css/food/app.css">', false);
 
-         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
+         $response->assertSee('<script async src="/js/food/app.js"></script>', false);
 
          $response = $this->get('/food/restaurants/create');
 
-         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
+         $response->assertSee('<link rel="stylesheet" href="/css/food/app.css">', false);
 
-         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
+         $response->assertSee('<script async src="/js/food/app.js"></script>', false);
 
          Restaurant::create(['name' => 'Test Restaurant']);
 
          $response = $this->get('/food/restaurants/1/edit');
 
-         $response->assertSee('<link rel="stylesheet" href="'.elixir('/css/food/app.css').'">', false);
+         $response->assertSee('<link rel="stylesheet" href="/css/food/app.css">', false);
 
-         $response->assertSee('<script async src="'.elixir('/js/food/app.js').'"></script>', false);
+         $response->assertSee('<script async src="/js/food/app.js"></script>', false);
      }
 
      /**

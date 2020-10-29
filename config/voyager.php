@@ -146,7 +146,7 @@ return [
 
         'widgets' => [
             \App\Voyager\Widgets\SystemDimmer::class,
-            \App\Voyager\Widgets\BlogDimmer::class,
+            // \App\Voyager\Widgets\BlogDimmer::class,
             \App\Voyager\Widgets\MessagesDimmer::class,
             \App\Voyager\Widgets\ResumeDimmer::class,
             \App\Voyager\Widgets\ReminderDimmer::class,

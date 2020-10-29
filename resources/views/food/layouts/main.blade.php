@@ -9,12 +9,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="icon" href="/storage/michael-j-miller-logo.ico">
-        <link rel="stylesheet" href="{{ elixir('/css/food/app.css') }}">
+        <link rel="stylesheet" href="/css/food/app.css">
     </head>
     <body>
         <div class="container-fluid">
             @yield('content')
         </div>
-        <script async src="{{ elixir('/js/food/app.js') }}"></script>
+        <script async src="/js/food/app.js"></script>
     </body>
 </html>
