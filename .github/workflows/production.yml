@@ -1,0 +1,72 @@
+name: Deploy to Prod
+
+on:
+  workflow_dispatch:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy to Prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
+        with:
+          php-version: '7.3'
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --no-dev
+      - name: Setup ssh
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{secrets.PERSONAL_PRIVATE_ID_RSA}}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{secrets.PERSONAL_PRODUCTION_HOST}} > ~/.ssh/known_hosts
+          sudo chmod 400 ~/.ssh/id_rsa
+      - name: Build assets
+        run: |
+          sudo npm install -g yarn
+          yarn
+          yarn prod
+      - name: Clean up
+        run: |
+          rm -fR node_modules
+          rm -fR storage
+          rm -fR .git
+      - name: Tar the project
+        run: |
+          cd ..
+          if [ -f Personal.tar.bz2 ]; then rm -f Personal.tar.bz2; fi
+          tar -cjf Personal.tar.bz2 Personal
+      - name: Send the project to server
+        run: "scp -i ~/.ssh/id_rsa ../Personal.tar.bz2 ubuntu@${{secrets.PERSONAL_PRODUCTION_HOST}}:"
+      - name: Server-side deploy
+        run: |
+          ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} "
+          tar -xf Personal.tar.bz2
+          cd Personal
+          cp /var/www/personal/.env .
+          cp -fR /var/www/personal/storage .
+          mysqldump --user=${{secrets.PERSONAL_MYSQL_USERNAME}} --password=${{secrets.PERSONAL_MYSQL_PASSWORD}} --port=${{secrets.PERSONAL_MYSQL_PORT}} --host=${{secrets.PERSONAL_MYSQL_HOST}} ${{secrets.PERSONAL_MYSQL_DATABASE}} > /tmp/personal.sql
+          sudo mv /tmp/personal.sql /var/www/personal/storage
+          cd /var/www
+          sudo tar -cjf personal.tar.bz2 personal
+          sudo mv personal.tar.bz2 /tmp
+          cd /var/www/personal
+          sudo -u www-data php artisan down
+          cd /home/ubuntu
+          sudo chown -fR www-data:www-data Personal
+          sudo mv /var/www/personal /tmp && sudo mv Personal /var/www/personal
+          cd /var/www/personal
+          sudo -u www-data php artisan storage:link
+          sudo -u www-data php artisan cache:clear
+          sudo -u www-data php artisan route:clear
+          sudo -u www-data php artisan config:clear
+          sudo -u www-data php artisan view:clear
+          yes | sudo -u www-data php artisan migrate
+          sudo -u www-data php artisan queue:restart
+          sudo -u www-data php artisan up
+          sudo rm -fR ~/Personal
+          sudo rm -fR /tmp/personal
+          "
