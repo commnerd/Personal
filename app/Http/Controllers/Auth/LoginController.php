@@ -37,10 +37,10 @@ class LoginController extends Controller
      */
     public function redirectToProvider(): RedirectResponse
     {
+        request()->session()->flash('intended', url()->previous());
         if(config('app.env') === 'production') {
             return Socialite::driver('google')->stateless()->redirect();
         }
-        request()->session()->put('intended', url()->previous());
         return redirect()->route('login.callback');
     }
 
@@ -56,10 +56,7 @@ class LoginController extends Controller
             User::findOrFail(1);
 
         if (!empty($user) && Auth::loginUsingId($user->id, true)) {
-            if(!empty(request()->session()->get('intended'))) {
-                $uri = request()->session()->pull('intended');
-                return redirect($uri);
-            }
+            return redirect(request()->session()->pull('intended'));
         }
 
         return redirect()->route('home');
