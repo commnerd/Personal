@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
-use Socialite;
 use App\Models\User;
+use Socialite;
 use Auth;
 
 class LoginController extends Controller
@@ -40,7 +40,6 @@ class LoginController extends Controller
         if(config('app.env') === 'production') {
             return Socialite::driver('google')->stateless()->redirect();
         }
-        request()->session()->put('intended', url()->previous());
         return redirect()->route('login.callback');
     }
 
@@ -56,10 +55,7 @@ class LoginController extends Controller
             User::findOrFail(1);
 
         if (!empty($user) && Auth::loginUsingId($user->id, true)) {
-            if(!empty(request()->session()->get('intended'))) {
-                $uri = request()->session()->pull('intended');
-                return redirect($uri);
-            }
+            return redirect()->back()->withInput();
         }
 
         return redirect()->route('home');
