@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Socialite;
+use App\Models\User;
 use Auth;
 
 class LoginController extends Controller
@@ -37,6 +37,7 @@ class LoginController extends Controller
      */
     public function redirectToProvider(): RedirectResponse
     {
+        request()->session()->flash('intended', url()->previous());
         if(config('app.env') === 'production') {
             return Socialite::driver('google')->stateless()->redirect();
         }
@@ -55,7 +56,7 @@ class LoginController extends Controller
             User::findOrFail(1);
 
         if (!empty($user) && Auth::loginUsingId($user->id, true)) {
-            return redirect()->back()->withInput();
+            return redirect(request()->session()->pull('intended'));
         }
 
         return redirect()->route('home');
