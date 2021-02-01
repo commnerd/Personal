@@ -59,6 +59,6 @@ class LoginController extends Controller
             return redirect(request()->session()->pull('intended'));
         }
 
-        return redirect()->route('home');
+        return redirect(route('home'));
     }
 }
