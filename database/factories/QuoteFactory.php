@@ -1,11 +1,30 @@
 <?php
 
-use Faker\Generator as Faker;
-use Illuminate\Support\Str;
+namespace Database\Factories;
 
-$factory->define(App\Models\Quote::class, function (Faker $faker) {
-    return [
-        "source" => $faker->firstName . " " . ucfirst((Str::random(1))) . ". " . $faker->lastName,
-        "quote" => $faker->text,
-    ];
-});
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use App\Models\Quote;
+
+class QuoteFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Quote::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'source' => $this->faker->firstName . " " . ucfirst((Str::random(1))) . ". " . $this->faker->lastName,
+            'quote' => $this->faker->text,
+        ];
+    }
+}

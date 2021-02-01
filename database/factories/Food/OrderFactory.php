@@ -1,18 +1,19 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Food;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Drink;
+use App\Models\Food\Restaurant;
+use App\Models\Food\Order;
 
-class DrinkFactory extends Factory
+class OrderFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Drink::class;
+    protected $model = Order::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +23,9 @@ class DrinkFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'recipe' => $this->faker->text,
+            'restaurant_id' => Restaurant::factory(),
+            'label' => $this->faker->name,
+            'notes' => $this->faker->paragraph,
         ];
     }
 }

@@ -2,11 +2,15 @@
 
 namespace App\Models\Food;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Food\Order;
 use App\Models\Model;
 
 class Restaurant extends Model
 {
+    use HasFactory;
+    
     /**
      * Get validation rules
      *
@@ -35,6 +39,6 @@ class Restaurant extends Model
      */
     public function orders(): HasMany
     {
-        return $this->hasMany(\App\Models\Food\Order::class);
+        return $this->hasMany(Order::class);
     }
 }

@@ -2,11 +2,15 @@
 
 namespace App\Models\Food;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Food\Restaurant;
 use App\Models\Model;
 
 class Order extends Model
 {
+    use HasFactory;
+
     /**
      * Get validation rules
      *
@@ -39,6 +43,6 @@ class Order extends Model
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Food\Restaurant::class);
+        return $this->belongsTo(Restaurant::class);
     }
 }

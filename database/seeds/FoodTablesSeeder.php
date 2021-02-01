@@ -13,10 +13,10 @@ class FoodTablesSeeder extends Seeder
      */
     public function run()
     {
-        factory(Restaurant::class, 20)->create()->each(function(Restaurant $restaurant) {
-            factory(Order::class, rand(1, 5))->create([
-                "restaurant_id" => $restaurant->id,
-            ]);
-        });
+        Restaurant::factory()->count(20)
+            ->has(
+                Order::factory()->count(rand(1, 5))
+            )
+            ->create();
     }
 }

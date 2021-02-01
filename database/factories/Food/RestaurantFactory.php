@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Food;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Drink;
+use App\Models\Food\Restaurant;
 
-class DrinkFactory extends Factory
+class RestaurantFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Drink::class;
+    protected $model = Restaurant::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,6 @@ class DrinkFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'recipe' => $this->faker->text,
         ];
     }
 }

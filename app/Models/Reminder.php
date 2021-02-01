@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Reminder extends Model
 {
+    use HasFactory;
+    
     /**
      * Get validation rules for model
      *

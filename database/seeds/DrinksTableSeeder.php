@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Drink;
 
 class DrinksTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class DrinksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Drink::class, 50)->create();
+        Drink::factory()->count(50)->create();
     }
 }

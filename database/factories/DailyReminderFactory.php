@@ -1,11 +1,29 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-/* @var Illuminate\Database\Eloquent\Factory $factory */
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Reminder;
 
-$factory->define(App\Models\Reminder::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+class ReminderFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Reminder::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'reference' => $this->faker->name,
+            'reminder' => $this->faker->text,
+        ];
+    }
+}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Quote;
 
 class QuotesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class QuotesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Quote::class, 50)->create();
+        Quote::factory()->count(50)->create();
     }
 }
