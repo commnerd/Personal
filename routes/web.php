@@ -29,7 +29,6 @@ Route::group(['middleware' => ['auth.custom']], function() {
     Route::any('logout', 'Auth\LogoutController@handleLogout')->name('logout');
 
     Route::prefix('admin')->group(function() {
-
         Route::namespace('Admin')->prefix("manage")->name('admin.manage.')->group(function() {
             Route::resource('resume', 'ResumeController');
             Route::resource('reminder', 'ReminderController');
@@ -37,11 +36,12 @@ Route::group(['middleware' => ['auth.custom']], function() {
             Route::resource('drinks', 'DrinksController');
             Route::resource('quotes', 'QuotesController');
             Route::resource('portfolio', 'PortfolioController');
-            Route::resource('contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);
+            Route::resource('contact', 'ContactMessageController', ['parameters' => ['contact' => 'message']])->only(['index', 'show', 'destroy']);    
             Route::namespace('Composer')->prefix("composer")->name('composer.')->group(function() {
                 Route::get('/', 'MainController@index')->name('index');
                 Route::resource('packages', 'PackageController')->except(['index']);
             });
+            Route::get('terminal', 'TerminalController@index')->name('terminal');
         });
 
         Voyager::routes();

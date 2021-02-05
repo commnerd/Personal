@@ -1,0 +1,44 @@
+// External libs
+@import "~quill/dist/quill.core.css";
+@import '~quill/dist/quill.snow.css';
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+a.glyphicon {
+    text-decoration: none;
+}
+
+form.inline {
+    display: inline-block;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+.glyphicon-plus::before {
+    color: $add-color;
+}
+
+.glyphicon-edit::before {
+    color: $edit-color;
+}
+
+.glyphicon-trash::before {
+    color: $delete-color;
+}
+
+.center {
+    text-align: center;
+}
+
+.quill-editor {
+    height: $quill-height;
+}

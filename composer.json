@@ -10,19 +10,20 @@
     "type": "project",
     "require": {
         "php": "^8.0",
+        "beyondcode/laravel-websockets": "dev-master",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^4.0",
         "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "illuminate/support": "^8.0",
         "laravel/framework": "^8.0",
-        "laravel/ui": "^3.0",
+        "laravel/passport": "^10.0",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
-        "laravel/passport": "^10.0",
+        "laravel/ui": "^3.0",
         "nao-pon/flysystem-google-drive": "^1.1",
-        "tcg/voyager": "1.4.*",
-        "nunomaduro/collision": "^5.0"
+        "nunomaduro/collision": "^5.0",
+        "tcg/voyager": "1.4.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

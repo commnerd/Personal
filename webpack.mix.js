@@ -35,6 +35,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/food/sass/app.scss', 'public/css/food')
    .js('resources/assets/admin/js/app.js', 'public/js/admin')
    .sass('resources/assets/admin/sass/app.scss', 'public/css/admin')
+   .js('resources/assets/terminal/js/app.js', 'public/js/terminal')
+   .sass('resources/assets/terminal/sass/app.scss', 'public/css/terminal')
    .styles([
        'node_modules/bootstrap-sass-datepicker/css/datepicker.css',
        'node_modules/bootstrap-sass-datepicker/css/datepicker3.css'
