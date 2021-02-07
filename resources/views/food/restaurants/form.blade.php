@@ -9,12 +9,39 @@
         @if($method !== 'POST')
             <input type="hidden" name="_method" value="{{ $method }}">
         @endif
-        @include('shared.form.text_input', [
-            'slug' => 'name',
-            'label' => 'Name',
-            'value' => $restaurant->name ?? old('name'),
-            'errors' => $errors->get('name')
-        ])
+        <div class="row">
+            <div class="col-md-12">
+                @include('shared.form.text_input', [
+                    'slug' => 'name',
+                    'label' => 'Name',
+                    'value' => $restaurant->name ?? old('name'),
+                    'errors' => $errors->get('name')
+                ])
+            </div>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            @if($restaurant->contacts)
+                @foreach($restaurant->contacts as $index => $contact)
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading{{ $index }}">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapse{{ $index }}">
+                                Contact Info #{{ $index }}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse{{ $index }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{ $index }}">
+                        <div class="panel-body">
+                            @include('shared.form.contact_info', [
+                                'parentSlug' => `contact[%{$index}]`,
+                                'parentObj' => $restaurant,
+                            ])
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            @endif
+        </div>
         @if(isset($restaurant->id))
             @if(count($restaurant->orders) > 0)
             <h2 class="row col-sm-12">Orders for {{ $restaurant->name }}:</h2>

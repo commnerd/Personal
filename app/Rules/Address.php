@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class EmailOrPhone implements Rule
+class Address implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,13 +25,7 @@ class EmailOrPhone implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(filter_var($value, FILTER_VALIDATE_EMAIL) !== false) {
-            return true;
-        }
-
-        $validator = new PhoneNumber;
-        
-        return $validator->passes($attribute, $value);
+        //
     }
 
     /**
@@ -41,6 +35,6 @@ class EmailOrPhone implements Rule
      */
     public function message()
     {
-        return 'This field must contain a valid email address or phone number.';
+        return 'The validation error message.';
     }
 }

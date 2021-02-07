@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Factories\Models;
+namespace Database\Factories;
 
-use App\Models\Models\Address;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Address;
 
 class AddressFactory extends Factory
 {

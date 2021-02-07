@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Food;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
 use App\Models\Food\Restaurant;
+use Illuminate\Http\Response;
+use App\Models\AddressPhone;
+use Illuminate\Http\Request;
 use App\Models\Food\Order;
 
 class RestaurantController extends FoodController
@@ -66,10 +67,15 @@ class RestaurantController extends FoodController
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Food\Restaurant  $restaurant
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Restaurant $restaurant): Response
+    public function edit(Restaurant $restaurant, Request $request): Response
     {
+        if($request->has('addLocation')) {
+            $restaurant->locations->add(new AddressPhone);
+        }
+        dd($restaurant->locations);
         return response()->view('food.restaurants.form', [
             'action' => route('restaurants.update', $restaurant),
             'method' => 'PUT',
