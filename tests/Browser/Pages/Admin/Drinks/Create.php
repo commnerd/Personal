@@ -14,7 +14,7 @@ class Create extends Page
      */
     public function url()
     {
-        return "/admin/drinks/create";
+        return "/admin/manage/drinks/create";
     }
 
     /**
@@ -38,7 +38,7 @@ class Create extends Page
         return [
             '@name' => 'input[name="name"]',
             '@recipe' => 'div[data-name="recipe"]',
-            '@submit' => 'input.btn-submit',
+            '@submit' => 'input[type="submit"]',
         ];
     }
 }

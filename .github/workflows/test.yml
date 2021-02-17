@@ -12,8 +12,15 @@ jobs:
         with:
           php-version: '8.0'
       - uses: actions/checkout@v2
+      - name: Install Google Chrome
+        run: |
+          cd /tmp
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: php -r "copy('.env.example', '.env');"
+      - name: Disable Debugbar
+        run: echo 'DEBUGBAR_ENABLED=false' >> .env
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Generate key
@@ -26,8 +33,20 @@ jobs:
           yarn
           yarn prod
           rm -fR node_packages
+      - name: Start Database
+        run: sudo systemctl start mysql
+      - name: Create Database user
+        run: |
+          mysql --user="root" --password="root" -e "CREATE USER IF NOT EXISTS 'homestead'@'%' IDENTIFIED BY 'secret';"
+          mysql --user="root" --password="root" -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%';"
+          mysql --user="root" --password="root" -e "FLUSH PRIVILEGES;"
+          mysql --user="root" --password="root" -e "CREATE DATABASE homestead character set UTF8mb4 collate utf8mb4_bin;"
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
+      - name: Upgrade Chrome Driver
+        run: php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
+      - name: Start Chrome Driver
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
       - name: Create Database
         run: |
           mkdir -p database
@@ -37,3 +56,21 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
+      - name: Run Laravel Server
+        run: php artisan serve &
+      - name: Run Dusk Tests
+        env:
+          APP_URL: "http://127.0.0.1:8000"
+        run: php artisan dusk
+      - name: Upload Screenshots
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots
+      - name: Upload Console Logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: console
+          path: tests/Browser/console

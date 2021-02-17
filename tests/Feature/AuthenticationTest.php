@@ -36,7 +36,7 @@ class AuthenticationTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect(route('home'));
 
-        $response = $this->get(route('home'));
+
     }
 
     /**

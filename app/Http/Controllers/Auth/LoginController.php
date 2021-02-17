@@ -51,14 +51,16 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(): RedirectResponse
     {
+        $path = request()->session()->pull('intended') ?? route('home');
+
         $user = config('app.env') === 'production' ?
             User::where('email', Socialite::driver('google')->stateless()->user()->email)->first() :
             User::findOrFail(1);
 
         if (!empty($user) && Auth::loginUsingId($user->id, true)) {
-            return redirect(request()->session()->pull('intended'));
+            return redirect($path);
         }
 
-        return redirect(route('home'));
+        return redirect()->route('home');
     }
 }

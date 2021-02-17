@@ -21,7 +21,7 @@ class CreateTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::findOrFail(1));
             $browser->visit(new CreatePage)
-                ->type('name', 'Test Drink')
+                ->type('@name', 'Test Drink')
                 ->script('$(".quill-editor .ql-editor").html("Test Recipe");');
             $browser->click('@submit');
         });

@@ -42,7 +42,7 @@ class Home extends Page
     {
         return [
             '@name' => 'input[name="name"]',
-            '@contact' => 'input[name="contact"]',
+            '@contact' => 'input[name="email_phone"]',
             '@submit' => 'button.btn-primary',
         ];
     }
