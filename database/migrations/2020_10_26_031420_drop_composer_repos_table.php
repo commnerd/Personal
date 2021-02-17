@@ -23,9 +23,11 @@ class DropComposerReposTable extends Migration
      */
     public function down()
     {
-        $table->id();
-        $table->string("type")->nullable(false);
-        $table->string("url")->nullable(false);
-        $table->timestamps();
+        Schema::create('composer_repos', function (Blueprint $table) {
+            $table->id();
+            $table->string("type")->nullable(false);
+            $table->string("url")->nullable(false);
+            $table->timestamps();
+        });
     }
 }

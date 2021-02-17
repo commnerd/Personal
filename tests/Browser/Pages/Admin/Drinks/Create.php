@@ -14,7 +14,7 @@ class Create extends Page
      */
     public function url()
     {
-        return "/admin/drinks/create";
+        return "/admin/manage/drinks/create";
     }
 
     /**

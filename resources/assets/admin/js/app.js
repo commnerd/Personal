@@ -10,7 +10,7 @@ require('./bootstrap');
 $('.quill-editor').each(function() {
     var editor = this;
 
-    var quill = new Quill(editor, {
+    new Quill(editor, {
         theme: 'snow'
     });
 });

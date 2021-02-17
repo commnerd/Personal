@@ -36,3 +36,11 @@ services:
             - .:/var/www/personal
         depends_on:
             - nginx
+    selenium:
+        image: selenium/standalone-chrome
+        volumes:
+            - .:/var/www/personal
+        environment:
+            - DUSK_CONTEXT=docker
+        links: 
+            - nginx:localhost
