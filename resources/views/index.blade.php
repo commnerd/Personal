@@ -8,7 +8,7 @@
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" href="/js/ng/styles.css">
     </head>
-    <body>
+    <body class="container-fluid">
         <app-root></app-root>
         <script src="/ng/runtime.js" defer></script>
         <script src="/ng/polyfills.js" defer></script>
