@@ -8,9 +8,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { CoverComponent } from '@pages/cover/cover.component';
 
+import { ApiService } from "./services/api.service";
+import { MainNavComponent } from './partials/main-nav/main-nav.component';
+import { FooterComponent } from './partials/footer/footer.component';
+import { BasePageComponent } from './templates/base-page/base-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    MainNavComponent,
+    FooterComponent,
+    BasePageComponent,
     HomeComponent,
     CoverComponent
   ],
@@ -20,7 +28,9 @@ import { CoverComponent } from '@pages/cover/cover.component';
     FontAwesomeModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    ApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

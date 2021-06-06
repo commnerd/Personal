@@ -1,12 +1,1 @@
-:host {
-  display: flex;
-  overflow: hidden;
-  main {
-    position: flex;
-  }
-  router-outlet ~ * {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-  }
-}
+

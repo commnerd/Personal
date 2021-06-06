@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { faFacebook, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
