@@ -5,15 +5,24 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "paths": {
+      "@animations/*": [
+        "./src/app/animations/*"
+      ],
       "@environment": [ "./src/environments/environment.ts" ],
       "@interfaces/*": [
         "./src/app/interfaces/*"
       ],
+      "@models/*": [
+        "./src/app/models/*"
+      ],
       "@pages/*": [
         "./src/app/pages/*"
       ],
-      "@animations/*": [
-        "./src/app/animations/*"
+      "@services/*": [
+        "./src/app/services/*"
+      ],
+      "@templates/*": [
+        "./src/app/templates/*"
       ]
     },
     "forceConsistentCasingInFileNames": true,

@@ -1,19 +1,20 @@
 import {HttpClient} from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 
 import { Endpoint } from "@interfaces/api/endpoint";
 import { environment } from "@environment";
+import { Quote } from "@models/quote";
+import {PagedResponse} from "@interfaces/api/paged-response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private url: string = `${environment.api.scheme}://${environment.api.uri}/api/v1`;
-  private callTarget: string = "";
+  private url: string = `${environment.api.scheme}://${environment.api.uri}`;
 
-  private resourceMap: {[label: string]: string} = {
-    "quotes": "HI"
+  public readonly resource: {[label: string]: Endpoint<any>} = {
+    "quotes": new QuoteEndpoint(this)
   };
 
   constructor(
@@ -25,34 +26,24 @@ export class ApiService {
     if(environment.api.scheme === "https" && environment.api.port !== "443") {
       this.url += `:${environment.api.port}`;
     }
+    this.url += '/api/v1';
   }
 
-  // endpoint(label: string): Endpoint {
-  //   let endpoint;
-  //
-  //   switch(label) {
-  //     case "quotes":
-  //       this.callTarget = this.url + "/quotes";
-  //       break;
-  //     default:
-  //       throw "Endpoint not defined.";
-  //   }
-  //   return this;
-  // }
-
-  index<T>(): Observable<T> {
-    return this.http.get<T>(this.callTarget)
+  call<T>(endpoint: Endpoint<any>, method: string, options?:any[]): Observable<T> {
+    switch(method) {
+      case "get":
+        return this.http.get<T>(`${this.url}/${endpoint.uri}`);
+    }
+    throw `Function "${method}" not defined in HttpClient.`;
   }
+}
 
-  save<T>(item: T): Observable<T> {
-    return this.http.post<T>(this.callTarget, item);
-  }
+class QuoteEndpoint implements Endpoint<Quote> {
+  constructor(private svc: ApiService) {}
 
-  update<T>(id: number, item: T): Observable<T> {
-    return this.http.put<T>(`${this.callTarget}/${id}`, item);
-  }
+  uri: string = "quotes";
 
-  delete<T>(id: number): Observable<T> {
-    return this.http.delete<T>(`${this.callTarget}/${id}`);
+  list(): Observable<PagedResponse<Quote>> {
+    return this.svc.call<PagedResponse<Quote>>(this, "get");
   }
 }
