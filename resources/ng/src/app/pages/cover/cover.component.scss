@@ -3,26 +3,6 @@ header {
   background-repeat: no-repeat;
   background-position-x: center;
 
-  // Small devices (landscape phones, 576px and up)
-  @media (min-width: 0) {
-    background-position-y: 46px;
-  }
-
-  // Small devices (landscape phones, 576px and up)
-  @media (min-width: 576px) {
-    background-position-y: 46px;
-  }
-
-  // Medium devices (tablets, 768px and up)
-  @media (min-width: 768px) {
-    background-position-y: 26px;
-  }
-
-  // Large devices (desktops, 992px and up)
-  @media (min-width: 992px) {
-    background-position-y: 0;
-  }
-
   // X-Large devices (large desktops, 1200px and up)
   @media (min-width: 1200px) {
     background-position-y: -60px;

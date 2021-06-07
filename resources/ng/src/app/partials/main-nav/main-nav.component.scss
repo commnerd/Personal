@@ -1,0 +1,15 @@
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 0) {
+  .navbar {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 990px) {
+  .navbar {
+    position: relative;
+  }
+}
