@@ -1,8 +1,38 @@
 header {
-  background-image: url("/assets/michael-j-miller-xl.png");
+  background-image: url("/ng/assets/michael-j-miller-xl.png");
   background-repeat: no-repeat;
   background-position-x: center;
-  background-position-y: -120px;
+
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 0) {
+    background-position-y: 46px;
+  }
+
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 576px) {
+    background-position-y: 46px;
+  }
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    background-position-y: 26px;
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    background-position-y: 0;
+  }
+
+  // X-Large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    background-position-y: -60px;
+  }
+
+  // XX-Large devices (larger desktops, 1400px and up)
+  @media (min-width: 1400px) {
+    background-position-y: -80px;
+  }
+
   background-size: 100% auto;
   background-attachment: fixed;
   color: white;

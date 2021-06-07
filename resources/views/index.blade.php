@@ -6,14 +6,27 @@
         <base href="/">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <link rel="stylesheet" href="/js/ng/styles.css">
+        <link rel="stylesheet" href="/ng/styles.css">
     </head>
     <body class="container-fluid">
-        <app-root></app-root>
+        <app-root class="row"></app-root>
         <script src="/ng/runtime.js" defer></script>
         <script src="/ng/polyfills.js" defer></script>
         <script src="/ng/scripts.js" defer></script>
         <script src="/ng/vendor.js" defer></script>
         <script src="/ng/main.js" defer></script>
     </body>
+</html>
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Ng</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="container-fluid">
+<app-root class="row"></app-root>
+</body>
 </html>
