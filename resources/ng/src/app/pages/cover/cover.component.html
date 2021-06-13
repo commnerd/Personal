@@ -4,7 +4,8 @@
       <div>
         <h1 class="d-flex justify-content-center">Welcome!</h1>
         <figure>
-          <blockquote class="d-flex justify-content-center">{{ (quote$ | async)?.quote }}</blockquote>
+          <blockquote class="d-flex justify-content-center"
+                      [innerHTML]="sanitizer.bypassSecurityTrustHtml((quote$ | async)?.quote || '')"></blockquote>
           <figcaption class="d-flex justify-content-center">- {{ (quote$ | async)?.source }}</figcaption>
         </figure>
       </div>

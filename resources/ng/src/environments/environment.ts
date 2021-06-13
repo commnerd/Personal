@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   api: {
-    port: "80",
-    scheme: "http",
-    uri: "localhost"
+    port: '90',
+    scheme: 'http',
+    uri: 'localhost'
   }
 };
 
