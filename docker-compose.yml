@@ -30,6 +30,7 @@ services:
             - .:/var/www/personal
         depends_on:
             - nginx
+            - php-fpm
     yarn-builder:
         build: docker/yarn-builder
         restart: always

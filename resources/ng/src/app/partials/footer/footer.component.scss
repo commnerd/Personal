@@ -1,5 +1,26 @@
+
 footer {
   background-color: black;
   color: white;
-  height:50px;
+  display: flex;
+  padding: 20px;
+
+  & > div {
+    display: inline-block;
+    margin: auto;
+  }
+}
+a {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.social a {
+  color: grey;
+  &:hover {
+    color: grey;
+  }
 }

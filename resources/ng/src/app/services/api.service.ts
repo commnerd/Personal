@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { Endpoint } from "@interfaces/api/endpoint";
+import { Endpoint } from "@interfaces/api/resource";
 import { environment } from "@environment";
 import { Quote } from "@models/quote";
 import {PagedResponse} from "@interfaces/api/paged-response";

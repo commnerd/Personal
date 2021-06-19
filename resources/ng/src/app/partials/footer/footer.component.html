@@ -1,1 +1,21 @@
-
+<footer>
+  <div>
+    <div class="d-flex justify-content-around">
+      <a [routerLink]="['/']" routerLinkActive="active">Home</a>
+    </div>
+    <div class="d-flex justify-content-around social">
+      <a href="https://github.com/commnerd">
+        <fa-icon [icon]="faGithub" class="fa-3x"></fa-icon>
+      </a>
+      <a href="https://www.linkedin.com/in/michaeljmiller79">
+        <fa-icon [icon]="faLinkedin" class="fa-3x"></fa-icon>
+      </a>
+      <a href="https://www.facebook.com/michaeljmiller79">
+        <fa-icon [icon]="faFacebook" class="fa-3x"></fa-icon>
+      </a>
+    </div>
+    <div class="copyright">
+      © {{ year }} Michael J. Miller. All rights reserved.
+    </div>
+  </div>
+</footer>

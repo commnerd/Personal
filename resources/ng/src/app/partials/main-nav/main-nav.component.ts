@@ -1,3 +1,4 @@
+import {ActivatedRoute, Route} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  active(route: Route): boolean {
+    return true;
   }
 
 }

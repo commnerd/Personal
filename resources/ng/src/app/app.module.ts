@@ -13,6 +13,7 @@ import { ApiService } from "./services/api.service";
 import { MainNavComponent } from './partials/main-nav/main-nav.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { BasePageComponent } from './templates/base-page/base-page.component';
+import { FourOhFourComponent } from './pages/four-oh-four/four-oh-four.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BasePageComponent } from './templates/base-page/base-page.component';
     FooterComponent,
     BasePageComponent,
     HomeComponent,
-    CoverComponent
+    CoverComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
