@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { Endpoint } from "@interfaces/api/resource";
+import { Endpoint } from "@interfaces/api/endpoint";
 import { environment } from "@environment";
 import { Quote } from "@models/quote";
 import {PagedResponse} from "@interfaces/api/paged-response";
@@ -32,7 +32,7 @@ export class ApiService {
   call<T>(endpoint: Endpoint<any>, method: string, options?:any[]): Observable<T> {
     switch(method) {
       case "get":
-        return this.http.get<T>(`${this.url}/${endpoint.uri}`);
+        return this.http.get<T>(`${this.url}/${endpoint.path}`);
     }
     throw `Function "${method}" not defined in HttpClient.`;
   }
@@ -41,9 +41,11 @@ export class ApiService {
 class QuoteEndpoint implements Endpoint<Quote> {
   constructor(private svc: ApiService) {}
 
-  uri: string = "quotes";
+  path: string = "quotes";
 
-  list(): Observable<PagedResponse<Quote>> {
-    return this.svc.call<PagedResponse<Quote>>(this, "get");
+  verbs: string[] = ["index"];
+
+  index(): Observable<PagedResponse<Quote>> {
+    return this.svc.call<PagedResponse<Quote>>(this, "index")
   }
 }

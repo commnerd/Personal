@@ -22,7 +22,7 @@ export class CoverComponent implements OnInit {
   quote$: Observable<Quote> = of();
 
   ngOnInit(): void {
-    this.quote$ = this.api.resource["quotes"].list!().pipe(
+    this.quote$ = this.api.resource["quotes"].index!().pipe(
       map((page: PagedResponse<Quote>) => page.data[Math.floor(Math.random() * (page.data.length - 1))]),
       map((quote: Quote) => { console.log(quote); return quote; } )
     );
