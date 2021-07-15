@@ -1,0 +1,31 @@
+@mixin border-right($radius) {
+  border-top-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -moz-border-radius-topright: $radius;
+  -moz-border-radius-topright: $radius;
+  -webkit-border-top-right-radius: $radius;
+  -webkit-border-bottom-right-radius: $radius;
+}
+
+header {
+  width: 100vw;
+  height: 100vh;
+  background: url('/assets/michael-j-miller-xl.png') no-repeat;
+  background-size: cover;
+  background-position-y: -150px;
+
+  h1 {
+    color: white;
+  }
+
+  #quote {
+    display:flex;
+    & > * {
+      margin: auto;
+    }
+    width: 50vw;
+    background-color: grey;
+    height: 50vh;
+    @include border-right(10px);
+  }
+}
