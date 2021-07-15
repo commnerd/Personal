@@ -8,6 +8,9 @@
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
   background: url('/assets/michael-j-miller-xl.png') no-repeat;
@@ -15,13 +18,22 @@ header {
   background-position-y: -150px;
 
   h1 {
+    display: block;
+    position: absolute;
+    top: 5%;
+    width: 100vw;
+    text-align: center;
     color: white;
   }
 
   #quote {
     display:flex;
-    & > * {
-      margin: auto;
+    flex-direction: column;
+    & > q {
+      margin: auto auto 1%;
+    }
+    & > sub {
+      margin: 1% auto auto;
     }
     width: 50vw;
     background-color: grey;
