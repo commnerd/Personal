@@ -61,3 +61,7 @@ Route::prefix('blog')->group(function () {
     Route::get('tag/{slug}', 'BlogController@getPostsByTag')->name('blog.tag');
     Route::get('topic/{slug}', 'BlogController@getPostsByTopic')->name('blog.topic');
 });
+
+Route::get('alive', function() {
+	return response("Hello World");
+});
