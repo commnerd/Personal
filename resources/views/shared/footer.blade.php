@@ -21,7 +21,6 @@
             @endif
           </ul>
           <ul class="nav navbar-nav navbar-center">
-            <li><a href="https://www.facebook.com/michaeljmiller79"><i class="fab fa-facebook fa-2x"></i></a></li>
             <li><a href="https://github.com/commnerd"><i class="fab fa-github fa-2x"></i></a></li>
             <li><a href="https://www.linkedin.com/in/michaeljmiller79/"><i class="fab fa-linkedin fa-2x"></i></a></li>
           </ul>

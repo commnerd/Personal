@@ -29,7 +29,6 @@
     <div class="section social">
         @include('shared.section-header', ['label' => 'Social'])
         <div class="center">
-            <a href="https://www.facebook.com/michaeljmiller79"><i style="color: #3097D1" class="fab fa-facebook fa-8x"></i></a>
             <a href="https://github.com/commnerd"><i style="color: gray;" class="fab fa-github fa-8x"></i></a>
             <a href="https://www.linkedin.com/in/michaeljmiller79/"><i style="color: #216a94" class="fab fa-linkedin fa-8x"></i></a>
         </div>
