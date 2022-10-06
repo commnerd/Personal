@@ -23,4 +23,9 @@ class System
 
         return $used." / ".$total." (".$usagePercent.")";
     }
+
+    public function getUptime(): string
+    {
+        return shell_exec('uptime -p');
+    }
 }

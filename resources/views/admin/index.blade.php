@@ -4,6 +4,14 @@
 <div class="row">
     <fieldset class="col-sm-12">
         <legend>System</legend>
+        <div class="col-sm-12">
+            <div class="list-group">
+                <span class="list-group-item">
+                    <span class="item-label">Uptime:</span>
+                    <span class="item-value">{{ $uptime }}</span>
+                </span>
+            </div>
+        </div>
         <div class="col-sm-6">
             <div class="list-group">
                 <span class="list-group-item">

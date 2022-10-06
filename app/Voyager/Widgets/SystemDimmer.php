@@ -23,12 +23,14 @@ class SystemDimmer extends SpanningDimmer
         $string = 'System';
         $os = SystemStats::getOS();
         $diskUsage = SystemStats::getDiskUsage();
+        $uptime = SystemStats::getUptime();
 
         return view('vendor.voyager.widgets.system-dimmer', array_merge($this->config, [
             'icon'   => 'voyager-laptop',
             'title'  => "{$string}",
             'os' => "{$os}",
             'diskUsage' => "{$diskUsage}",
+            'uptime' => "{$uptime}",
             'image' => '/storage/admin/system.jpg',
             'width' => 12,
         ]));
