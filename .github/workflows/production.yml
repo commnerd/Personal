@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
         with:
-          php-version: '8.0'
+          php-version: "8.0"
       - uses: actions/checkout@v2
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
@@ -41,32 +41,40 @@ jobs:
           tar -cjf Personal.tar.bz2 Personal
       - name: Send the project to server
         run: "scp -i ~/.ssh/id_rsa ../Personal.tar.bz2 ubuntu@${{secrets.PERSONAL_PRODUCTION_HOST}}:"
-      - name: Server-side deploy
+      - name: Unwrap project on server
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} tar -xf Personal.tar.bz2
+      - name: Copy .env from live project
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd Personal && cp /var/www/personal/.env .
+      - name: Copy stored files from live project
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd Personal && cp -fR /var/www/personal/storage .
+      - name: Backup current mysql state
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} mysqldump --user=${{secrets.PERSONAL_MYSQL_USERNAME}} --password=${{secrets.PERSONAL_MYSQL_PASSWORD}} --port=${{secrets.PERSONAL_MYSQL_PORT}} --host=${{secrets.PERSONAL_MYSQL_HOST}} ${{secrets.PERSONAL_MYSQL_DATABASE}} > /tmp/personal.sql
+      - name: Copy SQL backup to running storage
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} sudo mv /tmp/personal.sql /var/www/personal/storage
+      - name: Zip up running deployment
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd /var/www && sudo tar -cjf personal.tar.bz2 personal
+      - name: Move zipped deployment to /tmp
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd /var/www && sudo mv personal.tar.bz2 /tmp
+      - name: Put site in maintanence mode
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd /var/www/personal && sudo -u www-data php artisan down
+      - name: Change ownership of files to www-data:www-data
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd /home/ubuntu && sudo chown -fR www-data:www-data Personal
+      - name: Swap out old deployment with new
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} sudo mv /var/www/personal /tmp && sudo mv Personal /var/www/personal
+      - name: Clear caches from storage
         run: |
           ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} "
-          tar -xf Personal.tar.bz2
-          cd Personal
-          cp /var/www/personal/.env .
-          cp -fR /var/www/personal/storage .
-          mysqldump --user=${{secrets.PERSONAL_MYSQL_USERNAME}} --password=${{secrets.PERSONAL_MYSQL_PASSWORD}} --port=${{secrets.PERSONAL_MYSQL_PORT}} --host=${{secrets.PERSONAL_MYSQL_HOST}} ${{secrets.PERSONAL_MYSQL_DATABASE}} > /tmp/personal.sql
-          sudo mv /tmp/personal.sql /var/www/personal/storage
-          cd /var/www
-          sudo tar -cjf personal.tar.bz2 personal
-          sudo mv personal.tar.bz2 /tmp
-          cd /var/www/personal
-          sudo -u www-data php artisan down
-          cd /home/ubuntu
-          sudo chown -fR www-data:www-data Personal
-          sudo mv /var/www/personal /tmp && sudo mv Personal /var/www/personal
           cd /var/www/personal
           sudo -u www-data php artisan storage:link
           sudo -u www-data php artisan cache:clear
           sudo -u www-data php artisan route:clear
           sudo -u www-data php artisan config:clear
-          sudo -u www-data php artisan view:clear
-          yes | sudo -u www-data php artisan migrate
-          sudo -u www-data php artisan queue:restart
-          sudo -u www-data php artisan up
-          sudo rm -fR ~/Personal
-          sudo rm -fR /tmp/personal
-          "
+          sudo -u www-data php artisan view:clear"
+      - name: Run migrations
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd /var/www/personal && yes | sudo -u www-data php artisan migrate
+      - name: Restart jobs
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd /var/www/personal && sudo -u www-data php artisan queue:restart
+      - name: Bring site out of maintanence mode
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} cd /var/www/personal && sudo -u www-data php artisan up
+      - name: Cleanup
+        run: ssh ubuntu@${{ secrets.PERSONAL_PRODUCTION_HOST }} sudo rm -fR ~/Personal && sudo rm -fR /tmp/personal

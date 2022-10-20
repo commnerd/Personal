@@ -21,7 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/passport": "^10.0",
         "nao-pon/flysystem-google-drive": "^1.1",
-        "tcg/voyager": "1.4.*",
+        "tcg/voyager": "1.6.*",
         "nunomaduro/collision": "^5.0"
     },
     "require-dev": {
