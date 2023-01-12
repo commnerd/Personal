@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('admin')->name('web.admin.')->group(function() {
+    Route::get('/', [App\Http\Controllers\Web\Admin\Index::class, 'index']);
+});
