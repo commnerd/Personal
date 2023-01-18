@@ -25,9 +25,9 @@ Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function(
             Route::name(!empty($version) ? "$version." : '')->prefix($version)->group(function() {
                 Route::apiResources([
                     // '/composer-packages' => 'ComposerPackages',
-                    // '/contact-messages' => 'ContactMessages',
+                    '/contact-messages' => 'ContactMessages',
                     '/drinks' => 'Drinks',
-                    // '/quotes' => 'Quotes',
+                    '/quotes' => 'Quotes',
                 ]);
             });
         }

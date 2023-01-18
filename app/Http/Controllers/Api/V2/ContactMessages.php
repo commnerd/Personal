@@ -2,62 +2,68 @@
 
 namespace App\Http\Controllers\Api\V2;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use App\Models\ContactMessage;
 
 class ContactMessages extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(ContactMessage::paginate(self::PAGE_COUNT));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        return response()->json(ContactMessage::factory()->create($request->all()));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\ContactMessage  $contact_message
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(ContactMessage $contact_message): JsonResponse
     {
-        //
+        return response()->json($contact_message);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\ContactMessage  $contact_message
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ContactMessage $contact_message): JsonResponse
     {
-        //
+        $contact_message->update($request->toArray());
+        return response()->json($contact_message);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\ContactMessage  $contact_message
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ContactMessage $contact_message)
     {
-        //
+        $contact_message->delete();
+        return response()->json($contact_message);
     }
 }

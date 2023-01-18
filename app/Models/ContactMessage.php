@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use App\Rules\EmailOrPhone;
 
 class ContactMessage extends Model
 {
+    use HasFactory;
+
     /**
      * Get validation rules for model
      *

@@ -2,5 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-class Controller extends \App\Http\Controllers\Controller
+use \App\Http\Controllers\Controller as BaseController;
+abstract class Controller extends BaseController
 {}
