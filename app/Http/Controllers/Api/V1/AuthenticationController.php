@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use GuzzleHttp\Exception\RequestException;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Laravel\Passport\Passport;
 use Illuminate\Http\Request;

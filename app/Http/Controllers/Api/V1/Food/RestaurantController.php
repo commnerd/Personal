@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Food;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\V1\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Food\Restaurant;

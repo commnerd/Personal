@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->name('admin.')->group(function() {
+Route::prefix('admin')->name('admin')->group(function() {
     Route::get('/{any}', [App\Http\Controllers\Web\Admin\Index::class, 'index'])->where('any', '.*');
 });
