@@ -23,6 +23,12 @@ Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function(
     Route::namespace('V2')->group(function() {
         foreach(['', 'v2'] as $index => $version) {
             Route::name(!empty($version) ? "$version." : '')->prefix($version)->group(function() {
+                Route::namespace('Composer')->name('composer.')->prefix('composer')->group(function() {
+                    Route::apiResources([
+                        'packages' => 'Packages',
+                        'package_sources' => 'PackageSources',
+                    ]);
+                });
                 Route::apiResources([
                     // '/composer-packages' => 'ComposerPackages',
                     '/contact-messages' => 'ContactMessages',

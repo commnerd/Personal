@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Composer;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ComposerPackageSource extends Model
+class PackageSource extends Model
 {
+    use HasFactory;
+    
     const TYPE_GIT = "git";
     const TYPE_SVN = "svn";
 
@@ -13,6 +16,8 @@ class ComposerPackageSource extends Model
         self::TYPE_GIT => "Git",
         self::TYPE_SVN => "Subversion",
     ];
+
+    protected $table = 'composer_package_sources';
 
     /**
      * Get validation rules for model

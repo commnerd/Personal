@@ -1,6 +1,6 @@
 local_resource(
     name='init',
-    cmd='php artisan init'
+    cmd='bash -c "composer install && php artisan init"'
 )
 
 local_resource(
@@ -12,7 +12,7 @@ local_resource(
 local_resource(
     name='front-end',
     resource_deps=['init'],
-    serve_cmd='yarn dev'
+    serve_cmd='yarn && yarn dev'
 )
 
 local_resource(

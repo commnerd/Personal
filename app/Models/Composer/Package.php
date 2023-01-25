@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Composer;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class ComposerPackage extends Model
+class Package extends Model
 {
+    use HasFactory;
+    
     const TYPE_PROJECT = "project";
     const TYPE_LIBRARY = "library";
 
@@ -14,6 +17,8 @@ class ComposerPackage extends Model
         self::TYPE_PROJECT => "Project",
         self::TYPE_LIBRARY => "Library",
     ];
+
+    protected $table = 'composer_packages';
 
     /**
      * Get validation rules for model
