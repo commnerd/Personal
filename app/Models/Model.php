@@ -5,15 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Pluralizer;
+
+use App\Interfaces\Sluggable;
 use App\Interfaces\Validatable;
 
-abstract class Model extends IlluminateModel implements Validatable
+abstract class Model extends IlluminateModel implements Validatable,Sluggable
 {
     protected $search;
 
-    public function __construct(array $attributes = [])
+    public static function slug(bool $plural = false): string
     {
-        parent::__construct($attributes);
+        $slugArray = explode('\\', static::class);
+        $slugString = array_pop($slugArray);
+        $slug = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $slugString));
+        if($plural) {
+            return Pluralizer::plural($slug);
+        }
+        return $slug;
     }
 
     public static function paginate(int $pageCount)
@@ -32,6 +41,11 @@ abstract class Model extends IlluminateModel implements Validatable
         }
 
         return parent::query()->orderBy($column, $direction);
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
     }
 
     /**

@@ -6,6 +6,7 @@ use Tests\Feature\Http\Controllers\Api\V2\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    
     /**
      * Helper to dynamically build route names
      * 

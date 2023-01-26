@@ -7,7 +7,6 @@ use Tests\Feature\Http\Controllers\Api\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     const TARGET_CLASS = '';
-    const MODEL_SLUG = '';
 
     /**
      * A basic api index feature test.
@@ -94,6 +93,6 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getRouteBaseName(): string
     {
-        return 'api.v2.'.static::MODEL_SLUG;
+        return 'api.v2.'.static::TARGET_CLASS::slug(true);
     }
 }

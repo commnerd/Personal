@@ -31,7 +31,7 @@ Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function(
                 });
                 Route::apiResources([
                     // '/composer-packages' => 'ComposerPackages',
-                    '/contact-messages' => 'ContactMessages',
+                    '/contact_messages' => 'ContactMessages',
                     '/drinks' => 'Drinks',
                     '/quotes' => 'Quotes',
                 ]);
