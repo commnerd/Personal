@@ -1,3 +1,5 @@
+load('ext://uibutton', 'cmd_button')
+
 local_resource(
     name='init',
     cmd='bash -c "composer install && php artisan init"'
@@ -7,6 +9,13 @@ local_resource(
     name='serve',
     resource_deps=['init'],
     serve_cmd='php artisan serve'
+)
+
+cmd_button(
+    'server:database-refresh',
+    resource='serve',
+    argv=['bash', '-c', 'touch ./database/database.sqlite && php artisan migrate:fresh'],
+    text='Refresh Database'
 )
 
 local_resource(

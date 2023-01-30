@@ -29,8 +29,13 @@ class Init extends Command
     {
         // Copy example .env to active .env
         if(!file_exists(base_path('.env'))) {
-            $this->info('Copying .env.example to .env');
-            copy(base_path('.env.example'), base_path('.env'));
+            $this->info('Copying .env.local to .env');
+            copy(base_path('.env.local'), base_path('.env'));
+        }
+
+        if(!file_exists(database_path('database.sqlite'))) {
+            $this->info('Creating '.database_path('database.sqlite'));
+            exec('touch '.database_path('database.sqlite'));
         }
 
         if(!env('APP_KEY')) {
