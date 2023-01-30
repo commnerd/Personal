@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Food;
 
 use App\Services\Food\Search as SearchService;
-use App\Http\Controllers\Api\V1\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
