@@ -3,7 +3,6 @@
 namespace Tests\Feature\Http\Controllers\Api\V1;
 
 use App\Models\Quote;
-use Tests\TestCase;
 
 class QuoteTest extends TestCase
 {

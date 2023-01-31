@@ -3,7 +3,6 @@
 namespace Tests\Feature\Http\Controllers\Api\V1;
 
 use App\Models\Reminder;
-use Tests\TestCase;
 
 class ReminderTest extends TestCase
 {

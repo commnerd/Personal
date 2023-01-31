@@ -20,6 +20,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function() {
+    Route::name('v1.')->namespace('V1')->prefix('v1')->group(function() {
+        Route::post('login', 'AuthenticationController@login')->name('login');
+        // Route::middleware('github.auth')->post('/github_event', 'GithubController@execute')->name('github.auth');
+        Route::get('logout', 'AuthenticationController@logout')->name('logout');
+        Route::middleware('scope:manage-restaurants,search-orders')->group(function() {
+            Route::namespace('Food')->prefix('food')->group(function() {
+                Route::get('/search', 'FoodController@search')->middleware('scope:search-orders')->name('food.search');
+                Route::resource('/restaurants', 'RestaurantController')->except(['create', 'edit']);
+                Route::resource('/restaurants/{restaurantId}/orders', 'OrderController')->except(['create', 'edit']);
+            });
+        });
+
+        Route::resource('/reminders', 'ReminderController')->only(['index', 'show']);
+        Route::resource('/quotes', 'QuoteController')->only(['index', 'show']);
+    });
+
     Route::namespace('V2')->group(function() {
         foreach(['', 'v2'] as $index => $version) {
             Route::name(!empty($version) ? "$version." : '')->prefix($version)->group(function() {

@@ -1,12 +1,11 @@
 <?php
 
-namespace Tests\Feature\Api\V1;
+namespace Tests\Feature\Http\Controllers\Api\V1;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use App\Models\Model;
 use App\Models\User;
-use Tests\TestCase;
 
 abstract class AuthenticatedResourceControllerTest extends TestCase
 {
@@ -24,18 +23,18 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
      */
      protected $testClass;
 
-     /**
-      * Ensure derivative classes implement createObject() function
-      *
-      * @return App\Models\Model
-      */
+    /**
+     * Ensure derivative classes implement createObject() function
+     *
+     * @return App\Models\Model
+     */
      protected abstract function createObject(): Model;
 
-     /**
-      * Method for retreiving a legitimate update array
-      *
-      * @return array
-      */
+    /**
+     * Method for retreiving a legitimate update array
+     *
+     * @return array
+     */
      protected abstract function getUpdateArray(): array;
 
     /**

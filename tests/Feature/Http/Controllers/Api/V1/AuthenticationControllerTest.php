@@ -5,7 +5,6 @@ namespace Tests\Feature\Http\Controllers\Api\V1;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use App\Models\User;
-use Tests\TestCase;
 use Artisan;
 use Mockery;
 

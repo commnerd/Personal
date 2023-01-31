@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Api\V1\Food;
 
-use Tests\Feature\Api\V1\AuthenticatedResourceControllerTest;
+use Tests\Feature\Http\Controllers\Api\V1\AuthenticatedResourceControllerTest;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Food\Restaurant;
 use App\Models\Food\Order;
