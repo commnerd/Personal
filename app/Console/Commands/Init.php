@@ -39,6 +39,11 @@ class Init extends Command
             Artisan::call('key:generate');
         }
 
+        if(!file_exists(public_path('storage'))) {
+            $this->info('Link storage directory.');
+            Artisan::call('storage:link');
+        }
+
         if(!file_exists(database_path('database.sqlite'))) {
             $this->info('Creating '.database_path('database.sqlite'));
             exec('touch '.database_path('database.sqlite'));
