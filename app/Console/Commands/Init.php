@@ -46,6 +46,13 @@ class Init extends Command
 
         Artisan::call('migrate');
 
+        foreach(['oauth-private.key', 'oauth-public.key'] as $key) {
+            if(!file_exists(storage_path($key))) {
+                $this->info('Installing Passport dependencies.');
+                Artisan::call('passport:install');
+            }
+        }
+
         return Command::SUCCESS;
     }
 }
