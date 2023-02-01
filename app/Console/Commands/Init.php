@@ -50,6 +50,7 @@ class Init extends Command
 
         $this->info('Running migrations.');
         Artisan::call('migrate');
+        sleep(2);
 
         foreach(['oauth-private.key', 'oauth-public.key'] as $key) {
             if(!file_exists(storage_path($key))) {
