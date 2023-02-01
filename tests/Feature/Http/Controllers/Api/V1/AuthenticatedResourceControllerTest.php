@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers\Api\V1;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
+use Artisan;
 use App\Models\Model;
 use App\Models\User;
 
@@ -45,6 +46,15 @@ abstract class AuthenticatedResourceControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        try {
+            User::factory()->create([
+                'name' => 'Michael J. Miller',
+                'email' => 'commnerd@gmail.com',
+            ]);
+        }
+        catch (Exception $e) {
+            dd($e);
+        }
         Passport::actingAs(
             User::findOrFail(1),
             [

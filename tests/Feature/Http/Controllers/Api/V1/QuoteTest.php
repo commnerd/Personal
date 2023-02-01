@@ -28,7 +28,7 @@ class QuoteTest extends TestCase
         $response = $this->get(route('api.v1.quotes.index'));
         $response->assertSuccessful();
 
-        $response->assertJson([ "data" => [1 => self::TEST_RECORD_ARRAY] ]);
+        $response->assertJson([ "data" => [self::TEST_RECORD_ARRAY] ]);
     }
 
     /**
