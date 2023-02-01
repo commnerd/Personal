@@ -28,7 +28,6 @@ class Init extends Command
      */
     public function handle()
     {
-        // Copy example .env to active .env
         if(!file_exists(base_path('.env'))) {
             $this->info('Copying .env.local to .env');
             copy(base_path('.env.local'), base_path('.env'));
@@ -49,6 +48,7 @@ class Init extends Command
             exec('touch '.database_path('database.sqlite'));
         }
 
+        $this->info('Running migrations.');
         Artisan::call('migrate');
 
         foreach(['oauth-private.key', 'oauth-public.key'] as $key) {
