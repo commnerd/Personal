@@ -60,7 +60,7 @@ class AuthenticationController extends Controller
 
             $user = User::where('email', $email)->firstOrFail();
 
-            $token = $user->createToken('Michael J. Miller API Auth Client', ['search-orders'])->accessToken;
+            $token = $user->createToken('Michael J. Miller API Auth Client')->accessToken;
 
             return response()->json([ 'token' => $token ]);
         } catch (ModelNotFoundException $e) {

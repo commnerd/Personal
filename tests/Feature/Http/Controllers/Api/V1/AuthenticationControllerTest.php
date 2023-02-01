@@ -32,6 +32,7 @@ class AuthenticationControllerTest extends TestCase
 
     protected function setUp(): void {
         parent::setUp();
+        User::factory()->create(self::TEST_VALID_USER_ARRAY);
         Artisan::call('passport:client --personal --name="Michael J. Miller API Auth Client"');
     }
 

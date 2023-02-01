@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Artisan;
 use Illuminate\Console\Command;
 
 class Init extends Command
@@ -33,15 +34,17 @@ class Init extends Command
             copy(base_path('.env.local'), base_path('.env'));
         }
 
+        if(!env('APP_KEY')) {
+            $this->info('Generating random application key.');
+            Artisan::call('key:generate');
+        }
+
         if(!file_exists(database_path('database.sqlite'))) {
             $this->info('Creating '.database_path('database.sqlite'));
             exec('touch '.database_path('database.sqlite'));
         }
 
-        if(!env('APP_KEY')) {
-            $this->info('Generating random application key.');
-            Artisan::call('key:generate');
-        }
+        Artisan::call('migrate');
 
         return Command::SUCCESS;
     }
