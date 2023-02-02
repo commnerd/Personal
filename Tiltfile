@@ -2,7 +2,7 @@ load('ext://uibutton', 'cmd_button')
 
 local_resource(
     name='init',
-    cmd='bash -c "composer install && php artisan init"'
+    cmd='bash -c "php artisan init"'
 )
 
 local_resource(

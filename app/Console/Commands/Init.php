@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Artisan;
 use Illuminate\Console\Command;
+use Config;
 
 class Init extends Command
 {
@@ -31,10 +32,26 @@ class Init extends Command
         if(!file_exists(base_path('.env'))) {
             $this->info('Copying .env.local to .env');
             copy(base_path('.env.local'), base_path('.env'));
+
+            $this->info('Generating key.');
+            Artisan::call('key:generate');
+
+            // Load .env contents
+            if ($file = fopen(base_path('.env'), 'r')) {
+                while(!feof($file)) {
+                    $line = trim(fgets($file));
+                    if(!empty($line)) {
+                        putenv($line);
+                    }
+                }
+                fclose($file);
+            }
+
+            Config::set('database', require(config_path('database.php')));
         }
 
-        if(!env('APP_KEY')) {
-            $this->info('Generating random application key.');
+        if(empty(env('APP_KEY'))) {
+            $this->info('Generating key.');
             Artisan::call('key:generate');
         }
 
@@ -45,18 +62,15 @@ class Init extends Command
 
         if(!file_exists(database_path('database.sqlite'))) {
             $this->info('Creating '.database_path('database.sqlite'));
-            exec('touch '.database_path('database.sqlite'));
+            file_put_contents(database_path('database.sqlite'), '');
         }
 
         $this->info('Running migrations.');
-        Artisan::call('migrate');
-        sleep(2);
+        Artisan::call('migrate --force');
 
-        foreach(['oauth-private.key', 'oauth-public.key'] as $key) {
-            if(!file_exists(storage_path($key))) {
-                $this->info('Installing Passport dependencies.');
-                Artisan::call('passport:install');
-            }
+        if(!file_exists(storage_path('oauth-private.key'))) {
+            $this->info('Installing Passport keys.');
+            Artisan::call('passport:keys');
         }
 
         return Command::SUCCESS;
