@@ -2,7 +2,7 @@ load('ext://uibutton', 'cmd_button')
 
 local_resource(
     name='init',
-    cmd='bash -c "php artisan init"'
+    cmd='bash -c "composer install && php artisan init"'
 )
 
 local_resource(
@@ -21,7 +21,7 @@ cmd_button(
 local_resource(
     name='front-end',
     resource_deps=['init'],
-    serve_cmd='yarn && yarn dev'
+    serve_cmd='cd resources/views/admin/angular-ui && yarn && yarn watch'
 )
 
 local_resource(
