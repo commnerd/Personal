@@ -7,5 +7,4 @@ use App\Models\Composer\Package;
 class PackagesTest extends TestCase
 {
     const TARGET_CLASS = Package::class;
-    const MODEL_SLUG = 'packages';
 }

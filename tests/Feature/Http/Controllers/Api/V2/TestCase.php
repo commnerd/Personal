@@ -93,6 +93,8 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getRouteBaseName(): string
     {
-        return 'api.v2.'.static::TARGET_CLASS::slug(true);
+        $routeName = str_replace('_', '-', static::TARGET_CLASS::slug(true));
+        
+        return "api.v2.$routeName";
     }
 }

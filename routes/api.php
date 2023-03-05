@@ -43,7 +43,7 @@ Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function(
                 Route::namespace('Composer')->name('composer.')->prefix('composer')->group(function() {
                     Route::apiResources([
                         'packages' => 'Packages',
-                        'package_sources' => 'PackageSources',
+                        'package-sources' => 'PackageSources',
                     ]);
                 });
                 Route::apiResources([
