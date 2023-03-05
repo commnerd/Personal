@@ -39,6 +39,7 @@ Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function(
     Route::namespace('V2')->group(function() {
         foreach(['', 'v2'] as $index => $version) {
             Route::name(!empty($version) ? "$version." : '')->prefix($version)->group(function() {
+                Route::get('/system-spec', ['SystemSpec', 'index']);
                 Route::namespace('Composer')->name('composer.')->prefix('composer')->group(function() {
                     Route::apiResources([
                         'packages' => 'Packages',
@@ -46,8 +47,7 @@ Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function(
                     ]);
                 });
                 Route::apiResources([
-                    // '/composer-packages' => 'ComposerPackages',
-                    '/contact_messages' => 'ContactMessages',
+                    '/contact-messages' => 'ContactMessages',
                     '/drinks' => 'Drinks',
                     '/quotes' => 'Quotes',
                 ]);
