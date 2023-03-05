@@ -26,6 +26,20 @@ class System
 
     public function getUptime(): string
     {
-        return shell_exec('uptime -p');
+        $uptime = '';
+
+        try {
+            $uptime = shell_exec('uptime -p');
+        }
+        catch (Exception $e) {
+            try {
+                $uptime = trim(explode(',', shell_exec('uptime'))[0]);
+            }
+            catch (Exception $e) {
+                // Do nothing
+            }
+            
+        }
+        return $uptime || 'Something went wrong during uptime calculation';
     }
 }
