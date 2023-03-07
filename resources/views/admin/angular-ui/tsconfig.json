@@ -3,7 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "../../../../public/admin",
+    "outDir": "../../../../storage/app/admin-ui",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,

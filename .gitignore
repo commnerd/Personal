@@ -4,6 +4,7 @@
 /public/storage
 /public/admin
 /storage/*.key
+/storage/app/admin-ui
 /vendor
 .env
 .env.backup

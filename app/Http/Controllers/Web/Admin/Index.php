@@ -13,8 +13,13 @@ class Index extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(): View
+    public function index(string $sub = ""): Response
     {
-        return view('admin.index');
+        $filePath = storage_path("app/admin-ui/".$sub);
+        $contentType = substr($filePath, -2) == 'js' ? 'text/javascript' : 'text/css';
+        if(!empty($sub) && file_exists($filePath)) {
+            return response(file_get_contents($filePath))->header('Content-Type', $contentType);
+        }
+        return response()->view('admin.index');
     }
 }
