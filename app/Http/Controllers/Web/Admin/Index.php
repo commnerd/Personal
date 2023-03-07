@@ -16,7 +16,25 @@ class Index extends Controller
     public function index(string $sub = ""): Response
     {
         $filePath = storage_path("app/admin-ui/".$sub);
-        $contentType = substr($filePath, -2) == 'js' ? 'text/javascript' : 'text/css';
+        $contentType = "text/plain";
+
+        if(preg_match('/\.(.*)$/', $sub, $matches)) {
+            switch($matches[1]) {
+                case 'js':
+                    $contentType = 'text/javascript';
+                    break;
+                case 'css':
+                    $contentType = 'text/css';
+                    break;
+                case 'ico':
+                    $contentType = 'image/x-icon';
+                    break;
+                default:
+                    $contentType = "text/plain";
+                    break;
+            }
+        }
+
         if(!empty($sub) && file_exists($filePath)) {
             return response(file_get_contents($filePath))->header('Content-Type', $contentType);
         }
