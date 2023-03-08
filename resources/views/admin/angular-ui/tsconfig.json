@@ -24,7 +24,9 @@
     ],
     "paths": {
       "@layouts/*": [ "src/app/layouts/*" ],
-      "@pages/*": [ "src/app/pages/*" ]
+      "@pages/*": [ "src/app/pages/*" ],
+      "@models/*": [ "src/app/models/*" ],
+      "@interfaces/*": [ "src/app/interfaces/*" ]
     }
   },
   "angularCompilerOptions": {

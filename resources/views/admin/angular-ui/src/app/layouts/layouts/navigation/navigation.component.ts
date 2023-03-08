@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { Link } from '@models/structure/navigation/link';
 
 @Component({
   selector: 'app-navigation',
@@ -17,5 +18,15 @@ export class NavigationComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  links: Array<Link> = [
+    { label: "Contact Messages", target: [ "/", "contact-messages" ] },
+    { label: "Drinks", target: [ "/", "drinks" ] },
+    { label: "Quotes", target: [ "/", "quotes" ] },
+  ];
+
+  isArray(itm: string | Array<string>) {
+    return Array.isArray(itm);
+  }
 
 }
