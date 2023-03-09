@@ -15,7 +15,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
   declarations: [
     PagesComponent,
-    IndexComponent
+    IndexComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +26,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+  ],
+  providers: [
   ]
 })
 export class PagesModule { }

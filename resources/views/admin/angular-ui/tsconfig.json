@@ -23,10 +23,11 @@
       "dom"
     ],
     "paths": {
+      "@interfaces/*": [ "src/app/interfaces/*" ],
       "@layouts/*": [ "src/app/layouts/*" ],
-      "@pages/*": [ "src/app/pages/*" ],
       "@models/*": [ "src/app/models/*" ],
-      "@interfaces/*": [ "src/app/interfaces/*" ]
+      "@pages/*": [ "src/app/pages/*" ],
+      "@services/*": [ "src/app/services/*" ],
     }
   },
   "angularCompilerOptions": {
