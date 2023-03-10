@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { IndexComponent } from './index/index.component';
 import { DrinksComponent } from './drinks.component';
+import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 
 
 const routes: Routes = [
@@ -11,6 +13,8 @@ const routes: Routes = [
     component: DrinksComponent,
     children: [
       { path: '', component: IndexComponent  },
+      { path: 'create', component: CreateComponent },
+      { path: '{id}/edit', component: EditComponent }
     ]
   }
 ];
