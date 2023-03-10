@@ -1,1 +1,7 @@
-<p>index works!</p>
+<h3 *ngIf="(contactMessages$ | async)?.total == 0">There are no messages to be seen here.</h3>
+
+<ul *ngIf="(contactMessages$ | async)?.total != 0">
+    <li *ngFor="let message of (contactMessages$ | async)?.data">
+        {{ message.message }}
+    </li>
+</ul>

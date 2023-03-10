@@ -1,1 +1,7 @@
-<p>index works!</p>
+<h3 *ngIf="(quotes$ | async)?.total == 0">There are no quotes to be seen here.</h3>
+
+<ul *ngIf="(quotes$ | async)?.total != 0">
+    <li *ngFor="let quote of (quotes$ | async)?.data">
+        {{ quote.source }}
+    </li>
+</ul>

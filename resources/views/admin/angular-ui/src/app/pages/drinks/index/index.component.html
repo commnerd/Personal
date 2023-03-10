@@ -1,1 +1,7 @@
-<p>index works!</p>
+<h3 *ngIf="(drinks$ | async)?.total == 0">There are no drinks to be seen here.</h3>
+
+<ul *ngIf="(drinks$ | async)?.total != 0">
+    <li *ngFor="let drink of (drinks$ | async)?.data">
+        {{ drink.name }}
+    </li>
+</ul>

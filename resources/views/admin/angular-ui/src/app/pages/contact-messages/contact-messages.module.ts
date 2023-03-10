@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IndexComponent } from './index/index.component';
+
 import { ContactMessagesComponent } from './contact-messages.component';
 import { ContactMessagesRoutingModule } from './contact-messages-routing.module';
 import { ContactMessagesService } from '@services/api/contact-messages.service';
+import { IndexComponent } from './index/index.component';
 
 
 
 @NgModule({
   declarations: [
-    ContactMessagesComponent
+    ContactMessagesComponent,
+    IndexComponent
   ],
   imports: [
     CommonModule,
-    ContactMessagesRoutingModule
+    ContactMessagesRoutingModule,
   ],
   providers: [
-    ContactMessagesService
+    ContactMessagesService,
   ]
 })
 export class ContactMessagesModule { }

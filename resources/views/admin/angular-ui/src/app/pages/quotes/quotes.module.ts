@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { QuotesService } from '@services/api/quotes.service';
 import { QuotesRoutingModule } from './quotes-routing.module';
 import { QuotesComponent } from './quotes.component';
+import { IndexComponent } from './index/index.component';
 
 
 
 @NgModule({
   declarations: [
-    QuotesComponent
+    QuotesComponent,
+    IndexComponent
   ],
   imports: [
     CommonModule,
