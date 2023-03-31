@@ -11,6 +11,7 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       { path: '', component: IndexComponent  },
+      { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
       { path: 'contact-messages', loadChildren: () => import('./contact-messages/contact-messages.module').then(m => m.ContactMessagesModule) },
       { path: 'drinks', loadChildren: () => import('./drinks/drinks.module').then(m => m.DrinksModule) },
       { path: 'quotes', loadChildren: () => import('./quotes/quotes.module').then(m => m.QuotesModule) },

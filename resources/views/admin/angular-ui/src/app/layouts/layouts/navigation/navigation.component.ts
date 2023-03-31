@@ -23,6 +23,7 @@ export class NavigationComponent {
   );
 
   links: Array<Link> = [
+    { label: "Blog", target: [ "/", "blog" ] },
     { label: "Contact Messages", target: [ "/", "contact-messages" ] },
     { label: "Drinks", target: [ "/", "drinks" ] },
     { label: "Quotes", target: [ "/", "quotes" ] },

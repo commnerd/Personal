@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
+import { DashboardCard } from '@models/structure/dashboard/card';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -11,21 +13,38 @@ export class IndexComponent {
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
+      let cards: Array<DashboardCard> = [
+        new DashboardCard(
+          'System',
+          `System running on linux`
+        ),
+        new DashboardCard(
+          'Contact Messages',
+          'You have 10 messages',
+          [{ label: 'Manage', target: ['/', 'contact-messages' ] }]
+        ),
+        new DashboardCard(
+          'Drinks',
+          'You have 3 drinks',
+          [{ label: 'Manage', target: ['#', 'drinks' ] }]
+        ),
+        new DashboardCard(
+          'Quotes',
+          'You have 5 quotes',
+          [{ label: 'Manage', target: ['#', 'quotes' ] }]
+        ),
+      ]
       if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
+        return cards;
       }
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
+      for(let index in cards) {
+        cards[index].cols = 1;
+        if(index == "0") {
+          cards[index].cols = 2;
+        }
+      }
+      return cards;
     })
   );
 
