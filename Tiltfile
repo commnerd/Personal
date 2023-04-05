@@ -21,7 +21,7 @@ cmd_button(
 local_resource(
     name='front-end',
     resource_deps=['init'],
-    serve_cmd='cd resources/views/admin/angular-ui && yarn && yarn watch --base-href="/admin/"'
+    serve_cmd='cd resources/views/admin/angular-ui; yarn; yarn watch --base-href="/admin/"'
 )
 
 local_resource(

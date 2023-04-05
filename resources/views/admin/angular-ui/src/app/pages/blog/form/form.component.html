@@ -1,4 +1,26 @@
-<h1>TinyMCE 6 Angular Demo</h1>
-<editor
-  [init]="{ plugins: 'lists link image table code help wordcount' }"
-></editor>
+<form [formGroup]="postForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="blog-card">
+    <mat-card-header>
+      <mat-card-title>{{ title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="postForm.controls['title'].hasError('required')">
+              Title is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <editor
+      [init]="{ plugins: 'lists link image table code help wordcount' }"
+      formControlName="content"
+      ></editor>          
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
