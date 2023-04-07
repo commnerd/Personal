@@ -33,9 +33,6 @@ class Init extends Command
             $this->info('Copying .env.local to .env');
             copy(base_path('.env.local'), base_path('.env'));
 
-            $this->info('Generating key.');
-            Artisan::call('key:generate');
-
             // Load .env contents
             if ($file = fopen(base_path('.env'), 'r')) {
                 while(!feof($file)) {
@@ -66,7 +63,7 @@ class Init extends Command
         }
 
         $this->info('Running migrations.');
-        Artisan::call('migrate --force');
+        Artisan::call('migrate:fresh --force');
 
         if(!file_exists(storage_path('oauth-private.key'))) {
             $this->info('Installing Passport keys.');
