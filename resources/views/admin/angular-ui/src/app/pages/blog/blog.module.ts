@@ -7,8 +7,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
-
 import { BlogComponent } from './blog.component';
 import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
@@ -26,7 +24,6 @@ import { BlogRoutingModule } from './blog-routing.module';
   ],
   imports: [
     CommonModule,
-    EditorModule,
     BlogRoutingModule,
     MatInputModule,
     MatButtonModule,
@@ -36,7 +33,7 @@ import { BlogRoutingModule } from './blog-routing.module';
     ReactiveFormsModule
   ],
   providers: [
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    
   ]
 })
 export class BlogModule { }
