@@ -46,6 +46,12 @@ Route::name('api.')->namespace('\\App\\Http\\Controllers\\Api')->group(function(
                         'package-sources' => 'PackageSources',
                     ]);
                 });
+                Route::namespace('Food')->name('food.')->prefix('food')->group(function() {
+                    Route::apiResources([
+                        'restaurants' => 'Restaurants',
+                        'orders' => 'Orders',
+                    ]);
+                });
                 Route::apiResources([
                     '/contact-messages' => 'ContactMessages',
                     '/drinks' => 'Drinks',
