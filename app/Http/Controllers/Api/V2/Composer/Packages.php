@@ -48,7 +48,7 @@ class Packages extends Controller
      * @param  \App\Models\Composer\Package $package
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request, Package $package): JsonResponse
     {
         $package->update($request->toArray());
         return response()->json($package);
@@ -58,9 +58,9 @@ class Packages extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Composer\Package $package
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Package $package)
+    public function destroy(Package $package): JsonResponse
     {
         $package->delete();
         return response()->json($package);
