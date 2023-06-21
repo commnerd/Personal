@@ -1,0 +1,40 @@
+name: 'Build the application'
+description: 'Import all necessary dependencies and build js'
+
+inputs:
+  env:
+    description: "The environment context (dev? testing? production?)"
+    required: true
+
+  php-version:
+    description: "The php version to use"
+    required: true
+
+  node-version:
+    description: "The node version to use"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get php install option
+      id: php-dev-conf
+      run: echo "option=$(['${{ inputs.env }}' != 'production'] && echo 'yes' || echo 'no')" >> $GITHUB_OUTPUTS
+      shell: bash
+
+    - name: Get yarn install option
+      id: node-dev-conf
+      run: echo "option=$(['${{ inputs.env }}' == 'production'] && echo ' --prod')" >> $GITHUB_OUTPUTS
+
+    - uses: php-actions/composer@v2.5.8
+      with:
+        php-version: ${{ inputs.php-version }}
+        dev: ${{ steps.php-dev-conf.outputs.option }}
+        command: 'install'
+
+    - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node-version }}
+
+    - name: Install node modules
+      run: yarn install${{ steps.node-dev-conf.outputs.option}}

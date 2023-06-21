@@ -1,0 +1,69 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout dashboard-revcatch project
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/configure-ssh
+        with:
+          id-rsa: ${{ secrets.PERSONAL_PRIVATE_ID_RSA }}
+          host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
+
+      - uses: ./.github/actions/build
+        with:
+          env: production
+          php-version: '8.2.7'
+          node-version: '18.16.0'
+
+
+      - name: Remove unnecessary production/staging files
+        run: |
+          for f in $(find "." -name '.*' ! -name '.' ! -name '..' ! -name '.github'); do rm -fR $f; done;
+          rm -fR ./docker;
+          rm -fR ./tests;
+          rm -fR ./resources/js;
+          rm -fR ./resources/sass;
+          rm -f  ./Tiltfile
+        shell: bash
+
+      - name: Zip files for transfer
+        run: cd .. && tar -cjf Personal.tar.bz2 Personal
+        shell: bash
+
+      - uses: ./.github/actions/backup
+        with:
+          environment: production
+          target-dir: /home/revcatch/apps/dashboard.revcatch.com
+          host: ${{ secrets.HOST }}
+
+      - name: Send project to server
+        run: "scp -i ~/.ssh/id_rsa ../dashboard-revcatch.tar.bz2 root@${{ secrets.HOST }}:/tmp/dashboard-revcatch.tar.bz2"
+        shell: bash
+
+      - name: Unwrap project on server
+        run: ssh root@${{ secrets.HOST }} 'cd /tmp && tar -xf dashboard-revcatch.tar.bz2'
+        shell: bash
+
+      - uses: ./.github/actions/deploy
+        with:
+          environment: production
+          install-user: root
+          project-name: dashboard-revcatch
+          id-rsa: ${{ secrets.PRIVATE_ID_RSA }}
+          host: ${{ secrets.HOST }}
+          target-dir: /home/revcatch/apps/dashboard.revcatch.com
+          prep-dir: /tmp/dashboard-revcatch
+          web-user: revcatch
+          web-group: revcatch
+
+      - name: Clean up
+        run: ssh root@${{ secrets.HOST }} 'rm -fR /tmp/dashboard-revcatch'
+        shell: bash
