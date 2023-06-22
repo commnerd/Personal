@@ -29,12 +29,14 @@ header {
     @include media-breakpoint-down(sm)  { background-position-y: -30px; }
     
     #comment {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: calc(50% - 20px);
         margin: auto 0;
         padding: 0 20px;
         background-color: rgba(86, 86, 86, .75);
-        height: 25%;
+        min-height: 25%;
 
         @include round-right(20px);
     }
