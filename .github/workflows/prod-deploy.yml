@@ -28,10 +28,10 @@ jobs:
         run: |
           for f in $(find "." -name '.*' ! -name '.' ! -name '..' ! -name '.github'); do rm -fR $f; done;
           rm -fR ./docker;
-          rm -fR ./tests;
           rm -fR ./resources/js;
           rm -fR ./resources/sass;
-          rm -f  ./Tiltfile
+          rm -fR ./tests;
+          rm -f  ./Tiltfile;
         shell: bash
 
       - name: Zip files for transfer
@@ -42,28 +42,28 @@ jobs:
         with:
           environment: production
           target-dir: /home/revcatch/apps/dashboard.revcatch.com
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
 
       - name: Send project to server
-        run: "scp -i ~/.ssh/id_rsa ../dashboard-revcatch.tar.bz2 root@${{ secrets.HOST }}:/tmp/dashboard-revcatch.tar.bz2"
+        run: "scp -i ~/.ssh/id_rsa ../dashboard-revcatch.tar.bz2 root@${{ secrets.PERSONAL_PRODUCTION_HOST }}:/tmp/dashboard-revcatch.tar.bz2"
         shell: bash
 
       - name: Unwrap project on server
-        run: ssh root@${{ secrets.HOST }} 'cd /tmp && tar -xf dashboard-revcatch.tar.bz2'
+        run: ssh root@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp && tar -xf dashboard-revcatch.tar.bz2'
         shell: bash
 
       - uses: ./.github/actions/deploy
         with:
           environment: production
-          install-user: root
+          install-user: ubuntu
           project-name: dashboard-revcatch
           id-rsa: ${{ secrets.PRIVATE_ID_RSA }}
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
           target-dir: /home/revcatch/apps/dashboard.revcatch.com
           prep-dir: /tmp/dashboard-revcatch
           web-user: revcatch
           web-group: revcatch
 
       - name: Clean up
-        run: ssh root@${{ secrets.HOST }} 'rm -fR /tmp/dashboard-revcatch'
+        run: ssh root@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'rm -fR /tmp/dashboard-revcatch'
         shell: bash
