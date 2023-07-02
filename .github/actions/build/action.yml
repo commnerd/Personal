@@ -40,3 +40,7 @@ runs:
     - name: Install node modules
       run: yarn install${{ steps.node-dev-conf.outputs.option}}
       shell: bash
+
+    - name: Build vite assets
+      run: yarn build
+      shell: bash
