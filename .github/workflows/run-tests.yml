@@ -5,7 +5,7 @@ on:
     branches: 'v2.*'
     
 jobs:
-  deploy:
+  integration-tests:
     runs-on: ubuntu-latest
     steps:
       # Checkout dashboard-revcatch project
