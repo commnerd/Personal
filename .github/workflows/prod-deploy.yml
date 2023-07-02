@@ -1,9 +1,9 @@
-name: Deploy to Production
+name: Deploy to Production (v2.x)
 
 on:
   workflow_dispatch:
     branches:
-      - main
+      - v2.x
     
 jobs:
   deploy:

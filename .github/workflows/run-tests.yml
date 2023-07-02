@@ -1,0 +1,29 @@
+name: Run Tests (v2.x)
+
+on:
+  workflow_dispatch:
+    branches:
+      - v2.x
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout dashboard-revcatch project
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/configure-ssh
+        with:
+          id-rsa: ${{ secrets.PERSONAL_PRIVATE_ID_RSA }}
+          host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
+
+      - uses: ./.github/actions/build
+        with:
+          env: testing
+          php-version: '8.2.7'
+          node-version: '18.16.0'
+
+
+      - name: Remove unnecessary production/staging files
+        run: vendor/bin/phpunit
+        shell: bash
