@@ -32,7 +32,7 @@ runs:
         php-version: ${{ inputs.php-version }}
         dev: ${{ steps.php-dev-conf.outputs.option }}
         command: 'install'
-
+    
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}

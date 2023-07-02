@@ -27,11 +27,19 @@ jobs:
       - name: Remove unnecessary production/staging files
         run: |
           for f in $(find "." -name '.*' ! -name '.' ! -name '..' ! -name '.github'); do rm -fR $f; done;
-          rm -fR ./docker;
           rm -fR ./resources/js;
           rm -fR ./resources/sass;
           rm -fR ./tests;
-          rm -f  ./Tiltfile;
+          rm -f  ./.env*;
+          rm -f  ./.git*;
+          rm -f  ./composer.*;
+          rm -f  ./docker-compose.yml;
+          rm -f  ./LICENSE;
+          rm -f  ./package.json;
+          rm -f  ./phpunit.xml;
+          rm -f  ./README.md;
+          rm -f  ./vite.config.js;
+          rm -f  ./yarn.lock;
         shell: bash
 
       - name: Zip files for transfer
