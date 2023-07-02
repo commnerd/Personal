@@ -1,0 +1,30 @@
+name: 'Configure SSH for file transfer to hosting server'
+description: 'Add private ssh key and proper configs to easily transfer prepared files'
+
+inputs:
+  id-rsa:
+    description: "The private key to use to connect to the server over ssh"
+    required: true
+
+  host:
+    description: "The server URL"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Make .ssh directory if not exists
+      run: mkdir -p ~/.ssh 2>/dev/null
+      shell: bash
+
+    - name: Copy private rsa key into .ssh directory
+      run: echo "${{ inputs.id-rsa }}" > ~/.ssh/id_rsa
+      shell: bash
+
+    - name: Copy key to known_hosts file to avoid confirmation
+      run: ssh-keyscan -H ${{ inputs.host }} > ~/.ssh/known_hosts
+      shell: bash
+
+    - name: Assign correct permissions to private key
+      run: sudo chmod 400 ~/.ssh/id_rsa
+      shell: bash
