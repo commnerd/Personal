@@ -1,5 +1,9 @@
 @extends('templates.foundation')
 
+@section('meta_description')
+Welcome to my personal website! Discover my ongoing journey of constant improvement as I work on updating and enhancing the site. Stay tuned for exciting and frequent updates coming your way.
+@endsection
+
 @section('content')
 <header>
     <div id="comment">

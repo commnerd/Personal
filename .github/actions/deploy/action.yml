@@ -17,6 +17,7 @@ runs:
     - name: Get yarn install option
       id: node-dev-conf
       run: echo "option=$(['${{ inputs.env }}' == 'production'] && echo ' --prod')" >> $GITHUB_OUTPUTS
+      shell: bash
 
     - uses: php-actions/composer@v2.5.8
       with:
@@ -30,3 +31,4 @@ runs:
 
     - name: Install node modules
       run: yarn install${{ steps.node-dev-conf.outputs.option}}
+      shell: bash
