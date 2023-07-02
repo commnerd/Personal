@@ -2,7 +2,7 @@ name: Run Tests (v2.1.x)
 
 on:
   push:
-    branches: '*'
+    branches: 'v2.*'
     
 jobs:
   deploy:
@@ -22,7 +22,6 @@ jobs:
           php-version: '8.2.7'
           node-version: '18.16.0'
 
-
-      - name: Remove unnecessary production/staging files
+      - name: Run tests
         run: vendor/bin/phpunit
         shell: bash
