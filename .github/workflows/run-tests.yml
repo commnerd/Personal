@@ -1,9 +1,8 @@
 name: Run Tests (v2.1.x)
 
 on:
-  workflow_dispatch:
-    branches:
-      - v2.1.x
+  push:
+    branches: '*'
     
 jobs:
   deploy:
