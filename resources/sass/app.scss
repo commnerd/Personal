@@ -2,7 +2,43 @@
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
 // Variables
+@import 'mixins';
+
+// Variables
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+html {
+    overflow-x: hidden;
+}
+
+header {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    background-image: url('https://michaeljmiller.net/storage/michael-j-miller-xl.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position-y: -140px;
+    @include media-breakpoint-down(xxl) { background-position-y: -120px; }
+    @include media-breakpoint-down(xl)  { background-position-y: -95px; }
+    @include media-breakpoint-down(lg)  { background-position-y: -70px; }
+    @include media-breakpoint-down(md)  { background-position-y: -50px; }
+    @include media-breakpoint-down(sm)  { background-position-y: -30px; }
+    
+    #comment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: calc(50% - 20px);
+        margin: auto 0;
+        padding: 0 20px;
+        background-color: rgba(86, 86, 86, .75);
+        min-height: 25%;
+
+        @include round-right(20px);
+    }
+
+}
