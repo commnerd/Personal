@@ -26,12 +26,11 @@ jobs:
 
       - name: Remove unnecessary production/staging files
         run: |
-          for f in $(find "." -name '.*' ! -name '.' ! -name '..' ! -name '.github'); do rm -fR $f; done;
+          for f in $(find "." -maxdepth 1 -name '.*' ! -name '.' ! -name '..' ! -name '.github'); do rm -fR $f; done;
           rm -fR ./resources/js;
           rm -fR ./resources/sass;
           rm -fR ./tests;
           rm -f  ./.env*;
-          rm -f  ./.git*;
           rm -f  ./composer.*;
           rm -f  ./docker-compose.yml;
           rm -f  ./LICENSE;
