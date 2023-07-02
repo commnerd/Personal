@@ -26,8 +26,8 @@ runs:
         command: 'install'
 
     - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ inputs.node-version }}
+      with:
+        node-version: ${{ inputs.node-version }}
 
     - name: Install node modules
       run: yarn install${{ steps.node-dev-conf.outputs.option}}
