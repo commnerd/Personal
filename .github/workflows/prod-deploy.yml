@@ -56,18 +56,22 @@ jobs:
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp && tar -xf Personal.tar.bz2'
         shell: bash
 
-      # - uses: ./.github/actions/deploy
-      #   with:
-      #     environment: production
-      #     install-user: ubuntu
-      #     project-name: dashboard-revcatch
-      #     id-rsa: ${{ secrets.PRIVATE_ID_RSA }}
-      #     host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
-      #     target-dir: /home/revcatch/apps/dashboard.revcatch.com
-      #     prep-dir: /tmp/dashboard-revcatch
-      #     web-user: revcatch
-      #     web-group: revcatch
+      - name: Create storage link
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -s ../storage/app/public storage'
+        shell: bash
 
-      # - name: Clean up
-      #   run: ssh root@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'rm -fR /tmp/dashboard-revcatch'
-      #   shell: bash
+      - name: Fetch .env
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo cp /var/www/personal/.env /tmp/Personal'
+        shell: bash
+
+      - name: Fix ownership
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'chown -fR www-data:www-data /tmp/Personal'
+        shell: bash
+
+      - name: Swap new with old
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo mv /var/www/personal /tmp/personal.bak && sudo mv /tmp/Personal /var/www/personal'
+        shell: bash
+
+      - name: Clean up
+        run: ssh root@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rm -fR /tmp/personal.bak; sudo rm -fR /tmp/Personal.tar.bz2'
+        shell: bash
