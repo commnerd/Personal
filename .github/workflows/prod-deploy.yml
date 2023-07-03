@@ -73,5 +73,5 @@ jobs:
         shell: bash
 
       - name: Clean up
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rm -fR /tmp/personal.bak; sudo rm -fR /tmp/Personal.tar.bz2'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rm -fR /tmp/personal.bak; sudo rm -f /tmp/Personal.tar.bz2'
         shell: bash
