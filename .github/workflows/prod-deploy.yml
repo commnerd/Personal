@@ -65,7 +65,7 @@ jobs:
         shell: bash
 
       - name: Fix ownership
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'chown -fR www-data:www-data /tmp/Personal'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo chown -fR www-data:www-data /tmp/Personal'
         shell: bash
 
       - name: Swap new with old
