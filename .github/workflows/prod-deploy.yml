@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout dashboard-revcatch project
+      # Checkout Personal website project
       - uses: actions/checkout@v3
 
       - uses: ./.github/actions/configure-ssh
@@ -22,7 +22,6 @@ jobs:
           env: production
           php-version: '8.2.7'
           node-version: '18.16.0'
-
 
       - name: Remove unnecessary production/staging files
         run: |
@@ -45,32 +44,30 @@ jobs:
         run: cd .. && tar -cjf Personal.tar.bz2 Personal
         shell: bash
 
-      - uses: ./.github/actions/backup
-        with:
-          environment: production
-          target-dir: /home/revcatch/apps/dashboard.revcatch.com
-          host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
+      - name: Backup current site
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo cp -a /var/www/personal /tmp/personal.bak'
+        shell: bash
 
       - name: Send project to server
-        run: "scp -i ~/.ssh/id_rsa ../dashboard-revcatch.tar.bz2 root@${{ secrets.PERSONAL_PRODUCTION_HOST }}:/tmp/dashboard-revcatch.tar.bz2"
+        run: "scp -i ~/.ssh/id_rsa ../Personal.tar.bz2 admin@${{ secrets.PERSONAL_PRODUCTION_HOST }}:/tmp/Personal.tar.bz2"
         shell: bash
 
       - name: Unwrap project on server
-        run: ssh root@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp && tar -xf dashboard-revcatch.tar.bz2'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp && tar -xf Personal.tar.bz2'
         shell: bash
 
-      - uses: ./.github/actions/deploy
-        with:
-          environment: production
-          install-user: ubuntu
-          project-name: dashboard-revcatch
-          id-rsa: ${{ secrets.PRIVATE_ID_RSA }}
-          host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
-          target-dir: /home/revcatch/apps/dashboard.revcatch.com
-          prep-dir: /tmp/dashboard-revcatch
-          web-user: revcatch
-          web-group: revcatch
+      # - uses: ./.github/actions/deploy
+      #   with:
+      #     environment: production
+      #     install-user: ubuntu
+      #     project-name: dashboard-revcatch
+      #     id-rsa: ${{ secrets.PRIVATE_ID_RSA }}
+      #     host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
+      #     target-dir: /home/revcatch/apps/dashboard.revcatch.com
+      #     prep-dir: /tmp/dashboard-revcatch
+      #     web-user: revcatch
+      #     web-group: revcatch
 
-      - name: Clean up
-        run: ssh root@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'rm -fR /tmp/dashboard-revcatch'
-        shell: bash
+      # - name: Clean up
+      #   run: ssh root@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'rm -fR /tmp/dashboard-revcatch'
+      #   shell: bash

@@ -1,0 +1,7 @@
+name: 'Push the application to a server'
+description: 'Put the code in the wild!'
+
+inputs:
+  ssh-key-path:
+    description: "Path to the SSH key used to deploy"
+    required: true
