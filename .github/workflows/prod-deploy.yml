@@ -23,6 +23,16 @@ jobs:
           php-version: '8.2.7'
           node-version: '18.16.0'
 
+      - name: Install angular builder libraries
+        run: |
+          npm install -g npm@9.7.2;
+          npm install -g @angular/cli;
+        shell: bash
+
+      - name: Build angular admin ui
+        run: cd resources/admin_ui && yarn --prod && ng build --prod
+        shell: bash
+
       - name: Remove unnecessary production/staging files
         run: |
           for f in $(find "." -maxdepth 1 -name '.*' ! -name '.' ! -name '..' ! -name '.github'); do rm -fR $f; done;
