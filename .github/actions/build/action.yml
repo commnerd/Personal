@@ -36,6 +36,11 @@ runs:
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
+    
+    - name: Install angular builder libraries
+      run: |
+        npm install -g @angular/cli;
+      shell: bash
 
     - name: Install node modules
       run: yarn install${{ steps.node-dev-conf.outputs.option}}
@@ -44,3 +49,8 @@ runs:
     - name: Build vite assets
       run: yarn build
       shell: bash
+
+    - name: Build angular admin ui
+      run: cd resources/admin_ui && yarn${{ steps.node-dev-conf.outputs.option}} && ng build${{ steps.node-dev-conf.outputs.option}}
+      shell: bash
+
