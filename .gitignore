@@ -10,6 +10,7 @@ app/storage/
 public/build
 public/storage
 public/hot
+public/admin
 storage/*.key
 .env.*.php
 .env.php

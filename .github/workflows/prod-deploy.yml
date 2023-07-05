@@ -28,6 +28,7 @@ jobs:
           for f in $(find "." -maxdepth 1 -name '.*' ! -name '.' ! -name '..' ! -name '.github'); do rm -fR $f; done;
           rm -fR ./resources/js;
           rm -fR ./resources/sass;
+          rm -fR ./docker;
           rm -fR ./tests;
           rm -f  ./.env*;
           rm -f  ./composer.*;

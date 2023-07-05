@@ -22,6 +22,7 @@ header {
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position-y: -140px;
+    color: white;
     @include media-breakpoint-down(xxl) { background-position-y: -120px; }
     @include media-breakpoint-down(xl)  { background-position-y: -95px; }
     @include media-breakpoint-down(lg)  { background-position-y: -70px; }

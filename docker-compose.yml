@@ -24,6 +24,23 @@ services:
             - sail
         depends_on:
             - mysql
+    admin_builder:
+        build:
+            context: ./docker/admin_ui
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: admin_ui/app
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/project'
+        networks:
+            - sail
+        depends_on:
+            - laravel.test
     mysql:
         image: 'mysql/mysql-server:8.0'
         # ports:
