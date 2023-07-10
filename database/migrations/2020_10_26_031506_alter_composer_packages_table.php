@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->text('description');
+        Schema::table('composer_packages', function (Blueprint $table) {
+            $table->text('description')->default('');
         });
     }
 };
