@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IndexComponent } from './index/index.component';
 import { PagesRoutingModule } from './pages-routing.module';
-
-
+import { PartialsModule } from '../partials/partials.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +10,8 @@ import { PagesRoutingModule } from './pages-routing.module';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    PartialsModule
   ]
 })
 export class PagesModule { }
