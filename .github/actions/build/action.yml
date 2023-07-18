@@ -29,7 +29,6 @@ runs:
 
     - uses: php-actions/composer@v6
       with:
-        php-version: ${{ inputs.php-version }}
         dev: ${{ steps.php-dev-conf.outputs.option }}
         command: 'install'
     
