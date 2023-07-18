@@ -24,6 +24,12 @@
       "dom"
     ],
     "paths": {
+      "@guards/*": [
+        "./app/guards/*"
+      ],
+      "@pages/*": [
+        "./app/pages/*"
+      ],
       "@partials/*": [
         "./app/partials/*"
       ]
