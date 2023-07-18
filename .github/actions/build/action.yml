@@ -27,6 +27,11 @@ runs:
       run: echo "option=$([ ''${{ inputs.env }}'' == ''production''] && echo '' --prod'')" >> $GITHUB_OUTPUT
       shell: bash
 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php-version }}
+
     - uses: php-actions/composer@v6
       with:
         dev: ${{ steps.php-dev-conf.outputs.option }}
