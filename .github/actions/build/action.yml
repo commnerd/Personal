@@ -19,12 +19,12 @@ runs:
   steps:
     - name: Get php install option
       id: php-dev-conf
-      run: echo "option=$([ '${{ inputs.env }}' != 'production' ] && echo 'yes' || echo 'no')" >> $GITHUB_OUTPUT
+      run: echo "option=$([ ''${{ inputs.env }}'' != ''production'' ] && echo ''yes'' || echo ''no'')" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Get yarn install option
       id: node-dev-conf
-      run: echo "option=$(['${{ inputs.env }}' == 'production'] && echo ' --prod')" >> $GITHUB_OUTPUT
+      run: echo "option=$([ ''${{ inputs.env }}'' == ''production''] && echo '' --prod'')" >> $GITHUB_OUTPUT
       shell: bash
 
     - uses: php-actions/composer@v6
