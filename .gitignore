@@ -15,6 +15,7 @@ storage/*.key
 .env.*.php
 .env.php
 .env
+.phpunit.result.cache
 Homestead.yaml
 Homestead.json
 
