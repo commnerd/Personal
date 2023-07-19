@@ -9,7 +9,7 @@ export class AuthGuardService {
   constructor() { }
 
   canActivate(): boolean {
-    window.location.href = '/';
+    window.location.href = '/api/login';
     return false;
   }
 
