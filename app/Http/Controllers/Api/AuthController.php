@@ -14,13 +14,13 @@ class AuthController extends Controller
         return Socialite::driver('google')->stateless()->redirect();
     }
 
-    public function callback(Request $request): JsonResponse
+    public function callback(Request $request): RedirectResponse
     {
         
         $data = Socialite::driver('google')->stateless()->user();
 
         $token = User::where('email', $data->email)->first()->createToken('Admin Token')->accessToken;
 
-        return response()->json(['jwt' => $token]);
+        return redirect('/admin/?set_jwt=' . $token);
     }
 }
