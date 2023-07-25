@@ -36,4 +36,9 @@ return [
         'client_secret' => env('GOOGLE_OAUTH_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_OAUTH_CALLBACK'),
     ],
+
+    'amp' => [
+        'server_target' => env('AMP_SERVER', 'https://app.protectsubrev.com'),
+        'app_hash' => env('AMP_APP_HASH'),
+    ]
 ];
