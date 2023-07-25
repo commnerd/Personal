@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth')->group(function() {
     Route::get('system', [\App\Http\Controllers\Api\SystemController::class, 'index']);
 });
+
+Route::get('login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback']);
+
+Route::get('login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
