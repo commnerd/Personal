@@ -66,6 +66,10 @@ jobs:
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo cp /var/www/personal/.env /tmp/Personal'
         shell: bash
 
+      - name: Fetch oauth keys
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo cp /var/www/personal/storage/*.key /tmp/Personal/storage'
+        shell: bash
+
       - name: Fix ownership
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo chown -fR www-data:www-data /tmp/Personal'
         shell: bash
