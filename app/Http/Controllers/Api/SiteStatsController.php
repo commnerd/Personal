@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
+use App\Services\System;
+
 
 class SiteStatsController extends Controller
 {
     /**
      * Display resource statistics.
      */
-    public function index(): JsonResponse
+    public function index(System $system): JsonResponse
     {
         return response()->json([
             'composer' => [
@@ -27,6 +29,9 @@ class SiteStatsController extends Controller
             'drinks' => [
                 'count' => \App\Models\Drink::count(),
             ],
+            'employment_records' => [
+                'count' => \App\Models\Work\PortfolioEntry::count(),
+            ],
             'food' => [
                 'restaurants' => [
                     'count' => \App\Models\Food\Restaurant::count(),
@@ -38,9 +43,11 @@ class SiteStatsController extends Controller
             'portfolio_entries' => [
                 'count' => \App\Models\Work\PortfolioEntry::count(),
             ],
-            'employment_records' => [
-                'count' => \App\Models\Work\PortfolioEntry::count(),
-            ]
+            'system' => [
+                'os' => $system->getOs(),
+                'uptime' => $system->getUptime(),
+                'disk_usage' => $system->getDiskUsage(),
+            ],
         ]);
     }
 }
