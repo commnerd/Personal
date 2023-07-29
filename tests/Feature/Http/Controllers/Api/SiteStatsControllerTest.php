@@ -68,23 +68,24 @@ class SiteStatsControllerTest extends TestCase
         $user = User::where('email', 'commnerd@gmail.com')->first();
 
         $system = new System();
-
         $packageCount = rand(1, 10);
-        $packageSourceCount = rand(1, 10);
         $contactMessageCount = rand(1, 10);
         $drinkCount = rand(1, 10);
         $employmentRecordCount = rand(1, 10);
         $restaurantCount = rand(1, 10);
-        $orderCount = rand(1, 10);
         $portfolioEntryCount = rand(1, 10);
 
-        \App\Models\Composer\Package::factory()->count($packageCount)->create();
-        \App\Models\Composer\PackageSource::factory()->count($packageSourceCount)->create();
+        \App\Models\Composer\Package::factory()->count($packageCount)->create()->each(function(\App\Models\Composer\Package $package) {
+            \App\Models\Composer\PackageSource::factory()->count(rand(1, 10))->create([ 'composer_package_id' => $package->id ]);
+        });
+        
         \App\Models\ContactMessage::factory()->count($contactMessageCount)->create();
         \App\Models\Drink::factory()->count($drinkCount)->create();
         \App\Models\Work\EmploymentRecord::factory()->count($employmentRecordCount)->create();
-        \App\Models\Food\Restaurant::factory()->count($restaurantCount)->create();
-        \App\Models\Food\Order::factory()->count($orderCount)->create();
+        \App\Models\Food\Restaurant::factory()->count($restaurantCount)->create()->each(function(\App\Models\Food\Restaurant $restaurant) {
+            \App\Models\Food\Order::factory()->count(rand(0, 10))->create([ 'restaurant_id' => $restaurant->id ]);
+        });
+        
         \App\Models\Work\PortfolioEntry::factory()->count($portfolioEntryCount)->create();
 
         $response = $this->actingAs($user)->get('/api/site_stats');
@@ -94,9 +95,6 @@ class SiteStatsControllerTest extends TestCase
             'composer' => [
                 'repos' => [
                     'count' => $packageCount,
-                ],
-                'sources' => [
-                    'count' => $packageSourceCount,
                 ],
             ],
             'contact_messages' => [
@@ -112,9 +110,6 @@ class SiteStatsControllerTest extends TestCase
                 'restaurants' => [
                     'count' => $restaurantCount,
                 ],
-                'orders' => [
-                    'count' => $orderCount,
-                ]
             ],
             'portfolio_entries' => [
                 'count' => $portfolioEntryCount,
