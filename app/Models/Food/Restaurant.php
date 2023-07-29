@@ -2,10 +2,21 @@
 
 namespace App\Models\Food;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Model;
 
 class Restaurant extends Model
 {
-    use HasFactory;
+    /**
+     * Get validation rules for model
+     *
+     * @return array Validation rules
+     */
+    public static function getValidationRules(): array
+    {
+        return [
+            'name' => 'required|string|min:1|max:255',
+            'version' => 'required|float',
+            'type' => 'required|string',
+        ];
+    }
 }

@@ -2,12 +2,39 @@
 
 namespace App\Models\Composer;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Model;
 
 class Package extends Model
 {
-    use HasFactory;
-
+    /**
+     * The table that maintains the data.
+     *
+     * @var string
+     */
     protected $table = 'composer_packages';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'version',
+        'type',
+    ];
+
+    /**
+     * Get validation rules for model
+     *
+     * @return array Validation rules
+     */
+    public static function getValidationRules(): array
+    {
+        return [
+            'name' => 'required|string|min:1|max:255',
+            'version' => 'required|float',
+            'type' => 'required|string',
+        ];
+    }
 }

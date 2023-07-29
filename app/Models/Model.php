@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as IlluminateModel;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Schema;
 use App\Interfaces\Validatable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model as IlluminateModel;
+use Illuminate\Support\Facades\Schema;
 
 abstract class Model extends IlluminateModel implements Validatable
 {
+
+    use HasFactory;
+
     protected $search;
 
     public function __construct(array $attributes = [])
@@ -50,6 +54,12 @@ abstract class Model extends IlluminateModel implements Validatable
         return parent::all($columns);
     }
 
+    /**
+     * Search for model with given substring.
+     *
+     * @param  array|mixed  $columns
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function scopeSearch(Builder $builder, string $phrase) {
         if(empty($this->search)) {
             $this->search = Schema::getColumnListing(self::getTable());

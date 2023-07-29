@@ -30,7 +30,7 @@ class SiteStatsController extends Controller
                 'count' => \App\Models\Drink::count(),
             ],
             'employment_records' => [
-                'count' => \App\Models\Work\PortfolioEntry::count(),
+                'count' => \App\Models\Work\EmploymentRecord::count(),
             ],
             'food' => [
                 'restaurants' => [

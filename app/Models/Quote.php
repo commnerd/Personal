@@ -27,6 +27,8 @@ class Quote extends Model
      * @var array
      */
     protected $fillable = [
-        'active', 'quote', 'source'
+        'active',
+        'quote',
+        'source',
     ];
 }
