@@ -2,12 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-class Quote extends Model
+class ContactMessage extends Model
 {
-    use HasFactory;
-    
     /**
      * Get validation rules for model
      *
@@ -16,19 +12,19 @@ class Quote extends Model
     public static function getValidationRules(): array
     {
         return [
-            'source' => 'required|string|min:1|max:255',
-            'quote' => 'required|string',
+            'name' => 'required|string|min:1|max:255',
+            'email_phone' => 'required|string',
+            'message' => 'required|string',
         ];
     }
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'active',
-        'quote',
-        'source',
+        'name',
+        'email_phone',
+        'message',
     ];
 }

@@ -27,11 +27,17 @@
       "@guards/*": [
         "./app/guards/*"
       ],
+      "@interfaces/*": [
+        "./app/interfaces/*"
+      ],
       "@pages/*": [
         "./app/pages/*"
       ],
       "@partials/*": [
         "./app/partials/*"
+      ],
+      "@services/*": [
+        "./app/services/*"
       ]
     }
   },

@@ -7,3 +7,9 @@ mat-card {
     background-size: 20vw 20vw;
     background-position: center center;
 }
+
+mat-card-content {
+    background-color: rgba(255, 255, 255, .3);
+    padding: 30px;
+    overflow: hidden;
+}

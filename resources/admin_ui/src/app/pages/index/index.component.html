@@ -1,11 +1,26 @@
 <app-navigation></app-navigation>
 
 <div class="centered">
-    <app-card>something</app-card>
-    <app-card background="reminders.jpg">something</app-card>
-    <app-card background="composer.png">something</app-card>
-    <app-card background="drinks.jpg">something</app-card>
-    <app-card background="mesages.jpg">something</app-card>
-    <app-card background="quotes.jpg">something</app-card>
-    <app-card background="system.jpg">something</app-card>
+    <app-card background="system.jpg">
+        <div>System:</div>
+        <div>OS: {{ stats?.system?.os }}</div>
+        <div>Uptime: {{ stats?.system?.uptime }}</div>
+        <div>Disk Usage: {{ stats?.system?.disk_usage }}</div>
+    </app-card>
+    <app-card background="composer.png">
+        <div>Composer:</div>
+        <div>{{ stats?.composer?.repos?.count }}</div>
+    </app-card>
+    <app-card background="drinks.jpg">
+        <div>Drinks:</div>
+        <div>{{ stats?.drinks?.count }}</div>
+    </app-card>
+    <app-card background="mesages.jpg">
+        <div>Messages:</div>
+        <div>{{ stats?.contact_messages?.count }}</div>
+    </app-card>
+    <app-card background="quotes.jpg">
+
+    </app-card>
+    
 </div>

@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function() {
     Route::get('system', [\App\Http\Controllers\Api\SystemController::class, 'index']);
 });
 
-Route::get('login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback']);
+Route::get('site_stats', [\App\Http\Controllers\Api\SiteStatsController::class, 'index']);
 
+Route::get('login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback']);
 Route::get('login', [\App\Http\Controllers\Api\AuthController::class, 'login']);

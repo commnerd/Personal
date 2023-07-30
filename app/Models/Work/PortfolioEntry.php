@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Work;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Model;
 
-class Quote extends Model
+class PortfolioEntry extends Model
 {
-    use HasFactory;
-    
     /**
      * Get validation rules for model
      *
@@ -16,19 +14,20 @@ class Quote extends Model
     public static function getValidationRules(): array
     {
         return [
-            'source' => 'required|string|min:1|max:255',
-            'quote' => 'required|string',
+            'name' => 'required|string|min:1|max:255',
+            'version' => 'required|float',
+            'type' => 'required|string',
         ];
     }
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'active',
-        'quote',
-        'source',
+        'title',
+        'url',
+        'details',
     ];
 }

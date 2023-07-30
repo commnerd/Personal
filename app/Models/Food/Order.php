@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Food;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Model;
 
-class Quote extends Model
+class Order extends Model
 {
-    use HasFactory;
-    
     /**
      * Get validation rules for model
      *
@@ -16,19 +14,22 @@ class Quote extends Model
     public static function getValidationRules(): array
     {
         return [
-            'source' => 'required|string|min:1|max:255',
-            'quote' => 'required|string',
+            'restaurant_id' => 'required|int',
+            'active' => 'boolean',
+            'label' => 'required|string',
+            'notes' => 'required|string',
         ];
     }
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'restaurant_id',
         'active',
-        'quote',
-        'source',
+        'label',
+        'notes',
     ];
 }
