@@ -3,21 +3,21 @@
 <div class="centered">
     <app-card background="system.jpg">
         <div>System:</div>
-        <div>OS: {{ (stats$ | async)?.system?.os }}</div>
-        <div>Uptime: {{ (stats$ | async)?.system?.uptime }}</div>
-        <div>Disk Usage: {{ (stats$ | async)?.system?.disk_usage }}</div>
+        <div>OS: {{ stats?.system?.os }}</div>
+        <div>Uptime: {{ stats?.system?.uptime }}</div>
+        <div>Disk Usage: {{ stats?.system?.disk_usage }}</div>
     </app-card>
     <app-card background="composer.png">
         <div>Composer:</div>
-        <div>{{ (stats$ | async)?.composer?.repos?.count }}</div>
+        <div>{{ stats?.composer?.repos?.count }}</div>
     </app-card>
     <app-card background="drinks.jpg">
         <div>Drinks:</div>
-        <div>{{ (stats$ | async)?.drinks?.count }}</div>
+        <div>{{ stats?.drinks?.count }}</div>
     </app-card>
     <app-card background="mesages.jpg">
         <div>Messages:</div>
-        <div>{{ (stats$ | async)?.contact_messages?.count }}</div>
+        <div>{{ stats?.contact_messages?.count }}</div>
     </app-card>
     <app-card background="quotes.jpg">
 

@@ -8,13 +8,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  stats$!: Observable<any>;
+  stats!: any;
 
   constructor(
     private api: ApiService
   ){}
 
   ngOnInit(): void {
-    this.stats$ = this.api.get('/api/site_stats');
+    let subscription = this.api.get('/api/site_stats').subscribe(value => {
+      this.stats = value;
+      subscription.unsubscribe();
+    });
   }
 }
