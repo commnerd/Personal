@@ -11,10 +11,7 @@ jobs:
       # Checkout dashboard-revcatch project
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/configure-ssh
-        with:
-          id-rsa: ${{ secrets.PERSONAL_PRIVATE_ID_RSA }}
-          host: ${{ secrets.PERSONAL_PRODUCTION_HOST }}
+      - uses: browser-actions/setup-chrome@v1
 
       - uses: ./.github/actions/build
         with:
@@ -22,6 +19,9 @@ jobs:
           php-version: '8.2.7'
           node-version: '18.16.0'
 
-      - name: Run tests
+      - name: Run php tests
         run: vendor/bin/phpunit
         shell: bash
+
+      - name: Run admin tests
+        run: cd resources/admin_ui && ./node_modules/\@angular/cli/bin/ng.js test --browsers ChromeHeadless

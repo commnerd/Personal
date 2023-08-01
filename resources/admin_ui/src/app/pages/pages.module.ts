@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IndexComponent } from './index/index.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PartialsModule } from '../partials/partials.module';
+import { DrinksModule } from './drinks/drinks.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { PartialsModule } from '../partials/partials.module';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    PartialsModule
+    PartialsModule,
+    DrinksModule
   ]
 })
 export class PagesModule { }
