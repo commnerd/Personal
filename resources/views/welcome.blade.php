@@ -7,7 +7,14 @@ Welcome to my personal website! Discover my ongoing journey of constant improvem
 @section('content')
 <header>
     <div id="comment">
-        <div>I am currently working on my site, and am planning on making quite a few quick updates over the course of the next few weeks.  This should be a lot more interesting hopefully pretty quickly.</div>
+        <blockquote
+            @if($quote->quote_citation)
+            cite="{{ $quote->quote_citation }}"
+            @endif
+        >
+        <p>{!! $quote->quote !!}</p>
+        <footer>— {{$quote->source}}@if($quote->source_citation)<cite>{{ $quote->source_citation }}</cite>@endif</footer>
+        </blockquote>
     </div>
 </header>
 @endsection
