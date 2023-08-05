@@ -2,3 +2,19 @@
     border-top-right-radius: $size;
     border-bottom-right-radius: $size;
 }
+
+@mixin header($img) {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    background-image: url('https://michaeljmiller.net/storage/'+$img);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position-y: -140px;
+    color: white;
+    @include media-breakpoint-down(xxl) { background-position-y: -120px; }
+    @include media-breakpoint-down(xl)  { background-position-y: -95px; }
+    @include media-breakpoint-down(lg)  { background-position-y: -70px; }
+    @include media-breakpoint-down(md)  { background-position-y: -50px; }
+    @include media-breakpoint-down(sm)  { background-position-y: -30px; }
+}

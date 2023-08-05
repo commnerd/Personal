@@ -17,4 +17,7 @@ Welcome to my personal website! Discover my ongoing journey of constant improvem
         </blockquote>
     </div>
 </header>
+<footer>
+
+</footer>
 @endsection

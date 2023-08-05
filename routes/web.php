@@ -12,10 +12,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [\App\Http\Controllers\Web\WelcomeController::class, 'index'])->name('home');
-Route::get('test_page', function () {
-    return view('test_page');
-});
+Route::get('/', [\App\Http\Controllers\Web\WelcomeController::class, 'index'])->name('welcome');
+Route::get('resume', [\App\Http\Controllers\Web\ResumeController::class, 'index'])->name('resume');
 Route::get('{admin}', function (string $admin) {
     return view('admin');
 })->where('admin', '.*');

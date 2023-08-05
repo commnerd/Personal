@@ -7,10 +7,17 @@
         <title>{{ config('app.name') }}@hasSection('title') - @yield('title') @endif</title>
         <link rel="icon" href="/storage/michael-j-miller-logo.ico">
         @hasSection('additional_headers')@yield('additional_headers')@endif
-        @vite('resources/sass/app.scss')
+        @vite('resources/sass/'.Route::current()->getName().'.scss')
     </head>
     <body class="antialiased">
         @yield('content')
-        @vite('resources/js/app.js')
+        <footer>
+            <nav class="nav">
+                <a class="nav-link{!! Route::current()->getName() == 'welcome' ? ' active" aria-current="page"' : '"' !!} href="/">Home</a>
+                <a class="nav-link{!! Route::current()->getName() == 'resume' ? ' active" aria-current="page"' : '"' !!} href="/resume">Resume</a>
+            </nav>
+        </footer>
+        @vite('resources/js/'.Route::current()->getName().'.js')
     </body>
+    
 </html>

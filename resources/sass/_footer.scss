@@ -1,0 +1,19 @@
+body > footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    nav {
+        justify-content: center;
+
+        & a.nav-link, & a.nav-link:hover {
+            color: white;
+
+            &.active {
+                color: black;
+                background: white;
+            }
+        }
+       
+    }
+}
