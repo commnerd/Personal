@@ -17,7 +17,6 @@
                 <a class="nav-link{!! Route::current()->getName() == 'resume' ? ' active" aria-current="page"' : '"' !!} href="/resume">Resume</a>
             </nav>
         </footer>
-        @vite('resources/js/'.Route::current()->getName().'.js')
     </body>
     
 </html>
