@@ -12,7 +12,8 @@ export default defineConfig({
             input: [
                 'resources/sass/welcome.scss',
                 'resources/sass/resume.scss',
-                // 'resources/js/app.js',
+                'resources/sass/food.scss',
+                'resources/js/food.js',
             ],
             refresh: true,
         }),

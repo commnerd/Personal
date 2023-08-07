@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [\App\Http\Controllers\Web\WelcomeController::class, 'index'])->name('welcome');
 Route::get('resume', [\App\Http\Controllers\Web\ResumeController::class, 'index'])->name('resume');
+Route::get('food', [\App\Http\Controllers\Web\FoodController::class, 'index'])->name('food');
 Route::get('{admin}', function (string $admin) {
     return view('admin');
 })->where('admin', '.*');
