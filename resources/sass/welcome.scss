@@ -1,21 +1,7 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import 'global';
 
-// Variables
+// Mixins
 @import 'mixins';
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
-
-// Footer
-@import 'footer';
-
-html {
-    overflow-x: hidden;
-}
 
 header {
     @include header('michael-j-miller-xl.png');

@@ -1,22 +1,7 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-@import 'node_modules/bootstrap-icons/font/bootstrap-icons.css';
+@import 'global';
 
-// Variables
+// Mixins
 @import 'mixins';
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
-
-// Footer
-@import 'footer';
-
-html {
-    overflow-x: hidden;
-}
 
 header {
     height: 100vh;
@@ -32,7 +17,11 @@ header {
     @include media-breakpoint-down(xl)  { background-position-y: -95px; }
     @include media-breakpoint-down(lg)  { background-position-y: -70px; }
     @include media-breakpoint-down(md)  { background-position-y: -50px; }
-    @include media-breakpoint-down(sm)  { background-position-y: -30px; }
+    @include media-breakpoint-down(sm)  {
+        background-position-y: -30px;
+        background-position-x: right;
+        background-size: cover;
+    }
     
     flex-wrap: wrap;
     justify-content: center;
