@@ -7,19 +7,19 @@
         <div>Uptime: {{ stats?.system?.uptime }}</div>
         <div>Disk Usage: {{ stats?.system?.disk_usage }}</div>
     </app-card>
-    <app-card background="composer.png">
+    <app-card background="composer.png" [link]="['composer']">
         <div>Composer:</div>
         <div>{{ stats?.composer?.repos?.count }}</div>
     </app-card>
-    <app-card background="drinks.jpg">
+    <app-card background="drinks.jpg" [link]="['drinks']">
         <div>Drinks:</div>
         <div>{{ stats?.drinks?.count }}</div>
     </app-card>
-    <app-card background="mesages.jpg">
+    <app-card background="mesages.jpg" [link]="['messages']">
         <div>Messages:</div>
         <div>{{ stats?.contact_messages?.count }}</div>
     </app-card>
-    <app-card background="quotes.jpg">
+    <app-card background="quotes.jpg" [link]="['quotes']">
 
     </app-card>
     

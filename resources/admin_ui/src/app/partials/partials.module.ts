@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RouterModule } from '@angular/router';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,6 +20,7 @@ import { LoadingComponent } from './loading/loading.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
