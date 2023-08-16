@@ -19,10 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::get('system', [\App\Http\Controllers\Api\SystemController::class, 'index']);
+    Route::get('site_stats', [\App\Http\Controllers\Api\SiteStatsController::class, 'index']);
+    Route::resource('drinks', \App\Http\Controllers\Api\DrinksController::class);
+    Route::resource('quotes', \App\Http\Controllers\Api\QuotesController::class);
+    Route::resource('messages', \App\Http\Controllers\Api\MessagesController::class);
 });
-
-Route::get('site_stats', [\App\Http\Controllers\Api\SiteStatsController::class, 'index']);
 
 Route::get('login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback']);
 Route::get('login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
