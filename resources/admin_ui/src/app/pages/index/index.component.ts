@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { Observable } from 'rxjs';
+import { PartialsModule } from '../../partials/partials.module';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
+  standalone: true,
+  imports: [PartialsModule]
 })
 export class IndexComponent implements OnInit {
   stats!: any;

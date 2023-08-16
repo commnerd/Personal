@@ -11,13 +11,13 @@ import { MatCardModule } from '@angular/material/card';
 import { CardComponent } from './card/card.component';
 import { LoadingComponent } from './loading/loading.component';
 
+let allTheThings: Array<any> = [
+  NavigationComponent,
+  CardComponent,
+  LoadingComponent,
+];
 
 @NgModule({
-  declarations: [
-    NavigationComponent,
-    CardComponent,
-    LoadingComponent,
-  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -27,10 +27,8 @@ import { LoadingComponent } from './loading/loading.component';
     MatCardModule,
     MatProgressSpinnerModule
   ],
-  exports: [
-    NavigationComponent,
-    CardComponent,
-    LoadingComponent,
-  ]
+  declarations: allTheThings,
+  providers: allTheThings,
+  exports: allTheThings
 })
 export class PartialsModule { }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PartialsModule } from './partials/partials.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     PartialsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
