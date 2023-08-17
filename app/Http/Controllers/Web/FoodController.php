@@ -12,6 +12,14 @@ class FoodController extends Controller
     {
         $list = Restaurant::search($request->q ?? '')->get()->merge(Order::search($request->q ?? '')->get());
 
-        return response()->view('food', ['list' => $list]);
+        if($list->count() === 1) {
+            return response->redirect();
+        }
+
+        return response()->view('food.search', ['list' => $list]);
+    }
+
+    public function order(Order $order) {
+        return response()->view('food.order', ['order' => $order]);
     }
 }
