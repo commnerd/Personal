@@ -14,16 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth')->name('api.')->group(function() {
+    Route::get('/site_stats', [\App\Http\Controllers\Api\SiteStatsController::class, 'index'])->name('site_states');
+    Route::apiResource('/drinks', \App\Http\Controllers\Api\DrinksController::class);
+    Route::apiResource('/quotes', \App\Http\Controllers\Api\QuotesController::class);
+    Route::apiResource('/messages', \App\Http\Controllers\Api\MessagesController::class);
+    Route::prefix('food')->name('food.')->group(function() {
+        Route::resource('/restaurants', \App\Http\Controllers\Api\Food\RestaurantsController::class);
+        Route::resource('/orders', \App\Http\Controllers\Api\Food\OrdersController::class);
+    });
+    Route::prefix('blog')->name('blog.')->group(function() {
+        Route::resource('/posts', \App\Http\Controllers\Api\Blog\PostsController::class);
+    });
 });
 
-Route::middleware('auth')->group(function() {
-    Route::get('site_stats', [\App\Http\Controllers\Api\SiteStatsController::class, 'index']);
-    Route::resource('drinks', \App\Http\Controllers\Api\DrinksController::class);
-    Route::resource('quotes', \App\Http\Controllers\Api\QuotesController::class);
-    Route::resource('messages', \App\Http\Controllers\Api\MessagesController::class);
-});
-
-Route::get('login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback']);
-Route::get('login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::get('/login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback']);
+Route::get('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);

@@ -10,8 +10,8 @@ class FoodController extends Controller
 {
     public function index(Request $request): Response
     {
-        $orderList = Order::search($request->q ?? '')->get();
-        $list = $orderList;
+        $list = Restaurant::search($request->q ?? '')->get()->merge(Order::search($request->q ?? '')->get());
+
         return response()->view('food', ['list' => $list]);
     }
 }
