@@ -10,9 +10,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/sass/welcome.scss',
-                'resources/sass/resume.scss',
-                'resources/sass/food.scss',
+                'resources/sass/web.home.scss',
+                'resources/sass/web.resume.scss',
+                'resources/sass/web.food.scss',
                 'resources/js/food.js',
             ],
             refresh: true,
