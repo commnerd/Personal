@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     branches:
       - v2.1.x
-    
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
