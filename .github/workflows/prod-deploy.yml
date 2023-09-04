@@ -62,6 +62,14 @@ jobs:
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'rsync -r --delete /var/www/personal/storage/app/public/ /tmp/Personal/storage/app/public'
         shell: bash
 
+      - name: Rsync /etc changes to prod and remove .github directory from deployment
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rsync -r /tmp/Personal/.github/etc/ /etc && rm -fR /tmp/Personal/.github'
+        shell: bash
+
+      - name: Reload nginx service
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo service nginx reload'
+        shell: bash
+
       - name: Create storage link
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -s ../storage/app/public storage'
         shell: bash
