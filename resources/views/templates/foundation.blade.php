@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @hasSection('meta_description')<meta name="description" content="@yield('meta_description')">@endif
         <title>{{ config('app.name') }}@hasSection('title') - @yield('title') @endif</title>
-        <link rel="icon" href="/storage/michael-j-miller-logo.ico">
+        <link rel="icon" href="{{ config('app.url') }}/storage/michael-j-miller-logo.ico">
         @hasSection('additional_headers')@yield('additional_headers')@endif
         @vite('resources/sass/'.Route::current()->getName().'.scss')
     </head>

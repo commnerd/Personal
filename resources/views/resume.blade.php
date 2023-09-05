@@ -10,7 +10,7 @@ Let's connect and create success together!
 
 @section('content')
 <header>
-    <a href="/storage/resume.pdf">
+    <a href="{{ config('app.url') }}/storage/resume.pdf">
         <i class="bi bi-cloud-download-fill"></i>
     </a>
 </header>
