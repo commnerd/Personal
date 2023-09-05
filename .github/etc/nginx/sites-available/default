@@ -55,16 +55,32 @@ server {
         try_files $uri $uri/ /index.php?$query_string;
     }
 
-    location ~* ^/projects/doggie_stays(.*)$ {
-        alias /var/www/projects/doggie_stays/public;  # Update this to your Laravel public directory
-        try_files $uri $uri/ /projects/doggie_stays/index.php?$1;
-        location ~* \.php$ {
-            include fastcgi_params;
+    location ~* ^/projects/(?<appid>[a-zA-Z0-9_]+) {
+		
+        alias /var/www/projects/$appid/public;
+        try_files $uri $uri/ @rewapp;
+
+        location ~* ^/projects/([a-zA-Z0-9_]+)/(.*\.php)$ {
+            fastcgi_index index.php; 
+            
+            fastcgi_param SCRIPT_NAME $2;
+            fastcgi_param SCRIPT_FILENAME /var/www/projects/$1/public/$2;
+                    
             fastcgi_pass unix:/run/php/php8.2-fpm.sock;
-            fastcgi_param  SCRIPT_FILENAME    /var/www/projects/doggie_stays/public/index.php;
-            fastcgi_index index.php;
-            fastcgi_param REQUEST_URI      $1;
+            include fastcgi_params;
         }
+            
+        # Necessary for static files,
+        # or may fall to another location with incorrect path
+        # Add more extensions like PDF if necessary
+        location ~* ^/projects/([a-zA-Z0-9_]+)/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt|woff|woff2))$ {
+            alias /var/www/projects/$1/public;
+            try_files $uri /$2 =404;
+        }		
+    }
+        
+    location @rewapp {
+        rewrite ^/projects/([a-zA-Z0-9_]+)/(.*)$ /projects/$1/index.php?/$2 last;
     }
 
     location ~* \.(css|js)$ {
