@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from '@ang
 import { ActivatedRoute } from '@angular/router'
 
 import { LoadToggleService } from '../services/load-toggle.service';
+import { debounce, timer } from 'rxjs';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class AuthGuardService {
   {}
 
   canActivate(): boolean {
-    let subscription = this.activateRoute.queryParams.subscribe((params: {[key: string]: string}) => {
+    let subscription = this.activateRoute.queryParams.pipe(debounce(() => timer(10))).subscribe(params => {
       if(params['set_jwt']) {
         localStorage.setItem('jwt', params['set_jwt']);
         window.location.href = '/admin/';
