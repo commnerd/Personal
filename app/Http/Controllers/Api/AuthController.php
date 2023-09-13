@@ -21,6 +21,6 @@ class AuthController extends Controller
 
         $token = User::where('email', $data->email)->first()->createToken('Admin Token')->accessToken;
 
-        return redirect('/admin/?set_jwt=' . $token);
+        return redirect("/admin/set-jwt?jwt=$token");
     }
 }

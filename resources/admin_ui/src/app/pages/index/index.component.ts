@@ -17,7 +17,7 @@ export class IndexComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    let subscription = this.api.get('/api/site_stats').subscribe(value => {
+    let subscription = this.api.get('/api/site_stats', { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}).subscribe(value => {
       this.stats = value;
       subscription.unsubscribe();
     });
