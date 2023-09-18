@@ -19,6 +19,10 @@ Route::middleware('auth:api')->name('api.')->group(function() {
     Route::apiResource('/drinks', \App\Http\Controllers\Api\DrinksController::class);
     Route::apiResource('/quotes', \App\Http\Controllers\Api\QuotesController::class);
     Route::apiResource('/messages', \App\Http\Controllers\Api\MessagesController::class);
+    Route::prefix('composer')->name('composer.')->group(function() {
+        Route::resource('/packages', \App\Http\Controllers\Api\Composer\PackagesController::class);
+        Route::resource('/package_sources', \App\Http\Controllers\Api\Food\PackageSourcesController::class);
+    });
     Route::prefix('food')->name('food.')->group(function() {
         Route::resource('/restaurants', \App\Http\Controllers\Api\Food\RestaurantsController::class);
         Route::resource('/orders', \App\Http\Controllers\Api\Food\OrdersController::class);

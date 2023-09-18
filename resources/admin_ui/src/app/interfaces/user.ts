@@ -1,4 +1,4 @@
-import { LaravelModel } from './laravel_model';
+import { LaravelModel } from './laravel/model';
 
 export interface User extends LaravelModel {
     name: string;

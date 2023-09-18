@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Api\Composer;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Controller;
+use Illuminate\Http\{JsonResponse, Request};
+use App\Models\Composer\Package;
 
 class PackagesController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(Package::paginate(self::PAGE_SIZE));
     }
 
     /**

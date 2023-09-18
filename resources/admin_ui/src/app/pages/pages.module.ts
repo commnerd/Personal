@@ -5,9 +5,12 @@ import { PagesComponent } from './pages.component';
 import { PartialsModule } from '../partials/partials.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorInterceptor } from '../services/auth-interceptor.interceptor';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 @NgModule({
-  declarations: [PagesComponent],
+  declarations: [
+    PagesComponent
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi:true },
   ],
@@ -16,6 +19,11 @@ import { AuthInterceptorInterceptor } from '../services/auth-interceptor.interce
     PartialsModule,
     PagesRoutingModule,
   ],
-  exports: [PagesComponent]
+  exports: [
+    PagesComponent
+  ],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class PagesModule { }
