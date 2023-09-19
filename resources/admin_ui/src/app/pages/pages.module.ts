@@ -5,7 +5,7 @@ import { PagesComponent } from './pages.component';
 import { PartialsModule } from '../partials/partials.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorInterceptor } from '../services/auth-interceptor.interceptor';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComposerModule } from './composer/composer.module';
 
 @NgModule({
   declarations: [
@@ -18,12 +18,10 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
     CommonModule,
     PartialsModule,
     PagesRoutingModule,
+    ComposerModule,
   ],
   exports: [
     PagesComponent
-  ],
-  schemas: [
-    NO_ERRORS_SCHEMA
   ]
 })
 export class PagesModule { }

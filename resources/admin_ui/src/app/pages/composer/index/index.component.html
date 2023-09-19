@@ -1,3 +1,4 @@
+<div>Yay!!</div>
 <ul>
-    <li *ngFor="let package of packages$?.data">{{ packages$ }}</li>
+    <li *ngFor="let package of (packages$ | async)?.data">{{ packages$ }}</li>
 </ul>
