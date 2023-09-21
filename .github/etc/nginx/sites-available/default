@@ -32,8 +32,8 @@ server {
 server {
     listen 443 http2 ssl;
     listen [::]:443 http2 ssl;
-    ssl_certificate /etc/letsencrypt/live/michaeljmiller.net-0001/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/michaeljmiller.net-0001/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/michaeljmiller.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/michaeljmiller.net/privkey.pem; # managed by Certbot
     ssl_dhparam /etc/ssl/certs/dhparam.pem;
 
     set $rt /var/www/personal/public;
