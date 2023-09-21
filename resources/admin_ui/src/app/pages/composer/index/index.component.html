@@ -1,7 +1,9 @@
-<h1>hi</h1>
+<div>
+    <h1>Composer Packages</h1>
+    <button mat-icon-button color="primary" aria-label="Add package button" (click)="addPackage()">
+        <mat-icon aria-hidden="false" aria-label="Add package icon" fontIcon="add"></mat-icon>
+    </button>
+</div>
 <ul>
-    <li *ngFor="let package of (packages$ | async)?.data">{{ packages$ }}</li>
+    <li *ngFor="let package of (packages$ | async)?.data">{{ package }}</li>
 </ul>
-<button mat-icon-button color="primary" aria-label="Add packge button">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-</button>

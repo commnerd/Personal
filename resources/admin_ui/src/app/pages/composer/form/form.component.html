@@ -1,1 +1,15 @@
-<p>form works!</p>
+<form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Package Name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Version</mat-label>
+        <input matInput formControlName="version" placeholder="Package Version">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Version</mat-label>
+        <input matInput formControlName="type" placeholder="Package Type">
+    </mat-form-field>
+    <button type="submit">Send</button>
+</form>
