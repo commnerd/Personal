@@ -1,4 +1,7 @@
-<div>Yay!!</div>
+<h1>hi</h1>
 <ul>
     <li *ngFor="let package of (packages$ | async)?.data">{{ packages$ }}</li>
 </ul>
+<button mat-icon-button color="primary" aria-label="Add packge button">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+</button>

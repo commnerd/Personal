@@ -5,7 +5,6 @@ import { PagesComponent } from './pages.component';
 import { PartialsModule } from '../partials/partials.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorInterceptor } from '../services/auth-interceptor.interceptor';
-import { ComposerModule } from './composer/composer.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { ComposerModule } from './composer/composer.module';
     CommonModule,
     PartialsModule,
     PagesRoutingModule,
-    ComposerModule,
   ],
   exports: [
     PagesComponent
