@@ -66,10 +66,6 @@ jobs:
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rsync -r /tmp/Personal/.github/etc/ /etc && rm -fR /tmp/Personal/.github'
         shell: bash
 
-      - name: Reload nginx service
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo service nginx reload'
-        shell: bash
-
       - name: Create storage link
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -s ../storage/app/public storage'
         shell: bash
@@ -92,4 +88,8 @@ jobs:
 
       - name: Clean up
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rm -fR /tmp/personal.bak; sudo rm -f /tmp/Personal.tar.bz2'
+        shell: bash
+
+      - name: Reload nginx service
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo service nginx reload'
         shell: bash
