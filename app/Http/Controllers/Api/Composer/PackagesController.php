@@ -21,25 +21,27 @@ class PackagesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $package = Package::create($request->all());
+        return response()->json($package->toJson());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Package $package): JsonResponse
     {
-        //
+        return response()->json($package);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Package $package): JsonResponse
     {
-        //
+        $package->fill($request->all());
+        return response()->json($package);
     }
 
     /**

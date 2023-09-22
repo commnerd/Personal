@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  packages$ !: Observable<Paginated<Package>>;
+  page$ !: Observable<Paginated<Package>>;
 
   constructor(
     private packageService: PackageService,
@@ -20,10 +20,22 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.packages$ = this.packageService.list();
+    this.page$ = this.packageService.list();
   }
 
   addPackage() {
     this.router.navigate(['composer', 'create']);
+  }
+
+  editPackage(pkg: Package) {
+    this.router.navigate(['composer', pkg.id, 'edit']);
+  }
+
+  confirmPackageDeletion(pkg: Package) {
+
+  }
+
+  deletePackage(pkg: Package) {
+
   }
 }

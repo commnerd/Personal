@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Package } from '../../../interfaces/composer/package';
 import { PackageService } from '../../../services/models/composer/package.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -14,12 +15,13 @@ export class FormComponent implements OnInit {
   packageForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
-    private packageService: PackageService
+    private formBuilder: FormBuilder,
+    private packageService: PackageService,
+    private router: Router
   ) {}
   
   ngOnInit(): void {
-    this.packageForm = this.fb.group({
+    this.packageForm = this.formBuilder.group({
       name: '',
       version: '',
       type: '',
@@ -32,6 +34,7 @@ export class FormComponent implements OnInit {
   onSubmit() {
     let subscriber = this.packageService.save(this.packageForm.value).subscribe( (rs) => {
       subscriber.unsubscribe();
+      this.router.navigate(['composer']);
     });
   }
 }

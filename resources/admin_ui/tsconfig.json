@@ -24,27 +24,17 @@
       "dom"
     ],
     "paths": {
-      "@guards/*": [
-        "./app/guards/*"
-      ],
-      "@interfaces/*": [
-        "./app/interfaces/*"
-      ],
-      "@pages/*": [
-        "./app/pages/*"
-      ],
-      "@partials/*": [
-        "./app/partials/*"
-      ],
-      "@services/*": [
-        "./app/services/*"
-      ],
+      "@guards/*": ["./src/app/guards/*"],
+      "@interfaces/*": ["./src/app/interfaces/*"],
+      "@pages/*": ["./src/app/pages/*"],
+      "@partials/*": ["./src/app/partials/*"],
+      "@services/*": ["./src/app/services/*"],
     }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
   }
 }
