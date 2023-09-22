@@ -11,7 +11,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class EditComponent implements OnInit {
   
-  @Input() package!: Package | number;
+  @Input() package!: Package;
 
   constructor(
     private packageService: PackageService,
