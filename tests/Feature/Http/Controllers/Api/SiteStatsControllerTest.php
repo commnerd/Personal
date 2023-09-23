@@ -3,11 +3,11 @@
 namespace Tests\Feature\Http\Controllers\Api;
 
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Services\System;
 use Tests\Feature\TestCase;
+
 
 class SiteStatsControllerTest extends TestCase
 {
@@ -16,11 +16,9 @@ class SiteStatsControllerTest extends TestCase
      */
     public function test_empty_database_stats(): void
     {
-        $user = User::where('email', 'commnerd@gmail.com')->first();
-
         $system = new System();
-
-        $response = $this->actingAs($user)->get('/api/site_stats');
+        $this->login();
+        $response = $this->get('/api/site_stats');
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -65,8 +63,6 @@ class SiteStatsControllerTest extends TestCase
      */
     public function test_populated_database_stats(): void
     {
-        $user = User::where('email', 'commnerd@gmail.com')->first();
-
         $system = new System();
         $packageCount = rand(1, 10);
         $contactMessageCount = rand(1, 10);
@@ -88,8 +84,10 @@ class SiteStatsControllerTest extends TestCase
         
         \App\Models\Work\PortfolioEntry::factory()->count($portfolioEntryCount)->create();
 
-        $response = $this->actingAs($user)->get('/api/site_stats');
+        $this->login();
 
+        $response = $this->get('/api/site_stats');
+        
         $response->assertStatus(200);
         $response->assertJson([
             'composer' => [
