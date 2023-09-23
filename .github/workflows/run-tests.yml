@@ -19,6 +19,10 @@ jobs:
           php-version: '8.2.7'
           node-version: '18.16.0'
 
+      - name: Configure .env
+        run: cp .env.example .env && php artisan key:generate
+        shell: bash
+
       - name: Run php tests
         run: vendor/bin/phpunit
         shell: bash
