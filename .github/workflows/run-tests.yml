@@ -20,7 +20,11 @@ jobs:
           node-version: '18.16.0'
 
       - name: Configure .env
-        run: cp .env.example .env && php artisan key:generate
+        run: cp .env.testing .env && php artisan key:generate
+        shell: bash
+
+      - name: Install Passport
+        run: php artisan passport:install
         shell: bash
 
       - name: Run php tests
@@ -29,3 +33,4 @@ jobs:
 
       - name: Run admin tests
         run: cd resources/admin_ui && ./node_modules/\@angular/cli/bin/ng.js test --browsers ChromeHeadless
+        shell: bash
