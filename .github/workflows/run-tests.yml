@@ -23,6 +23,10 @@ jobs:
         run: cp .env.testing .env && php artisan key:generate
         shell: bash
 
+      - name: Create database.sqlite
+        run: touch database/database.sqlite && php artisan migrate
+        shell: bash
+
       - name: Install Passport
         run: php artisan passport:install
         shell: bash
