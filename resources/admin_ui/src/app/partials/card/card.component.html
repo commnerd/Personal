@@ -1,0 +1,14 @@
+<mat-card
+    [style]="style"
+>
+  <mat-card-header *ngIf="title || description">
+    <mat-card-title *ngIf="title">{{ title }}</mat-card-title>
+    <mat-card-subtitle *ngIf="description">{{ description }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-content></ng-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button>Manage</a>
+  </mat-card-actions>
+</mat-card>

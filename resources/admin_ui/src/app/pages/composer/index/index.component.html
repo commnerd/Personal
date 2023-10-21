@@ -1,0 +1,23 @@
+<div>
+    <h1>Composer Packages</h1>
+    <button mat-icon-button color="primary" aria-label="Add package button" (click)="addPackage()">
+        <mat-icon aria-hidden="false" aria-label="Add package icon" fontIcon="add"></mat-icon>
+    </button>
+</div>
+<table>
+    <tr *ngFor="let package of (page$ | async)?.data">
+        <td>{{ package.name }}</td>
+        <td>{{ package.version }}</td>
+        <td>{{ package.type }}</td>
+        <td>
+            <button mat-button aria-label="Edit package" (click)="editPackage(package)">
+                <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+            </button>
+        </td>
+        <td>
+            <button mat-button aria-label="Delete package" (click)="confirmPackageDeletion(package)">
+                <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+            </button>
+        </td>
+    </tr>
+</table>
