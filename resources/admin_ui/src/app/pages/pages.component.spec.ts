@@ -2,18 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PagesComponent } from './pages.component';
 import { PartialsModule } from '../partials/partials.module';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NavigationComponent } from '../partials/navigation/navigation.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PagesComponent', () => {
   let component: PagesComponent;
   let fixture: ComponentFixture<PagesComponent>;
 
   beforeEach(() => {
-    let activatedRoute: ActivatedRoute;
     TestBed.configureTestingModule({
-      imports: [RouterModule, PartialsModule],
-      providers: [ActivatedRoute],
+      imports: [RouterTestingModule, PartialsModule],
       declarations: [PagesComponent, NavigationComponent]
     });
     fixture = TestBed.createComponent(PagesComponent);

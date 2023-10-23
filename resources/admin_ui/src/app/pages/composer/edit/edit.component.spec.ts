@@ -4,6 +4,12 @@ import { EditComponent } from './edit.component';
 import { PackageService } from '../../../services/models/composer/package.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormComponent } from '../form/form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('EditComponent', () => {
   let component: EditComponent;
@@ -15,9 +21,9 @@ describe('EditComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule],
-      providers: [PackageService, HttpClient, HttpHandler, ActivatedRoute],
-      declarations: [EditComponent]
+      imports: [BrowserAnimationsModule, RouterTestingModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+      providers: [PackageService, HttpClient, HttpHandler],
+      declarations: [EditComponent, FormComponent]
     });
     fixture = TestBed.createComponent(EditComponent);
     packageService = TestBed.inject(PackageService);

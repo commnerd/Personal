@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetJwtComponent } from './set-jwt.component';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SetJwtComponent', () => {
   let component: SetJwtComponent;
@@ -10,9 +11,8 @@ describe('SetJwtComponent', () => {
   beforeEach(() => {
     let activatedRoute: ActivatedRoute;
     TestBed.configureTestingModule({
-      imports: [RouterModule],
-      providers: [ActivatedRoute],
-      declarations: [SetJwtComponent]
+      imports: [RouterTestingModule],
+      declarations: [SetJwtComponent],
     });
     fixture = TestBed.createComponent(SetJwtComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);

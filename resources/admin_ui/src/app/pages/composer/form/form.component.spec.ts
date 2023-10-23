@@ -4,6 +4,9 @@ import { FormComponent } from './form.component';
 import { PackageService } from '../../../services/models/composer/package.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -14,7 +17,7 @@ describe('FormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatFormFieldModule],
+      imports: [BrowserAnimationsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
       providers: [PackageService, HttpClient, HttpHandler],
       declarations: [FormComponent]
     });
