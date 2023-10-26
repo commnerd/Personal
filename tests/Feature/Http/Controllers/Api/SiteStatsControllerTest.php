@@ -3,9 +3,12 @@
 namespace Tests\Feature\Http\Controllers\Api;
 
 
+
+use App\Services\System;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Services\System;
+use Laravel\Passport\Passport;
 use Tests\Feature\TestCase;
 
 
@@ -18,7 +21,7 @@ class SiteStatsControllerTest extends TestCase
     {
         $system = new System();
         $this->login();
-        $response = $this->get('/api/site_stats');
+        $response = $this->get(route('api.site_stats'));
 
         $response->assertStatus(200);
         $response->assertJson([
@@ -86,7 +89,7 @@ class SiteStatsControllerTest extends TestCase
 
         $this->login();
 
-        $response = $this->get('/api/site_stats');
+        $response = $this->get(route('api.site_stats'));
         
         $response->assertStatus(200);
         $response->assertJson([
