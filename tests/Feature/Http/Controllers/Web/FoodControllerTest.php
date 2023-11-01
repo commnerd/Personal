@@ -48,9 +48,19 @@ class FoodControllerTest extends TestCase
     }
 
     /**
+     * A single restaurant search result test
+     */
+    public function test_single_restaurant_search_result_redirect(): void
+    {
+        $restaurant = Restaurant::factory()->create();
+        $response = $this->get(route('web.food', ['q' => $restaurant->name]));
+        $response->assertRedirectToRoute('web.food.restaurant', $restaurant->id);
+    }
+
+    /**
      * A single order search result test
      */
-    public function test_single_search_result_redirect(): void
+    public function test_single_order_search_result_redirect(): void
     {
         $orderId = 0;
         Restaurant::factory()->create()->each(function($restaurant) use (&$orderId) {
@@ -62,5 +72,32 @@ class FoodControllerTest extends TestCase
         });
         $response = $this->get(route('web.food', ['q' => 'Test']));
         $response->assertRedirectToRoute('web.food.order', $orderId);
+    }
+
+    /**
+     * A single order search result test
+     */
+    public function test_restaurant_and_order_search_results(): void
+    {
+        Restaurant::factory()->create([
+            'name' => 'Test Restaurant',
+        ])->each(function($restaurant) {
+            Order::factory()->create();
+        });
+
+
+        Restaurant::factory()->create()->each(function($restaurant) {
+            Order::factory()->create([
+                'restaurant_id' => $restaurant->id,
+                'label' => 'Test Order'
+            ]);
+        });
+
+        $restaurant = Restaurant::first();
+        $response = $this->get(route('web.food', ['q' => 'Test']));
+        $response->assertSee(route('web.food.restaurant', $restaurant->id));
+        $response->assertSee($restaurant->name);
+        $response->assertSee(route('web.food.order', Order::where('label', 'like', '%Test%')->first()->id));
+        $response->assertSee(Order::where('label', 'like', '%Test%')->first()->name);
     }
 }
