@@ -20,6 +20,34 @@ class FoodControllerTest extends TestCase
     }
 
     /**
+     * An initial page load with no search should return no results
+     */
+    public function test_initial_no_search_emptiness(): void
+    {
+        Restaurant::factory()->times(2)->create()->each(function($restaurant) {
+            $order = Order::factory()->times(2)->create([
+                'restaurant_id' => $restaurant->id,
+            ]);
+        });
+
+        $response = $this->get(route('web.food'));
+        
+        $response->assertDontSee(Order::inRandomOrder()->first()->label);
+        $response->assertSee('Please search for a meal name, an ingredient, or a restaurant name.');
+    }
+
+    /**
+     * Test empty query results
+     */
+    public function test_empty_query_results(): void
+    {
+        $response = $this->get(route('web.food', ['q' => 'Test']));
+        
+        $response->assertDontSee('Please search for a meal name, an ingredient, or a restaurant name.');
+        $response->assertSee('Sorry, no results found for this search.');
+    }
+
+    /**
      * A single order search result test
      */
     public function test_single_search_result_redirect(): void

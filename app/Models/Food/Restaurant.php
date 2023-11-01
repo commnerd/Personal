@@ -3,6 +3,7 @@
 namespace App\Models\Food;
 
 use App\Models\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Restaurant extends Model
 {
@@ -18,5 +19,13 @@ class Restaurant extends Model
             'version' => 'required|float',
             'type' => 'required|string',
         ];
+    }
+
+    /**
+     * Orders relationship
+     */
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 }

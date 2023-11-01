@@ -14,13 +14,21 @@
 </header>
 <section>
   <div class="container">
-    @if(empty(request()->get('q')))
+    @if(!request()->has('q'))
     Please search for a meal name, an ingredient, or a restaurant name.
+    @elseif($list->isEmpty())
+    Sorry, no results found for this search.
     @endif
     @foreach($list as $item)
     <div class="row">
       <div class="col-sm">
-        {{ $item->label }}
+        @switch(get_class($item))
+        @case(\App\Models\Food\Order::class)
+        <a href="{{ route('web.food.order', $item->id) }}">{{ $item->label }}</a>
+        @break
+        @default
+        <a href="{{ route('web.food.restaurant', $item->id) }}">{{ $item->name }}</a>
+        @endswitch
       </div>
     </div>
     @endforeach

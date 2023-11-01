@@ -10,16 +10,26 @@ class FoodController extends Controller
 {
     public function index(Request $request): RedirectResponse | Response
     {
-        $list = Restaurant::search($request->q ?? '')->get()->merge(Order::search($request->q ?? '')->get());
+        $list = collect([]);
+        if(isset($request->q)) {
+            $list = Restaurant::search($request->q ?? '')->get()->merge(Order::search($request->q ?? '')->get());
+        }
 
         if($list->count() === 1) {
-            return redirect(route('web.food.order', $list[0]->id));
+            $routeName = get_class($list[0]) === Restaurant::class ? 'web.food.restaurant' : 'web.food.order';
+            return redirect(route($routeName, $list[0]->id));
         }
 
         return response()->view('food.search', compact('list'));
     }
 
-    public function order(Order $order) {
+    public function restaurant(Restaurant $restaurant): Response
+    {
+        return response()->view('food.restaurant', ['restaurant' => $restaurant]);
+    }
+
+    public function order(Order $order): Response
+    {
         return response()->view('food.order', ['order' => $order]);
     }
 }
