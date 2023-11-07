@@ -1,0 +1,23 @@
+<div>
+    <h1>Quotes</h1>
+    <button mat-icon-button color="primary" aria-label="Add quote button" (click)="addQuote()">
+        <mat-icon aria-hidden="false" aria-label="Add quote icon" fontIcon="add"></mat-icon>
+    </button>
+</div>
+<table>
+    <tr *ngFor="let quote of (page$ | async)?.data">
+        <td>{{ quote.quote }}</td>
+        <td>{{ quote.source }}</td>
+        <td>{{ quote.active }}</td>
+        <td>
+            <button mat-button aria-label="Edit quote" (click)="editQuote(quote)">
+                <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+            </button>
+        </td>
+        <td>
+            <button mat-button aria-label="Delete quote" (click)="confirmQuoteDeletion(quote)">
+                <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+            </button>
+        </td>
+    </tr>
+</table>
