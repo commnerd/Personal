@@ -14,15 +14,15 @@ export class QuoteService {
   ) {}
 
   list(): Observable<Paginated<Quote>> {
-    return this.httpClient.get('/api/composer/packages', { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}) as Observable<Paginated<Quote>>;
+    return this.httpClient.get('/api/quotes', { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}) as Observable<Paginated<Quote>>;
   }
 
   get(id: number): Observable<Quote> {
-    return this.httpClient.get(`/api/composer/packages/${id}`, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}) as Observable<Quote>;
+    return this.httpClient.get(`/api/quotes/${id}`, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}) as Observable<Quote>;
   }
 
   save(pkg: Quote): Observable<Quote> {
-    if(pkg?.id != undefined && pkg.id != null) {
+    if(!!pkg.id) {
       return this.httpClient.put<Quote>('/api/quotes', pkg, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }});
     }
     return this.httpClient.post<Quote>('/api/quotes', pkg, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }});
