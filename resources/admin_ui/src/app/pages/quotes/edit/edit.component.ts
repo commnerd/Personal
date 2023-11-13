@@ -10,7 +10,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  
+
   @Input() quote!: Quote;
 
   constructor(
@@ -26,8 +26,8 @@ export class EditComponent implements OnInit {
         this.quote = pkg;
       });
       setTimeout(() => paramSubscriber.unsubscribe(), 0);
-    });    
+    });
   }
 
-  
+
 }
