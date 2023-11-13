@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  page$ !: Observable<Paginated<Quote>>;
+  models$ !: Observable<Paginated<Quote>>;
 
   constructor(
     private quoteService: QuoteService,
@@ -20,15 +20,15 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.page$ = this.quoteService.list();
+    this.models$ = this.quoteService.list();
   }
 
   addQuote() {
-    this.router.navigate(['quotes']);
+    this.router.navigate(['quotes', 'create']);
   }
 
   editQuote(pkg: Quote) {
-    this.router.navigate(['quotes']);
+    this.router.navigate(['quotes', pkg.id, 'edit']);
   }
 
   confirmQuoteDeletion(pkg: Quote) {
