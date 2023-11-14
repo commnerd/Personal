@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Quote;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class QuotesController extends Controller
@@ -10,9 +11,9 @@ class QuotesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(Quote::paginate(self::PAGE_SIZE));
     }
 
     /**
@@ -20,30 +21,34 @@ class QuotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(Quote::getValidationRules());
+
+        return response()->json(Quote::paginate(self::PAGE_SIZE));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Quote $quote)
     {
-        //
+        return response()->json($quote);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Quote $quote)
     {
-        //
+        $request->validate(Quote::getValidationRules());
+
+        $quote->update($request->toArray());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Quote $quote)
     {
-        //
+        $quote->delete();
     }
 }
