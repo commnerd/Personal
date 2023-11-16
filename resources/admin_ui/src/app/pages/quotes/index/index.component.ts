@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Paginated } from '../../../interfaces/laravel/paginated';
 import { Quote } from '../../../interfaces/quote';
-import { Observable } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { QuoteService } from '../../../services/models/quote.service';
 import { Router } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
+  noQuotesFound: boolean = false;
   models$ !: Observable<Paginated<Quote>>;
 
   constructor(
@@ -20,7 +21,9 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.models$ = this.quoteService.list();
+    this.models$ = this.quoteService.list().pipe(
+      tap(page => this.noQuotesFound = page != null && page?.data != null && page.data.length < 1 )
+    );
   }
 
   addQuote() {
