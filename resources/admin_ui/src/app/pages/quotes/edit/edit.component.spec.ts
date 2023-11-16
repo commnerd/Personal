@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {of} from "rxjs";
+import {Quote} from "../../../interfaces/quote";
 
 describe('EditComponent', () => {
   let component: EditComponent;
@@ -32,5 +34,16 @@ describe('EditComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should populate form', () => {
+    let input = fixture.nativeElement.querySelector('input');
+
+    quoteService.get = id => of({id: id, quote: 'hi there', source: "some source", active: false});
+
+    fixture.detectChanges();
+
+    console.log(input);
+    expect(input.value).toEqual('hi there');
   });
 });
