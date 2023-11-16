@@ -23,11 +23,7 @@ sail up -d
 ```bash
 sail artisan test
 ```
-- To test the front-end, run the following:
-```bash
-docker-compose exec -w /project -v ${PWD}:/project 
-```
 - To test the admin user interface, run the following:
 ```bash
-docker-compose exec -w /project -v ${PWD}/resources/admin_ui:/project admin_builder yarn test
+docker-compose exec admin_builder bash -c 'ng test --no-watch'
 ```
