@@ -15,8 +15,6 @@ describe('EditComponent', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
   let quoteService: QuoteService;
-  let httpClient: HttpClient;
-  let httpHandler: HttpHandler;
   let activatedRoute: ActivatedRoute;
 
   beforeEach(() => {
@@ -27,8 +25,6 @@ describe('EditComponent', () => {
     });
     fixture = TestBed.createComponent(EditComponent);
     quoteService = TestBed.inject(QuoteService);
-    httpHandler = TestBed.inject(HttpHandler);
-    httpClient = TestBed.inject(HttpClient);
     activatedRoute = TestBed.inject(ActivatedRoute);
     component = fixture.componentInstance;
     fixture.detectChanges();

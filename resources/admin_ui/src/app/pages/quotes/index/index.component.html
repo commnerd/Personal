@@ -5,10 +5,10 @@
     </button>
 </div>
 <table>
-    <tr *ngIf="!(models$ | async)">
+    <tr *ngIf="(models$ | async) == null || (models$ | async) == undefined">
       <td colspan="4">Something went very wrong.</td>
     </tr>
-    <tr *ngIfElse="(models$ | async)?.data?.length < 1">
+    <tr *ngIf="(models$ | async) && (models$ | async)?.data?.length < 1">
       <td colspan="4">No quotes found.</td>
     </tr>
     <tr *ngFor="let quote of (models$ | async)?.data">

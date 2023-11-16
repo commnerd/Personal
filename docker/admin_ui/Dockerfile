@@ -12,6 +12,6 @@ RUN npm install -g \
 
 ENV CHROME_BIN=/usr/bin/google-chrome
 
-WORKDIR /project
+WORKDIR /project/resources/admin_ui
 
-CMD cd resources/admin_ui && yarn && yarn watch --output-path='../../public/admin/' --base-href='/admin/'
+CMD yarn && yarn watch --output-path='../../public/admin/' --base-href='/admin/'
