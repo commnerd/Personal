@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { Quote } from '../../../interfaces/quote';
 import { QuoteService } from '../../../services/models/quote.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, OnChanges {
+export class FormComponent implements OnInit {
 
   @Input() quote !: Quote;
+  @Output() submit: EventEmitter<Quote> = new EventEmitter<Quote>();
   quoteForm!: FormGroup;
 
   constructor(
@@ -21,20 +22,16 @@ export class FormComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.quote = {} as Quote;
     this.quoteForm = this.formBuilder.group({
       quote: '',
       source: '',
       active: true,
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if(changes['quote']?.currentValue) {
+    if(this.quote) {
       this.quoteForm.setValue({
-        quote: changes['quote'].currentValue.quote,
-        source: changes['quote'].currentValue.source,
-        active: changes['quote'].currentValue.active,
+        quote: this.quote.quote,
+        source: this.quote.source,
+        active: this.quote.active,
       });
     }
   }

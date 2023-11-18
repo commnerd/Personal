@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuotesRoutingModule } from './quotes-routing.module';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { QuotesRoutingModule } from './quotes-routing.module';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatSlideToggleModule,
     ReactiveFormsModule
   ],
 })
