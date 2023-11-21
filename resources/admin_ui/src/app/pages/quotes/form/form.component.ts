@@ -3,6 +3,7 @@ import { Quote } from '../../../interfaces/quote';
 import { QuoteService } from '../../../services/models/quote.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-form',
@@ -14,6 +15,7 @@ export class FormComponent implements OnInit {
   @Input() quote !: Quote;
   @Output() submit: EventEmitter<Quote> = new EventEmitter<Quote>();
   quoteForm!: FormGroup;
+  Editor = ClassicEditor;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,6 +47,8 @@ export class FormComponent implements OnInit {
         subscriber.unsubscribe();
         this.router.navigate(['quotes']);
       });
+    } else {
+      console.log(this.quoteForm.errors);
     }
   }
 }

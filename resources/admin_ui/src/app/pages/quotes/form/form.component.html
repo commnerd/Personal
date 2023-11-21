@@ -1,14 +1,15 @@
 <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-        <mat-label>Quote</mat-label>
-        <input matInput formControlName="quote" placeholder="Quote">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Source</mat-label>
-        <input matInput formControlName="source" placeholder="Source">
-    </mat-form-field>
-    <mat-slide-toggle formControlName="active">
-      Active
-    </mat-slide-toggle>
-    <button mat-raised-button type="submit">Save Settings</button>
+  <div>
+    <label for="quote">Quote</label>
+    <ckeditor id="quote" [editor]="Editor" formControlName="quote"></ckeditor>
+  </div>
+  <mat-form-field>
+    <mat-label>Source</mat-label>
+    <input matInput formControlName="source" placeholder="Source">
+  </mat-form-field>
+  <mat-slide-toggle formControlName="active">
+    Active
+  </mat-slide-toggle>
+  <hr/>
+  <button mat-raised-button type="submit">Save Settings</button>
 </form>

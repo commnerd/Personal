@@ -20,7 +20,7 @@ import { SetJwtComponent } from './set-jwt/set-jwt.component';
     PartialsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    PagesModule
+    PagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

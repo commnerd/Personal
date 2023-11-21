@@ -1286,6 +1286,13 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@ckeditor/ckeditor5-angular@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-angular/-/ckeditor5-angular-7.0.1.tgz#7f027e4f917b5bd13b3e0de8350b9deb19ac8d89"
+  integrity sha512-bHBmBMa9PAXk1MMjeq+9nV/HVWdwv36kRjpOr4JUiYYxRFdtPBXWj+3Jb9TUymyWchhxMA440iYJVoYgVw3lOA==
+  dependencies:
+    tslib "^2.3.0"
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"

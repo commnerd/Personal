@@ -23,7 +23,7 @@ export class QuoteService {
 
   save(pkg: Quote): Observable<Quote> {
     if(!!pkg.id) {
-      return this.httpClient.put<Quote>('/api/quotes', pkg, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }});
+      return this.httpClient.put<Quote>(`/api/quotes/${pkg.id}`, pkg, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }});
     }
     return this.httpClient.post<Quote>('/api/quotes', pkg, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }});
   }

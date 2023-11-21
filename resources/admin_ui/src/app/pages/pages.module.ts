@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { PartialsModule } from '../partials/partials.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorInterceptor } from '../services/auth-interceptor.interceptor';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AuthInterceptorInterceptor } from '../services/auth-interceptor.interce
     CommonModule,
     PartialsModule,
     PagesRoutingModule,
+    CKEditorModule
   ],
   exports: [
     PagesComponent

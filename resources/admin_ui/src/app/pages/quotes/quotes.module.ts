@@ -11,7 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuotesRoutingModule } from './quotes-routing.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { PartialsModule } from '../../partials/partials.module';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatIconModule,
     MatInputModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PartialsModule,
+    CKEditorModule
   ],
 })
 export class QuotesModule { }
