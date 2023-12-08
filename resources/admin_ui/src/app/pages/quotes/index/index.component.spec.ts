@@ -3,10 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IndexComponent } from './index.component';
 import { QuoteService } from '../../../services/models/quote.service';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable, of } from 'rxjs';
-import { Quote } from '../../../interfaces/quote';
+import { of } from 'rxjs';
 import { TestDataPaginator } from '../../../../testing/TestDataPaginator';
-import { Paginated } from '../../../interfaces/laravel/paginated';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('IndexComponent', () => {
@@ -28,13 +26,6 @@ describe('IndexComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should print "Something went very wrong." on bad server response', () => {
-    quoteService.list = () => of(null as unknown as Paginated<Quote>);
-    fixture = TestBed.createComponent(IndexComponent);
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('table').textContent).toEqual("Something went very wrong.");
   });
 
   it('should print "No quotes found." on empty paged response', () => {

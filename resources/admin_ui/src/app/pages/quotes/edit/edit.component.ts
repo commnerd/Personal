@@ -11,7 +11,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class EditComponent implements OnInit {
 
-  @Input() quote!: Quote;
+  quote$!: Observable<Quote | null>;
 
   constructor(
     private quoteService: QuoteService,
@@ -21,10 +21,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     let paramSubscriber = this.route.params.subscribe(params => {
-      let serviceSubscriber = this.quoteService.get(params['id'] as number).subscribe(pkg => {
-        serviceSubscriber.unsubscribe();
-        this.quote = pkg;
-      });
+      this.quote$ = this.quoteService.get(params['id'] as number);
       setTimeout(() => paramSubscriber.unsubscribe(), 0);
     });
   }

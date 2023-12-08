@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormComponent implements OnInit {
 
-  @Input() quote !: Quote;
+  @Input() quote !: Quote | null;
   quoteForm!: FormGroup;
 
   constructor(

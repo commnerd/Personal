@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "/",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -24,11 +24,11 @@
       "dom"
     ],
     "paths": {
-      "@guards/*": ["./src/app/guards/*"],
-      "@interfaces/*": ["./src/app/interfaces/*"],
-      "@pages/*": ["./src/app/pages/*"],
-      "@partials/*": ["./src/app/partials/*"],
-      "@services/*": ["./src/app/services/*"],
+      "@guards/*": ["app/guards/*"],
+      "@interfaces/*": ["app/interfaces/*"],
+      "@pages/*": ["app/pages/*"],
+      "@partials/*": ["app/partials/*"],
+      "@services/*": ["app/services/*"],
     }
   },
   "angularCompilerOptions": {
