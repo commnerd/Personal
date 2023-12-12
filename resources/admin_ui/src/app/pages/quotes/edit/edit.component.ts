@@ -10,8 +10,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  
-  quote$!: Observable<Quote>;
+
+  quote$!: Observable<Quote | null>;
 
   constructor(
     private quoteService: QuoteService,
@@ -23,8 +23,8 @@ export class EditComponent implements OnInit {
     let paramSubscriber = this.route.params.subscribe(params => {
       this.quote$ = this.quoteService.get(params['id'] as number);
       setTimeout(() => paramSubscriber.unsubscribe(), 0);
-    });    
+    });
   }
 
-  
+
 }

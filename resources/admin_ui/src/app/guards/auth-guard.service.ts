@@ -3,8 +3,6 @@ import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from '@ang
 import { ActivatedRoute } from '@angular/router'
 
 import { LoadToggleService } from '../services/load-toggle.service';
-
-
 @Injectable({
   providedIn: 'root'
 })

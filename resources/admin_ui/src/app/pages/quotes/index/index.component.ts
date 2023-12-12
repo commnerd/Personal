@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  models$ !: Observable<Paginated<Quote>>;
+  models$ !: Observable<Paginated<Quote> | null>;
 
   constructor(
     private quoteService: QuoteService,
