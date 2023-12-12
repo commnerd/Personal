@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Work\EmploymentRecord;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class ParseLinkedinProfile extends Command
 {
@@ -25,14 +27,25 @@ class ParseLinkedinProfile extends Command
      */
     public function handle()
     {
-        $data = $this->fetchData();
+        DB::beginTransaction();
+        DB::transaction(function() {
+            EmploymentRecord::truncate();
 
-        if(!empty($data->experiences)) {
-            foreach((array)($data->experiences) as $experience) {
-                echo $experience->company . ", " . $experience->date_range . "\n";
-                dd($experience);
+            $data = $this->fetchData();
+
+            if(!empty($data->experiences)) {
+                foreach($data->experiences as $experience) {
+                    EmploymentRecord::create([
+                        'employer' => $experience->company,
+                        'position' => $experience->title,
+                        'location' => $experience->location,
+                        'start_date' => $experience->start_month . "/" . $experience->start_year,
+                        'end_date' => $experience->end_month . "/" . $experience->end_year,
+                        'bullets' => $experience->description,
+                    ]);
+                }
             }
-        }
+        });
     }
 
     private function fetchData(): \stdClass {
