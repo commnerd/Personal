@@ -3,8 +3,6 @@
 namespace Tests\Feature\Http\Controllers\Web;
 
 use App\Models\Food\{Restaurant, Order};
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\TestCase;
 
 class FoodControllerTest extends TestCase
@@ -31,7 +29,7 @@ class FoodControllerTest extends TestCase
         });
 
         $response = $this->get(route('web.food'));
-        
+
         $response->assertDontSee(Order::inRandomOrder()->first()->label);
         $response->assertSee('Please search for a meal name, an ingredient, or a restaurant name.');
     }
@@ -42,7 +40,7 @@ class FoodControllerTest extends TestCase
     public function test_empty_query_results(): void
     {
         $response = $this->get(route('web.food', ['q' => 'Test']));
-        
+
         $response->assertDontSee('Please search for a meal name, an ingredient, or a restaurant name.');
         $response->assertSee('Sorry, no results found for this search.');
     }

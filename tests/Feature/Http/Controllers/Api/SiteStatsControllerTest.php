@@ -5,10 +5,6 @@ namespace Tests\Feature\Http\Controllers\Api;
 
 
 use App\Services\System;
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Laravel\Passport\Passport;
 use Tests\Feature\TestCase;
 
 
@@ -77,20 +73,20 @@ class SiteStatsControllerTest extends TestCase
         \App\Models\Composer\Package::factory()->count($packageCount)->create()->each(function(\App\Models\Composer\Package $package) {
             \App\Models\Composer\PackageSource::factory()->count(rand(1, 10))->create([ 'composer_package_id' => $package->id ]);
         });
-        
+
         \App\Models\ContactMessage::factory()->count($contactMessageCount)->create();
         \App\Models\Drink::factory()->count($drinkCount)->create();
         \App\Models\Work\EmploymentRecord::factory()->count($employmentRecordCount)->create();
         \App\Models\Food\Restaurant::factory()->count($restaurantCount)->create()->each(function(\App\Models\Food\Restaurant $restaurant) {
             \App\Models\Food\Order::factory()->count(rand(0, 10))->create([ 'restaurant_id' => $restaurant->id ]);
         });
-        
+
         \App\Models\Work\PortfolioEntry::factory()->count($portfolioEntryCount)->create();
 
         $this->login();
 
         $response = $this->get(route('api.site_stats'));
-        
+
         $response->assertStatus(200);
         $response->assertJson([
             'composer' => [
