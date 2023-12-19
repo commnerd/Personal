@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuotesRoutingModule } from './quotes-routing.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { QuotesRoutingModule } from './quotes-routing.module';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularEditorModule
   ],
 })
 export class QuotesModule { }
