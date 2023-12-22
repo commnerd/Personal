@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AngularEditorModule} from "@kolkov/angular-editor";
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -17,7 +18,13 @@ describe('FormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+      imports: [
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        AngularEditorModule
+      ],
       providers: [QuoteService, HttpClient, HttpHandler],
       declarations: [FormComponent]
     });
