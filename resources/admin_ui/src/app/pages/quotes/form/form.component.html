@@ -1,7 +1,7 @@
 <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
   <div>
     <label>Resource</label>
-    <angular-editor formControlName="quote" [config]="editorConfig"></angular-editor>
+    <angular-editor formControlName="quote" ngDefaultControl></angular-editor>
   </div>
   <mat-form-field>
     <mat-label>Resource</mat-label>
