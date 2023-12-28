@@ -1,15 +1,17 @@
 <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
   <div>
-    <label>Resource</label>
+    <label>Quote</label>
     <angular-editor formControlName="quote" ngDefaultControl></angular-editor>
   </div>
   <mat-form-field>
-    <mat-label>Resource</mat-label>
-    <input matInput formControlName="resource" placeholder="Resource">
+    <mat-label>Source</mat-label>
+    <input matInput formControlName="source" placeholder="Source">
   </mat-form-field>
-  <mat-form-field>
-    <mat-label>Active</mat-label>
-    <input matInput formControlName="active" placeholder="Active">
-  </mat-form-field>
-  <button type="submit">Send</button>
+  <mat-slide-toggle
+    formControlName="active">
+    Active
+  </mat-slide-toggle>
+  <div>
+    <button type="submit">Send</button>
+  </div>
 </form>
