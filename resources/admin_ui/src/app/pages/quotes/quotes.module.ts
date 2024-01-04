@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +15,7 @@ import { EditComponent } from './edit/edit.component';
 import { FormComponent } from './form/form.component';
 import { IndexComponent } from './index/index.component';
 import { QuotesRoutingModule } from './quotes-routing.module';
+import { DeleteConfirmationDialogComponent } from './index/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 
 @NgModule({
@@ -21,18 +23,20 @@ import { QuotesRoutingModule } from './quotes-routing.module';
     IndexComponent,
     CreateComponent,
     EditComponent,
-    FormComponent
+    FormComponent,
+    DeleteConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
     QuotesRoutingModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
     AngularEditorModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
 })
 export class QuotesModule { }

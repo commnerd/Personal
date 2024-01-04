@@ -1,25 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from "@angular/material/dialog";
 
 import { IndexComponent } from './index.component';
-import { QuoteService } from '../../../services/models/quote.service';
-import { MatIconModule } from '@angular/material/icon';
+import { QuoteService } from '@services/models/quote.service';
 import { of } from 'rxjs';
 import { TestDataPaginator } from '../../../../testing/TestDataPaginator';
 import { HttpClient, HttpHandler } from '@angular/common/http';
+import { QuotesModule } from "@pages/quotes/quotes.module";
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
   let fixture: ComponentFixture<IndexComponent>;
+  let dialog: MatDialog;
   let quoteService: QuoteService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatIconModule],
-      providers: [QuoteService, HttpClient, HttpHandler],
+      imports: [QuotesModule],
+      providers: [QuoteService, MatDialog, HttpClient, HttpHandler],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;
+    dialog = TestBed.inject(MatDialog);
     quoteService = TestBed.inject(QuoteService);
     fixture.detectChanges();
   });

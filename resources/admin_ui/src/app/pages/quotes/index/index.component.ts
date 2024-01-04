@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Paginated } from '../../../interfaces/laravel/paginated';
-import { Quote } from '../../../interfaces/quote';
+import { MatDialog } from "@angular/material/dialog";
+
+import { Paginated } from '@interfaces/laravel/paginated';
+import { Quote } from '@interfaces/quote';
 import { Observable } from 'rxjs';
-import { QuoteService } from '../../../services/models/quote.service';
+import { QuoteService } from '@services/models/quote.service';
 import { Router } from '@angular/router';
+
+import { DeleteConfirmationDialogComponent } from "./delete-confirmation-dialog/delete-confirmation-dialog.component";
 
 @Component({
   selector: 'app-index',
@@ -15,6 +19,7 @@ export class IndexComponent implements OnInit {
   models$ !: Observable<Paginated<Quote> | null>;
 
   constructor(
+    public dialog: MatDialog,
     private quoteService: QuoteService,
     private router: Router
   ) {}
@@ -32,7 +37,9 @@ export class IndexComponent implements OnInit {
   }
 
   confirmQuoteDeletion(pkg: Quote) {
-
+    this.dialog.open(DeleteConfirmationDialogComponent, {
+      width: '250px',
+    });
   }
 
   deleteQuote(quote: Quote) {
