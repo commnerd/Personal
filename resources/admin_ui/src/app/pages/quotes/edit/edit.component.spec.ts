@@ -6,10 +6,8 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormComponent } from '../form/form.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { QuotesModule } from "@pages/quotes/quotes.module";
 
 describe('EditComponent', () => {
   let component: EditComponent;
@@ -19,7 +17,7 @@ describe('EditComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, RouterTestingModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+      imports: [QuotesModule, RouterTestingModule],
       providers: [QuoteService, HttpClient, HttpHandler],
       declarations: [EditComponent, FormComponent]
     });

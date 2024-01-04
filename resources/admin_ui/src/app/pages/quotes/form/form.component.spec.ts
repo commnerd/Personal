@@ -1,14 +1,12 @@
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormComponent } from './form.component';
 import { QuoteService } from '../../../services/models/quote.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularEditorModule } from "@kolkov/angular-editor";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { QuotesModule } from "@pages/quotes/quotes.module";
+
+
 describe('FormComponent', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
@@ -18,14 +16,7 @@ describe('FormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        AngularEditorModule,
-        MatSlideToggleModule
-      ],
+      imports: [BrowserAnimationsModule, QuotesModule],
       providers: [QuoteService, HttpClient, HttpHandler],
       declarations: [FormComponent]
     });
