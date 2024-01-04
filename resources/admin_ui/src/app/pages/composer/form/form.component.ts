@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Package } from '../../../interfaces/composer/package';
 import { PackageService } from '../../../services/models/composer/package.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges {
 
-  @Input() package !: Package;
+  @Input() package!: Package | null;
   packageForm!: FormGroup;
 
   constructor(
@@ -19,20 +19,28 @@ export class FormComponent implements OnInit {
     private packageService: PackageService,
     private router: Router
   ) {}
-  
+
   ngOnInit(): void {
-    this.packageForm = this.formBuilder.group({
+    this.package = {
       name: '',
       version: '',
-      type: '',
-    });
+      type: ''
+    };
+    this.packageForm = this.formBuilder.group(this.package);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if(this.package) {
-      this.packageForm.setValue(this.package);
+      this.packageForm.setValue({
+        name: changes['package']?.currentValue.name,
+        type: changes['package']?.currentValue.type,
+        version: changes['package']?.currentValue.version
+      });
     }
   }
 
   onSubmit() {
-    let subscriber = this.packageService.save(this.packageForm.value).subscribe( (rs) => {
+    let subscriber = this.packageService.save(Object.assign(this.package!, this.packageForm.value)).subscribe( (rs) => {
       subscriber.unsubscribe();
       this.router.navigate(['composer']);
     });

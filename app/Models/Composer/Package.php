@@ -33,7 +33,7 @@ class Package extends Model
     {
         return [
             'name' => 'required|string|min:1|max:255',
-            'version' => 'required|float',
+            'version' => 'required|string',
             'type' => 'required|string',
         ];
     }
