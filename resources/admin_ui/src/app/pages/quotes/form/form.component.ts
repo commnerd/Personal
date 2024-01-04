@@ -32,7 +32,7 @@ export class FormComponent implements OnInit, OnChanges {
   {
     console.log(changes);
 
-    if(this.quote) {
+    if(this.quote && this.quoteForm) {
       this.quoteForm.setValue({
         quote: changes['quote']?.currentValue.quote,
         source: changes['quote']?.currentValue.source,

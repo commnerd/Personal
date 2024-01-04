@@ -16,7 +16,6 @@ export class EditComponent implements OnInit {
   constructor(
     private quoteService: QuoteService,
     private route: ActivatedRoute,
-
   ) {}
 
   ngOnInit(): void {
