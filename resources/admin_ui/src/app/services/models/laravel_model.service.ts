@@ -35,6 +35,12 @@ export abstract class LaravelModelService<T extends Model> {
     ) as Observable<T | null>;
   }
 
+  delete(id: number): Observable<Object> {
+    return this.httpClient.delete(`${this.path}/${id}`, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   handleError(error: HttpErrorResponse) {
     switch(error.status) {
       case 401:

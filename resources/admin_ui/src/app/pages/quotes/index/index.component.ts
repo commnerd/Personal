@@ -36,13 +36,16 @@ export class IndexComponent implements OnInit {
     this.router.navigate(['quotes', pkg.id, 'edit']);
   }
 
-  confirmQuoteDeletion(pkg: Quote) {
-    this.dialog.open(DeleteConfirmationDialogComponent, {
-      width: '250px',
-    });
-  }
-
   deleteQuote(quote: Quote) {
-
+    let dialogSubscription = this.dialog
+      .open(DeleteConfirmationDialogComponent)
+      .afterClosed()
+      .subscribe(result => {
+        let deleteSubscription = this.quoteService.delete(quote.id!).subscribe(() => {
+          this.ngOnInit();
+          setTimeout(() => deleteSubscription.unsubscribe());
+        });
+        setTimeout(() => dialogSubscription.unsubscribe());
+      });
   }
 }
