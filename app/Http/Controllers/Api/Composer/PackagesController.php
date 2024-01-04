@@ -10,7 +10,7 @@ class PackagesController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(): JsonResponse
@@ -23,7 +23,10 @@ class PackagesController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        $request->validate(Package::getValidationRules());
+
         $package = Package::create($request->all());
+
         return response()->json($package->toJson());
     }
 
@@ -40,15 +43,18 @@ class PackagesController extends Controller
      */
     public function update(Request $request, Package $package): JsonResponse
     {
-        $package->fill($request->all());
+        $request->validate(Package::getValidationRules());
+
+        $package->update($request->all());
+
         return response()->json($package);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Package $package)
     {
-        //
+        $package->delete();
     }
 }

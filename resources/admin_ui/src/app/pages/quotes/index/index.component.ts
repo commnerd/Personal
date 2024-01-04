@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { QuoteService } from '@services/models/quote.service';
 import { Router } from '@angular/router';
 
-import { DeleteConfirmationDialogComponent } from "./delete-confirmation-dialog/delete-confirmation-dialog.component";
+import { DeleteConfirmationDialogComponent } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
 
 @Component({
   selector: 'app-index',

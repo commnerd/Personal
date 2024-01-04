@@ -10,24 +10,20 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  
-  @Input() package!: Package;
+
+  @Input() package$!: Observable<Package | null>;
 
   constructor(
     private packageService: PackageService,
     private route: ActivatedRoute,
-
   ) {}
 
   ngOnInit(): void {
     let paramSubscriber = this.route.params.subscribe(params => {
-      let serviceSubscriber = this.packageService.get(params['id'] as number).subscribe(pkg => {
-        serviceSubscriber.unsubscribe();
-        this.package = pkg;
-      });
+      this.package$ = this.packageService.get(params['id'] as number);
       setTimeout(() => paramSubscriber.unsubscribe(), 0);
-    });    
+    });
   }
 
-  
+
 }

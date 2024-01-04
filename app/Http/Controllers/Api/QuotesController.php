@@ -19,7 +19,7 @@ class QuotesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $request->validate(Quote::getValidationRules());
 
@@ -31,7 +31,7 @@ class QuotesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Quote $quote)
+    public function show(Quote $quote): JsonResponse
     {
         return response()->json($quote);
     }
@@ -39,11 +39,13 @@ class QuotesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quote $quote)
+    public function update(Request $request, Quote $quote): JsonResponse
     {
         $request->validate(Quote::getValidationRules());
 
         $quote->update($request->toArray());
+
+        return response()->json($quote);
     }
 
     /**

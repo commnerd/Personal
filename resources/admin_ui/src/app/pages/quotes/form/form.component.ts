@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormComponent implements OnInit, OnChanges {
 
-  @Input() quote !: Quote | null;
+  @Input() quote!: Quote | null;
   quoteForm!: FormGroup;
 
   constructor(
@@ -21,18 +21,17 @@ export class FormComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.quoteForm = this.formBuilder.group({
+    this.quote = {
       quote: '',
       source: '',
-      active: false,
-    });
+      active: true,
+    };
+    this.quoteForm = this.formBuilder.group(this.quote);
   }
 
   ngOnChanges(changes: SimpleChanges): void
   {
-    console.log(changes);
-
-    if(this.quote && this.quoteForm) {
+    if(this.quote) {
       this.quoteForm.setValue({
         quote: changes['quote']?.currentValue.quote,
         source: changes['quote']?.currentValue.source,
@@ -42,7 +41,7 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    let subscriber = this.quoteService.save(this.quoteForm.value).subscribe( (rs) => {
+    let subscriber = this.quoteService.save(Object.assign(this.quote!, this.quoteForm.value)).subscribe( (rs) => {
       subscriber.unsubscribe();
       this.router.navigate(['quotes']);
     });

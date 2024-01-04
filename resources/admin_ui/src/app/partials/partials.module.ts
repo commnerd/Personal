@@ -10,11 +10,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CardComponent } from './card/card.component';
 import { LoadingComponent } from './loading/loading.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import {
+  DeleteConfirmationDialogComponent
+} from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
 
 let allTheThings: Array<any> = [
   NavigationComponent,
   CardComponent,
   LoadingComponent,
+  DeleteConfirmationDialogComponent
+
 ];
 
 @NgModule({
@@ -25,7 +31,8 @@ let allTheThings: Array<any> = [
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
   ],
   declarations: allTheThings,
   providers: allTheThings,
