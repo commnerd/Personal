@@ -24,6 +24,10 @@ class Package extends Model
         'type',
     ];
 
+    protected $casts = [
+        'version' => 'string',
+    ];
+
     /**
      * Get validation rules for model
      *

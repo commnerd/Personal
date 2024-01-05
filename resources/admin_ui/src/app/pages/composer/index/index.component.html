@@ -5,7 +5,7 @@
     </button>
 </div>
 <table>
-    <tr *ngFor="let package of (page$ | async)?.data">
+    <tr *ngFor="let package of (packages$ | async)?.data">
         <td>{{ package.name }}</td>
         <td>{{ package.version }}</td>
         <td>{{ package.type }}</td>
@@ -19,5 +19,8 @@
                 <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
             </button>
         </td>
+    </tr>
+    <tr *ngFor="let packageSource of (packageSources$ | async)?.data">
+
     </tr>
 </table>

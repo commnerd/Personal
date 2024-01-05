@@ -1,4 +1,4 @@
-import { LaravelModel } from "../laravel/model";
+import { Model as LaravelModel } from "../laravel/model";
 
 export interface PackageSource extends LaravelModel {
     composer_package_id: number;

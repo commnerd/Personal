@@ -27,7 +27,7 @@ class PackagesController extends Controller
 
         $package = Package::create($request->all());
 
-        return response()->json($package->toJson());
+        return response()->json($package);
     }
 
     /**
