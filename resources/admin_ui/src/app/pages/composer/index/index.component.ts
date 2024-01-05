@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
+import { PackageSource } from "@interfaces/composer/package_source";
+import {PackageSourceService} from "@services/models/composer/package-source.service";
 
 @Component({
   selector: 'app-index',
@@ -16,16 +18,20 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class IndexComponent implements OnInit {
 
-  page$ !: Observable<Paginated<Package> | null>;
+  packages$ !: Observable<Paginated<Package> | null>;
+  packageSources$ !: Observable<Paginated<Package> | null>
+
 
   constructor(
     private packageService: PackageService,
+    private packageSourceService: PackageSourceService,
     private router: Router,
     private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
-    this.page$ = this.packageService.list();
+    this.packages$ = this.packageService.list();
+    this.packageSources$ = this.packageSourceService.list();
   }
 
   addPackage() {

@@ -20,15 +20,15 @@ Route::middleware('auth:api')->name('api.')->group(function() {
     Route::apiResource('/quotes', \App\Http\Controllers\Api\QuotesController::class);
     Route::apiResource('/messages', \App\Http\Controllers\Api\MessagesController::class);
     Route::prefix('composer')->name('composer.')->group(function() {
-        Route::resource('/packages', \App\Http\Controllers\Api\Composer\PackagesController::class);
-        Route::resource('/package_sources', \App\Http\Controllers\Api\Composer\PackageSourcesController::class);
+        Route::apiResource('/packages', \App\Http\Controllers\Api\Composer\PackagesController::class);
+        Route::apiResource('/package_sources', \App\Http\Controllers\Api\Composer\PackageSourcesController::class);
     });
     Route::prefix('food')->name('food.')->group(function() {
-        Route::resource('/restaurants', \App\Http\Controllers\Api\Food\RestaurantsController::class);
-        Route::resource('/orders', \App\Http\Controllers\Api\Food\OrdersController::class);
+        Route::apiResource('/restaurants', \App\Http\Controllers\Api\Food\RestaurantsController::class);
+        Route::apiResource('/orders', \App\Http\Controllers\Api\Food\OrdersController::class);
     });
     Route::prefix('blog')->name('blog.')->group(function() {
-        Route::resource('/posts', \App\Http\Controllers\Api\Blog\PostsController::class);
+        Route::apiResource('/posts', \App\Http\Controllers\Api\Blog\PostsController::class);
     });
 });
 

@@ -18,7 +18,7 @@ class QuoteFactory extends Factory
     {
         return [
             'active' => fake()->boolean(),
-            'quote' => fake()->string(),
+            'quote' => fake()->text(),
             'source' => fake()->url(),
         ];
     }

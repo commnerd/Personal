@@ -23,9 +23,7 @@ class QuotesController extends Controller
     {
         $request->validate(Quote::getValidationRules());
 
-        Quote::create($request->toArray());
-
-        return response()->json(Quote::paginate(self::PAGE_SIZE));
+        return response()->json(Quote::create($request->toArray()));
     }
 
     /**
