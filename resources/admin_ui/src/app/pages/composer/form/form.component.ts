@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Package } from '../../../interfaces/composer/package';
 import { PackageService } from '../../../services/models/composer/package.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup, FormArray, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormComponent implements OnInit, OnChanges {
 
-  @Input() package!: Package | null;
+  @Input() pkg!: Package | null;
   packageForm!: FormGroup;
 
   constructor(
@@ -21,28 +21,40 @@ export class FormComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.package = {
+    this.packageForm = this.formBuilder.group({
       name: '',
       version: '',
-      type: ''
-    };
-    this.packageForm = this.formBuilder.group(this.package);
+      type: '',
+      sources: this.formBuilder.array([]),
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.package) {
+    if(this.pkg) {
       this.packageForm.setValue({
-        name: changes['package']?.currentValue.name,
-        type: changes['package']?.currentValue.type,
-        version: changes['package']?.currentValue.version
+        name: changes['pkg']?.currentValue.name,
+        type: changes['pkg']?.currentValue.type,
+        version: changes['pkg']?.currentValue.version,
+        sources: changes['pkg'].currentValue.sources,
       });
     }
   }
 
   onSubmit() {
-    let subscriber = this.packageService.save(Object.assign(this.package!, this.packageForm.value)).subscribe( (rs) => {
+    let subscriber = this.packageService.save(Object.assign(this.pkg!, this.packageForm.value)).subscribe( (rs) => {
       subscriber.unsubscribe();
       this.router.navigate(['composer']);
     });
+  }
+
+  addSource() {
+    (<FormArray>this.packageForm.get('sources')).push(
+      this.formBuilder.group({ reference: '', type: '', url: '' })
+    );
+  }
+
+  trackFn(i: number) {
+    console.log('hi');
+    return i;
   }
 }

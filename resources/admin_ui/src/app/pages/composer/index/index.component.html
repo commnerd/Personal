@@ -5,22 +5,26 @@
     </button>
 </div>
 <table>
-    <tr *ngFor="let package of (packages$ | async)?.data">
-        <td>{{ package.name }}</td>
-        <td>{{ package.version }}</td>
-        <td>{{ package.type }}</td>
+    <ng-container *ngFor="let pkg of (packages$ | async)?.data">
+      <tr>
+        <td>{{ pkg.name }}</td>
+        <td>{{ pkg.version }}</td>
+        <td>{{ pkg.type }}</td>
         <td>
-            <button mat-button aria-label="Edit package" (click)="editPackage(package)">
-                <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
-            </button>
+          <button mat-button aria-label="Edit package" (click)="editPackage(pkg)">
+            <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+          </button>
         </td>
         <td>
-            <button mat-button aria-label="Delete package" (click)="deletePackage(package)">
-                <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
-            </button>
+          <button mat-button aria-label="Delete package" (click)="deletePackage(pkg)">
+            <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+          </button>
         </td>
-    </tr>
-    <tr *ngFor="let packageSource of (packageSources$ | async)?.data">
-
-    </tr>
+      </tr>
+      <tr *ngFor="let source of pkg.sources">
+        <td>{{ source.reference }}</td>
+        <td>{{ source.type }}</td>
+        <td>{{ source.url }}</td>
+      </tr>
+    </ng-container>
 </table>
