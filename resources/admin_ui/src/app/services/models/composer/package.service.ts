@@ -9,7 +9,6 @@ import { LaravelModelService } from "../laravel_model.service";
 export class PackageService extends LaravelModelService<Package> {
 
   protected path = '/api/composer/packages';
-
   constructor(
     override httpClient: HttpClient
   ) {

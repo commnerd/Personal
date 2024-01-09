@@ -15,7 +15,7 @@ class PackagesController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json(Package::paginate(self::PAGE_SIZE));
+        return response()->json(Package::with('sources')->paginate(self::PAGE_SIZE));
     }
 
     /**
@@ -35,6 +35,8 @@ class PackagesController extends Controller
      */
     public function show(Package $package): JsonResponse
     {
+        $package->load('sources');
+
         return response()->json($package);
     }
 

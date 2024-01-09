@@ -8,30 +8,25 @@ import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
-import { PackageSource } from "@interfaces/composer/package_source";
-import {PackageSourceService} from "@services/models/composer/package-source.service";
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
 
   packages$ !: Observable<Paginated<Package> | null>;
-  packageSources$ !: Observable<Paginated<Package> | null>
 
 
   constructor(
     private packageService: PackageService,
-    private packageSourceService: PackageSourceService,
     private router: Router,
     private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
     this.packages$ = this.packageService.list();
-    this.packageSources$ = this.packageSourceService.list();
   }
 
   addPackage() {

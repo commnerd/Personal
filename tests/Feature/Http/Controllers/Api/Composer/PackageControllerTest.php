@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controllers\Api\Composer;
 
 use App\Models\Composer\Package;
+use App\Models\Composer\PackageSource;
 use Tests\Feature\TestCase;
 
 class PackageControllerTest extends TestCase
@@ -49,6 +50,25 @@ class PackageControllerTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJson($quote->toArray());
+    }
+
+    /**
+     * A show test with PackageSources.
+     */
+    public function test_package_source_show(): void
+    {
+        $package = Package::factory()->create();
+
+        $sources = PackageSource::factory(2)
+            ->create(['composer_package_id' => $package]);
+
+        $response = $this->get(route('api.composer.packages.show', $package));
+
+        $response->assertStatus(200);
+
+        $response->assertJson($package->toArray());
+
+        $response->assertJsonCount(2, "sources");
     }
 
     /**

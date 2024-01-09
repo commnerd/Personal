@@ -3,6 +3,7 @@
 namespace App\Models\Composer;
 
 use App\Models\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Package extends Model
 {
@@ -40,5 +41,10 @@ class Package extends Model
             'version' => 'required|string',
             'type' => 'required|string',
         ];
+    }
+
+    public function sources(): HasMany
+    {
+        return $this->hasMany(PackageSource::class, 'composer_package_id');
     }
 }
