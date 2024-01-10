@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api\Composer;
 
 use App\Http\Controllers\Api\Controller;
 use Illuminate\Http\{JsonResponse, Request};
-use App\Models\Composer\Package;
+use Illuminate\Support\Facades\DB;
+use App\Models\Composer\{Package, PackageSource};
 
 class PackagesController extends Controller
 {
@@ -25,7 +26,12 @@ class PackagesController extends Controller
     {
         $request->validate(Package::getValidationRules());
 
+        DB::beginTransaction();
         $package = Package::create($request->all());
+        $package->sources()->createMany($request->sources);
+        DB::commit();
+
+        $package->load('sources');
 
         return response()->json($package);
     }
@@ -47,7 +53,20 @@ class PackagesController extends Controller
     {
         $request->validate(Package::getValidationRules());
 
+        DB::beginTransaction();
         $package->update($request->all());
+        $keepers = collect($request->sources)->each(function($source) use ($package) {
+            if(isset($source['id'])) {
+                PackageSource::find($source['id'])->update($source);
+            } else {
+                $source['composer_package_id'] = $package->id;
+                PackageSource::make($source)->save();
+            }
+        })->pluck('id');
+        PackageSource::whereNotIn('id', $keepers)->delete();
+        DB::commit();
+
+        $package->load('sources');
 
         return response()->json($package);
     }
