@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('composer_package_sources', function (Blueprint $table) {
-            $table->dropForeign('composer_package_sources_composer_package_id_foreign');
+            if(config('database.default') !== 'sqlite') {
+                $table->dropForeign('composer_package_sources_composer_package_id_foreign');
+            }
             $table->foreign('composer_package_id')
                 ->references('id')
                 ->on('composer_packages')
@@ -27,7 +29,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('composer_package_sources', function (Blueprint $table) {
-            $table->dropForeign('composer_package_sources_composer_package_id_foreign');
+            if(config('database.default') !== 'sqlite') {
+                $table->dropForeign('composer_package_sources_composer_package_id_foreign');
+            }
             $table->foreign('composer_package_id')
                 ->references('id')
                 ->on('composer_packages');
