@@ -28,7 +28,9 @@ class PackagesController extends Controller
 
         DB::beginTransaction();
         $package = Package::create($request->all());
-        $package->sources()->createMany($request->sources);
+        if(isset($request->sources)) {
+            $package->sources()->createMany($request->sources);
+        }
         DB::commit();
 
         $package->load('sources');
