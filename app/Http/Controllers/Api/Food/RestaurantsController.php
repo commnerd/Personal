@@ -28,7 +28,7 @@ class RestaurantsController extends Controller
         DB::beginTransaction();
         $restaurant = Restaurant::create($request->all());
         if(isset($request->orders)) {
-            $restaurant->sources()->createMany($request->orders);
+            $restaurant->orders()->createMany($request->orders);
         }
         DB::commit();
 
@@ -57,17 +57,17 @@ class RestaurantsController extends Controller
         DB::beginTransaction();
         $restaurant->update($request->all());
         $keepers = collect($request->orders)->each(function($order) use ($restaurant) {
-            if(isset($source['id'])) {
+            if(isset($order['id'])) {
                 Order::find($order['id'])->update($order);
             } else {
-                $order['composer_package_id'] = $order->id;
+                $order['restaurant_id'] = $restaurant->id;
                 Order::make($order)->save();
             }
         })->pluck('id');
         Order::whereNotIn('id', $keepers)->delete();
         DB::commit();
 
-        $restaurant->load('sources');
+        $restaurant->load('orders');
 
         return response()->json($restaurant);
     }

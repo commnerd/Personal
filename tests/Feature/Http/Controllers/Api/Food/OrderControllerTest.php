@@ -34,7 +34,7 @@ class OrderControllerTest extends TestCase
     {
         $order = Order::factory()->make(['restaurant_id' => $this->parentRestaurant->id]);
 
-        $response = $this->post(route('api.composer.package_sources.store', $this->parentRestaurant), $order->toArray());
+        $response = $this->post(route('api.food.orders.store', $this->parentRestaurant), $order->toArray());
 
         $response->assertStatus(200);
 
@@ -46,13 +46,13 @@ class OrderControllerTest extends TestCase
      */
     public function test_show(): void
     {
-        $order = Order::factory()->create(['composer_package_id' => $this->parentRestaurant->id]);
+        $order = Order::factory()->create(['restaurant_id' => $this->parentRestaurant->id]);
 
-        $response = $this->get(route('api.composer.package_sources.show', $package_source));
+        $response = $this->get(route('api.food.orders.show', $order));
 
         $response->assertStatus(200);
 
-        $response->assertJson($package_source->toArray());
+        $response->assertJson($order->toArray());
     }
 
     /**
@@ -60,10 +60,10 @@ class OrderControllerTest extends TestCase
      */
     public function test_update(): void
     {
-        $order = Order::factory()->create(['composer_package_id' => $this->parentPackage->id]);
+        $order = Order::factory()->create(['restaurant_id' => $this->parentRestaurant->id]);
         $order_update = Order::factory()->make();
 
-        $response = $this->put(route('api.composer.package_sources.update', $order), $order_update->toArray());
+        $response = $this->put(route('api.food.orders.update', $order), $order_update->toArray());
 
         $response->assertStatus(200);
         $response->assertJson($order_update->toArray());
@@ -75,7 +75,7 @@ class OrderControllerTest extends TestCase
      */
     public function test_destroy(): void
     {
-        $order = Order::factory()->create(['composer_package_id' => $this->parentRestaurant->id]);
+        $order = Order::factory()->create(['restaurant_id' => $this->parentRestaurant->id]);
 
         $response = $this->get(route('api.food.orders.destroy', $order));
 

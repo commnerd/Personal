@@ -53,9 +53,9 @@ class RestaurantControllerTest extends TestCase
     }
 
     /**
-     * A show test with PackageSources.
+     * A show test with orders.
      */
-    public function test_package_source_show(): void
+    public function test_order_show(): void
     {
         $restaurant = Restaurant::factory()->create();
 
