@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Restaurant extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+    ];
+
+    /**
      * Get validation rules for model
      *
      * @return array Validation rules
@@ -16,8 +25,6 @@ class Restaurant extends Model
     {
         return [
             'name' => 'required|string|min:1|max:255',
-            'version' => 'required|float',
-            'type' => 'required|string',
         ];
     }
 
