@@ -13,7 +13,7 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 ```
 - Install php dependencies
 ```bash
-docker run -it --rm -w /project -v ${PWD}:/project -u ${UID} composer install
+docker run -it --rm -w /project -v ${PWD}:/project -u ${UID} composer install --ignore-platform-reqs
 ```
 - Copy .env.example to .env
 ```bash
