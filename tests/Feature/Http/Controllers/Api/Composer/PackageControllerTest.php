@@ -43,13 +43,13 @@ class PackageControllerTest extends TestCase
      */
     public function test_show(): void
     {
-        $quote = Package::factory()->create();
+        $package = Package::factory()->create();
 
-        $response = $this->get(route('api.composer.packages.show', $quote));
+        $response = $this->get(route('api.composer.packages.show', $package));
 
         $response->assertStatus(200);
 
-        $response->assertJson($quote->toArray());
+        $response->assertJson($package->toArray());
     }
 
     /**
