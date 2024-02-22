@@ -5,6 +5,7 @@
 
 header {
     @include header('michael-j-miller-xl.png');
+    @include media-breakpoint-down(xxxl) { background-position-y: -170px; }
     @include media-breakpoint-down(xxl) { background-position-y: -120px; }
     @include media-breakpoint-down(xl)  { background-position-y: -95px; }
     @include media-breakpoint-down(lg)  { background-position-y: -70px; }
