@@ -2,48 +2,57 @@
 
 namespace App\Http\Controllers\Api\Blog;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Controller;
+use App\Models\Blog\Post;
+use Illuminate\Http\{JsonResponse, Request};
 
 class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(Post::paginate(self::PAGE_SIZE));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $request->validate(Post::getValidationRules());
+
+        $package = Post::create($request->all());
+
+        return response()->json($package);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post): JsonResponse
     {
-        //
+        return response()->json($post);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post): JsonResponse
     {
-        //
+        $request->validate(Post::getValidationRules());
+
+        $post->update($request->all());
+
+        return response()->json($post);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
     }
 }
