@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RemindersComponent } from './reminders.component';
+import { RemindersRoutingModule } from "@pages/reminders/reminders-routing.module";
 
 
 
@@ -9,7 +10,8 @@ import { RemindersComponent } from './reminders.component';
     RemindersComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RemindersRoutingModule
   ]
 })
 export class RemindersModule { }

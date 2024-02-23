@@ -4,7 +4,7 @@ import { IndexComponent } from './index.component';
 import { PackageService } from '../../../services/models/composer/package.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { MatDialog } from "@angular/material/dialog";
-import {ComposerModule} from "@pages/composer/composer.module";
+import { ComposerModule } from "@pages/composer/composer.module";
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
