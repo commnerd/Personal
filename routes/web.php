@@ -16,7 +16,7 @@ Route::get('/', [\App\Http\Controllers\Web\WelcomeController::class, 'index'])->
 
 Route::get('{admin}', function (string $admin) {
     return view('admin');
-})->where('admin', '.*')->name('admin');
+})->where('admin', '^admin.*')->name('admin');
 
 Route::get('resume', [\App\Http\Controllers\Web\ResumeController::class, 'index'])->name('web.resume');
 Route::get('food', [\App\Http\Controllers\Web\FoodController::class, 'index'])->name('web.food');
