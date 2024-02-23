@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [\App\Http\Controllers\Web\WelcomeController::class, 'index'])->name('web.home');
+
+Route::get('{admin}', function (string $admin) {
+    return view('admin');
+})->where('admin', '.*')->name('admin');
+
 Route::get('resume', [\App\Http\Controllers\Web\ResumeController::class, 'index'])->name('web.resume');
 Route::get('food', [\App\Http\Controllers\Web\FoodController::class, 'index'])->name('web.food');
 Route::get('food/restaurants/{restaurant}', [\App\Http\Controllers\Web\FoodController::class, 'restaurant'])->name('web.food.restaurant');
 Route::get('food/orders/{order}', [\App\Http\Controllers\Web\FoodController::class, 'order'])->name('web.food.order');
-Route::get('{admin}', function (string $admin) {
-    return view('admin');
-})->where('admin', '.*')->name('admin');

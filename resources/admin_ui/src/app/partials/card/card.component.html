@@ -9,6 +9,6 @@
     <ng-content></ng-content>
   </mat-card-content>
   <mat-card-actions>
-    <a mat-button>Manage</a>
+    <a mat-button *ngIf="link" [routerLink]="link">Manage</a>
   </mat-card-actions>
 </mat-card>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessagesComponent } from './messages.component';
+import { MessagesRoutingModule } from "@pages/messages/messages-routing.module";
 
 
 
@@ -9,7 +10,8 @@ import { MessagesComponent } from './messages.component';
     MessagesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MessagesRoutingModule
   ]
 })
 export class MessagesModule { }

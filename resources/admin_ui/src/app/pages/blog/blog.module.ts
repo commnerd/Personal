@@ -6,15 +6,9 @@ import { BlogRoutingModule } from './blog-routing.module';
 
 
 @NgModule({
-  declarations: [
-    BlogComponent
-  ],
   imports: [
     CommonModule,
     BlogRoutingModule
-  ],
-  bootstrap: [
-    BlogComponent
   ]
 })
 export class BlogModule { }

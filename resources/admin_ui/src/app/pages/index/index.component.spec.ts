@@ -3,6 +3,7 @@ import { IndexComponent } from './index.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { PackageService } from '../../services/models/composer/package.service';
 import { ApiService } from '../../services/api.service';
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -14,7 +15,7 @@ describe('IndexComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [IndexComponent],
+      imports: [IndexComponent, RouterTestingModule],
       providers: [PackageService, ApiService, HttpClient, HttpHandler]
     });
     fixture = TestBed.createComponent(IndexComponent);
