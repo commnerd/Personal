@@ -55,6 +55,6 @@ runs:
       shell: bash
 
     - name: Build angular admin ui
-      run: cd resources/admin_ui && yarn${{ steps.node-dev-conf.outputs.option}} && yarn build${{ steps.node-dev-conf.outputs.option}} --output-path='../../public/admin' --base-href='/admin/'
+      run: cd resources/admin_ui && yarn${{ steps.node-dev-conf.outputs.option}} && yarn build${{ steps.node-dev-conf.outputs.option}} --output-path='../../storage/app/admin/' --base-href='/admin/'
       shell: bash
 

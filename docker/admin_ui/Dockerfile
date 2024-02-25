@@ -14,4 +14,4 @@ ENV CHROME_BIN=/usr/bin/google-chrome
 
 WORKDIR /project/resources/admin_ui
 
-CMD yarn && yarn watch --output-path='../../public/admin/' --base-href='/admin/'
+CMD yarn && yarn watch --output-path='../../storage/app/admin/' --base-href='/admin/'
