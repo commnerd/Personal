@@ -11,7 +11,6 @@ services:
             - 'host.docker.internal:host-gateway'
         ports:
             - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
@@ -41,6 +40,22 @@ services:
             - sail
         depends_on:
             - laravel.test
+    vite_runner:
+        image: sail-8.2/app
+        ports:
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        depends_on:
+            - laravel.test
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/var/www/html'
+        command:
+            - "bash"
+            - "-c"
+            - "yarn vite"
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
