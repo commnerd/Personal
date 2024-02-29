@@ -31,10 +31,6 @@ sail artisan key:generate
 ```bash
 sail artisan storage:link
 ```
-- Link assets from angular build
-```bash
-ln -s public/admin/assets public/assets
-```
 - Run migrations
 ```bash
 sail artisan migrate
