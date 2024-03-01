@@ -6,8 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { TestDataPaginator } from '../../../testing/TestDataPaginator';
 
 import { QuoteService } from './quote.service';
-import { Quote } from '../../interfaces/quote';
-import { Paginated } from '../../interfaces/laravel/paginated';
+import { Quote } from '@interfaces/quote';
 
 describe('QuoteService', () => {
   let service: QuoteService;
@@ -64,7 +63,6 @@ describe('QuoteService', () => {
 
   it('should get a quote', () => {
     const response = testQuotes[1];
-    // httpClient.get<Quote>('/api/quotes/2')
 
     service.get(2).subscribe(data => expect(data).toEqual(testQuotes[1]));
 

@@ -17,7 +17,7 @@ describe('IndexComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [QuotesModule],
-      providers: [QuoteService, MatDialog, HttpClient, HttpHandler],
+      providers: [QuoteService, HttpClient, HttpHandler],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);
