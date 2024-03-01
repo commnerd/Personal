@@ -1,1 +1,24 @@
-<p>index works!</p>
+<div>
+  <h1>Quotes</h1>
+  <button mat-icon-button color="primary" aria-label="Add quote button" (click)="addDrink()">
+    <mat-icon aria-hidden="false" aria-label="Add quote icon" fontIcon="add"></mat-icon>
+  </button>
+</div>
+<table>
+  <tr *ngIf="!((models$ | async)?.data?.length)">
+    <td colspan="4">No drinks found.</td>
+  </tr>
+  <tr *ngFor="let drink of (models$ | async)?.data">
+    <td>{{ drink.name }}</td>
+    <td>
+      <button mat-button aria-label="Edit quote" (click)="editDrink(drink)">
+        <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+      </button>
+    </td>
+    <td>
+      <button mat-button aria-label="Delete quote" (click)="deleteDrink(drink)">
+        <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </tr>
+</table>

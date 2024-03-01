@@ -32,7 +32,7 @@ export class IndexComponent implements OnInit {
     this.router.navigate(['drinks', 'create']);
   }
 
-  editQuote(drink: Drink) {
+  editDrink(drink: Drink) {
     this.router.navigate(['drinks', drink.id, 'edit']);
   }
 
