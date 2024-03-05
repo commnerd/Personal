@@ -11,7 +11,6 @@ import {QuotesModule} from "@pages/quotes/quotes.module";
 describe('CreateComponent', () => {
   let component: CreateComponent;
   let fixture: ComponentFixture<CreateComponent>;
-  let quoteService: QuoteService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,7 +20,6 @@ describe('CreateComponent', () => {
     });
     fixture = TestBed.createComponent(CreateComponent);
     component = fixture.componentInstance;
-    quoteService = TestBed.inject(QuoteService);
     fixture.detectChanges();
   });
 
