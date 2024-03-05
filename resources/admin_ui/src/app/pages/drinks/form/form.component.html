@@ -1,1 +1,10 @@
-<p>form works!</p>
+<form [formGroup]="drinkForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Name">
+  </mat-form-field>
+  <angular-editor formControlName="recipe" ngDefaultControl></angular-editor>
+  <div>
+    <button mat-raised-button type="submit">Send</button>
+  </div>
+</form>

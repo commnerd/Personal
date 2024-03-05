@@ -7,6 +7,12 @@ import { EditComponent } from './edit/edit.component';
 import { FormComponent } from './form/form.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
+import {AngularEditorModule} from "@kolkov/angular-editor";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {PartialsModule} from "@partials/partials.module";
 
 
 @NgModule({
@@ -20,7 +26,14 @@ import {MatIconModule} from "@angular/material/icon";
     CommonModule,
     DrinksRoutingModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    AngularEditorModule,
+    MatSlideToggleModule,
+    PartialsModule
   ]
 })
 export class DrinksModule { }

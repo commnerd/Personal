@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from "@pages/drinks/index/index.component";
+import { CreateComponent } from "@pages/drinks/create/create.component";
+import { EditComponent } from "@pages/drinks/edit/edit.component";
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
+  { path: 'create', component: CreateComponent },
+  { path: ':id/edit', component: EditComponent}
 ];
 
 @NgModule({
