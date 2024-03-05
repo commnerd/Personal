@@ -1,12 +1,10 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateComponent } from './create.component';
-import { FormComponent } from '../form/form.component';
-import { QuoteService } from '../../../services/models/quote.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
-
-import {QuotesModule} from "@pages/quotes/quotes.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClient, HttpHandler} from "@angular/common/http";
+import {DrinkService} from "@services/models/drink.service";
+import {DrinksModule} from "@pages/drinks/drinks.module";
 
 describe('CreateComponent', () => {
   let component: CreateComponent;
@@ -14,9 +12,9 @@ describe('CreateComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, QuotesModule],
-      providers: [QuoteService, HttpClient, HttpHandler],
-      declarations: [CreateComponent, FormComponent]
+      imports: [BrowserAnimationsModule, DrinksModule],
+      providers: [DrinkService, HttpClient, HttpHandler],
+      declarations: [CreateComponent]
     });
     fixture = TestBed.createComponent(CreateComponent);
     component = fixture.componentInstance;

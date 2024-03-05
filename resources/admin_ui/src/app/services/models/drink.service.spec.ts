@@ -5,25 +5,23 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient } from '@angular/common/http';
 import { TestDataPaginator } from '../../../testing/TestDataPaginator';
 
-import { QuoteService } from './quote.service';
-import { Quote } from '@interfaces/quote';
+import { DrinkService } from './drink.service';
+import { Drink } from '@interfaces/drink';
 
 describe('QuoteService', () => {
-  let service: QuoteService;
+  let service: DrinkService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
-  const testQuotes: Array<Quote> = [
+  const testDrinks: Array<Drink> = [
     {
       id: 1,
-      quote: 'Test Quote',
-      source: 'Some Person',
-      active: false,
+      name: 'Test Drink',
+      recipe: 'Test Recipe',
     },
     {
       id: 2,
-      quote: 'Another Test Quote',
-      source: 'Other person',
-      active: true,
+      name: 'Another Test Drink',
+      recipe: 'Another Test Recipe',
     }
   ];
 
@@ -32,7 +30,7 @@ describe('QuoteService', () => {
       imports: [ HttpClientTestingModule ]
     });
 
-    service = TestBed.inject(QuoteService);
+    service = TestBed.inject(DrinkService);
     // Inject the http service and test controller for each test
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -48,74 +46,71 @@ describe('QuoteService', () => {
   });
 
   it('should list quotes', () => {
-    const paginatedResponse = new TestDataPaginator(testQuotes).get(); 
+    const paginatedResponse = new TestDataPaginator(testDrinks).get(); 
 
     service.list().subscribe(data =>
       expect(data).toEqual(paginatedResponse)
     );
 
-    const req = httpTestingController.expectOne('/api/quotes');
+    const req = httpTestingController.expectOne('/api/drinks');
   
     expect(req.request.method).toEqual('GET');
   
     req.flush(paginatedResponse);
   });
 
-  it('should get a quote', () => {
-    const response = testQuotes[1];
+  it('should get a drink', () => {
+    const response = testDrinks[1];
 
-    service.get(2).subscribe(data => expect(data).toEqual(testQuotes[1]));
+    service.get(2).subscribe(data => expect(data).toEqual(testDrinks[1]));
 
-    const req = httpTestingController.expectOne('/api/quotes/2');
+    const req = httpTestingController.expectOne('/api/drinks/2');
 
     expect(req.request.method).toEqual('GET');
 
-    req.flush(testQuotes[1]);
+    req.flush(testDrinks[1]);
   });
 
-  it('should create a quote on save', () => {
-    const testQuotePreSave: Quote = {
-      quote: 'A third quote',
-      source: 'Person 3',
-      active: true,
+  it('should create a drink on save', () => {
+    const testDrinkPreSave: Drink = {
+      name: 'A third drink',
+      recipe: 'Recipe 3',
     };
-    const testQuotePostSave = {
+    const testDrinkPostSave = {
       id: 3,
-      quote: 'A third quote',
-      source: 'Person 3',
-      active: true,
+      name: 'A third drink',
+      recipe: 'Recipe 3',
       created_at: 'now',
       edited_at: 'now',
     };
 
-    service.save(testQuotePreSave)
-      .subscribe(data => expect(data).toEqual(testQuotePostSave));
+    service.save(testDrinkPreSave)
+      .subscribe(data => expect(data).toEqual(testDrinkPostSave));
 
-    const req = httpTestingController.expectOne('/api/quotes');
+    const req = httpTestingController.expectOne('/api/drinks');
 
     expect(req.request.method).toEqual('POST');
 
-    req.flush(testQuotePostSave);
+    req.flush(testDrinkPostSave);
   });
 
   it('should update a quote on save', () => {
-    const testQuote = {
+    const testDrink = {
       id: 3,
-      quote: 'A third quote',
-      source: 'Person 3',
-      active: true,
+      name: 'A third drink',
+      recipe: 'Recipe 3',
       created_at: 'now',
       edited_at: 'now',
     };
     
-    httpClient.put<Quote>('/api/quotes/3', testQuote)
-      .subscribe(data => expect(data).toEqual(testQuote));
+    httpClient.put<Drink>('/api/drinks/3', testDrink)
+      .subscribe(data => expect(data).toEqual(testDrink));
 
-    const req = httpTestingController.expectOne('/api/quotes/3');
+    const req = httpTestingController.expectOne('/api/drinks/3');
 
     expect(req.request.method).toEqual('PUT');
 
-    req.flush(testQuote);
+    req.flush(testDrink);
   });
 
 });
