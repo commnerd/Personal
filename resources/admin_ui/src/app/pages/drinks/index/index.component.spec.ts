@@ -5,7 +5,7 @@ import { IndexComponent } from './index.component';
 import { DrinkService } from '@services/models/drink.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { DrinksModule } from "@pages/drinks/drinks.module";
-import {of} from "rxjs";
+import {of, Subject} from "rxjs";
 import {TestDataPaginator} from "../../../../testing/TestDataPaginator";
 
 describe('IndexComponent', () => {
@@ -54,5 +54,28 @@ describe('IndexComponent', () => {
     let content = fixture.nativeElement.querySelector('table').textContent;
     expect(content).toContain("A drink");
     expect(content).toContain("Another drink");
+  });
+
+  it('delete on confirmation', () => {
+    let data = [{
+      id: 1,
+      name: "A drink",
+      recipe: "Some recipe",
+    }];
+    let deletionExecuted = false;
+    drinkService.list = () => of((new TestDataPaginator(data)).get());
+    drinkService.delete = () => new Subject();
+
+    fixture = TestBed.createComponent(IndexComponent);
+    fixture.detectChanges();
+    let content = fixture.nativeElement.querySelector('table').textContent;
+    let deleteButton = fixture.nativeElement.querySelector('button.delete');
+    expect(content).toContain("A drink");
+    deleteButton.click();
+    fixture.detectChanges();
+    expect(dialog.openDialogs.length).toEqual(1);
+    let confirmationDialog = dialog.openDialogs[0];
+    confirmationDialog.close(true);
+    fixture.detectChanges();
   });
 });
