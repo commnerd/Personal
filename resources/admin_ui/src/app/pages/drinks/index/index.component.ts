@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {Paginated} from "@interfaces/laravel/paginated";
 import {MatDialog} from "@angular/material/dialog";
 import {DrinkService} from "@services/models/drink.service";
@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
+import {PageEvent} from "@angular/material/paginator";
 
 
 @Component({
@@ -17,6 +18,9 @@ import {
 })
 export class IndexComponent implements OnInit {
   models$ !: Observable<Paginated<Drink> | null>;
+  length = 0;
+  pageIndex = 1;
+  pageSize = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -25,7 +29,8 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.models$ = this.drinkService.list();
+    this.models$ = this.drinkService.list()
+      .pipe(tap(page => this.pageIndex = page?.current_page ? page.current_page - 1 : 0));;
   }
 
   addDrink() {
@@ -34,6 +39,11 @@ export class IndexComponent implements OnInit {
 
   editDrink(drink: Drink) {
     this.router.navigate(['drinks', drink.id, 'edit']);
+  }
+
+  switchPage(event: PageEvent) {
+    this.models$ = this.drinkService.list(event.pageIndex)
+      .pipe(tap(page => this.pageIndex = page?.current_page ? page.current_page : 1));
   }
 
   deleteDrink(drink: Drink) {
