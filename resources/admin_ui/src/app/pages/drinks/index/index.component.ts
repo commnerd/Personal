@@ -44,10 +44,10 @@ export class IndexComponent implements OnInit {
         if(confirmation) {
           let deleteSubscription = this.drinkService.delete(drink.id!).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe());
+            setTimeout(() => deleteSubscription.unsubscribe(), 0);
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe());
+        setTimeout(() => dialogSubscription.unsubscribe(), 0);
       });
   }
 }

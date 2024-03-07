@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 import { IndexComponent } from './index.component';
 import { DrinkService } from '@services/models/drink.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { DrinksModule } from "@pages/drinks/drinks.module";
-import {of, Subject} from "rxjs";
-import {TestDataPaginator} from "../../../../testing/TestDataPaginator";
+import { of } from "rxjs";
+import { TestDataPaginator } from "../../../../testing/TestDataPaginator";
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -62,20 +62,41 @@ describe('IndexComponent', () => {
       name: "A drink",
       recipe: "Some recipe",
     }];
-    let deletionExecuted = false;
     drinkService.list = () => of((new TestDataPaginator(data)).get());
-    drinkService.delete = () => new Subject();
-
+    const drinkServiceSpy = spyOn(drinkService, 'delete');
     fixture = TestBed.createComponent(IndexComponent);
     fixture.detectChanges();
+
     let content = fixture.nativeElement.querySelector('table').textContent;
     let deleteButton = fixture.nativeElement.querySelector('button.delete');
     expect(content).toContain("A drink");
+
+    spyOn(dialog, 'open').and.returnValue({
+      afterClosed: () => of(true)
+    } as unknown as MatDialogRef<any>);
     deleteButton.click();
+    expect(drinkServiceSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('avoid delete on negating confirmation', () => {
+    let data = [{
+      id: 1,
+      name: "A drink",
+      recipe: "Some recipe",
+    }];
+    drinkService.list = () => of((new TestDataPaginator(data)).get());
+    const drinkServiceSpy = spyOn(drinkService, 'delete');
+    fixture = TestBed.createComponent(IndexComponent);
     fixture.detectChanges();
-    expect(dialog.openDialogs.length).toEqual(1);
-    let confirmationDialog = dialog.openDialogs[0];
-    confirmationDialog.close(true);
-    fixture.detectChanges();
+
+    let content = fixture.nativeElement.querySelector('table').textContent;
+    let deleteButton = fixture.nativeElement.querySelector('button.delete');
+    expect(content).toContain("A drink");
+
+    spyOn(dialog, 'open').and.returnValue({
+      afterClosed: () => of(false)
+    } as unknown as MatDialogRef<any>);
+    deleteButton.click();
+    expect(drinkServiceSpy).toHaveBeenCalledTimes(0);
   });
 });
