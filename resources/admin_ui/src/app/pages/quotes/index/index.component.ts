@@ -40,11 +40,13 @@ export class IndexComponent implements OnInit {
     let dialogSubscription = this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
-      .subscribe(result => {
-        let deleteSubscription = this.quoteService.delete(quote.id!).subscribe(() => {
-          this.ngOnInit();
-          setTimeout(() => deleteSubscription.unsubscribe());
-        });
+      .subscribe(confirmation => {
+        if(confirmation) {
+          let deleteSubscription = this.quoteService.delete(quote.id!).subscribe(() => {
+            this.ngOnInit();
+            setTimeout(() => deleteSubscription.unsubscribe());
+          });
+        }
         setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
