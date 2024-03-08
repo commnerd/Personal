@@ -2,11 +2,11 @@ version: '3'
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.2
+            context: ./vendor/laravel/sail/runtimes/8.3
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.2/app
+        image: sail-8.3/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -23,39 +23,6 @@ services:
             - sail
         depends_on:
             - mysql
-    admin_builder:
-        build:
-            context: ./docker/admin_ui
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: admin_ui/app
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            IGNITION_LOCAL_SITES_PATH: '${PWD}'
-        volumes:
-            - '.:/project'
-        networks:
-            - sail
-        depends_on:
-            - laravel.test
-    vite_runner:
-        image: sail-8.2/app
-        ports:
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
-        depends_on:
-            - laravel.test
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            IGNITION_LOCAL_SITES_PATH: '${PWD}'
-        volumes:
-            - '.:/var/www/html'
-        command:
-            - "bash"
-            - "-c"
-            - "yarn vite"
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -80,6 +47,39 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    admin_builder:
+        build:
+            context: ./docker/admin_ui
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: admin_ui/app
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/project'
+        networks:
+            - sail
+        depends_on:
+            - laravel.test
+    vite_runner:
+        image: sail-8.3/app
+        ports:
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        depends_on:
+            - laravel.test
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/var/www/html'
+        command:
+            - "bash"
+            - "-c"
+            - "yarn && yarn vite"
 networks:
     sail:
         driver: bridge

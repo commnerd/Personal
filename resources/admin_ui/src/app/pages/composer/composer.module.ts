@@ -9,6 +9,7 @@ import { EditComponent } from './edit/edit.component';
 import { FormComponent } from './form/form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from "@angular/material/paginator";
 import { ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from "@partials/partials.module";
 
@@ -27,6 +28,7 @@ import { PartialsModule } from "@partials/partials.module";
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     PartialsModule
   ],

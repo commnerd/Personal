@@ -8,6 +8,7 @@ import { QuoteService } from '@services/models/quote.service';
 import { Router } from '@angular/router';
 
 import { DeleteConfirmationDialogComponent } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-index',
@@ -34,6 +35,10 @@ export class IndexComponent implements OnInit {
 
   editQuote(pkg: Quote) {
     this.router.navigate(['quotes', pkg.id, 'edit']);
+  }
+
+  switchPage(event: PageEvent) {
+    this.models$ = this.quoteService.list(event.pageIndex + 1);
   }
 
   deleteQuote(quote: Quote) {

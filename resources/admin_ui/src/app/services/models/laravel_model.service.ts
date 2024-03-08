@@ -12,8 +12,8 @@ export abstract class LaravelModelService<T extends Model> {
     protected httpClient: HttpClient
   ) {}
 
-  list(): Observable<Paginated<T> | null> {
-    return this.httpClient.get(this.path, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}).pipe(
+  list(page?: number): Observable<Paginated<T> | null> {
+    return this.httpClient.get(`${this.path}?page=${page ? page : 1}`, { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}).pipe(
       catchError(this.handleError)
     ) as Observable<Paginated<T> | null>;
   }

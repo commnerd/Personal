@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {Paginated} from "@interfaces/laravel/paginated";
 import {MatDialog} from "@angular/material/dialog";
 import {DrinkService} from "@services/models/drink.service";
@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
+import {PageEvent} from "@angular/material/paginator";
 
 
 @Component({
@@ -34,6 +35,10 @@ export class IndexComponent implements OnInit {
 
   editDrink(drink: Drink) {
     this.router.navigate(['drinks', drink.id, 'edit']);
+  }
+
+  switchPage(event: PageEvent) {
+    this.models$ = this.drinkService.list(event.pageIndex + 1);
   }
 
   deleteDrink(drink: Drink) {

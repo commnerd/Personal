@@ -1,26 +1,46 @@
 <div>
-    <h1>Quotes</h1>
-    <button mat-icon-button color="primary" aria-label="Add quote button" (click)="addQuote()">
-        <mat-icon aria-hidden="false" aria-label="Add quote icon" fontIcon="add"></mat-icon>
-    </button>
+  <h1>Quotes</h1>
+  <button mat-icon-button color="primary" aria-label="Add quote button" (click)="addQuote()">
+    <mat-icon aria-hidden="false" aria-label="Add quote icon" fontIcon="add"></mat-icon>
+  </button>
 </div>
 <table>
-    <tr *ngIf="!((models$ | async)?.data?.length)">
-      <td colspan="4">No quotes found.</td>
-    </tr>
-    <tr *ngFor="let quote of (models$ | async)?.data">
-        <td [innerHTML]="quote.quote"></td>
-        <td>{{ quote.source }}</td>
-        <td>{{ quote.active }}</td>
-        <td>
-            <button mat-button class="edit" aria-label="Edit quote" (click)="editQuote(quote)">
-                <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
-            </button>
-        </td>
-        <td>
-            <button mat-button class="delete" aria-label="Delete quote" (click)="deleteQuote(quote)">
-                <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
-            </button>
-        </td>
-    </tr>
+  <tr *ngIf="!((models$ | async)?.total)">
+    <td colspan="5">No quotes found.</td>
+  </tr>
+  <tr *ngIf="!!((models$ | async)?.total)">
+    <td colspan="5">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
+  <tr *ngFor="let quote of (models$ | async)?.data">
+    <td [innerHTML]="quote.quote"></td>
+    <td>{{ quote.source }}</td>
+    <td>{{ quote.active }}</td>
+    <td>
+      <button mat-button class="edit" aria-label="Edit quote" (click)="editQuote(quote)">
+        <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+      </button>
+    </td>
+    <td>
+      <button mat-button class="delete" aria-label="Delete quote" (click)="deleteQuote(quote)">
+        <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </tr>
+  <tr *ngIf="!!((models$ | async)?.total)">
+    <td colspan="5">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
 </table>

@@ -5,26 +5,44 @@
     </button>
 </div>
 <table>
-    <ng-container *ngFor="let pkg of (packages$ | async)?.data">
-      <tr>
-        <td>{{ pkg.name }}</td>
-        <td>{{ pkg.version }}</td>
-        <td>{{ pkg.type }}</td>
-        <td>
-          <button mat-button class="edit" aria-label="Edit package" (click)="editPackage(pkg)">
-            <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
-          </button>
-        </td>
-        <td>
-          <button mat-button class="delete" aria-label="Delete package" (click)="deletePackage(pkg)">
-            <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
-          </button>
-        </td>
-      </tr>
-      <tr *ngFor="let source of pkg.sources">
-        <td>{{ source.reference }}</td>
-        <td>{{ source.type }}</td>
-        <td>{{ source.url }}</td>
-      </tr>
-    </ng-container>
+  <tr *ngIf="!((packages$ | async)?.total)">
+    <td colspan="4">No composer packages found.</td>
+  </tr>
+  <tr *ngIf="!!((packages$ | async)?.total)">
+    <td colspan="5">
+      <mat-paginator
+        [length]="(packages$ | async)?.total || 0"
+        [pageIndex]="((packages$ | async)?.current_page || 1) - 1"
+        [pageSize]="(packages$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
+  <ng-container *ngFor="let pkg of (packages$ | async)?.data">
+    <tr>
+      <td>{{ pkg.name }}</td>
+      <td>{{ pkg.version }}</td>
+      <td>{{ pkg.type }}</td>
+      <td>
+        <button mat-button class="edit" aria-label="Edit package" (click)="editPackage(pkg)">
+          <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+        </button>
+      </td>
+      <td>
+        <button mat-button class="delete" aria-label="Delete package" (click)="deletePackage(pkg)">
+          <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+        </button>
+      </td>
+    </tr>
+  </ng-container>
+  <tr *ngIf="!!((packages$ | async)?.total)">
+    <td colspan="5">
+      <mat-paginator
+        [length]="(packages$ | async)?.total || 0"
+        [pageIndex]="((packages$ | async)?.current_page || 1) - 1"
+        [pageSize]="(packages$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
 </table>
