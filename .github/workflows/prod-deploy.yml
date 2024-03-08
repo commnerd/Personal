@@ -82,7 +82,19 @@ jobs:
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo cp /var/www/personal/storage/*.key /tmp/Personal/storage'
         shell: bash
 
-      - name: Fix ownership
+      - name: Copy nginx configs to server
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo cp -f /tmp/Personal/etc/nginx/sites-available/* /etc/nginx/sites-available
+        shell: bash
+
+      - name: Fix nginx config file ownership
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo chown -f root:root /etc/nginx/sites-available/*'
+        shell: bash
+
+      - name: Fix nginx config file permissions
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo chmod -f 644 /etc/nginx/sites-available/*'
+        shell: bash
+
+      - name: Fix web file ownership
         run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo chown -fR www-data:www-data /tmp/Personal'
         shell: bash
 

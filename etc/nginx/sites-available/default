@@ -32,11 +32,13 @@ server {
 server {
     listen 443 http2 ssl;
     listen [::]:443 http2 ssl;
-    ssl_certificate /etc/letsencrypt/live/michaeljmiller.net-0001/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/michaeljmiller.net-0001/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/michaeljmiller.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/michaeljmiller.net/privkey.pem; # managed by Certbot
     ssl_dhparam /etc/ssl/certs/dhparam.pem;
 
-    root /var/www/personal/public;
+    set $rt /var/www/personal/public;
+
+    root $rt;
     gzip on;
     gzip_types text/plain text/css application/javascript image/* image/webp image/apng;
 
@@ -51,6 +53,38 @@ server {
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~* ^/admin {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~* ^/projects/(?<appid>[a-zA-Z0-9_]+) {
+
+        alias /var/www/projects/$appid/public;
+        try_files $uri $uri/ @rewapp;
+
+        location ~* ^/projects/([a-zA-Z0-9_]+)/(.*\.php)$ {
+            fastcgi_index index.php;
+
+            fastcgi_param SCRIPT_NAME $2;
+            fastcgi_param SCRIPT_FILENAME /var/www/projects/$1/public/$2;
+
+            fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+            include fastcgi_params;
+        }
+
+        # Necessary for static files,
+        # or may fall to another location with incorrect path
+        # Add more extensions like PDF if necessary
+        location ~* ^/projects/([a-zA-Z0-9_]+)/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt|woff|woff2))$ {
+            alias /var/www/projects/$1/public;
+            try_files $uri /$2 =404;
+        }
+    }
+
+    location @rewapp {
+        rewrite ^/projects/([a-zA-Z0-9_]+)/(.*)$ /projects/$1/index.php?/$2 last;
     }
 
     location ~* \.(css|js)$ {
