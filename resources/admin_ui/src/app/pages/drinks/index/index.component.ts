@@ -18,9 +18,6 @@ import {PageEvent} from "@angular/material/paginator";
 })
 export class IndexComponent implements OnInit {
   models$ !: Observable<Paginated<Drink> | null>;
-  length = 0;
-  pageIndex = 1;
-  pageSize = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -29,8 +26,7 @@ export class IndexComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.models$ = this.drinkService.list()
-      .pipe(tap(page => this.pageIndex = page?.current_page ? page.current_page - 1 : 0));;
+    this.models$ = this.drinkService.list();
   }
 
   addDrink() {
@@ -42,8 +38,7 @@ export class IndexComponent implements OnInit {
   }
 
   switchPage(event: PageEvent) {
-    this.models$ = this.drinkService.list(event.pageIndex)
-      .pipe(tap(page => this.pageIndex = page?.current_page ? page.current_page : 1));
+    this.models$ = this.drinkService.list(event.pageIndex + 1);
   }
 
   deleteDrink(drink: Drink) {

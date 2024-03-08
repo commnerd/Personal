@@ -11,7 +11,7 @@
   <tr *ngIf="!!((models$ | async)?.total)">
     <mat-paginator
       [length]="(models$ | async)?.total || 0"
-      [pageIndex]="pageIndex"
+      [pageIndex]="((models$ | async)?.current_page || 1) - 1"
       [pageSize]="(models$ | async)?.per_page || 0"
       (page)="switchPage($event)"
     ></mat-paginator>
@@ -32,7 +32,7 @@
   <tr *ngIf="!!((models$ | async)?.total)">
     <mat-paginator
       [length]="(models$ | async)?.total || 0"
-      [pageIndex]="pageIndex"
+      [pageIndex]="((models$ | async)?.current_page || 1) - 1"
       [pageSize]="(models$ | async)?.per_page || 0"
       (page)="switchPage($event)"
     ></mat-paginator>

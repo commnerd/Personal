@@ -8,6 +8,7 @@ import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-index',
@@ -35,6 +36,10 @@ export class IndexComponent implements OnInit {
 
   editPackage(pkg: Package) {
     this.router.navigate(['composer', pkg.id, 'edit']);
+  }
+
+  switchPage(event: PageEvent) {
+    this.packages$ = this.packageService.list(event.pageIndex + 1);
   }
 
   deletePackage(pkg: Package) {

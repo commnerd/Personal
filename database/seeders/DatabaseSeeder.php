@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
             \App\Models\Food\Order::factory(10)->create(['restaurant_id' => $restaurant->id]);
         });
         \App\Models\Drink::factory(30)->create();
+        \App\Models\Composer\Package::factory(30)->create()->each(function($package) {
+            \App\Models\Composer\PackageSource::factory(10)->create(['composer_package_id' => $package->id]);
+        });
 
         // \App\Models\User::factory(10)->create();
 
