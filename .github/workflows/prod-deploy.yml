@@ -59,19 +59,19 @@ jobs:
         shell: bash
 
       - name: Rsync current public storage directory
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'rsync -r --delete /var/www/personal/storage/app/public/ /tmp/Personal/storage/app/public'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'rsync -r --delete /var/www/personal/storage/app/public/ /tmp/Personal/storage/app/public/'
         shell: bash
 
       - name: Rsync /etc changes to prod and remove .github directory from deployment
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rsync -r /tmp/Personal/.github/etc/ /etc && rm -fR /tmp/Personal/.github'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'sudo rsync -r /tmp/Personal/.github/etc/nginx/sites-available/* /etc/nginx/sites-available/ && rm -fR /tmp/Personal/.github'
         shell: bash
 
       - name: Create storage link
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -s ../storage/app/public storage'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -fs ../storage/app/public storage'
         shell: bash
 
       - name: Link assets from angular build
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -s ../storage/app/admin/assets'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -fs ../storage/app/admin/assets'
         shell: bash
 
       - name: Fetch .env
