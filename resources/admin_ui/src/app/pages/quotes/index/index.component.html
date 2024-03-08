@@ -23,12 +23,12 @@
     <td>{{ quote.source }}</td>
     <td>{{ quote.active }}</td>
     <td>
-      <button mat-button aria-label="Edit quote" (click)="editQuote(quote)">
+      <button mat-button class="edit" aria-label="Edit quote" (click)="editQuote(quote)">
         <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
       </button>
     </td>
     <td>
-      <button mat-button aria-label="Delete quote" (click)="deleteQuote(quote)">
+      <button mat-button class="delete" aria-label="Delete quote" (click)="deleteQuote(quote)">
         <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
       </button>
     </td>

@@ -24,12 +24,12 @@
       <td>{{ pkg.version }}</td>
       <td>{{ pkg.type }}</td>
       <td>
-        <button mat-button aria-label="Edit package" (click)="editPackage(pkg)">
+        <button mat-button class="edit" aria-label="Edit package" (click)="editPackage(pkg)">
           <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
         </button>
       </td>
       <td>
-        <button mat-button aria-label="Delete package" (click)="deletePackage(pkg)">
+        <button mat-button class="delete" aria-label="Delete package" (click)="deletePackage(pkg)">
           <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
         </button>
       </td>
