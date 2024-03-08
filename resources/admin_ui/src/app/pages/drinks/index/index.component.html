@@ -6,15 +6,17 @@
 </div>
 <table>
   <tr *ngIf="!(models$ | async)?.total">
-    <td colspan="4">No drinks found.</td>
+    <td colspan="3">No drinks found.</td>
   </tr>
   <tr *ngIf="!!((models$ | async)?.total)">
-    <mat-paginator
-      [length]="(models$ | async)?.total || 0"
-      [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-      [pageSize]="(models$ | async)?.per_page || 0"
-      (page)="switchPage($event)"
-    ></mat-paginator>
+    <td colspan="3">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
   </tr>
   <tr *ngFor="let drink of (models$ | async)?.data">
     <td>{{ drink.name }}</td>
@@ -30,11 +32,13 @@
     </td>
   </tr>
   <tr *ngIf="!!((models$ | async)?.total)">
-    <mat-paginator
-      [length]="(models$ | async)?.total || 0"
-      [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-      [pageSize]="(models$ | async)?.per_page || 0"
-      (page)="switchPage($event)"
-    ></mat-paginator>
+    <td colspan="3">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
   </tr>
 </table>

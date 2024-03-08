@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -31,6 +32,7 @@ import { PartialsModule } from "@partials/partials.module";
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     AngularEditorModule,
     MatSlideToggleModule,

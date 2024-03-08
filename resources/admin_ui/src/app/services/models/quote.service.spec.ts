@@ -48,16 +48,16 @@ describe('QuoteService', () => {
   });
 
   it('should list quotes', () => {
-    const paginatedResponse = new TestDataPaginator(testQuotes).get(); 
+    const paginatedResponse = new TestDataPaginator(testQuotes).get();
 
     service.list().subscribe(data =>
       expect(data).toEqual(paginatedResponse)
     );
 
-    const req = httpTestingController.expectOne('/api/quotes');
-  
+    const req = httpTestingController.expectOne('/api/quotes?page=1');
+
     expect(req.request.method).toEqual('GET');
-  
+
     req.flush(paginatedResponse);
   });
 
@@ -107,7 +107,7 @@ describe('QuoteService', () => {
       created_at: 'now',
       edited_at: 'now',
     };
-    
+
     httpClient.put<Quote>('/api/quotes/3', testQuote)
       .subscribe(data => expect(data).toEqual(testQuote));
 

@@ -17,7 +17,7 @@ class QuoteFactory extends Factory
     public function definition(): array
     {
         return [
-            'active' => fake()->boolean(),
+            'active' => false,
             'quote' => fake()->text(),
             'source' => fake()->url(),
         ];

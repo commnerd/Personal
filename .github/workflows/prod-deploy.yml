@@ -71,7 +71,7 @@ jobs:
         shell: bash
 
       - name: Link assets from angular build
-        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -s admin/assets'
+        run: ssh admin@${{ secrets.PERSONAL_PRODUCTION_HOST }} 'cd /tmp/Personal/public && ln -s ../storage/app/admin/assets'
         shell: bash
 
       - name: Fetch .env

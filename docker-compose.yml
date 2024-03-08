@@ -65,7 +65,7 @@ services:
         depends_on:
             - laravel.test
     vite_runner:
-        image: sail-8.2/app
+        image: sail-8.3/app
         ports:
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         depends_on:
@@ -79,7 +79,7 @@ services:
         command:
             - "bash"
             - "-c"
-            - "yarn vite"
+            - "yarn && yarn vite"
 networks:
     sail:
         driver: bridge
