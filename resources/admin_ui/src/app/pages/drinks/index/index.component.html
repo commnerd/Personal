@@ -21,12 +21,12 @@
   <tr *ngFor="let drink of (models$ | async)?.data">
     <td>{{ drink.name }}</td>
     <td>
-      <button mat-button aria-label="Edit quote" (click)="editDrink(drink)">
+      <button mat-button class="edit" aria-label="Edit quote" (click)="editDrink(drink)">
         <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
       </button>
     </td>
     <td>
-      <button mat-button aria-label="Delete quote" (click)="deleteDrink(drink)">
+      <button mat-button class="delete" aria-label="Delete quote" (click)="deleteDrink(drink)">
         <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
       </button>
     </td>

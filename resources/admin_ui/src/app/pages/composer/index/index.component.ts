@@ -19,7 +19,6 @@ export class IndexComponent implements OnInit {
 
   packages$ !: Observable<Paginated<Package> | null>;
 
-
   constructor(
     private packageService: PackageService,
     private router: Router,
@@ -46,11 +45,13 @@ export class IndexComponent implements OnInit {
     let dialogSubscription = this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
-      .subscribe(result => {
-        let deleteSubscription = this.packageService.delete(pkg.id!).subscribe(() => {
-          this.ngOnInit();
-          setTimeout(() => deleteSubscription.unsubscribe());
-        });
+      .subscribe(confirmation => {
+        if(confirmation) {
+          let deleteSubscription = this.packageService.delete(pkg.id!).subscribe(() => {
+            this.ngOnInit();
+            setTimeout(() => deleteSubscription.unsubscribe());
+          });
+        }
         setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
