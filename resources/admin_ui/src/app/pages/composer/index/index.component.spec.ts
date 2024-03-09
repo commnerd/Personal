@@ -9,6 +9,8 @@ import {of} from "rxjs";
 import {TestDataPaginator} from "../../../../testing/TestDataPaginator";
 import {PackageSource} from "@interfaces/composer/package_source";
 import {Package} from "@interfaces/composer/package";
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -17,10 +19,11 @@ describe('IndexComponent', () => {
   let dialog: MatDialog;
   let httpClient: HttpClient;
   let httpHandler: HttpHandler;
+  let activatedRoute: ActivatedRoute;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ComposerModule],
+      imports: [ComposerModule, RouterTestingModule],
       providers: [PackageService, MatDialog, HttpClient, HttpHandler],
       declarations: [IndexComponent]
     });
@@ -29,6 +32,7 @@ describe('IndexComponent', () => {
     dialog = TestBed.inject(MatDialog);
     httpClient = TestBed.inject(HttpClient);
     httpHandler = TestBed.inject(HttpHandler);
+    activatedRoute = TestBed.inject(ActivatedRoute);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -87,5 +91,21 @@ describe('IndexComponent', () => {
     } as unknown as MatDialogRef<any>);
     deleteButton.click();
     expect(drinkServiceDeleteSpy).toHaveBeenCalledTimes(0);
+  });
+
+  it('should default to pulling first page', () => {
+    activatedRoute.queryParams = of({});
+    const packageServiceSpy = spyOn(packageService, 'list');
+    fixture = TestBed.createComponent(IndexComponent);
+    fixture.detectChanges();
+    expect(packageServiceSpy).toHaveBeenCalledOnceWith(1);
+  });
+
+  it('should pull page corresponding to passed page param', () => {
+    activatedRoute.queryParams = of({page: 2});
+    const packageServiceSpy = spyOn(packageService, 'list');
+    fixture = TestBed.createComponent(IndexComponent);
+    fixture.detectChanges();
+    expect(packageServiceSpy).toHaveBeenCalledOnceWith(2);
   });
 });

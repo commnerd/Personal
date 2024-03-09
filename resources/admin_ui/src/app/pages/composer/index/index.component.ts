@@ -3,7 +3,7 @@ import { Paginated } from '../../../interfaces/laravel/paginated';
 import { Package } from '../../../interfaces/composer/package';
 import { Observable } from 'rxjs';
 import { PackageService } from '../../../services/models/composer/package.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
@@ -23,10 +23,17 @@ export class IndexComponent implements OnInit {
     private packageService: PackageService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.packages$ = this.packageService.list();
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      let page = 1;
+      if(typeof params['page'] !== 'undefined') {
+        page = params['page'];
+      }
+      this.packages$ = this.packageService.list(page);
+    });
   }
 
   addPackage() {
@@ -38,7 +45,8 @@ export class IndexComponent implements OnInit {
   }
 
   switchPage(event: PageEvent) {
-    this.packages$ = this.packageService.list(event.pageIndex + 1);
+    this.router.navigateByUrl(`/composer?page=${event.pageIndex + 1}`)
+
   }
 
   deletePackage(pkg: Package) {
