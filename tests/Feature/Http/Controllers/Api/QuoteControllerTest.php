@@ -38,6 +38,25 @@ class QuoteControllerTest extends TestCase
     }
 
     /**
+     * Test that there is only a single active quote after creating a quote with an active status
+     */
+    public function test_active_store(): void
+    {
+        $firstQuote = Quote::factory()->create([
+            'active' => true,
+        ]);
+        $secondQuote = Quote::factory()->make();
+
+        $secondQuote->active = true;
+        $response = $this->post(route('api.quotes.store'), $secondQuote->toArray());
+
+        $response->assertStatus(200);
+        
+        $this->assertEquals(Quote::findOrFail($firstQuote->id)->active, false);
+        $this->assertEquals(Quote::orderBy('id', 'desc')->firstOrFail()->active, true);
+    }
+
+    /**
      * A basic show test.
      */
     public function test_show(): void
@@ -64,6 +83,25 @@ class QuoteControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson($quoteUpdate->toArray());
         $response->assertJson(['id' => $quote->id]);
+    }
+
+    /**
+     * Test that there is only a single active quote after updating the active status of a quote
+     */
+    public function test_active_update(): void
+    {
+        $firstQuote = Quote::factory()->create([
+            'active' => true,
+        ]);
+        $secondQuote = Quote::factory()->create();
+
+        $secondQuote->active = true;
+        $response = $this->put(route('api.quotes.update', $secondQuote), $secondQuote->toArray());
+
+        $response->assertStatus(200);
+        
+        $this->assertEquals(Quote::findOrFail($firstQuote->id)->active, false);
+        $this->assertEquals(Quote::findOrFail($secondQuote->id)->active, true);
     }
 
     /**

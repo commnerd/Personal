@@ -31,4 +31,8 @@ class Quote extends Model
         'quote',
         'source',
     ];
+
+    protected $casts = [
+        'active' => 'boolean',
+    ];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Quote;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuotesController extends Controller
 {
@@ -23,7 +24,15 @@ class QuotesController extends Controller
     {
         $request->validate(Quote::getValidationRules());
 
-        return response()->json(Quote::create($request->toArray()));
+        $quote = null;
+        DB::transaction(function() use (&$quote, $request) {
+            if($request->active) {
+                Quote::where('active', true)->update(['active' => false]);
+            }
+            $quote = Quote::create($request->toArray());
+        });
+
+        return response()->json($quote);
     }
 
     /**
@@ -41,7 +50,12 @@ class QuotesController extends Controller
     {
         $request->validate(Quote::getValidationRules());
 
-        $quote->update($request->toArray());
+        DB::transaction(function() use (&$quote, $request) {
+            if($request->active) {
+                Quote::where('active', true)->update(['active' => false]);
+            }
+            $quote->update($request->toArray());
+        });
 
         return response()->json($quote);
     }
