@@ -7,16 +7,19 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { DrinksModule } from "@pages/drinks/drinks.module";
 import { of } from "rxjs";
 import { TestDataPaginator } from "../../../../testing/TestDataPaginator";
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
   let fixture: ComponentFixture<IndexComponent>;
   let dialog: MatDialog;
   let drinkService: DrinkService;
+  let activatedRoute: ActivatedRoute;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DrinksModule, MatDialogModule],
+      imports: [DrinksModule, MatDialogModule, RouterTestingModule],
       providers: [DrinkService, HttpClient, HttpHandler],
       declarations: [IndexComponent]
     });
@@ -24,6 +27,7 @@ describe('IndexComponent', () => {
     component = fixture.componentInstance;
     dialog = TestBed.inject(MatDialog);
     drinkService = TestBed.inject(DrinkService);
+    activatedRoute = TestBed.inject(ActivatedRoute);
     fixture.detectChanges();
   });
 
@@ -98,5 +102,21 @@ describe('IndexComponent', () => {
     } as unknown as MatDialogRef<any>);
     deleteButton.click();
     expect(drinkServiceSpy).toHaveBeenCalledTimes(0);
+  });
+  
+  it('should default to pulling first page', () => {
+    activatedRoute.queryParams = of({});
+    const drinkServiceSpy = spyOn(drinkService, 'list');
+    fixture = TestBed.createComponent(IndexComponent);
+    fixture.detectChanges();
+    expect(drinkServiceSpy).toHaveBeenCalledOnceWith(1);
+  });
+
+  it('should pull page corresponding to passed page param', () => {
+    activatedRoute.queryParams = of({page: 2});
+    const drinkServiceSpy = spyOn(drinkService, 'list');
+    fixture = TestBed.createComponent(IndexComponent);
+    fixture.detectChanges();
+    expect(drinkServiceSpy).toHaveBeenCalledOnceWith(2);
   });
 });

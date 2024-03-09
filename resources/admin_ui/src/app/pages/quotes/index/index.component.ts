@@ -5,7 +5,7 @@ import { Paginated } from '@interfaces/laravel/paginated';
 import { Quote } from '@interfaces/quote';
 import { Observable } from 'rxjs';
 import { QuoteService } from '@services/models/quote.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { DeleteConfirmationDialogComponent } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
 import { PageEvent } from '@angular/material/paginator';
@@ -22,11 +22,18 @@ export class IndexComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private quoteService: QuoteService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.models$ = this.quoteService.list();
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      let page = 1;
+      if(typeof params['page'] !== 'undefined') {
+        page = params['page'];
+      }
+      this.models$ = this.quoteService.list(page);
+    });
   }
 
   addQuote() {
@@ -38,7 +45,7 @@ export class IndexComponent implements OnInit {
   }
 
   switchPage(event: PageEvent) {
-    this.models$ = this.quoteService.list(event.pageIndex + 1);
+    this.router.navigateByUrl(`/quotes?page=${event.pageIndex + 1}`)
   }
 
   deleteQuote(quote: Quote) {

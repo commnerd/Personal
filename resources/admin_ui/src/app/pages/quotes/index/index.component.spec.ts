@@ -7,16 +7,19 @@ import { of } from 'rxjs';
 import { TestDataPaginator } from '../../../../testing/TestDataPaginator';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { QuotesModule } from "@pages/quotes/quotes.module";
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
   let fixture: ComponentFixture<IndexComponent>;
   let dialog: MatDialog;
   let quoteService: QuoteService;
+  let activatedRoute: ActivatedRoute;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [QuotesModule],
+      imports: [QuotesModule, RouterTestingModule],
       providers: [QuoteService, HttpClient, HttpHandler],
       declarations: [IndexComponent]
     });
@@ -24,6 +27,7 @@ describe('IndexComponent', () => {
     component = fixture.componentInstance;
     dialog = TestBed.inject(MatDialog);
     quoteService = TestBed.inject(QuoteService);
+    activatedRoute = TestBed.inject(ActivatedRoute);
     fixture.detectChanges();
   });
 
@@ -104,5 +108,21 @@ describe('IndexComponent', () => {
     } as unknown as MatDialogRef<any>);
     deleteButton.click();
     expect(drinkServiceDeleteSpy).toHaveBeenCalledTimes(0);
+  });
+
+  it('should default to pulling first page', () => {
+    activatedRoute.queryParams = of({});
+    const quoteServiceSpy = spyOn(quoteService, 'list');
+    fixture = TestBed.createComponent(IndexComponent);
+    fixture.detectChanges();
+    expect(quoteServiceSpy).toHaveBeenCalledOnceWith(1);
+  });
+
+  it('should pull page corresponding to passed page param', () => {
+    activatedRoute.queryParams = of({page: 2});
+    const quoteServiceSpy = spyOn(quoteService, 'list');
+    fixture = TestBed.createComponent(IndexComponent);
+    fixture.detectChanges();
+    expect(quoteServiceSpy).toHaveBeenCalledOnceWith(2);
   });
 });

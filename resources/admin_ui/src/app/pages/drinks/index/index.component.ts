@@ -4,7 +4,7 @@ import {Paginated} from "@interfaces/laravel/paginated";
 import {MatDialog} from "@angular/material/dialog";
 import {DrinkService} from "@services/models/drink.service";
 import {Drink} from '@interfaces/drink';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
@@ -22,11 +22,18 @@ export class IndexComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private drinkService: DrinkService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.models$ = this.drinkService.list();
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      let page = 1;
+      if(typeof params['page'] !== 'undefined') {
+        page = params['page'];
+      }
+      this.models$ = this.drinkService.list(page);
+    });
   }
 
   addDrink() {
@@ -38,7 +45,7 @@ export class IndexComponent implements OnInit {
   }
 
   switchPage(event: PageEvent) {
-    this.models$ = this.drinkService.list(event.pageIndex + 1);
+    this.router.navigateByUrl(`/drinks?page=${event.pageIndex + 1}`)
   }
 
   deleteDrink(drink: Drink) {
