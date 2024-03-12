@@ -9,16 +9,27 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {PartialsModule} from "@partials/partials.module";
+import {AngularEditorModule} from "@kolkov/angular-editor";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
-    imports: [
-      CommonModule,
-      BlogRoutingModule,
-      MatButtonModule,
-      MatIconModule,
-      MatPaginatorModule,
-      PartialsModule
-    ],
+  imports: [
+    CommonModule,
+    BlogRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    MatPaginatorModule,
+    PartialsModule,
+    AngularEditorModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     IndexComponent,
     FormComponent,
