@@ -20,6 +20,7 @@
   </tr>
   <tr *ngFor="let post of (models$ | async)?.data">
     <td>{{ post.title }}</td>
+    <td>{{ post.slug }}</td>
     <td>
       <button mat-button class="edit" aria-label="Edit quote" (click)="editPost(post)">
         <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
