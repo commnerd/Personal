@@ -5,14 +5,20 @@ import { IndexComponent } from './index/index.component';
 import { FormComponent } from './form/form.component';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
-
-
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {PartialsModule} from "@partials/partials.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BlogRoutingModule
-  ],
+    imports: [
+      CommonModule,
+      BlogRoutingModule,
+      MatButtonModule,
+      MatIconModule,
+      MatPaginatorModule,
+      PartialsModule
+    ],
   declarations: [
     IndexComponent,
     FormComponent,

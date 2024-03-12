@@ -1,1 +1,44 @@
-<p>index works!</p>
+<div>
+  <h1>Blog Posts</h1>
+  <button mat-icon-button color="primary" aria-label="Add post button" (click)="addPost()">
+    <mat-icon aria-hidden="false" aria-label="Add post icon" fontIcon="add"></mat-icon>
+  </button>
+</div>
+<table>
+  <tr *ngIf="!(models$ | async)?.total">
+    <td colspan="3">No posts found.</td>
+  </tr>
+  <tr *ngIf="!!((models$ | async)?.total)">
+    <td colspan="3">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
+  <tr *ngFor="let post of (models$ | async)?.data">
+    <td>{{ post.title }}</td>
+    <td>
+      <button mat-button class="edit" aria-label="Edit quote" (click)="editPost(post)">
+        <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+      </button>
+    </td>
+    <td>
+      <button mat-button class="delete" aria-label="Delete quote" (click)="deletePost(post)">
+        <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </tr>
+  <tr *ngIf="!!((models$ | async)?.total)">
+    <td colspan="3">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
+</table>
