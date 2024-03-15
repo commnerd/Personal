@@ -23,6 +23,7 @@ export class FormComponent {
     this.post = {
       title: '',
       slug: '',
+      tags: [],
       body: ''
     };
     this.postForm = this.formBuilder.group(this.post);
@@ -34,6 +35,7 @@ export class FormComponent {
       this.postForm.setValue({
         title: changes['post']?.currentValue.title,
         slug: changes['post']?.currentValue.slug,
+        tags: changes['post']?.currentValue.tags,
         body: changes['post']?.currentValue.body,
       });
     }
