@@ -6,10 +6,10 @@
 </div>
 <table>
   <tr *ngIf="!(models$ | async)?.total">
-    <td colspan="3">No posts found.</td>
+    <td colspan="4">No posts found.</td>
   </tr>
   <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="3">
+    <td colspan="4">
       <mat-paginator
         [length]="(models$ | async)?.total || 0"
         [pageIndex]="((models$ | async)?.current_page || 1) - 1"
@@ -21,19 +21,18 @@
   <tr *ngFor="let post of (models$ | async)?.data">
     <td>{{ post.title }}</td>
     <td>{{ post.slug }}</td>
-    <td>
+    <td>{{ formatTags(post.tags) }}</td>
+    <td width="200px">
       <button mat-button class="edit" aria-label="Edit quote" (click)="editPost(post)">
         <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
       </button>
-    </td>
-    <td>
       <button mat-button class="delete" aria-label="Delete quote" (click)="deletePost(post)">
         <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
       </button>
     </td>
   </tr>
   <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="3">
+    <td colspan="4">
       <mat-paginator
         [length]="(models$ | async)?.total || 0"
         [pageIndex]="((models$ | async)?.current_page || 1) - 1"

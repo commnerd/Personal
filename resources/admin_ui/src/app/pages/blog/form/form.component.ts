@@ -13,6 +13,13 @@ export class FormComponent {
   @Input() post!: Post | null;
   postForm!: FormGroup;
 
+  get tags(): Array<string> {
+    return this.postForm.value.tags;
+  }
+  set tags(_tags: Array<string>) {
+    this.postForm.setValue({'tags': _tags});
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,

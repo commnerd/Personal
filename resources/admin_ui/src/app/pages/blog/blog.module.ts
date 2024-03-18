@@ -5,15 +5,16 @@ import { IndexComponent } from './index/index.component';
 import { FormComponent } from './form/form.component';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {PartialsModule} from "@partials/partials.module";
-import {AngularEditorModule} from "@kolkov/angular-editor";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { PartialsModule } from "@partials/partials.module";
+import { AngularEditorModule } from "@kolkov/angular-editor";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { TagInputModule } from 'ngx-chips';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TagInputModule,
   ],
   declarations: [
     IndexComponent,

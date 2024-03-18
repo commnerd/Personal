@@ -61,4 +61,8 @@ export class IndexComponent {
         setTimeout(() => dialogSubscription.unsubscribe(), 0);
       });
   }
+
+  formatTags(tags: Array<{display: string, value: string}>): string {
+    return tags.map(tag => tag.display).join(', ');
+  }
 }

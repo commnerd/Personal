@@ -24,6 +24,7 @@ class PostFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::snake($title),
+            'tags' => ['some', 'tags'],
             'body' => fake()->text(),
             'published_by' => $published ? User::inRandomOrder()->first()->id : null,
             'published_at' => $published ? fake()->dateTimeAD() : null,

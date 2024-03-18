@@ -24,6 +24,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
+        'tags',
         'body',
         'published_by',
         'published_at',
@@ -31,6 +32,7 @@ class Post extends Model
     ];
 
     protected $casts = [
+        'tags' => 'json',
         'published_at' => 'datetime:Y-m-d H:i:s',
     ];
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->json('tags');
             $table->longText('body');
             $table->unsignedBigInteger('published_by')->nullable();
             $table->foreign('published_by')->references('id')->on('users');
