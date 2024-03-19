@@ -1,0 +1,4 @@
+<h1>Edit Quote</h1>
+<ng-container *ngIf="post$ | async">
+  <app-form [post]="post$ | async"></app-form>
+</ng-container>

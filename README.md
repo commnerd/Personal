@@ -31,6 +31,10 @@ sail artisan key:generate
 ```bash
 sail artisan storage:link
 ```
+- Link admin fonts
+```bash
+sail ln -s storage/app/admin/assets public/assets
+```
 - Run migrations
 ```bash
 sail artisan migrate
