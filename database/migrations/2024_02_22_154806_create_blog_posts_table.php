@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('slug');
             $table->json('tags');
             $table->longText('body');
-            $table->unsignedInteger('published_by')->nullable();
+            $table->unsignedBigInteger('published_by')->nullable();
             $table->foreign('published_by')->references('id')->on('users');
             $table->date('published_at')->nullable();
-            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
         });
