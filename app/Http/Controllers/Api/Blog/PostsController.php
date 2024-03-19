@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Blog;
 use App\Http\Controllers\Api\Controller;
 use App\Models\Blog\Post;
 use Illuminate\Http\{JsonResponse, Request};
+use Auth;
 
 class PostsController extends Controller
 {
@@ -23,7 +24,9 @@ class PostsController extends Controller
     {
         $request->validate(Post::getValidationRules());
 
-        $package = Post::create($request->all());
+        $submission = array_merge($request->all(), ['created_by' => Auth::user()->id]);
+
+        $package = Post::create($submission);
 
         return response()->json($package);
     }
