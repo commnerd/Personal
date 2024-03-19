@@ -54,7 +54,7 @@ describe('PostService', () => {
       expect(data).toEqual(paginatedResponse)
     );
 
-    const req = httpTestingController.expectOne('/api/posts?page=1');
+    const req = httpTestingController.expectOne('/api/blog/posts?page=1');
 
     expect(req.request.method).toEqual('GET');
 
@@ -66,7 +66,7 @@ describe('PostService', () => {
 
     service.get(2).subscribe(data => expect(data).toEqual(testPosts[1]));
 
-    const req = httpTestingController.expectOne('/api/posts/2');
+    const req = httpTestingController.expectOne('/api/blog/posts/2');
 
     expect(req.request.method).toEqual('GET');
 
@@ -93,7 +93,7 @@ describe('PostService', () => {
     service.save(testDrinkPreSave)
       .subscribe(data => expect(data).toEqual(testPostPostSave));
 
-    const req = httpTestingController.expectOne('/api/posts');
+    const req = httpTestingController.expectOne('/api/blog/posts');
 
     expect(req.request.method).toEqual('POST');
 
@@ -111,10 +111,10 @@ describe('PostService', () => {
       edited_at: 'now',
     };
 
-    httpClient.put<Post>('/api/posts/3', testPost)
+    httpClient.put<Post>('/api/blog/posts/3', testPost)
       .subscribe(data => expect(data).toEqual(testPost));
 
-    const req = httpTestingController.expectOne('/api/posts/3');
+    const req = httpTestingController.expectOne('/api/blog/posts/3');
 
     expect(req.request.method).toEqual('PUT');
 

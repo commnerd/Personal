@@ -8,7 +8,8 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { ActivatedRoute } from "@angular/router";
 import { PostService } from "@services/models/blog/post.service";
 import { BlogModule } from "@pages/blog/blog.module";
-import { HttpClient, HttpHandler } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -16,11 +17,13 @@ describe('IndexComponent', () => {
   let dialog: MatDialog;
   let postService: PostService;
   let activatedRoute: ActivatedRoute;
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BlogModule, RouterTestingModule],
-      providers: [PostService, HttpClient, HttpHandler],
+      imports: [BlogModule, RouterTestingModule, HttpClientTestingModule],
+      providers: [PostService, HttpClient],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);
@@ -28,6 +31,8 @@ describe('IndexComponent', () => {
     postService = TestBed.inject(PostService);
     dialog = TestBed.inject(MatDialog);
     activatedRoute = TestBed.inject(ActivatedRoute);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 
