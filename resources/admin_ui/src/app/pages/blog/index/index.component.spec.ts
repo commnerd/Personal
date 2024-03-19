@@ -47,11 +47,13 @@ describe('IndexComponent', () => {
       id: 1,
       title: "A post",
       slug: "a-post",
+      tags: [{display: "some", value: "some"}, {display: "tags", value: "tags"}],
       body: "Some awesome text",
     }, {
       id: 2,
       title: "Another post",
       slug: "another-post",
+      tags: [{display: "other", value: "other"}, {display: "tags", value: "tags"}],
       body: "More awesome text",
     }];
     postService.list = () => of((new TestDataPaginator(data)).get());
@@ -62,6 +64,8 @@ describe('IndexComponent', () => {
     expect(content).toContain("a-post");
     expect(content).toContain("Another post");
     expect(content).toContain("another-post");
+    expect(content).toContain("some, tags");
+    expect(content).toContain("other, tags");
   });
 
   it('delete a blog post on confirmation', () => {
@@ -69,6 +73,7 @@ describe('IndexComponent', () => {
       id: 1,
       title: "A post",
       slug: "a-post",
+      tags: [{display: "tag", value: "tag"}],
       body: "Some awesome text",
     }];
     postService.list = () => of((new TestDataPaginator(data)).get());
@@ -80,6 +85,7 @@ describe('IndexComponent', () => {
     let deleteButton = fixture.nativeElement.querySelector('button.delete');
     expect(content).toContain("A post");
     expect(content).toContain("a-post");
+    expect(content).toContain("tag");
 
     spyOn(dialog, 'open').and.returnValue({
       afterClosed: () => of(true)
@@ -93,6 +99,7 @@ describe('IndexComponent', () => {
       id: 1,
       title: "A post",
       slug: "a-post",
+      tags: [{display: "a tag", value: "a tag"}],
       body: "Some awesome text",
     }];
     postService.list = () => of((new TestDataPaginator(data)).get());

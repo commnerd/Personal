@@ -15,12 +15,14 @@ describe('PostService', () => {
       id: 1,
       title: 'Test Post',
       slug: 'test-post',
+      tags: [{display: "a tag", value: "a tag"}],
       body: 'Test Body',
     },
     {
       id: 2,
       title: 'Another Test Post',
       slug: 'another-test-post',
+      tags: [{display: "another tag", value: "another tag"}],
       body: 'Another Test Body',
     }
   ];
@@ -75,12 +77,14 @@ describe('PostService', () => {
     const testDrinkPreSave: Post = {
       title: 'A third post',
       slug: 'a-third-post',
+      tags: [{display: "a tag", value: "a tag"}],
       body: 'A third post\'s body',
     };
     const testPostPostSave = {
       id: 3,
       title: 'A third post',
       slug: 'a-third-post',
+      tags: [{display: "tag", value: "tag"}],
       body: 'A third post\'s body',
       created_at: 'now',
       edited_at: 'now',
@@ -101,6 +105,7 @@ describe('PostService', () => {
       id: 3,
       title: 'A third post',
       slug: 'a-third-post',
+      tags: [{display: "a tag", value: "a tag"}],
       body: 'A third post\'s body',
       created_at: 'now',
       edited_at: 'now',
