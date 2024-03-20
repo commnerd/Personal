@@ -34,7 +34,7 @@ class PostControllerTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertJson($post->toArray());
+        $response->assertJson(array_merge($post->toArray(), ['created_by' => 1]));
     }
 
     /**
