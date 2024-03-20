@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('blog_posts', function (Blueprint $table) {
-            $table->unsignedInteger('created_by')->nullable(false)->change();
+            $table->unsignedBigInteger('created_by')->nullable(false)->change();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('blog_posts', function (Blueprint $table) {
-            $table->unsignedInteger('created_by')->nullable(true)->change();
+            $table->unsignedBigInteger('created_by')->nullable(true)->change();
         });
     }
 };

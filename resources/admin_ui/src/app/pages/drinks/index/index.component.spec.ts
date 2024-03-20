@@ -3,12 +3,12 @@ import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog
 
 import { IndexComponent } from './index.component';
 import { DrinkService } from '@services/models/drink.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { DrinksModule } from "@pages/drinks/drinks.module";
 import { of } from "rxjs";
 import { TestDataPaginator } from "../../../../testing/TestDataPaginator";
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -19,8 +19,7 @@ describe('IndexComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DrinksModule, MatDialogModule, RouterTestingModule],
-      providers: [DrinkService, HttpClient, HttpHandler],
+      imports: [RouterTestingModule, HttpClientTestingModule, DrinksModule],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);
@@ -103,7 +102,7 @@ describe('IndexComponent', () => {
     deleteButton.click();
     expect(drinkServiceSpy).toHaveBeenCalledTimes(0);
   });
-  
+
   it('should default to pulling first page', () => {
     activatedRoute.queryParams = of({});
     const drinkServiceSpy = spyOn(drinkService, 'list');
