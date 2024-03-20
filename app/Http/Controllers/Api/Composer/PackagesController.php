@@ -16,7 +16,7 @@ class PackagesController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json(Package::with('sources')->paginate(self::PAGE_SIZE));
+        return response()->json(Package::with('source')->paginate(self::PAGE_SIZE));
     }
 
     /**
@@ -28,12 +28,12 @@ class PackagesController extends Controller
 
         DB::beginTransaction();
         $package = Package::create($request->all());
-        if(isset($request->sources)) {
-            $package->sources()->createMany($request->sources);
+        if(isset($request->source)) {
+            $package->source()->createMany($request->source);
         }
         DB::commit();
 
-        $package->load('sources');
+        $package->load('source');
 
         return response()->json($package);
     }
@@ -43,7 +43,7 @@ class PackagesController extends Controller
      */
     public function show(Package $package): JsonResponse
     {
-        $package->load('sources');
+        $package->load('source');
 
         return response()->json($package);
     }
@@ -57,7 +57,7 @@ class PackagesController extends Controller
 
         DB::beginTransaction();
         $package->update($request->all());
-        $keepers = collect($request->sources)->each(function($source) use ($package) {
+        $keepers = collect($request->source)->each(function($source) use ($package) {
             if(isset($source['id'])) {
                 PackageSource::find($source['id'])->update($source);
             } else {
@@ -68,7 +68,7 @@ class PackagesController extends Controller
         PackageSource::whereNotIn('id', $keepers)->delete();
         DB::commit();
 
-        $package->load('sources');
+        $package->load('source');
 
         return response()->json($package);
     }

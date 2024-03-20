@@ -59,7 +59,7 @@ class PackageControllerTest extends TestCase
     {
         $package = Package::factory()->create();
 
-        $sources = PackageSource::factory(2)
+        $sources = PackageSource::factory()
             ->create(['composer_package_id' => $package]);
 
         $response = $this->get(route('api.composer.packages.show', $package));
@@ -68,7 +68,7 @@ class PackageControllerTest extends TestCase
 
         $response->assertJson($package->toArray());
 
-        $response->assertJsonCount(2, "sources");
+        $response->assertJsonCount(1, "source");
     }
 
     /**

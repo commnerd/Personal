@@ -3,10 +3,19 @@
 namespace App\Models\Composer;
 
 use App\Models\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Package extends Model
 {
+    const TYPE_PROJECT = "project";
+    const TYPE_LIBRARY = "library";
+
+
+    const TYPES = [
+        self::TYPE_PROJECT => "Project",
+        self::TYPE_LIBRARY => "Library",
+    ];
+
     /**
      * The table that maintains the data.
      *
@@ -20,13 +29,7 @@ class Package extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'version',
-        'type',
-    ];
-
-    protected $casts = [
-        'version' => 'string',
+        'name', 'version', 'type'
     ];
 
     /**
@@ -36,15 +39,26 @@ class Package extends Model
      */
     public static function getValidationRules(): array
     {
+        $sourceRules = PackageSource::getValidationRules();
+
         return [
-            'name' => 'required|string|min:1|max:255',
-            'version' => 'required|string',
-            'type' => 'required|string',
+            'name' => 'required',
+            'version' => 'required',
+            'type' => 'required|in:'.implode(",", array_keys(self::TYPES)),
+            'source_reference' => $sourceRules['reference'],
+            'source_type' => $sourceRules['type'],
+            'source_url' => $sourceRules['url'],
         ];
     }
 
-    public function sources(): HasMany
+    /**
+     * Source definition for package
+     *
+     * @return HasOne
+     */
+    public function source(): HasOne
     {
-        return $this->hasMany(PackageSource::class, 'composer_package_id');
+        return $this->hasOne(PackageSource::class);
     }
+
 }
