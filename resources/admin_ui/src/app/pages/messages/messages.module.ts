@@ -6,8 +6,7 @@ import { ShowComponent } from './show/show.component';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule } from "@angular/material/paginator";
-
-
+import { PartialsModule } from "@partials/partials.module";
 
 @NgModule({
   declarations: [
@@ -19,7 +18,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MessagesRoutingModule,
     MatButtonModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    PartialsModule
   ]
 })
 export class MessagesModule { }

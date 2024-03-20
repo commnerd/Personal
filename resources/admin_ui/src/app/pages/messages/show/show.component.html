@@ -1,1 +1,8 @@
-<p>show works!</p>
+<div>
+  <a [routerLink]="['/messages']">&lt; Back</a>
+</div>
+<h1>{{ (message$ | async)?.name }}</h1>
+
+<h3>{{ (message$ | async)?.email_phone }}</h3>
+
+<div [innerHtml]="(message$ | async)?.message"></div>

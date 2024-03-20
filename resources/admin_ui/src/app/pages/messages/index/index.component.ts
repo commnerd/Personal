@@ -37,11 +37,11 @@ export class IndexComponent implements OnInit {
   }
 
   showContactMessage(msg: ContactMessage) {
-    this.router.navigate(['contact-messages', msg.id]);
+    this.router.navigate(['messages', msg.id]);
   }
 
   switchPage(event: PageEvent) {
-    this.router.navigateByUrl(`/contact-messages?page=${event.pageIndex + 1}`)
+    this.router.navigateByUrl(`/messages?page=${event.pageIndex + 1}`)
   }
 
   deleteContactMessage(msg: ContactMessage) {
