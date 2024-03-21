@@ -43,7 +43,9 @@ class PackagesController extends Controller
      */
     public function show(Package $package): JsonResponse
     {
-        $package->load('source');
+        if(PackageSource::where('composer_package_id', $package->id)->count() > 0) {
+            $package->load('source');
+        }
 
         return response()->json($package);
     }
@@ -68,7 +70,9 @@ class PackagesController extends Controller
         PackageSource::whereNotIn('id', $keepers)->delete();
         DB::commit();
 
-        $package->load('source');
+        if(PackageSource::where('composer_package_id', $package->id)->count() > 0) {
+            $package->load('source');
+        }
 
         return response()->json($package);
     }

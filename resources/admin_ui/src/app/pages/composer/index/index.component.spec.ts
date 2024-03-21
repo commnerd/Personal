@@ -42,7 +42,12 @@ describe('IndexComponent', () => {
       name: 'some name',
       version: 'v1',
       type: 'some type',
-      sources: [],
+      source: {
+        id: 1,
+        reference: 'some reference',
+        type: 'some type',
+        url: 'some url',
+      },
     }];
     packageService.list = () => of((new TestDataPaginator(data)).get());
     const quoteServiceDeleteSpy = spyOn(packageService, 'delete');
@@ -68,7 +73,12 @@ describe('IndexComponent', () => {
       name: 'some name',
       version: 'v1',
       type: 'some type',
-      sources: [],
+      source: {
+        id: 1,
+        reference: 'some reference',
+        type: 'some type',
+        url: 'some url',
+      },
     }];
     packageService.list = () => of((new TestDataPaginator(data)).get());
     const drinkServiceDeleteSpy = spyOn(packageService, 'delete');

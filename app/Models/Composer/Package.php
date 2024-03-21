@@ -58,7 +58,7 @@ class Package extends Model
      */
     public function source(): HasOne
     {
-        return $this->hasOne(PackageSource::class);
+        return $this->hasOne(PackageSource::class, 'composer_package_id');
     }
 
 }

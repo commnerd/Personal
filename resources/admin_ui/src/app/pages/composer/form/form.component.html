@@ -1,41 +1,31 @@
 <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+    <h2>Package</h2>
     <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" placeholder="Package Name">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Package Name">
     </mat-form-field>
     <mat-form-field>
-        <mat-label>Version</mat-label>
-        <input matInput formControlName="version" placeholder="Package Version">
+      <mat-label>Version</mat-label>
+      <input matInput formControlName="version" placeholder="Package Version">
     </mat-form-field>
     <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="type" placeholder="Package Type">
+    </mat-form-field>
+    <h3>Source</h3>
+    <ng-container formGroupName="source">
+      <mat-form-field>
+        <mat-label>Reference</mat-label>
+        <input matInput formControlName="reference" placeholder="Source Reference">
+      </mat-form-field>
+      <mat-form-field>
         <mat-label>Type</mat-label>
-        <input matInput formControlName="type" placeholder="Package Type">
-    </mat-form-field>
-    <section formArrayName="sources">
-      <h3>Sources</h3>
-      <table>
-        <tr *ngFor="let source of packageForm.value.sources; let i=index; trackBy: trackFn" [formGroupName]="i">
-          <td>
-            <mat-form-field>
-              <mat-label>Reference</mat-label>
-              <input matInput formControlName="reference" placeholder="Source Reference">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field>
-              <mat-label>Type</mat-label>
-              <input matInput formControlName="type" placeholder="Source Type">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field>
-              <mat-label>Url</mat-label>
-              <input matInput formControlName="url" placeholder="Source URL">
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-    </section>
-    <button mat-raised-button (click)="addSource()" type="button">Add Source</button>
+        <input matInput formControlName="type" placeholder="Source Type">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Url</mat-label>
+        <input matInput formControlName="url" placeholder="Source URL">
+      </mat-form-field>
+    </ng-container>
     <button mat-raised-button type="submit">Send</button>
 </form>

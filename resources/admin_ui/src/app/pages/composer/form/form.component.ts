@@ -26,7 +26,11 @@ export class FormComponent implements OnInit, OnChanges {
       name: [''],
       type: [''],
       version: [''],
-      sources: this.formBuilder.array([])
+      source: this.formBuilder.group({
+        reference: [''],
+        type: [''],
+        url: ['']
+      })
     });
   }
 
@@ -37,14 +41,8 @@ export class FormComponent implements OnInit, OnChanges {
         name: changes['pkg'].currentValue.name,
         type: changes['pkg'].currentValue.type,
         version: changes['pkg'].currentValue.version,
-        sources: [],
+        source: changes['pkg'].currentValue.source,
       });
-      let sources = changes['pkg'].currentValue.sources;
-      for(let i = 0; i < sources.length; i++) {
-        (<FormArray>this.packageForm.get('sources')).push(
-          this.formBuilder.group(sources[i])
-        );
-      }
     }
   }
 
@@ -53,12 +51,6 @@ export class FormComponent implements OnInit, OnChanges {
       subscriber.unsubscribe();
       this.router.navigate(['composer']);
     });
-  }
-
-  addSource() {
-    (<FormArray>this.packageForm.get('sources')).push(
-      this.formBuilder.group({ reference: [''], type: [''], url: [''] })
-    );
   }
 
   trackFn(i: number) {
