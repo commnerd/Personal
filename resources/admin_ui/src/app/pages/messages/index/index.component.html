@@ -1,0 +1,38 @@
+<div>
+  <h1>Messages</h1>
+</div>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
+<table>
+  <tr *ngIf="!(models$ | async)?.total">
+    <td colspan="3">No messages found.</td>
+  </tr>
+  <tr *ngFor="let message of (models$ | async)?.data">
+    <td>{{ message.name }}</td>
+    <td>{{ message.email_phone }}</td>
+    <td>
+      <button mat-button class="description" aria-label="Show message" (click)="showContactMessage(message)">
+        <mat-icon aria-hidden="false" aria-label="Show icon" fontIcon="description"></mat-icon>
+      </button>
+    </td>
+    <td>
+      <button mat-button class="delete" aria-label="Delete message" (click)="deleteContactMessage(message)">
+        <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </tr>
+</table>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>

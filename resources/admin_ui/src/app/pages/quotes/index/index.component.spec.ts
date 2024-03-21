@@ -5,10 +5,10 @@ import { IndexComponent } from './index.component';
 import { QuoteService } from '@services/models/quote.service';
 import { of } from 'rxjs';
 import { TestDataPaginator } from '../../../../testing/TestDataPaginator';
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { QuotesModule } from "@pages/quotes/quotes.module";
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -19,8 +19,7 @@ describe('IndexComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [QuotesModule, RouterTestingModule],
-      providers: [QuoteService, HttpClient, HttpHandler],
+      imports: [QuotesModule, RouterTestingModule, HttpClientTestingModule],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);

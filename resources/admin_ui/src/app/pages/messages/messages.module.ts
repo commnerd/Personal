@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MessagesComponent } from './messages.component';
 import { MessagesRoutingModule } from "@pages/messages/messages-routing.module";
-
-
+import { IndexComponent } from './index/index.component';
+import { ShowComponent } from './show/show.component';
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { PartialsModule } from "@partials/partials.module";
 
 @NgModule({
   declarations: [
-    MessagesComponent
+    IndexComponent,
+    ShowComponent
   ],
   imports: [
     CommonModule,
-    MessagesRoutingModule
+    MessagesRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    MatPaginatorModule,
+    PartialsModule
   ]
 })
 export class MessagesModule { }

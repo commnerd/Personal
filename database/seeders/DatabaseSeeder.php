@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Composer\PackageSource::factory(30)->create(['composer_package_id' => $package->id]);
         });
         \App\Models\Quote::factory(30)->create();
-
+        \App\Models\ContactMessage::factory(30)->create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

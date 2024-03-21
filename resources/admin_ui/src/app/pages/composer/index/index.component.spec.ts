@@ -2,36 +2,31 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IndexComponent } from './index.component';
 import { PackageService } from '@services/models/composer/package.service';
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import { ComposerModule } from "@pages/composer/composer.module";
 import {of} from "rxjs";
 import {TestDataPaginator} from "../../../../testing/TestDataPaginator";
-import {PackageSource} from "@interfaces/composer/package_source";
 import {Package} from "@interfaces/composer/package";
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
   let fixture: ComponentFixture<IndexComponent>;
   let packageService: PackageService;
   let dialog: MatDialog;
-  let httpClient: HttpClient;
-  let httpHandler: HttpHandler;
   let activatedRoute: ActivatedRoute;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ComposerModule, RouterTestingModule],
-      providers: [PackageService, MatDialog, HttpClient, HttpHandler],
+      imports: [HttpClientTestingModule, RouterTestingModule, ComposerModule],
+      providers: [PackageService, MatDialog],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);
     packageService = TestBed.inject(PackageService);
     dialog = TestBed.inject(MatDialog);
-    httpClient = TestBed.inject(HttpClient);
-    httpHandler = TestBed.inject(HttpHandler);
     activatedRoute = TestBed.inject(ActivatedRoute);
     component = fixture.componentInstance;
     fixture.detectChanges();

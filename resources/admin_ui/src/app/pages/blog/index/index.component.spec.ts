@@ -17,13 +17,11 @@ describe('IndexComponent', () => {
   let dialog: MatDialog;
   let postService: PostService;
   let activatedRoute: ActivatedRoute;
-  let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [BlogModule, RouterTestingModule, HttpClientTestingModule],
-      providers: [PostService, HttpClient],
+      providers: [PostService],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);
@@ -31,8 +29,6 @@ describe('IndexComponent', () => {
     postService = TestBed.inject(PostService);
     dialog = TestBed.inject(MatDialog);
     activatedRoute = TestBed.inject(ActivatedRoute);
-    httpClient = TestBed.inject(HttpClient);
-    httpTestingController = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 

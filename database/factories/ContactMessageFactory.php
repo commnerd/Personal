@@ -18,7 +18,7 @@ class ContactMessageFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email_phone' => fake()->text(),
+            'email_phone' => rand(0,1) ? fake()->safeEmail() : fake()->phoneNumber(),
             'message' => fake()->text(),
         ];
     }
