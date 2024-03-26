@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Composer;
 
+use App\Models\Composer\{Package,PackageSource};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +18,9 @@ class PackageSourceFactory extends Factory
     public function definition(): array
     {
         return [
-            'composer_package_id' => \App\Models\Composer\Package::inRandomOrder()->first(),
+            'composer_package_id' => Package::inRandomOrder()->first(),
             'reference' => fake()->name(),
-            'type' => fake()->name(),
+            'type' => rand(0, 1) ? PackageSource::TYPE_GIT : PackageSource::TYPE_SVN,
             'url' => fake()->url(),
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Composer;
 
+use App\Models\Composer\Package;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,7 @@ class PackageFactory extends Factory
         return [
             'name' => fake()->name(),
             'version' => fake()->randomFloat(),
-            'type' => fake()->name(),
+            'type' => rand(0, 1) ? Package::TYPE_LIBRARY : Package::TYPE_PROJECT,
         ];
     }
 }

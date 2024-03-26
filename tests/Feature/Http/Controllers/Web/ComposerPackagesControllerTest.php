@@ -25,7 +25,7 @@ class ComposerPackagesControllerTest extends TestCase
             "type" => "git",
             "url" => "https://test.com",
         ]);
-        $response = $this->get(route('composer_packages'));
+        $response = $this->get(route('web.composer-packages.index'));
         $response->assertSuccessful();
         $response->assertJson([
             "packages" => [

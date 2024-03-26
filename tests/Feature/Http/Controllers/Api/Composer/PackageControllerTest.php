@@ -29,9 +29,14 @@ class PackageControllerTest extends TestCase
      */
     public function test_store(): void
     {
-        $package = Package::factory()->make();
+        $package = Package::factory()->make()->toArray();
+        $packageSource = PackageSource::factory()->make()->toArray();
 
-        $response = $this->post(route('api.composer.packages.store'), $package->toArray());
+        $package['source'] = $packageSource;
+        unset($package['source']['composer_package_id']);
+
+        $response = $this->post(route('api.composer.packages.store'), $package);
+        dd($response);
 
         $response->assertStatus(200);
 
@@ -82,7 +87,6 @@ class PackageControllerTest extends TestCase
         $response = $this->put(route('api.composer.packages.update', $package), $packageUpdate->toArray());
 
         $response->assertStatus(302);
-        dd($packageUpdate->toArray(), $response->getContent());
         $response->assertJson($packageUpdate->toArray());
 //        $response->assertJson(['id' => $package->id]);
     }

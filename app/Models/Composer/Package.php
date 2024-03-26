@@ -45,9 +45,9 @@ class Package extends Model
             'name' => 'required',
             'version' => 'required',
             'type' => 'required|in:'.implode(",", array_keys(self::TYPES)),
-            'source_reference' => $sourceRules['reference'],
-            'source_type' => $sourceRules['type'],
-            'source_url' => $sourceRules['url'],
+            'source.reference' => $sourceRules['reference'],
+            'source.type' => $sourceRules['type'],
+            'source.url' => $sourceRules['url'],
         ];
     }
 
