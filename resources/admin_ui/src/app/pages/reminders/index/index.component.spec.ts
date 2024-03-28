@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemindersComponent } from './reminders.component';
+import { IndexComponent } from './index.component';
 
-describe('RemindersComponent', () => {
-  let component: RemindersComponent;
-  let fixture: ComponentFixture<RemindersComponent>;
+describe('IndexComponent', () => {
+  let component: IndexComponent;
+  let fixture: ComponentFixture<IndexComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RemindersComponent]
+      declarations: [IndexComponent]
     });
-    fixture = TestBed.createComponent(RemindersComponent);
+    fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
