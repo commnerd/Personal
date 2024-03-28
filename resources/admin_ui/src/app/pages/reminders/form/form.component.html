@@ -1,0 +1,13 @@
+<form [formGroup]="reminderForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Reference</mat-label>
+    <input matInput formControlName="reference" placeholder="Source">
+  </mat-form-field>
+  <div>
+    <label>Reminder</label>
+    <angular-editor formControlName="reminder" ngDefaultControl></angular-editor>
+  </div>
+  <div>
+    <button mat-raised-button type="submit">Send</button>
+  </div>
+</form>

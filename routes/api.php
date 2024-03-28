@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->name('api.')->group(function() {
     Route::get('/site_stats', [\App\Http\Controllers\Api\SiteStatsController::class, 'index'])->name('site_stats');
+    Route::apiResource('/daily-reminders', \App\Http\Controllers\Api\DailyReminderController::class);
     Route::apiResource('/drinks', \App\Http\Controllers\Api\DrinksController::class);
     Route::apiResource('/quotes', \App\Http\Controllers\Api\QuotesController::class);
     Route::apiResource('/contact-messages', \App\Http\Controllers\Api\ContactMessagesController::class);

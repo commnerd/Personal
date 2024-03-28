@@ -4,19 +4,17 @@
     <mat-icon aria-hidden="false" aria-label="Add post icon" fontIcon="add"></mat-icon>
   </button>
 </div>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
 <table>
   <tr *ngIf="!(models$ | async)?.total">
     <td colspan="4">No posts found.</td>
-  </tr>
-  <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="4">
-      <mat-paginator
-        [length]="(models$ | async)?.total || 0"
-        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-        [pageSize]="(models$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
   </tr>
   <tr *ngFor="let post of (models$ | async)?.data">
     <td>{{ post.title }}</td>
@@ -31,14 +29,12 @@
       </button>
     </td>
   </tr>
-  <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="4">
-      <mat-paginator
-        [length]="(models$ | async)?.total || 0"
-        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-        [pageSize]="(models$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
-  </tr>
 </table>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
