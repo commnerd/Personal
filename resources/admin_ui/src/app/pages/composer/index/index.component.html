@@ -4,19 +4,17 @@
         <mat-icon aria-hidden="false" aria-label="Add package icon" fontIcon="add"></mat-icon>
     </button>
 </div>
+<div *ngIf="!!((packages$ | async)?.total)">
+  <mat-paginator
+    [length]="(packages$ | async)?.total || 0"
+    [pageIndex]="((packages$ | async)?.current_page || 1) - 1"
+    [pageSize]="(packages$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
 <table>
   <tr *ngIf="!((packages$ | async)?.total)">
     <td colspan="4">No composer packages found.</td>
-  </tr>
-  <tr *ngIf="!!((packages$ | async)?.total)">
-    <td colspan="5">
-      <mat-paginator
-        [length]="(packages$ | async)?.total || 0"
-        [pageIndex]="((packages$ | async)?.current_page || 1) - 1"
-        [pageSize]="(packages$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
   </tr>
   <ng-container *ngFor="let pkg of (packages$ | async)?.data">
     <tr>
@@ -35,14 +33,12 @@
       </td>
     </tr>
   </ng-container>
-  <tr *ngIf="!!((packages$ | async)?.total)">
-    <td colspan="5">
-      <mat-paginator
-        [length]="(packages$ | async)?.total || 0"
-        [pageIndex]="((packages$ | async)?.current_page || 1) - 1"
-        [pageSize]="(packages$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
-  </tr>
 </table>
+<div *ngIf="!!((packages$ | async)?.total)">
+  <mat-paginator
+    [length]="(packages$ | async)?.total || 0"
+    [pageIndex]="((packages$ | async)?.current_page || 1) - 1"
+    [pageSize]="(packages$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>

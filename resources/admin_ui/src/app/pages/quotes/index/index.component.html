@@ -4,19 +4,17 @@
     <mat-icon aria-hidden="false" aria-label="Add quote icon" fontIcon="add"></mat-icon>
   </button>
 </div>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
 <table>
   <tr *ngIf="!((models$ | async)?.total)">
     <td colspan="5">No quotes found.</td>
-  </tr>
-  <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="5">
-      <mat-paginator
-        [length]="(models$ | async)?.total || 0"
-        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-        [pageSize]="(models$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
   </tr>
   <tr *ngFor="let quote of (models$ | async)?.data">
     <td [innerHTML]="quote.quote"></td>
@@ -33,14 +31,12 @@
       </button>
     </td>
   </tr>
-  <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="5">
-      <mat-paginator
-        [length]="(models$ | async)?.total || 0"
-        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-        [pageSize]="(models$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
-  </tr>
 </table>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>

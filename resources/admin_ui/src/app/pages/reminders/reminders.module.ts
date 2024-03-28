@@ -6,6 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { RemindersRoutingModule } from "@pages/reminders/reminders-routing.module";
@@ -23,6 +26,7 @@ import { CreateComponent } from './create/create.component';
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     RemindersRoutingModule,
     ReactiveFormsModule,
     AngularEditorModule,
@@ -31,6 +35,7 @@ import { CreateComponent } from './create/create.component';
     MatIconModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatDialogModule,
   ]
 })
 export class RemindersModule { }

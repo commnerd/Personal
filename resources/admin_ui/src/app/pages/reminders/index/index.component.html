@@ -4,19 +4,17 @@
     <mat-icon aria-hidden="false" aria-label="Add reminder icon" fontIcon="add"></mat-icon>
   </button>
 </div>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
 <table>
   <tr *ngIf="!((models$ | async)?.total)">
     <td colspan="5">No reminders found.</td>
-  </tr>
-  <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="5">
-      <mat-paginator
-        [length]="(models$ | async)?.total || 0"
-        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-        [pageSize]="(models$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
   </tr>
   <tr *ngFor="let reminder of (models$ | async)?.data">
     <td [innerHTML]="reminder.reminder"></td>
@@ -25,21 +23,17 @@
       <button mat-button class="edit" aria-label="Edit reminder" (click)="editReminder(reminder)">
         <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
       </button>
-    </td>
-    <td>
       <button mat-button class="delete" aria-label="Delete reminder" (click)="deleteReminder(reminder)">
         <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
       </button>
     </td>
   </tr>
-  <tr *ngIf="!!((models$ | async)?.total)">
-    <td colspan="5">
-      <mat-paginator
-        [length]="(models$ | async)?.total || 0"
-        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-        [pageSize]="(models$ | async)?.per_page || 0"
-        (page)="switchPage($event)"
-      ></mat-paginator>
-    </td>
-  </tr>
 </table>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
