@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\StoreDailyReminderRequest;
 use App\Http\Requests\UpdateDailyReminderRequest;
 use App\Models\DailyReminder;
+use Illuminate\Http\JsonResponse;
 
 class DailyReminderController extends Controller
 {
