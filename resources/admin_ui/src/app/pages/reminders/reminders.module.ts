@@ -7,7 +7,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
@@ -26,7 +25,6 @@ import { CreateComponent } from './create/create.component';
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     RemindersRoutingModule,
     ReactiveFormsModule,
     AngularEditorModule,
