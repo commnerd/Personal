@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Reminder } from '@/interfaces/reminder';
+import { Reminder } from '@interfaces/reminder';
 import { Observable } from 'rxjs';
 import { ReminderService } from '@services/models/reminder.service';
 import { ActivatedRoute } from '@angular/router';

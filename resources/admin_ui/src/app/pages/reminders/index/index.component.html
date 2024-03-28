@@ -1,1 +1,45 @@
-<p>index works!</p>
+<div>
+  <h1>Reminders</h1>
+  <button mat-icon-button color="primary" aria-label="Add reminder button" (click)="addReminder()">
+    <mat-icon aria-hidden="false" aria-label="Add reminder icon" fontIcon="add"></mat-icon>
+  </button>
+</div>
+<table>
+  <tr *ngIf="!((models$ | async)?.total)">
+    <td colspan="5">No reminders found.</td>
+  </tr>
+  <tr *ngIf="!!((models$ | async)?.total)">
+    <td colspan="5">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
+  <tr *ngFor="let reminder of (models$ | async)?.data">
+    <td [innerHTML]="reminder.reminder"></td>
+    <td>{{ reminder.reference }}</td>
+    <td>
+      <button mat-button class="edit" aria-label="Edit reminder" (click)="editReminder(reminder)">
+        <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+      </button>
+    </td>
+    <td>
+      <button mat-button class="delete" aria-label="Delete reminder" (click)="deleteReminder(reminder)">
+        <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+      </button>
+    </td>
+  </tr>
+  <tr *ngIf="!!((models$ | async)?.total)">
+    <td colspan="5">
+      <mat-paginator
+        [length]="(models$ | async)?.total || 0"
+        [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+        [pageSize]="(models$ | async)?.per_page || 0"
+        (page)="switchPage($event)"
+      ></mat-paginator>
+    </td>
+  </tr>
+</table>

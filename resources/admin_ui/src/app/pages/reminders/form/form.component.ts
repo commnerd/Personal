@@ -25,7 +25,7 @@ export class FormComponent implements OnInit, OnChanges {
       reminder: '',
       reference: ''
     };
-    this.reminderForm = this.formBuilder.group(this.reminder);
+    this.reminderForm = this.formBuilder.group(this.reminder!);
   }
 
   ngOnChanges(changes: SimpleChanges): void

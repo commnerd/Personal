@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class DailyReminder extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'reference',
+        'reminder',
+    ];
 }
