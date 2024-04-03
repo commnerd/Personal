@@ -8,6 +8,12 @@ import { FormComponent } from './form/form.component';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatDialogModule } from "@angular/material/dialog";
+import { AngularEditorModule } from "@kolkov/angular-editor";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { PartialsModule } from "@partials/partials.module";
 
 @NgModule({
   declarations: [
@@ -19,9 +25,15 @@ import { MatPaginatorModule } from "@angular/material/paginator";
   imports: [
     CommonModule,
     RestaurantsRoutingModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    MatPaginatorModule
+    MatDialogModule,
+    MatInputModule,
+    MatPaginatorModule,
+    AngularEditorModule,
+    ReactiveFormsModule,
+    PartialsModule
   ]
 })
 export class RestaurantsModule { }

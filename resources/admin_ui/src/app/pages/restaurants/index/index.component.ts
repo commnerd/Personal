@@ -45,7 +45,6 @@ export class IndexComponent {
 
   switchPage(event: PageEvent) {
     this.router.navigateByUrl(`/restaurants?page=${event.pageIndex + 1}`)
-
   }
 
   deleteRestaurant(rnt: Restaurant) {

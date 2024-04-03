@@ -1,1 +1,27 @@
-<p>form works!</p>
+<form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Restaurant Name</mat-label>
+    <input matInput formControlName="name" placeholder="Restaurant Name">
+  </mat-form-field>
+  <section formArrayName="orders">
+    <h3>Orders</h3>
+    <table>
+      <tr *ngFor="let order of restaurantForm.value.orders; let i=index; trackBy: trackFn" [formGroupName]="i">
+        <td>
+          <mat-form-field>
+            <mat-label>Order Label</mat-label>
+            <input matInput formControlName="label" placeholder="Order Label">
+          </mat-form-field>
+        </td>
+        <td>
+          <div class="body">
+            <label>Notes</label>
+            <angular-editor formControlName="notes" ngDefaultControl></angular-editor>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <button mat-raised-button (click)="addOrder()" type="button">Add Order</button>
+  <button mat-raised-button type="submit">Send</button>
+</form>
