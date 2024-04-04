@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { PartialsModule } from "@partials/partials.module";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -28,11 +29,12 @@ import { PartialsModule } from "@partials/partials.module";
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule,
     MatInputModule,
     MatPaginatorModule,
-    AngularEditorModule,
     ReactiveFormsModule,
+    AngularEditorModule,
+    MatSlideToggleModule,
+    MatDialogModule,
     PartialsModule
   ]
 })

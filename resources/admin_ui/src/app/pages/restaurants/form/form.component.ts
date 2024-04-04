@@ -50,7 +50,7 @@ export class FormComponent {
     });
   }
 
-  addSource() {
+  addOrder() {
     (<FormArray>this.restaurantForm.get('orders')).push(
       this.formBuilder.group({ label: [''], notes: [''] })
     );
