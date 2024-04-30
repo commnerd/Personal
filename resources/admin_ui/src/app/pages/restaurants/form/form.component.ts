@@ -1,8 +1,8 @@
 import {Component, Input, SimpleChanges} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
-import {PackageService} from "@services/models/composer/package.service";
 import {Router} from "@angular/router";
 import {Restaurant} from "@interfaces/food/restaurant";
+import { RestaurantService } from "@services/models/food/restaurant.service";
 
 @Component({
   selector: 'app-form',
@@ -15,7 +15,7 @@ export class FormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private packageService: PackageService,
+    private packageService: RestaurantService,
     private router: Router
   ) {}
 
