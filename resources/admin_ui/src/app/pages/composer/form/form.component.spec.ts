@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormComponent } from './form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RestaurantsModule } from "@pages/restaurants/restaurants.module";
+import { ComposerModule } from "@pages/composer/composer.module";
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -11,7 +11,7 @@ describe('FormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, HttpClientTestingModule, RestaurantsModule],
+      imports: [BrowserAnimationsModule, HttpClientTestingModule, ComposerModule],
       declarations: [FormComponent]
     });
     fixture = TestBed.createComponent(FormComponent);
