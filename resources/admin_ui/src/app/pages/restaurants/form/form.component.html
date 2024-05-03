@@ -19,6 +19,11 @@
             <angular-editor formControlName="notes" ngDefaultControl></angular-editor>
           </div>
         </td>
+        <td>
+          <button mat-button class="delete" aria-label="Delete package" (click)="deleteOrder(i)">
+            <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+          </button>
+        </td>
       </tr>
     </table>
   </section>

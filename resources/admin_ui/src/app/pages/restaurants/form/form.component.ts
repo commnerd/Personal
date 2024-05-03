@@ -59,4 +59,8 @@ export class FormComponent {
   trackFn(i: number) {
     return i;
   }
+
+  deleteOrder(i: number) {
+    (<FormArray>this.restaurantForm.get('orders')).removeAt(i);
+  }
 }
