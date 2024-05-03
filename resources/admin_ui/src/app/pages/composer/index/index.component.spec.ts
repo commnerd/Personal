@@ -21,7 +21,6 @@ describe('IndexComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule, ComposerModule],
-      providers: [PackageService, MatDialog],
       declarations: [IndexComponent]
     });
     fixture = TestBed.createComponent(IndexComponent);

@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RestaurantsComponent } from './restaurants.component';
+import { IndexComponent } from "./index/index.component";
+import { CreateComponent } from "@pages/restaurants/create/create.component";
+import { EditComponent } from "@pages/restaurants/edit/edit.component";
 
 const routes: Routes = [
-  { path: '', component: RestaurantsComponent },
+  { path: '', component: IndexComponent },
+  { path: 'create', component: CreateComponent },
+  { path: ':id/edit', component: EditComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [RestaurantsComponent],
 })
 export class RestaurantsRoutingModule { }

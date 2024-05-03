@@ -1,0 +1,40 @@
+<div>
+  <h1>Restaurants</h1>
+  <button mat-icon-button color="primary" aria-label="Add package button" (click)="addRestaurant()">
+    <mat-icon aria-hidden="false" aria-label="Add package icon" fontIcon="add"></mat-icon>
+  </button>
+</div>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>
+<table>
+  <tr *ngIf="!((models$ | async)?.total)">
+    <td colspan="2">No restaurants found.</td>
+  </tr>
+  <ng-container *ngFor="let rnt of (models$ | async)?.data">
+    <tr>
+      <td>{{ rnt.name }}</td>
+      <td>
+        <button mat-button class="edit" aria-label="Edit package" (click)="editRestaurant(rnt)">
+          <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+        </button>
+        <button mat-button class="delete" aria-label="Delete package" (click)="deleteRestaurant(rnt)">
+          <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
+        </button>
+      </td>
+    </tr>
+  </ng-container>
+</table>
+<div *ngIf="!!((models$ | async)?.total)">
+  <mat-paginator
+    [length]="(models$ | async)?.total || 0"
+    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
+    [pageSize]="(models$ | async)?.per_page || 0"
+    (page)="switchPage($event)"
+  ></mat-paginator>
+</div>

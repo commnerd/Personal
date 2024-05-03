@@ -16,12 +16,11 @@ class Order extends Model
     {
         return [
             'restaurant_id' => 'required|int',
-            'active' => 'boolean',
             'label' => 'required|string',
             'notes' => 'required|string',
         ];
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,7 +35,7 @@ class Order extends Model
 
     /**
      * The associated restaurant
-     * 
+     *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function restaurant(): BelongsTo

@@ -1,10 +1,9 @@
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormComponent } from './form.component';
-import { QuotesModule } from "@pages/quotes/quotes.module";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-
+import { RestaurantsModule } from "@pages/restaurants/restaurants.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -12,8 +11,8 @@ describe('FormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, HttpClientTestingModule, QuotesModule],
-      declarations: [FormComponent]
+      imports: [ HttpClientTestingModule, RestaurantsModule, BrowserAnimationsModule ],
+      declarations: [ FormComponent ]
     });
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;

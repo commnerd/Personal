@@ -64,7 +64,7 @@ class RestaurantsController extends Controller
                 Order::make($order)->save();
             }
         })->pluck('id');
-        Order::whereNotIn('id', $keepers)->delete();
+        Order::where('restaurant_id', $restaurant->id)->whereNotIn('id', $keepers)->delete();
         DB::commit();
 
         $restaurant->load('orders');
