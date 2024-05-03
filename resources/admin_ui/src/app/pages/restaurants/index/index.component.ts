@@ -26,12 +26,13 @@ export class IndexComponent {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
+    let routeSubscription = this.activatedRoute.queryParams.subscribe((params: Params) => {
       let page = 1;
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
       this.models$ = this.restaurantService.list(page);
+      routeSubscription.unsubscribe();
     });
   }
 
