@@ -17,7 +17,7 @@ import {PageEvent} from "@angular/material/paginator";
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  models$ !: Observable<Paginated<Drink> | null>;
+  models: Paginated<Drink> | null = null;
 
   constructor(
     public dialog: MatDialog,
@@ -32,7 +32,10 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      this.models$ = this.drinkService.list(page);
+      let drinkListSubscription = this.drinkService.list(page).subscribe(rs => {
+        this.models = rs;
+        drinkListSubscription.unsubscribe();
+      });
     });
   }
 

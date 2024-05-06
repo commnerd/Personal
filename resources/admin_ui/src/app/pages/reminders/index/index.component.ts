@@ -17,7 +17,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class IndexComponent implements OnInit {
 
-  models$ !: Observable<Paginated<Reminder> | null>;
+  models: Paginated<Reminder> | null = null;
 
   constructor(
     public dialog: MatDialog,
@@ -32,7 +32,10 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      this.models$ = this.reminderService.list(page);
+      let reminderListSubscription = this.reminderService.list(page).subscribe(rs => {
+        this.models = rs;
+        reminderListSubscription.unsubscribe();
+      });
     });
   }
 

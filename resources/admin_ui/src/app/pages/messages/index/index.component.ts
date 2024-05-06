@@ -17,7 +17,7 @@ import {
 })
 export class IndexComponent implements OnInit {
 
-  models$ !: Observable<Paginated<ContactMessage> | null>;
+  models: Paginated<ContactMessage> | null = null;
 
   constructor(
     public dialog: MatDialog,
@@ -32,7 +32,10 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      this.models$ = this.contactMessageService.list(page);
+      let contactListSubscription = this.contactMessageService.list(page).subscribe(rs => {
+        this.models = rs;
+        contactListSubscription.unsubscribe();
+      });
     });
   }
 

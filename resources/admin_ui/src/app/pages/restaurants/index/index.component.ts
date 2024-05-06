@@ -16,7 +16,7 @@ import { Restaurant } from "@interfaces/food/restaurant";
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent {
-  models$ !: Observable<Paginated<Restaurant> | null>;
+  models: Paginated<Restaurant> | null = null;
 
   constructor(
     private restaurantService: RestaurantService,
@@ -31,7 +31,10 @@ export class IndexComponent {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      this.models$ = this.restaurantService.list(page);
+      let restaurantListSubscription = this.restaurantService.list(page).subscribe(rs => {
+        this.models = rs;
+        restaurantListSubscription.unsubscribe();
+      });
       routeSubscription.unsubscribe();
     });
   }
