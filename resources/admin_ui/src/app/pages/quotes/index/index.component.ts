@@ -17,7 +17,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class IndexComponent implements OnInit {
 
-  models$ !: Observable<Paginated<Quote> | null>;
+  models: Paginated<Quote> | null = null;
 
   constructor(
     public dialog: MatDialog,
@@ -32,7 +32,10 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      this.models$ = this.quoteService.list(page);
+      let quoteListSubscription = this.quoteService.list(page).subscribe(rs => {
+        this.models = rs;
+        quoteListSubscription.unsubscribe();
+      });
     });
   }
 

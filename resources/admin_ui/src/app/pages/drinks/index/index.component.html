@@ -4,19 +4,19 @@
     <mat-icon aria-hidden="false" aria-label="Add quote icon" fontIcon="add"></mat-icon>
   </button>
 </div>
-<div *ngIf="!!((models$ | async)?.total)">
+<div *ngIf="!!models?.total">
   <mat-paginator
-    [length]="(models$ | async)?.total || 0"
-    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-    [pageSize]="(models$ | async)?.per_page || 0"
+    [length]="models?.total || 0"
+    [pageIndex]="(models?.current_page || 1) - 1"
+    [pageSize]="models?.per_page || 0"
     (page)="switchPage($event)"
   ></mat-paginator>
 </div>
 <table>
-  <tr *ngIf="!(models$ | async)?.total">
+  <tr *ngIf="!models?.total">
     <td colspan="3">No drinks found.</td>
   </tr>
-  <tr *ngFor="let drink of (models$ | async)?.data">
+  <tr *ngFor="let drink of models?.data">
     <td>{{ drink.name }}</td>
     <td>
       <button mat-button class="edit" aria-label="Edit quote" (click)="editDrink(drink)">
@@ -30,11 +30,11 @@
     </td>
   </tr>
 </table>
-<div *ngIf="!!((models$ | async)?.total)">
+<div *ngIf="!!models?.total">
   <mat-paginator
-    [length]="(models$ | async)?.total || 0"
-    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-    [pageSize]="(models$ | async)?.per_page || 0"
+    [length]="models?.total || 0"
+    [pageIndex]="(models?.current_page || 1) - 1"
+    [pageSize]="models?.per_page || 0"
     (page)="switchPage($event)"
   ></mat-paginator>
 </div>

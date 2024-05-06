@@ -17,7 +17,7 @@ import {PageEvent} from "@angular/material/paginator";
 })
 export class IndexComponent implements OnInit {
 
-  packages$ !: Observable<Paginated<Package> | null>;
+  packages : Paginated<Package> | null = null;
 
   constructor(
     private packageService: PackageService,
@@ -32,7 +32,10 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      this.packages$ = this.packageService.list(page);
+      let packageSubscription = this.packageService.list(page).subscribe(rs => {
+        this.packages = rs;
+        packageSubscription.unsubscribe();
+      });
     });
   }
 

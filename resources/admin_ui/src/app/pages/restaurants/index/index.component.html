@@ -4,19 +4,19 @@
     <mat-icon aria-hidden="false" aria-label="Add package icon" fontIcon="add"></mat-icon>
   </button>
 </div>
-<div *ngIf="!!((models$ | async)?.total)">
+<div *ngIf="!!models?.total">
   <mat-paginator
-    [length]="(models$ | async)?.total || 0"
-    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-    [pageSize]="(models$ | async)?.per_page || 0"
+    [length]="models?.total || 0"
+    [pageIndex]="(models?.current_page || 1) - 1"
+    [pageSize]="models?.per_page || 0"
     (page)="switchPage($event)"
   ></mat-paginator>
 </div>
 <table>
-  <tr *ngIf="!((models$ | async)?.total)">
+  <tr *ngIf="!models?.total">
     <td colspan="2">No restaurants found.</td>
   </tr>
-  <ng-container *ngFor="let rnt of (models$ | async)?.data">
+  <ng-container *ngFor="let rnt of models?.data">
     <tr>
       <td>{{ rnt.name }}</td>
       <td>
@@ -30,11 +30,11 @@
     </tr>
   </ng-container>
 </table>
-<div *ngIf="!!((models$ | async)?.total)">
+<div *ngIf="!!models?.total">
   <mat-paginator
-    [length]="(models$ | async)?.total || 0"
-    [pageIndex]="((models$ | async)?.current_page || 1) - 1"
-    [pageSize]="(models$ | async)?.per_page || 0"
+    [length]="models?.total || 0"
+    [pageIndex]="(models?.current_page || 1) - 1"
+    [pageSize]="models?.per_page || 0"
     (page)="switchPage($event)"
   ></mat-paginator>
 </div>
