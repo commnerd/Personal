@@ -34,6 +34,7 @@ export class FormComponent {
   ngOnChanges(changes: SimpleChanges): void
   {
     if(this.model) {
+      console.log(changes);
       this.employmentRecordForm.setValue({
         employer: changes['model']?.currentValue.employer,
         position: changes['model']?.currentValue.position,

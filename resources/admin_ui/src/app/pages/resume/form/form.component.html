@@ -13,14 +13,14 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Start Date</mat-label>
-    <input matInput [matDatepicker]="start_date">
+    <input matInput formControlName="start_date" [matDatepicker]="start_date">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="start_date"></mat-datepicker-toggle>
     <mat-datepicker #start_date></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
     <mat-label>End Date</mat-label>
-    <input matInput [matDatepicker]="end_date">
+    <input matInput formControlName="end_date" [matDatepicker]="end_date">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="end_date"></mat-datepicker-toggle>
     <mat-datepicker #end_date></mat-datepicker>
