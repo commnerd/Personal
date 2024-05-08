@@ -34,7 +34,7 @@ export class IndexComponent {
         this.models = rs;
         employmentRecordListSubscription.unsubscribe();
       });
-      routeSubscription.unsubscribe();
+      setTimeout(() => routeSubscription.unsubscribe());
     });
   }
 

@@ -35,7 +35,7 @@ export class IndexComponent {
         this.models = rs;
         restaurantListSubscription.unsubscribe();
       });
-      routeSubscription.unsubscribe();
+      setTimeout(() => routeSubscription.unsubscribe());
     });
   }
 

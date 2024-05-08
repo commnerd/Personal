@@ -1,1 +1,26 @@
-<p>form works!</p>
+<form [formGroup]="employmentRecordForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Employer</mat-label>
+    <input matInput formControlName="employer" placeholder="Employer">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Position</mat-label>
+    <input matInput formControlName="position" placeholder="Position">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Location</mat-label>
+    <input matInput formControlName="location" placeholder="Location">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Start Date</mat-label>
+    <input matInput formControlName="start_date" placeholder="Start Date">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>End Date</mat-label>
+    <input matInput formControlName="end_date" placeholder="End Date">
+  </mat-form-field>
+  <angular-editor formControlName="bullets" ngDefaultControl></angular-editor>
+  <div>
+    <button mat-raised-button type="submit">Send</button>
+  </div>
+</form>

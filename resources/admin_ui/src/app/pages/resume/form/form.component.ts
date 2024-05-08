@@ -26,6 +26,7 @@ export class FormComponent {
       location: '',
       bullets: '',
       start_date: new Date(),
+      end_date: new Date(),
     };
     this.employmentRecordForm = this.formBuilder.group(this.model);
   }
@@ -34,8 +35,12 @@ export class FormComponent {
   {
     if(this.model) {
       this.employmentRecordForm.setValue({
-        name: changes['model']?.currentValue.name,
-        recipe: changes['model']?.currentValue.recipe,
+        employer: changes['model']?.currentValue.employer,
+        position: changes['model']?.currentValue.position,
+        location: changes['model']?.currentValue.location,
+        bullets: changes['model']?.currentValue.bullets,
+        start_date: new Date(changes['model']?.currentValue.start_date),
+        end_date: new Date(changes['model']?.currentValue.end_date),
       });
     }
   }
