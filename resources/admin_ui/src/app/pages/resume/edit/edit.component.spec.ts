@@ -4,6 +4,7 @@ import { EditComponent } from './edit.component';
 import { ResumeModule } from "@pages/resume/resume.module";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('EditComponent', () => {
   let component: EditComponent;
@@ -11,7 +12,7 @@ describe('EditComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ ResumeModule, HttpClientTestingModule, RouterTestingModule ],
+      imports: [ ResumeModule, HttpClientTestingModule, RouterTestingModule, BrowserAnimationsModule ],
       declarations: [EditComponent]
     });
     fixture = TestBed.createComponent(EditComponent);
