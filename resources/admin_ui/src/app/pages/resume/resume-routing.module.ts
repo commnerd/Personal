@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ResumeComponent } from './resume.component';
+import { IndexComponent } from "@pages/resume/index/index.component";
 
 const routes: Routes = [
-  { path: '', component: ResumeComponent },
+  { path: '', component: IndexComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [ResumeComponent],
 })
 export class ResumeRoutingModule { }

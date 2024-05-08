@@ -11,7 +11,7 @@
 </div>
 <table>
   <tr *ngIf="!models?.total">
-    <td colspan="3">No messages found.</td>
+    <td>No messages found.</td>
   </tr>
   <tr *ngFor="let message of models?.data">
     <td>{{ message.name }}</td>
@@ -20,8 +20,6 @@
       <button mat-button class="description" aria-label="Show message" (click)="showContactMessage(message)">
         <mat-icon aria-hidden="false" aria-label="Show icon" fontIcon="description"></mat-icon>
       </button>
-    </td>
-    <td>
       <button mat-button class="delete" aria-label="Delete message" (click)="deleteContactMessage(message)">
         <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
       </button>

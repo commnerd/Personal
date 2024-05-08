@@ -14,7 +14,7 @@
 </div>
 <table>
   <tr *ngIf="!models?.total">
-    <td colspan="3">No drinks found.</td>
+    <td>No drinks found.</td>
   </tr>
   <tr *ngFor="let drink of models?.data">
     <td>{{ drink.name }}</td>
@@ -22,8 +22,6 @@
       <button mat-button class="edit" aria-label="Edit quote" (click)="editDrink(drink)">
         <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
       </button>
-    </td>
-    <td>
       <button mat-button class="delete" aria-label="Delete quote" (click)="deleteDrink(drink)">
         <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
       </button>

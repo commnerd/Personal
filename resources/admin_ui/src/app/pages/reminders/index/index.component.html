@@ -14,7 +14,7 @@
 </div>
 <table>
   <tr *ngIf="!models?.total">
-    <td colspan="5">No reminders found.</td>
+    <td>No reminders found.</td>
   </tr>
   <tr *ngFor="let reminder of models?.data">
     <td [innerHTML]="reminder.reminder"></td>

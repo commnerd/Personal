@@ -1,59 +1,62 @@
-import {Component, OnInit} from '@angular/core';
-import { Observable } from "rxjs";
+import { Component } from '@angular/core';
 import { Paginated } from "@interfaces/laravel/paginated";
-import { ContactMessage } from "@interfaces/contact-message";
-import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { ContactMessageService } from "@services/models/contact-message.service";
+import { MatDialog } from "@angular/material/dialog";
 import { PageEvent } from "@angular/material/paginator";
 import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
+import { EmploymentRecordService } from "@services/models/employment-record.service";
+import { EmploymentRecord } from "@interfaces/employment-record";
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit {
-
-  models: Paginated<ContactMessage> | null = null;
+export class IndexComponent {
+  models: Paginated<EmploymentRecord> | null = null;
 
   constructor(
-    public dialog: MatDialog,
-    private contactMessageService: ContactMessageService,
+    private employmentRecordService: EmploymentRecordService,
     private router: Router,
+    private dialog: MatDialog,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
+    let routeSubscription = this.activatedRoute.queryParams.subscribe((params: Params) => {
       let page = 1;
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let contactListSubscription = this.contactMessageService.list(page).subscribe(rs => {
+      let employmentRecordListSubscription = this.employmentRecordService.list(page).subscribe(rs => {
         this.models = rs;
-        contactListSubscription.unsubscribe();
+        employmentRecordListSubscription.unsubscribe();
       });
+      routeSubscription.unsubscribe();
     });
   }
 
-  showContactMessage(msg: ContactMessage) {
-    this.router.navigate(['messages', msg.id]);
+  add() {
+    this.router.navigate(['resume', 'create']);
+  }
+
+  edit(model: EmploymentRecord) {
+    this.router.navigate(['resume', model.id, 'edit']);
   }
 
   switchPage(event: PageEvent) {
-    this.router.navigateByUrl(`/messages?page=${event.pageIndex + 1}`)
+    this.router.navigateByUrl(`/resume?page=${event.pageIndex + 1}`)
   }
 
-  deleteContactMessage(msg: ContactMessage) {
+  delete(model: EmploymentRecord) {
     let dialogSubscription = this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.contactMessageService.delete(msg.id!).subscribe(() => {
+          let deleteSubscription = this.employmentRecordService.delete(model.id!).subscribe(() => {
             this.ngOnInit();
             setTimeout(() => deleteSubscription.unsubscribe());
           });

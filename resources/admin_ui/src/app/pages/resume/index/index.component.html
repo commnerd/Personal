@@ -1,6 +1,6 @@
 <div>
-  <h1>Restaurants</h1>
-  <button mat-icon-button color="primary" aria-label="Add package button" (click)="addRestaurant()">
+  <h1>Employment Records</h1>
+  <button mat-icon-button color="primary" aria-label="Add package button" (click)="add()">
     <mat-icon aria-hidden="false" aria-label="Add package icon" fontIcon="add"></mat-icon>
   </button>
 </div>
@@ -14,16 +14,16 @@
 </div>
 <table>
   <tr *ngIf="!models?.total">
-    <td>No restaurants found.</td>
+    <td>No employment records found.</td>
   </tr>
-  <ng-container *ngFor="let rnt of models?.data">
+  <ng-container *ngFor="let model of models?.data">
     <tr>
-      <td>{{ rnt.name }}</td>
+      <td>{{ model.employer }}</td>
       <td>
-        <button mat-button class="edit" aria-label="Edit package" (click)="editRestaurant(rnt)">
+        <button mat-button class="edit" aria-label="Edit package" (click)="edit(model)">
           <mat-icon aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
         </button>
-        <button mat-button class="delete" aria-label="Delete package" (click)="deleteRestaurant(rnt)">
+        <button mat-button class="delete" aria-label="Delete package" (click)="delete(model)">
           <mat-icon aria-hidden="false" aria-label="Delete icon" fontIcon="delete"></mat-icon>
         </button>
       </td>

@@ -5,7 +5,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestDataPaginator } from '../../../testing/TestDataPaginator';
 
 import { ContactMessageService } from './contact-message.service';
-import { ContactMessage } from '@interfaces/contact_message';
+import { ContactMessage } from '@interfaces/contact-message';
 
 describe('ContactMessageService', () => {
   let service: ContactMessageService;

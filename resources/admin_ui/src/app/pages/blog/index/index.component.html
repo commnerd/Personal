@@ -14,7 +14,7 @@
 </div>
 <table>
   <tr *ngIf="!(models$ | async)?.total">
-    <td colspan="4">No posts found.</td>
+    <td>No posts found.</td>
   </tr>
   <tr *ngFor="let post of (models$ | async)?.data">
     <td>{{ post.title }}</td>
