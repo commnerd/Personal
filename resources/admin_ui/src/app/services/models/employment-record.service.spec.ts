@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { EmploymentRecordService } from './employment-record.service';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe('EmploymentRecordService', () => {
   let service: EmploymentRecordService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ]
+    });
     service = TestBed.inject(EmploymentRecordService);
   });
 

@@ -8,6 +8,7 @@ import { CreateComponent } from './create/create.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -23,7 +24,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     ResumeRoutingModule,
     MatButtonModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ]
 })
 export class ResumeModule { }

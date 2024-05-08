@@ -10,7 +10,7 @@ import { EmploymentRecordService } from "@services/models/employment-record.serv
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
-  @Input() model!: EmploymentRecord | null;
+  @Input('model') model!: EmploymentRecord | null;
   employmentRecordForm!: FormGroup;
 
   constructor(
