@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {ContactMessage} from "@interfaces/contact_message";
+import {ContactMessage} from "@interfaces/contact-message";
 import {ContactMessageService} from "@services/models/contact-message.service";
 
 @Component({

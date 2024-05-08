@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Quote::factory(30)->create();
         \App\Models\ContactMessage::factory(30)->create();
         \App\Models\DailyReminder::factory(30)->create();
+        \App\Models\EmploymentRecord::factory(30)->create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
