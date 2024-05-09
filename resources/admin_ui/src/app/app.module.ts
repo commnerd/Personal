@@ -22,7 +22,7 @@ import { SetJwtComponent } from './set-jwt/set-jwt.component';
     HttpClientModule,
     PagesModule
   ],
-  providers: [],
+  providers: [{provide: 'Window', useValue: window}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
