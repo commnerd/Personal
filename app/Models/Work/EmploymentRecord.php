@@ -14,12 +14,15 @@ class EmploymentRecord extends Model
     public static function getValidationRules(): array
     {
         return [
-            'name' => 'required|string|min:1|max:255',
-            'version' => 'required|float',
-            'type' => 'required|string',
+            'employer' => 'required|string',
+            'position' => 'required|string',
+            'location' => 'required|string',
+            'bullets' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'date',
         ];
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *

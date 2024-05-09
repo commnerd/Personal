@@ -19,7 +19,7 @@ class PortfolioEntry extends Model
             'type' => 'required|string',
         ];
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *

@@ -20,7 +20,6 @@ Route::middleware('auth:api')->name('api.')->group(function() {
     Route::apiResource('/drinks', \App\Http\Controllers\Api\DrinksController::class);
     Route::apiResource('/quotes', \App\Http\Controllers\Api\QuotesController::class);
     Route::apiResource('/contact-messages', \App\Http\Controllers\Api\ContactMessagesController::class);
-    Route::apiResource('/employment-records', \App\Http\Controllers\Api\EmploymentRecordsController::class);
     Route::prefix('composer')->name('composer.')->group(function() {
         Route::apiResource('/packages', \App\Http\Controllers\Api\Composer\PackagesController::class);
         Route::apiResource('/package_sources', \App\Http\Controllers\Api\Composer\PackageSourcesController::class);
@@ -31,6 +30,9 @@ Route::middleware('auth:api')->name('api.')->group(function() {
     });
     Route::prefix('blog')->name('blog.')->group(function() {
         Route::apiResource('/posts', \App\Http\Controllers\Api\Blog\PostsController::class);
+    });
+    Route::prefix('work')->name('work.')->group(function() {
+        Route::apiResource('/employment-records', \App\Http\Controllers\Api\Work\EmploymentRecordsController::class);
     });
 });
 

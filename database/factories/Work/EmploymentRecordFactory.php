@@ -19,10 +19,10 @@ class EmploymentRecordFactory extends Factory
         return [
             'employer' => fake()->name(),
             'position' => fake()->name(),
-            'location' => fake()->name(),
-            'start_date' => fake()->name(),
-            'end_date' => fake()->date(),
             'bullets' => fake()->text(),
+            'location' => fake()->text(),
+            'start_date' => fake()->date(),
+            'end_date' => fake()->date(),
         ];
     }
 }

@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class EmploymentRecordService extends LaravelModelService<EmploymentRecord> {
-  protected path = '/api/employment-records';
+  protected path = '/api/work/employment-records';
 
   constructor(
     override httpClient: HttpClient

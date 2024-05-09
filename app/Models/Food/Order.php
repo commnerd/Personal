@@ -32,15 +32,4 @@ class Order extends Model
         'label',
         'notes',
     ];
-
-    /**
-     * The associated restaurant
-     *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function restaurant(): BelongsTo
-    {
-        return $this->belongsTo(\App\Models\Food\Restaurant::class);
-    }
-
 }

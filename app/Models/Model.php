@@ -29,31 +29,6 @@ abstract class Model extends IlluminateModel implements Validatable
         return parent::query()->paginate($pageCount);
     }
 
-    public static function orderBy(string $column, string $direction = null)
-    {
-        if(!is_null(request()->q)) {
-            return self::search(request()->q)->orderBy($column, $direction);
-        }
-
-        return parent::query()->orderBy($column, $direction);
-    }
-
-    /**
-     * Get all of the models from the database.
-     *
-     * @param  array|mixed  $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public static function all($columns = ['*'])
-    {
-        if(!is_null(request()->q)) {
-            $b = self::search(request()->q)->get($columns);
-            return $b;
-        }
-
-        return parent::all($columns);
-    }
-
     /**
      * Search for model with given substring.
      *

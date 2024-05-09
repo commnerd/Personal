@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api;
+namespace Http\Controllers\Api\Work;
 
-use App\Models\EmploymentRecord;
+use App\Models\Work\EmploymentRecord;
 use Tests\Feature\TestCase;
 
 class EmploymentRecordsControllerTest extends TestCase
@@ -18,7 +18,7 @@ class EmploymentRecordsControllerTest extends TestCase
      */
     public function test_index(): void
     {
-        $response = $this->get(route('api.employment-records.index'));
+        $response = $this->get(route('api.work.employment-records.index'));
 
         $response->assertStatus(200);
     }
@@ -30,7 +30,7 @@ class EmploymentRecordsControllerTest extends TestCase
     {
         $employmentRecord = EmploymentRecord::factory()->make();
 
-        $response = $this->post(route('api.employment-records.store'), $employmentRecord->toArray());
+        $response = $this->post(route('api.work.employment-records.store'), $employmentRecord->toArray());
 
         $response->assertStatus(200);
 
@@ -44,7 +44,7 @@ class EmploymentRecordsControllerTest extends TestCase
     {
         $employmentRecord = EmploymentRecord::factory()->create();
 
-        $response = $this->get(route('api.employment-records.show', $employmentRecord));
+        $response = $this->get(route('api.work.employment-records.show', $employmentRecord));
 
         $response->assertStatus(200);
 
@@ -59,7 +59,7 @@ class EmploymentRecordsControllerTest extends TestCase
         $employmentRecord = EmploymentRecord::factory()->create();
         $employmentRecordUpdate = EmploymentRecord::factory()->make();
 
-        $response = $this->put(route('api.employment-records.update', $employmentRecord), $employmentRecordUpdate->toArray());
+        $response = $this->put(route('api.work.employment-records.update', $employmentRecord), $employmentRecordUpdate->toArray());
 
         $response->assertStatus(200);
         $response->assertJson($employmentRecordUpdate->toArray());
@@ -73,7 +73,7 @@ class EmploymentRecordsControllerTest extends TestCase
     {
         $employmentRecord = EmploymentRecord::factory()->create();
 
-        $response = $this->delete(route('api.employment-records.destroy', $employmentRecord));
+        $response = $this->delete(route('api.work.employment-records.destroy', $employmentRecord));
 
         $response->assertStatus(200);
     }
