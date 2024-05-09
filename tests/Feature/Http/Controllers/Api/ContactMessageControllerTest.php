@@ -85,7 +85,7 @@ class ContactMessageControllerTest extends TestCase
     {
         $contactMessage = ContactMessage::factory()->create();
 
-        $response = $this->get(route('api.contact-messages.destroy', $contactMessage));
+        $response = $this->delete(route('api.contact-messages.destroy', $contactMessage));
 
         $response->assertStatus(200);
     }

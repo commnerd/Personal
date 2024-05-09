@@ -77,7 +77,7 @@ class OrderControllerTest extends TestCase
     {
         $order = Order::factory()->create(['restaurant_id' => $this->parentRestaurant->id]);
 
-        $response = $this->get(route('api.food.orders.destroy', $order));
+        $response = $this->delete(route('api.food.orders.destroy', $order));
 
         $response->assertStatus(200);
     }

@@ -73,7 +73,7 @@ class DailyReminderControllerTest extends TestCase
     {
         $dailyReminder = DailyReminder::factory()->create();
 
-        $response = $this->get(route('api.daily-reminders.destroy', $dailyReminder));
+        $response = $this->delete(route('api.daily-reminders.destroy', $dailyReminder));
 
         $response->assertStatus(200);
     }

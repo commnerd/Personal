@@ -77,7 +77,7 @@ class PackageSourceControllerTest extends TestCase
     {
         $package_source = PackageSource::factory()->create(['composer_package_id' => $this->parentPackage->id]);
 
-        $response = $this->get(route('api.composer.package_sources.destroy', $package_source));
+        $response = $this->delete(route('api.composer.package_sources.destroy', $package_source));
 
         $response->assertStatus(200);
     }

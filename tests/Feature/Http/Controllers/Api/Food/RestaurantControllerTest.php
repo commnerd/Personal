@@ -93,7 +93,7 @@ class RestaurantControllerTest extends TestCase
     {
         $restaurant = Restaurant::factory()->create();
 
-        $response = $this->get(route('api.food.restaurants.destroy', $restaurant));
+        $response = $this->delete(route('api.food.restaurants.destroy', $restaurant));
 
         $response->assertStatus(200);
     }

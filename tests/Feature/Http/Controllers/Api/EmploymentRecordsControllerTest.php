@@ -73,7 +73,7 @@ class EmploymentRecordsControllerTest extends TestCase
     {
         $employmentRecord = EmploymentRecord::factory()->create();
 
-        $response = $this->get(route('api.employment-records.destroy', $employmentRecord));
+        $response = $this->delete(route('api.employment-records.destroy', $employmentRecord));
 
         $response->assertStatus(200);
     }

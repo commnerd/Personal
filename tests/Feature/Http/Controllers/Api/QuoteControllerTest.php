@@ -51,7 +51,7 @@ class QuoteControllerTest extends TestCase
         $response = $this->post(route('api.quotes.store'), $secondQuote->toArray());
 
         $response->assertStatus(200);
-        
+
         $this->assertEquals(Quote::findOrFail($firstQuote->id)->active, false);
         $this->assertEquals(Quote::orderBy('id', 'desc')->firstOrFail()->active, true);
     }
@@ -99,7 +99,7 @@ class QuoteControllerTest extends TestCase
         $response = $this->put(route('api.quotes.update', $secondQuote), $secondQuote->toArray());
 
         $response->assertStatus(200);
-        
+
         $this->assertEquals(Quote::findOrFail($firstQuote->id)->active, false);
         $this->assertEquals(Quote::findOrFail($secondQuote->id)->active, true);
     }
@@ -111,7 +111,7 @@ class QuoteControllerTest extends TestCase
     {
         $quote = Quote::factory()->create();
 
-        $response = $this->get(route('api.quotes.destroy', $quote));
+        $response = $this->delete(route('api.quotes.destroy', $quote));
 
         $response->assertStatus(200);
     }

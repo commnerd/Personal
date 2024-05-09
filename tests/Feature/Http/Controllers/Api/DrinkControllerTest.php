@@ -16,11 +16,40 @@ class DrinkControllerTest extends TestCase
     /**
      * A basic index test.
      */
-    public function test_index(): void
+    public function test_empty_index(): void
     {
         $response = $this->get(route('api.drinks.index'));
 
         $response->assertStatus(200);
+        $this->assertEquals(0, $response->baseResponse->original->count());
+    }
+
+    /**
+     * A basic index test.
+     */
+    public function test_populated_index(): void
+    {
+        $drinks = Drink::factory(3)->create();
+
+        $response = $this->get(route('api.drinks.index'));
+
+        $response->assertStatus(200);
+        $response->assertSee($drinks->first()->name);
+    }
+
+    /**
+     * A basic index test.
+     */
+    public function test_search(): void
+    {
+        Drink::factory(3)->create();
+        Drink::factory()->create(['name' => 'Foobaz']);
+        Drink::factory()->create(['recipe' => 'Some Foobaz recipe that I want to see']);
+
+        $response = $this->get(route('api.drinks.index').'?q=Foobaz');
+
+        $response->assertStatus(200);
+        $this->assertEquals(2, $response->baseResponse->original->count());
     }
 
     /**
@@ -73,7 +102,7 @@ class DrinkControllerTest extends TestCase
     {
         $drink = Drink::factory()->create();
 
-        $response = $this->get(route('api.drinks.destroy', $drink));
+        $response = $this->delete(route('api.drinks.destroy', $drink));
 
         $response->assertStatus(200);
     }

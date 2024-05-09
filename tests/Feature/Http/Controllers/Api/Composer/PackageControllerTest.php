@@ -93,7 +93,7 @@ class PackageControllerTest extends TestCase
     {
         $package = Package::factory()->create();
 
-        $response = $this->get(route('api.composer.packages.destroy', $package));
+        $response = $this->delete(route('api.composer.packages.destroy', $package));
 
         $response->assertStatus(200);
     }

@@ -87,7 +87,7 @@ class PostControllerTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $response = $this->get(route('api.blog.posts.destroy', $post));
+        $response = $this->delete(route('api.blog.posts.destroy', $post));
 
         $response->assertStatus(200);
     }
