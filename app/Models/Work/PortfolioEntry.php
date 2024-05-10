@@ -14,9 +14,9 @@ class PortfolioEntry extends Model
     public static function getValidationRules(): array
     {
         return [
-            'name' => 'required|string|min:1|max:255',
-            'version' => 'required|float',
-            'type' => 'required|string',
+            'title' => 'required|string|min:1|max:255',
+            'url' => 'required|string',
+            'details' => 'required|string',
         ];
     }
 

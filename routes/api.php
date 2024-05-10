@@ -33,8 +33,9 @@ Route::middleware('auth:api')->name('api.')->group(function() {
     });
     Route::prefix('work')->name('work.')->group(function() {
         Route::apiResource('/employment-records', \App\Http\Controllers\Api\Work\EmploymentRecordsController::class);
+        Route::apiResource('/portfolio-entries', \App\Http\Controllers\Api\Work\PortfolioEntryController::class);
     });
 });
 
-Route::get('/login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback']);
-Route::get('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::get('/login/callback', [\App\Http\Controllers\Api\AuthController::class, 'callback'])->name('api.login.callback');
+Route::get('/login', [\App\Http\Controllers\Api\AuthController::class, 'login'])->name('api.login');
