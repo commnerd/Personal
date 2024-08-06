@@ -21,7 +21,7 @@ jobs:
         with:
           env: production
           php-version: '8.2.7'
-          node-version: '18.16.0'
+          node-version: '22.0.0'
 
       - name: Remove unnecessary production/staging files
         run: |

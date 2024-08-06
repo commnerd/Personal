@@ -12,12 +12,14 @@ public/storage
 public/hot
 public/admin
 storage/*.key
+Homestead.yaml
+Homestead.json
 .env.*.php
 .env.php
 .env
 .phpunit.result.cache
-Homestead.yaml
-Homestead.json
+.idea
+.rnd
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/

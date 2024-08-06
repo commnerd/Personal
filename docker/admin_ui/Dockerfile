@@ -1,4 +1,4 @@
-FROM node:18.16.0
+FROM node:22.0.0
 
 RUN npm install -g \
         npm@9.7.2 \

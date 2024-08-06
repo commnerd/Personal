@@ -19,7 +19,7 @@ jobs:
         with:
           env: testing
           php-version: '8.2.7'
-          node-version: '18.16.0'
+          node-version: '22.0.0'
 
       - name: Configure .env
         run: cp .env.testing .env && php artisan key:generate
