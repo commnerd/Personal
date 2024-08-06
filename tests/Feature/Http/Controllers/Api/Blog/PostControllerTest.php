@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Controllers\Api\Blog;
+namespace Tests\Feature\Http\Controllers\Api\Blog;
 
 use App\Models\Blog\Post;
 use Tests\Feature\TestCase;

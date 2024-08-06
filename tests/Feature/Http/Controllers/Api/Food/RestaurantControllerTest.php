@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers\Api\Food;
+namespace Tests\Feature\Http\Controllers\Api\Food;
 
 use App\Models\Food\Order;
 use App\Models\Food\Restaurant;

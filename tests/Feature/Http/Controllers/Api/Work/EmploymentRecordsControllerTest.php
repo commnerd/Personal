@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers\Api\Work;
+namespace Tests\Feature\Http\Controllers\Api\Work;
 
 use App\Models\Work\EmploymentRecord;
 use Tests\Feature\TestCase;

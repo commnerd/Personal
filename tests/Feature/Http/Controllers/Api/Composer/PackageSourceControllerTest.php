@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Controllers\Api\Composer;
+namespace Tests\Feature\Http\Controllers\Api\Composer;
 
 use App\Models\Composer\{Package,PackageSource};
 use Tests\Feature\TestCase;
