@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from "rxjs";
+import { first, Observable } from "rxjs";
 import { DrinkService } from "@services/models/drink.service";
 import { ActivatedRoute } from "@angular/router";
 import { Drink } from "@interfaces/drink";
@@ -18,9 +18,8 @@ export class EditComponent {
   ) {}
 
   ngOnInit(): void {
-    let paramSubscriber = this.route.params.subscribe(params => {
+    this.route.params.pipe(first()).subscribe(params => {
       this.drink$ = this.drinkService.get(params['id'] as number);
-      setTimeout(() => paramSubscriber.unsubscribe(), 0);
     });
   }
 }

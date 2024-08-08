@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Observable} from "rxjs";
+import {first, Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import { Restaurant } from "@interfaces/food/restaurant";
 import { RestaurantService } from "@services/models/food/restaurant.service";
@@ -18,9 +18,8 @@ export class EditComponent {
   ) {}
 
   ngOnInit(): void {
-    let paramSubscriber = this.route.params.subscribe(params => {
+    this.route.params.pipe(first()).subscribe(params => {
       this.restaurant$ = this.restaurantService.get(params['id'] as number);
-      setTimeout(() => paramSubscriber.unsubscribe(), 0);
     });
   }
 }

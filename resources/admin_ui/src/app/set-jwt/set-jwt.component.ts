@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {first} from "rxjs";
 
 @Component({
   selector: 'app-set-jwt',
@@ -14,12 +15,11 @@ export class SetJwtComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      let paramSubscription = this.activatedRoute.queryParamMap.subscribe( params => {
+      this.activatedRoute.queryParamMap.pipe(first()).subscribe( params => {
         if(params.has('jwt')) {
           localStorage.setItem('jwt', params.get('jwt') as string);
           setTimeout(() => window.location.href='/admin/', 0);
         }
-        setTimeout(() => paramSubscription.unsubscribe(), 0);
       });
     }, 0);
   }

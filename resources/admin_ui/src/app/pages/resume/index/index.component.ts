@@ -8,6 +8,7 @@ import {
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
 import { EmploymentRecordService } from "@services/models/employment-record.service";
 import { EmploymentRecord } from "@interfaces/employment-record";
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-index',
@@ -25,16 +26,14 @@ export class IndexComponent {
   ) {}
 
   ngOnInit(): void {
-    let routeSubscription = this.activatedRoute.queryParams.subscribe((params: Params) => {
+    this.activatedRoute.queryParams.pipe(first()).subscribe((params: Params) => {
       let page = 1;
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let employmentRecordListSubscription = this.employmentRecordService.list(page).subscribe(rs => {
+      this.employmentRecordService.list(page).pipe(first()).subscribe(rs => {
         this.models = rs;
-        employmentRecordListSubscription.unsubscribe();
       });
-      setTimeout(() => routeSubscription.unsubscribe());
     });
   }
 
@@ -51,17 +50,16 @@ export class IndexComponent {
   }
 
   delete(model: EmploymentRecord) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.employmentRecordService.delete(model.id!).subscribe(() => {
+          this.employmentRecordService.delete(model.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe());
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
 }

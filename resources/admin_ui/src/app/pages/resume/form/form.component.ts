@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { EmploymentRecord } from "@interfaces/employment-record";
 import { EmploymentRecordService } from "@services/models/employment-record.service";
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -47,8 +48,7 @@ export class FormComponent {
   }
 
   onSubmit() {
-    let subscriber = this.employmentRecordService.save(Object.assign(this.model!, this.employmentRecordForm.value)).subscribe( (rs) => {
-      subscriber.unsubscribe();
+    this.employmentRecordService.save(Object.assign(this.model!, this.employmentRecordForm.value)).pipe(first()).subscribe( (rs) => {
       this.router.navigate(['resume']);
     });
   }

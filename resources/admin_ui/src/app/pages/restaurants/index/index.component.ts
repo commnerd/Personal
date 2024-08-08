@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from "rxjs";
+import { first } from "rxjs";
 import { Paginated } from "@interfaces/laravel/paginated";
 import { RestaurantService } from "@services/models/food/restaurant.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
@@ -26,16 +26,14 @@ export class IndexComponent {
   ) {}
 
   ngOnInit(): void {
-    let routeSubscription = this.activatedRoute.queryParams.subscribe((params: Params) => {
+    this.activatedRoute.queryParams.pipe(first()).subscribe((params: Params) => {
       let page = 1;
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let restaurantListSubscription = this.restaurantService.list(page).subscribe(rs => {
+      this.restaurantService.list(page).pipe(first()).subscribe(rs => {
         this.models = rs;
-        restaurantListSubscription.unsubscribe();
       });
-      setTimeout(() => routeSubscription.unsubscribe());
     });
   }
 
@@ -52,17 +50,16 @@ export class IndexComponent {
   }
 
   deleteRestaurant(rnt: Restaurant) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.restaurantService.delete(rnt.id!).subscribe(() => {
+          this.restaurantService.delete(rnt.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe());
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
 }

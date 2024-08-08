@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from "rxjs";
+import { Observable, first } from "rxjs";
 import { Paginated } from "@interfaces/laravel/paginated";
 import { MatDialog } from "@angular/material/dialog";
 import { PostService } from "@services/models/blog/post.service";
@@ -48,17 +48,16 @@ export class IndexComponent {
   }
 
   deletePost(post: Post) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.postService.delete(post.id!).subscribe(() => {
+          this.postService.delete(post.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe(), 0);
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe(), 0);
       });
   }
 

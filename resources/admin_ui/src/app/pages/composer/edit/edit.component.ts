@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Package } from '../../../interfaces/composer/package';
-import { Observable, of } from 'rxjs';
+import {first, Observable, of} from 'rxjs';
 import { PackageService } from '../../../services/models/composer/package.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -19,9 +19,8 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let paramSubscriber = this.route.params.subscribe(params => {
+    this.route.params.pipe(first()).subscribe(params => {
       this.package$ = this.packageService.get(params['id'] as number);
-      setTimeout(() => paramSubscriber.unsubscribe(), 0);
     });
   }
 

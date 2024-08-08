@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from "rxjs";
+import {first, Observable} from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { Post } from "@interfaces/blog/post";
 import { PostService } from "@services/models/blog/post.service";
@@ -18,9 +18,8 @@ export class EditComponent {
   ) {}
 
   ngOnInit(): void {
-    let paramSubscriber = this.route.params.subscribe(params => {
+    this.route.params.pipe(first()).subscribe(params => {
       this.post$ = this.postService.get(params['id'] as number);
-      setTimeout(() => paramSubscriber.unsubscribe(), 0);
     });
   }
 }

@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable, tap} from "rxjs";
-import {Paginated} from "@interfaces/laravel/paginated";
-import {MatDialog} from "@angular/material/dialog";
-import {DrinkService} from "@services/models/drink.service";
-import {Drink} from '@interfaces/drink';
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { first } from "rxjs";
+import { Paginated } from "@interfaces/laravel/paginated";
+import { MatDialog } from "@angular/material/dialog";
+import { DrinkService } from "@services/models/drink.service";
+import { Drink } from '@interfaces/drink';
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import {
   DeleteConfirmationDialogComponent
 } from "@partials/delete-confirmation-dialog/delete-confirmation-dialog.component";
-import {PageEvent} from "@angular/material/paginator";
+import { PageEvent } from "@angular/material/paginator";
 
 
 @Component({
@@ -32,9 +32,8 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let drinkListSubscription = this.drinkService.list(page).subscribe(rs => {
+      this.drinkService.list(page).pipe(first()).subscribe(rs => {
         this.models = rs;
-        drinkListSubscription.unsubscribe();
       });
     });
   }
@@ -52,17 +51,16 @@ export class IndexComponent implements OnInit {
   }
 
   deleteDrink(drink: Drink) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.drinkService.delete(drink.id!).subscribe(() => {
+          this.drinkService.delete(drink.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe(), 0);
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe(), 0);
       });
   }
 }

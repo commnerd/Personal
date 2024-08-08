@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import { Observable } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { first } from "rxjs";
 import { Paginated } from "@interfaces/laravel/paginated";
 import { ContactMessage } from "@interfaces/contact-message";
 import { MatDialog } from "@angular/material/dialog";
@@ -32,9 +32,8 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let contactListSubscription = this.contactMessageService.list(page).subscribe(rs => {
+      this.contactMessageService.list(page).pipe(first()).subscribe(rs => {
         this.models = rs;
-        contactListSubscription.unsubscribe();
       });
     });
   }
@@ -48,17 +47,16 @@ export class IndexComponent implements OnInit {
   }
 
   deleteContactMessage(msg: ContactMessage) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.contactMessageService.delete(msg.id!).subscribe(() => {
+          this.contactMessageService.delete(msg.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe());
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
 }

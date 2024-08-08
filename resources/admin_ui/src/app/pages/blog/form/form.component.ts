@@ -1,8 +1,9 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
-import {Post} from "@interfaces/blog/post";
-import {PostService} from "@services/models/blog/post.service";
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Post } from "@interfaces/blog/post";
+import { PostService } from "@services/models/blog/post.service";
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -49,8 +50,7 @@ export class FormComponent {
   }
 
   onSubmit() {
-    let subscriber = this.postService.save(Object.assign(this.post!, this.postForm.value)).subscribe( (rs) => {
-      subscriber.unsubscribe();
+    this.postService.save(Object.assign(this.post!, this.postForm.value)).pipe(first()).subscribe( (rs) => {
       this.router.navigate(['blog']);
     });
   }

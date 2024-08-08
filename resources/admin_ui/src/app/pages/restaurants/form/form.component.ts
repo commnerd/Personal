@@ -1,8 +1,9 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
-import {Restaurant} from "@interfaces/food/restaurant";
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Restaurant } from "@interfaces/food/restaurant";
 import { RestaurantService } from "@services/models/food/restaurant.service";
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -44,8 +45,7 @@ export class FormComponent {
   }
 
   onSubmit() {
-    let subscriber = this.packageService.save(this.restaurantForm.value).subscribe( (rs) => {
-      subscriber.unsubscribe();
+    this.packageService.save(this.restaurantForm.value).pipe(first()).subscribe( (rs) => {
       this.router.navigate(['restaurants']);
     });
   }

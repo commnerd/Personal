@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Quote } from '../../../interfaces/quote';
-import { Observable, of } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { QuoteService } from '../../../services/models/quote.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -19,9 +19,8 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let paramSubscriber = this.route.params.subscribe(params => {
+    let paramSubscriber = this.route.params.pipe(first()).subscribe(params => {
       this.quote$ = this.quoteService.get(params['id'] as number);
-      setTimeout(() => paramSubscriber.unsubscribe(), 0);
     });
   }
 

@@ -3,6 +3,7 @@ import { Reminder } from '@interfaces/reminder';
 import { ReminderService } from '@services/models/reminder.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -39,8 +40,7 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    let subscriber = this.reminderService.save(Object.assign(this.reminder!, this.reminderForm.value)).subscribe( (rs) => {
-      subscriber.unsubscribe();
+    this.reminderService.save(Object.assign(this.reminder!, this.reminderForm.value)).pipe(first()).subscribe( (rs) => {
       this.router.navigate(['reminders']);
     });
   }

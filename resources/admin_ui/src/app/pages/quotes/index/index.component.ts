@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 
 import { Paginated } from '@interfaces/laravel/paginated';
 import { Quote } from '@interfaces/quote';
-import { Observable } from 'rxjs';
+import { first } from 'rxjs';
 import { QuoteService } from '@services/models/quote.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
@@ -32,9 +32,8 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let quoteListSubscription = this.quoteService.list(page).subscribe(rs => {
+      this.quoteService.list(page).pipe(first()).subscribe(rs => {
         this.models = rs;
-        quoteListSubscription.unsubscribe();
       });
     });
   }
@@ -52,17 +51,16 @@ export class IndexComponent implements OnInit {
   }
 
   deleteQuote(quote: Quote) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.quoteService.delete(quote.id!).subscribe(() => {
+          this.quoteService.delete(quote.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe());
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
 }

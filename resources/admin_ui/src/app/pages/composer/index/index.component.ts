@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Paginated } from '../../../interfaces/laravel/paginated';
 import { Package } from '../../../interfaces/composer/package';
-import { Observable } from 'rxjs';
+import {first, Observable} from 'rxjs';
 import { PackageService } from '../../../services/models/composer/package.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import {
@@ -32,9 +32,8 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let packageSubscription = this.packageService.list(page).subscribe(rs => {
+      this.packageService.list(page).pipe(first()).subscribe(rs => {
         this.packages = rs;
-        packageSubscription.unsubscribe();
       });
     });
   }
@@ -53,17 +52,16 @@ export class IndexComponent implements OnInit {
   }
 
   deletePackage(pkg: Package) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.packageService.delete(pkg.id!).subscribe(() => {
+          this.packageService.delete(pkg.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe());
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
 }

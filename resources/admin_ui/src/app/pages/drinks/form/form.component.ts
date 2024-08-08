@@ -3,6 +3,7 @@ import {Drink} from "@interfaces/drink";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {DrinkService} from "@services/models/drink.service";
 import {Router} from "@angular/router";
+import {first} from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -38,8 +39,7 @@ export class FormComponent {
   }
 
   onSubmit() {
-    let subscriber = this.drinkService.save(Object.assign(this.drink!, this.drinkForm.value)).subscribe( (rs) => {
-      subscriber.unsubscribe();
+    this.drinkService.save(Object.assign(this.drink!, this.drinkForm.value)).pipe(first()).subscribe( (rs) => {
       this.router.navigate(['drinks']);
     });
   }

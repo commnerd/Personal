@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Reminder } from '@interfaces/reminder';
-import { Observable } from 'rxjs';
+import {first, Observable} from 'rxjs';
 import { ReminderService } from '@services/models/reminder.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -17,9 +17,8 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let paramSubscriber = this.route.params.subscribe(params => {
+    this.route.params.pipe(first()).subscribe(params => {
       this.reminder$ = this.quoteService.get(params['id'] as number);
-      setTimeout(() => paramSubscriber.unsubscribe(), 0);
     });
   }
 }

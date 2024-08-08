@@ -1,6 +1,7 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { PartialsModule } from '../../partials/partials.module';
+import {first} from "rxjs";
 
 @Component({
   selector: 'app-index',
@@ -17,9 +18,8 @@ export class IndexComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    let subscription = this.api.get('/api/site_stats', { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}).subscribe(value => {
+    this.api.get('/api/site_stats', { headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt') }}).pipe(first()).subscribe(value => {
       this.stats = value;
-      subscription.unsubscribe();
     });
   }
 }

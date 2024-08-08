@@ -1,8 +1,9 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Package } from '@interfaces/composer/package';
 import { PackageService } from '@services/models/composer/package.service';
-import {FormBuilder, FormGroup, FormArray, FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -49,8 +50,7 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    let subscriber = this.packageService.save(this.packageForm.value).subscribe( (rs) => {
-      subscriber.unsubscribe();
+    this.packageService.save(this.packageForm.value).pipe(first()).subscribe( (rs) => {
       this.router.navigate(['composer']);
     });
   }

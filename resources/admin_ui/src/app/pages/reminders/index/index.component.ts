@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 
 import { Paginated } from '@interfaces/laravel/paginated';
 import { Reminder } from '@interfaces/reminder';
-import { Observable } from 'rxjs';
+import { first } from 'rxjs';
 import { ReminderService } from '@services/models/reminder.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
@@ -32,9 +32,8 @@ export class IndexComponent implements OnInit {
       if(typeof params['page'] !== 'undefined') {
         page = params['page'];
       }
-      let reminderListSubscription = this.reminderService.list(page).subscribe(rs => {
+      this.reminderService.list(page).pipe(first()).subscribe(rs => {
         this.models = rs;
-        reminderListSubscription.unsubscribe();
       });
     });
   }
@@ -52,17 +51,16 @@ export class IndexComponent implements OnInit {
   }
 
   deleteReminder(reminder: Reminder) {
-    let dialogSubscription = this.dialog
+    this.dialog
       .open(DeleteConfirmationDialogComponent)
       .afterClosed()
+      .pipe(first())
       .subscribe(confirmation => {
         if(confirmation) {
-          let deleteSubscription = this.reminderService.delete(reminder.id!).subscribe(() => {
+          this.reminderService.delete(reminder.id!).pipe(first()).subscribe(() => {
             this.ngOnInit();
-            setTimeout(() => deleteSubscription.unsubscribe());
           });
         }
-        setTimeout(() => dialogSubscription.unsubscribe());
       });
   }
 }

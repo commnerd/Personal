@@ -1,8 +1,9 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Quote } from '@interfaces/quote';
 import { QuoteService } from '@services/models/quote.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -41,8 +42,7 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    let subscriber = this.quoteService.save(Object.assign(this.quote!, this.quoteForm.value)).subscribe( (rs) => {
-      subscriber.unsubscribe();
+    this.quoteService.save(Object.assign(this.quote!, this.quoteForm.value)).pipe(first()).subscribe( (rs) => {
       this.router.navigate(['quotes']);
     });
   }
