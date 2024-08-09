@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Quote } from '@interfaces/quote';
 import { QuoteService } from '@services/models/quote.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { first } from "rxjs";
 
 @Component({
@@ -18,7 +18,7 @@ export class FormComponent implements OnInit, OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private quoteService: QuoteService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class FormComponent implements OnInit, OnChanges {
 
   onSubmit() {
     this.quoteService.save(Object.assign(this.quote!, this.quoteForm.value)).pipe(first()).subscribe( (rs) => {
-      this.router.navigate(['quotes']);
+      this.location.back();
     });
   }
 }

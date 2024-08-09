@@ -1,9 +1,9 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
-import {Drink} from "@interfaces/drink";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {DrinkService} from "@services/models/drink.service";
-import {Router} from "@angular/router";
-import {first} from "rxjs";
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { Drink } from "@interfaces/drink";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { DrinkService } from "@services/models/drink.service";
+import { Location } from "@angular/common";
+import { first } from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -17,7 +17,7 @@ export class FormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private drinkService: DrinkService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class FormComponent {
 
   onSubmit() {
     this.drinkService.save(Object.assign(this.drink!, this.drinkForm.value)).pipe(first()).subscribe( (rs) => {
-      this.router.navigate(['drinks']);
+      this.location.back();
     });
   }
 }

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Reminder } from '@interfaces/reminder';
 import { ReminderService } from '@services/models/reminder.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Location } from "@angular/common";
 import { first } from "rxjs";
 
 @Component({
@@ -18,7 +18,7 @@ export class FormComponent implements OnInit, OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private reminderService: ReminderService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class FormComponent implements OnInit, OnChanges {
 
   onSubmit() {
     this.reminderService.save(Object.assign(this.reminder!, this.reminderForm.value)).pipe(first()).subscribe( (rs) => {
-      this.router.navigate(['reminders']);
+      this.location.back();
     });
   }
 }

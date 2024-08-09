@@ -2,7 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import { Package } from '@interfaces/composer/package';
 import { PackageService } from '@services/models/composer/package.service';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { first } from "rxjs";
 
 @Component({
@@ -18,7 +18,7 @@ export class FormComponent implements OnInit, OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private packageService: PackageService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class FormComponent implements OnInit, OnChanges {
 
   onSubmit() {
     this.packageService.save(this.packageForm.value).pipe(first()).subscribe( (rs) => {
-      this.router.navigate(['composer']);
+      this.location.back();
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 import { Post } from "@interfaces/blog/post";
 import { PostService } from "@services/models/blog/post.service";
 import { first } from "rxjs";
@@ -24,7 +24,7 @@ export class FormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class FormComponent {
 
   onSubmit() {
     this.postService.save(Object.assign(this.post!, this.postForm.value)).pipe(first()).subscribe( (rs) => {
-      this.router.navigate(['blog']);
+      this.location.back();
     });
   }
 }

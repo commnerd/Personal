@@ -1,6 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 import { Restaurant } from "@interfaces/food/restaurant";
 import { RestaurantService } from "@services/models/food/restaurant.service";
 import { first } from "rxjs";
@@ -17,7 +17,7 @@ export class FormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private packageService: RestaurantService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class FormComponent {
 
   onSubmit() {
     this.packageService.save(this.restaurantForm.value).pipe(first()).subscribe( (rs) => {
-      this.router.navigate(['restaurants']);
+      this.location.back();
     });
   }
 

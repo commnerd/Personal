@@ -1,6 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 import { EmploymentRecord } from "@interfaces/employment-record";
 import { EmploymentRecordService } from "@services/models/employment-record.service";
 import { first } from "rxjs";
@@ -17,7 +17,7 @@ export class FormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private employmentRecordService: EmploymentRecordService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +49,7 @@ export class FormComponent {
 
   onSubmit() {
     this.employmentRecordService.save(Object.assign(this.model!, this.employmentRecordForm.value)).pipe(first()).subscribe( (rs) => {
-      this.router.navigate(['resume']);
+      this.location.back();
     });
   }
 }
