@@ -50,7 +50,7 @@ class LinkedinPull extends Command
                 'web_access' => false,
             ]);
             
-            dump(json_decode($response->body()));
+            dump(json_decode($response->body())->result);
         }
         
     }

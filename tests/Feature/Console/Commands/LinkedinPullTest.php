@@ -22,7 +22,7 @@ class LinkedinPullTest extends TestCase
         Http::shouldReceive('get')->andReturn($this->getLinkedinTestResponse());
         
         Http::shouldReceive('withHeader')->times(sizeof($responseData->experiences) * 3)->andReturn($httpMock);
-        Http::shouldReceive('post')->andReturn(new HttpCall('* 1234'));
+        Http::shouldReceive('post')->andReturn(new HttpCall('{"result": "* 1234"}'));
 
         Artisan::call('linkedin:pull');
 
