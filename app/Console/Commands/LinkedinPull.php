@@ -34,10 +34,6 @@ class LinkedinPull extends Command
 
         $messages = [];
 
-        dd('hi');
-
-        dd($linkedinData->experiences);
-
         foreach($linkedinData->experiences as $experience) {
             array_push($messages, [
                 'role' => 'user',
