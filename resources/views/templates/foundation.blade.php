@@ -21,6 +21,14 @@
                 <a class="nav-link{!! !is_null(Route::current()) && Route::current()->getName() == 'resume' ? ' active" aria-current="page"' : '"' !!} href="/resume">Resume</a>
             </nav>
         </footer>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDZC5C39TL"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-JDZC5C39TL');
+        </script>
     </body>
-    
 </html>
