@@ -17,6 +17,7 @@ class EmploymentRecordFactory extends Factory
     public function definition(): array
     {
         return [
+            'linkedin_company_id' => fake()->unique(true)->number(),
             'employer' => fake()->name(),
             'position' => fake()->name(),
             'bullets' => fake()->text(),
