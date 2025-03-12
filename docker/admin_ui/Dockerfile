@@ -2,7 +2,7 @@ FROM node:22.0.0
 
 RUN npm install -g \
         npm@9.7.2 \
-        @angular/cli && \
+        @angular/cli@17 && \
     apt update && \
     apt install wget && \
     cd /tmp && \
