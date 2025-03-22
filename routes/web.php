@@ -17,11 +17,13 @@ Route::get('/', [\App\Http\Controllers\Web\WelcomeController::class, 'index'])->
 Route::get('{admin}', function (string $path) {
     $contentType = 'text/html';
 
-    if($path == 'admin' || !file_exists(storage_path("app/$path"))) {
-        return response(file_get_contents(storage_path("app/admin/index.html")));
+    $repath = str_replace('admin', 'admin/browser', $path);
+
+    if($path == 'admin' || !file_exists(storage_path("app/$repath"))) {
+        return response(file_get_contents(storage_path("app/admin/browser/index.html")));
     }
 
-    $extension = pathinfo(storage_path("app/$path"), PATHINFO_EXTENSION);
+    $extension = pathinfo(storage_path("app/$repath"), PATHINFO_EXTENSION);
 
     switch($extension) {
     case 'js':
@@ -38,7 +40,7 @@ Route::get('{admin}', function (string $path) {
         $contentType = 'image/vnd.microsoft.icon';
         break;    
     }
-    return response(file_get_contents(storage_path("app/$path")))->header('Content-Type', $contentType);
+    return response(file_get_contents(storage_path("app/$repath")))->header('Content-Type', $contentType);
 })->where('admin', '^admin.*')->name('admin');
 
 Route::get('resume', [\App\Http\Controllers\Web\ResumeController::class, 'index'])->name('web.resume');

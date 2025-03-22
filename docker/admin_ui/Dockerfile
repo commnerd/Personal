@@ -1,16 +1,12 @@
-FROM node:22.0.0
+FROM node:23.10.0
 
 RUN npm install -g \
-        npm@9.7.2 \
-        @angular/cli@17 && \
+        npm@11.2.0 \
+        @angular/cli@19.2.4 && \
     apt update && \
-    apt install wget && \
-    cd /tmp && \
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    apt install -y ./google-chrome-stable_current_amd64.deb
+    apt install -y chromium
 
-
-ENV CHROME_BIN=/usr/bin/google-chrome
+ENV CHROME_BIN=/usr/bin/chromium
 
 WORKDIR /project/resources/admin_ui
 
