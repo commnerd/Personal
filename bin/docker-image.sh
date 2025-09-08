@@ -14,7 +14,7 @@ if [ -z "$self" ]; then
     self="$selfArg"
 fi
 
-dir=$(cd "${self%[/\\]*}" > /dev/null; cd '../laravel/sail/bin' && pwd)
+dir=$(cd "${self%[/\\]*}" > /dev/null; cd '..' && pwd)
 
 if [ -d /proc/cygdrive ]; then
     case $(which php) in
@@ -25,16 +25,14 @@ if [ -d /proc/cygdrive ]; then
     esac
 fi
 
-export COMPOSER_RUNTIME_BIN_DIR="$(cd "${self%[/\\]*}" > /dev/null; pwd)"
-
-# If bash is sourcing this file, we have to source the target as well
-# bashSource="$BASH_SOURCE"
-# if [ -n "$bashSource" ]; then
-#     if [ "$bashSource" != "$0" ]; then
-#         source "${dir}/sail" "$@"
-#         return
-#     fi
-# fi
+If bash is sourcing this file, we have to source the target as well
+bashSource="$BASH_SOURCE"
+if [ -n "$bashSource" ]; then
+    if [ "$bashSource" != "$0" ]; then
+        source "${dir}/sail" "$@"
+        return
+    fi
+fi
 
 if [ ! "$(docker images -q sail-8.4/app)" ]; then
     WWWGROUP=1000 WWWUSER=1000 docker-compose build laravel.test
