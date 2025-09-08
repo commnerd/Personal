@@ -18,14 +18,21 @@ RUN apk add --no-cache \
     oniguruma-dev \
     autoconf \
     g++ \
-    make
+    make \
+    pkgconfig
 
-# Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
+# Install PHP extensions step by step
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_sqlite
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install zip
+
+# Install GD extension
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
+RUN docker-php-ext-install gd
 
 # Clean up build dependencies
-RUN apk del autoconf g++ make
+RUN apk del autoconf g++ make pkgconfig
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
