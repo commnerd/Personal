@@ -32,17 +32,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Install dependencies
+      - name: Install dependencies and build assets
         run: |
           composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
           npm ci
           npm run build
-
-      - name: Ensure Sail base image exists
-        run: |
-          if ! docker images -q sail-8.4/app > /dev/null 2>&1; then
-            WWWGROUP=1000 WWWUSER=1000 docker-compose build laravel.test
-          fi
 
       - name: Build and push Docker Image
         uses: docker/build-push-action@v5
