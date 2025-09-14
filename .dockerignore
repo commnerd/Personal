@@ -1,23 +1,59 @@
-node_modules
-npm-debug.log
+# Git
 .git
 .gitignore
+.gitattributes
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Documentation
 README.md
-.env
-.env.example
-.env.local
-.env.testing
-.env.production
-tests
-.phpunit.result.cache
+*.md
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
 storage/logs/*
+
+# Cache
 storage/framework/cache/*
 storage/framework/sessions/*
 storage/framework/views/*
 bootstrap/cache/*
+
+# Node modules (will be installed during build)
+node_modules
+npm-debug.log
+
+# Vendor (will be installed during build)
 vendor
-docker-compose.yml
-docker-compose.override.yml
-Dockerfile
-.dockerignore
-.github
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Testing
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# Build artifacts
+public/build
+public/hot
+public/storage
+
+# Temporary files
+*.tmp
+*.temp

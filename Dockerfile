@@ -1,66 +1,92 @@
-FROM php:8.4-fpm-alpine
-
-# Install system dependencies
-RUN apk add --no-cache \
-    git \
-    curl \
-    libpng-dev \
-    libxml2-dev \
-    libzip-dev \
-    zip \
-    unzip \
-    sqlite \
-    nodejs \
-    npm \
-    freetype-dev \
-    libjpeg-turbo-dev \
-    libwebp-dev \
-    oniguruma-dev \
-    autoconf \
-    g++ \
-    make \
-    pkgconfig
-
-# Install PHP extensions step by step
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install pdo_sqlite
-RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install zip
-
-# Install GD extension
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
-RUN docker-php-ext-install gd
-
-# Clean up build dependencies
-RUN apk del autoconf g++ make pkgconfig
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Use PHP 8.2 with Apache
+FROM php:8.2-apache
 
 # Set working directory
 WORKDIR /var/www/html
 
-ENV APP_KEY=base64:rly8Pz8rt+xmg6r/YWb9s6TwTCHNlqCXYFyyF0qfwdY=
-ENV APP_ENV=production
-ENV DB_CONNECTION=sqlite
-ENV DB_DATABASE=/var/www/html/database/database.sqlite
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    sqlite3 \
+    libsqlite3-dev \
+    nodejs \
+    npm \
+    && docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
 
 # Copy application files
-COPY . /var/www/html
+COPY . .
 
-RUN rm -fR /var/www/html/node_modules && \
-    rm -fR /var/www/html/tests
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN echo "" > /var/www/html/storage/logs/laravel.log && \
-    echo "" > /var/www/html/database/database.sqlite && \
-    php artisan migrate --force
+# Install Node.js dependencies and build assets
+RUN npm install && npm run build
 
-RUN rm -fR /var/www/html/vendor && \
-    composer install --no-dev --optimize-autoloader
+# Create SQLite database file
+RUN touch /var/www/html/database/database.sqlite
 
-RUN php artisan storage:link
+# Set proper permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
 
-RUN chmod -R 777 /var/www/html/storage && \
-    chmod -R 777 /var/www/html/database/database.sqlite
+# Configure Apache
+RUN echo '<VirtualHost *:80>\n\
+    DocumentRoot /var/www/html/public\n\
+    <Directory /var/www/html/public>\n\
+        AllowOverride All\n\
+        Require all granted\n\
+    </Directory>\n\
+</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-RUN rm /var/www/html/.env
+# Create a .env file with hardcoded values for Docker
+RUN echo 'APP_NAME="Laravel App"\n\
+APP_ENV=production\n\
+APP_KEY=\n\
+APP_DEBUG=false\n\
+APP_URL=http://localhost\n\
+APP_LOCALE=en\n\
+APP_FALLBACK_LOCALE=en\n\
+APP_FAKER_LOCALE=en_US\n\
+APP_MAINTENANCE_DRIVER=file\n\
+APP_MAINTENANCE_STORE=database\n\
+\n\
+DB_CONNECTION=sqlite\n\
+DB_DATABASE=/var/www/html/database/database.sqlite\n\
+DB_FOREIGN_KEYS=true\n\
+\n\
+CACHE_DRIVER=file\n\
+FILESYSTEM_DISK=local\n\
+QUEUE_CONNECTION=sync\n\
+SESSION_DRIVER=file\n\
+SESSION_LIFETIME=120\n\
+\n\
+MAIL_MAILER=log\n\
+LOG_CHANNEL=stack\n\
+LOG_DEPRECATIONS_CHANNEL=null\n\
+LOG_LEVEL=debug\n\
+' > /var/www/html/.env
+
+# Generate application key and run migrations
+RUN php artisan key:generate --force \
+    && php artisan config:cache \
+    && php artisan migrate --force
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache
+CMD ["apache2-foreground"]
