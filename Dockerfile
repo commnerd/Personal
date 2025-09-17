@@ -23,18 +23,24 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
+# Install Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
+# Copy package files first for better caching
+COPY package*.json ./
+
+# Install npm dependencies with better error handling
+RUN npm ci --no-audit --no-fund --ignore-scripts || npm install --no-audit --no-fund
+
 # Copy application files
 COPY . .
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Install Node.js and npm
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
-
-# Install npm dependencies and build assets
-RUN npm install && npm run build
+# Build assets with error handling
+RUN npm run build || (echo "Build failed, checking environment..." && node --version && npm --version && ls -la && exit 1)
 
 # Configure Apache
 RUN a2enmod rewrite

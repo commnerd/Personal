@@ -80,6 +80,7 @@ jobs:
 
           # Run the new container
           docker run -d \
+            --network bridge \
             --name personal-app \
             --restart unless-stopped \
             ${{ env.DOCKER_IMAGE }}:${{ needs.build-and-push.outputs.git-tag }}
