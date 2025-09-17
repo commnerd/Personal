@@ -30,8 +30,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
 # Copy package files first for better caching
 COPY package*.json ./
 
-# Install npm dependencies with better error handling
-RUN npm ci --no-audit --no-fund --ignore-scripts || npm install --no-audit --no-fund
+# Install npm dependencies including optional dependencies for platform-specific binaries
+RUN npm ci --no-audit --no-fund || npm install --no-audit --no-fund
 
 # Copy application files
 COPY . .
@@ -39,8 +39,8 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Build assets with error handling
-RUN npm run build || (echo "Build failed, checking environment..." && node --version && npm --version && ls -la && exit 1)
+# Build assets
+RUN npm run build
 
 # Configure Apache
 RUN a2enmod rewrite
