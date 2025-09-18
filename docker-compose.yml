@@ -1,53 +1,26 @@
-version: '3.8'
-
 services:
-  # Personal Laravel Application
-  personal-app:
-    build: .
-    container_name: personal-app
-    restart: unless-stopped
-    networks:
-      - personal-network
-    # Don't expose ports directly - nginx will proxy to this container
-    # ports:
-    #   - "8080:80"
-
-  # Nginx Reverse Proxy
-  nginx:
-    build:
-      context: .
-      dockerfile: nginx.Dockerfile
-    container_name: nginx-proxy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      # Let's Encrypt certificates
-      - certbot-certs:/etc/letsencrypt
-      - certbot-webroot:/var/www/certbot
-      # Nginx configuration (optional - for runtime updates)
-      - ./personal.conf:/etc/nginx/conf.d/default.conf:ro
-    networks:
-      - personal-network
-    depends_on:
-      - personal-app
-
-  # Certbot for Let's Encrypt (optional - for manual certificate management)
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-certs:/etc/letsencrypt
-      - certbot-webroot:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email your-email@example.com --agree-tos --no-eff-email -d michaeljmiller.net -d www.michaeljmiller.net
-    profiles:
-      - certbot
-
+    laravel.test:
+        build:
+            context: './vendor/laravel/sail/runtimes/8.4'
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: 'sail-8.4/app'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
 networks:
-  personal-network:
-    driver: bridge
-
-volumes:
-  certbot-certs:
-  certbot-webroot:
+    sail:
+        driver: bridge
