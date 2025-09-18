@@ -58,6 +58,56 @@
       </div>
     </section>
 
+    <!-- Recent Projects -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <h3 class="text-3xl font-bold mb-8 text-center">Recent Projects</h3>
+        <p class="text-center text-gray-600 mb-12">Some of the exciting projects I've been working on</p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Atlas 9 Project -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                  <img src="/storage/a9-icon.png" alt="Atlas 9" class="w-12 h-12">
+                </div>
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">Atlas 9</h4>
+                  <p class="text-gray-600">
+                    <a href="https://atlas9.com" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold">
+                        atlas9.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4">Immerse yourself in a museum where movie scenes come to life. Explore dynamic installations, interact with performers, and uncover a mysterious narrative.</p>
+            </div>
+          </div>
+
+          <!-- Foca Project -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                <img src="/storage/foca-icon.png" alt="Atlas 9" class="w-12 h-12">
+                </div>
+                <div>
+                  <h4 class="text-xl font-semibold text-gray-900">Foca</h4>
+                  <a href="https://getfoca.com" target="_blank" rel="noopener noreferrer"
+                      class="inline-flex items-center text-teal-700 hover:text-teal-900 font-semibold">
+                      getfoca.com
+                  </a>
+                </div>
+              </div>
+              <p class="text-gray-700 mb-4">Foca turns a single goal into a plan you can ship. Leverage the power of AI to create milestones, size work, and re-order priorities using Pareto (80/20), cost/value, and ship your product.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Social Links -->
     <section class="py-12 bg-white">
       <div class="max-w-4xl mx-auto px-4 text-center">
@@ -155,7 +205,7 @@
 
     <!-- Footer -->
     <footer class="py-6 bg-white border-t text-center text-sm text-gray-600">
-      <p>© 2025 Michael J. Miller. Made with ❤️ using Tailwind CSS.</p>
+      <p>© 2025 Michael J. Miller.</p>
     </footer>
 
   </body>
