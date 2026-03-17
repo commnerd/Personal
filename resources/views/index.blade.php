@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Michael J. Miller | Digital Home</title>
-    <link rel="icon" href="/storage/michael-j-miller-logo.ico" sizes="any">
-    <link rel="apple-touch-icon" href="/storage/michael-j-miller-logo.ico">
+    <link rel="icon" href="/media/michael-j-miller-logo.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/media/michael-j-miller-logo.ico">
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-white text-gray-900 font-sans">
@@ -70,7 +70,7 @@
             <div class="p-6">
               <div class="flex items-center mb-4">
                 <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
-                  <img src="/storage/a9-icon.png" alt="Atlas 9" class="w-12 h-12">
+                  <img src="/media/a9-icon.png" alt="Atlas 9" class="w-12 h-12">
                 </div>
                 <div>
                   <h4 class="text-xl font-semibold text-gray-900">Atlas 9</h4>
@@ -91,7 +91,7 @@
             <div class="p-6">
               <div class="flex items-center mb-4">
                 <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
-                <img src="/storage/foca-icon.png" alt="Atlas 9" class="w-12 h-12">
+                <img src="/media/foca-icon.png" alt="Atlas 9" class="w-12 h-12">
                 </div>
                 <div>
                   <h4 class="text-xl font-semibold text-gray-900">Foca</h4>
