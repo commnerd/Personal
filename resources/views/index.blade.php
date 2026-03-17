@@ -205,7 +205,7 @@
 
     <!-- Footer -->
     <footer class="py-6 bg-white border-t text-center text-sm text-gray-600">
-      <p>© 2025 Michael J. Miller.</p>
+      <p>© {{ date('Y') }} Michael J. Miller</p>
     </footer>
 
   </body>
