@@ -3,19 +3,10 @@ name: tests
 on:
   push:
     branches:
-<<<<<<< Updated upstream
-      - develop
-      - main
+      - 'v4.**'
   pull_request:
     branches:
-      - develop
-      - main
-=======
-      - v4.*
-  pull_request:
-    branches:
-      - v4.*
->>>>>>> Stashed changes
+      - 'v4.**'
 
 jobs:
   ci:
