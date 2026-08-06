@@ -17,7 +17,7 @@
         <nav class="space-x-6 text-sm font-semibold">
           <a href="#about" class="hover:text-blue-600">About</a>
           <!--a href="#blog" class="hover:text-blue-600">Blog</a-->
-          <!--a href="#resume" class="hover:text-blue-600">Resume</a-->
+          <a href="/resume" class="hover:text-blue-600">Resume</a>
           <!--a href="#contact" class="hover:text-blue-600">Contact</a-->
           <a href="#connect" class="hover:text-blue-600">Connect</a>
         </nav>
@@ -30,7 +30,7 @@
         <h2 class="text-4xl md:text-5xl font-bold mb-4">Hey there, I'm Michael Miller</h2>
         <p class="text-xl mb-8">Tech lover, storyteller, explorer.</p>
         <div class="space-x-4">
-          <!--a href="#resume" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded hover:bg-gray-100 transition">📄 View Resume</a-->
+          <a href="/resume" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded hover:bg-gray-100 transition">View Resume</a>
           <!--a href="#blog" class="bg-white text-blue-600 font-semibold px-6 py-3 rounded hover:bg-gray-100 transition">🧭 Explore Blog</a-->
         </div>
       </div>
