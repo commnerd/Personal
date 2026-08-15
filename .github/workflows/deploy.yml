@@ -36,7 +36,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install Node Dependencies
-        run: yarn --prod --frozen-lockfile
+        run: yarn --frozen-lockfile
 
       - name: Build Assets
         run: yarn build
