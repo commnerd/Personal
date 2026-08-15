@@ -33,18 +33,19 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: '22'
+          cache: 'yarn'
 
       - name: Install Node Dependencies
-        run: yarn --prod
+        run: yarn --prod --frozen-lockfile
 
+      - name: Build Assets
+        run: yarn build
+      
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
       - name: Generate Wayfinder dependencies
         run: php artisan wayfinder:generate --with-form
-
-      - name: Build Assets
-        run: yarn build
 
       - name: Install SSH Key
         run: |
