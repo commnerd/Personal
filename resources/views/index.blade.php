@@ -70,7 +70,7 @@
             <div class="p-6">
               <div class="flex items-center mb-4">
                 <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
-                  <img src="/media/a9-icon.png" alt="Atlas 9" class="w-12 h-12">
+                  <img src="/media/a9.webp" alt="Atlas 9" class="w-12 h-12">
                 </div>
                 <div>
                   <h4 class="text-xl font-semibold text-gray-900">Atlas 9</h4>
