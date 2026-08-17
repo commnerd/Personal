@@ -87,9 +87,18 @@ jobs:
 
       - name: Run deployment artisan sequence
         run: |
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo chown -R www-data:www-data database"
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo chmod 775 database"
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo chmod 664 database/database.sqlite"
+          # 1. Ensure storage and database structures exist and are fully owned by www-data first
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && mkdir -p storage/framework/{cache/data,sessions,views} storage/logs bootstrap/cache database"
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && touch database/database.sqlite"
+          
+          # 2. Fix ownership for the entire project and critical write paths
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www && sudo chown -R www-data:www-data personal"
+          
+          # 3. Apply strict writable permissions (775 for directories, 664 for files)
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "sudo chmod -R 775 /var/www/personal/storage /var/www/personal/bootstrap/cache /var/www/personal/database"
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "sudo chmod 664 /var/www/personal/database/database.sqlite"
+          
+          # 4. Now safe to run artisan commands because permissions are fully established
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan optimize:clear"
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan migrate --force"
 
