@@ -34,15 +34,15 @@ jobs:
         with:
           node-version: '22'
           cache: 'yarn'
+          
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
       - name: Install Node Dependencies
         run: yarn --frozen-lockfile
 
       - name: Build Assets
         run: yarn build
-      
-      - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
       - name: Generate Wayfinder dependencies
         run: php artisan wayfinder:generate --with-form
