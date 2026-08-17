@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'yarn'
-          
+
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
@@ -76,6 +76,14 @@ jobs:
       - name: Remove deployment directory
         run: |
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} rm -fR Personal
+
+      - name: Set ownership to your web server user (replace www-data with your web server user if different, e.g., nginx)
+        run: |
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} sudo chown -R www-data:www-data /var/www/personal/storage /var/www/personal/bootstrap/cache /var/www/perosnal/database
+
+      - name: Grant read/write permissions
+        run: |
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} sudo chmod -R 775 /var/www/personal/storage /var/www/personal/bootstrap/cache
 
       - name: Run deployment artisan sequence
         run: |
