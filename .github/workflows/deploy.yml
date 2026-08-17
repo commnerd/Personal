@@ -87,6 +87,10 @@ jobs:
 
       - name: Run deployment artisan sequence
         run: |
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && touch database/database.sqlite"
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo chown -R www-data:www-data database"
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo chmod 775 database"
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo chmod 664 database/database.sqlite"
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan optimize:clear"
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan migrate --force"
 
