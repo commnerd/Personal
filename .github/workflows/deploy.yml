@@ -33,19 +33,18 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: '22'
-          cache: 'yarn'
+
+      - name: Install Node Dependencies
+        run: yarn --prod
 
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
-      - name: Install Node Dependencies
-        run: yarn --frozen-lockfile
+      - name: Generate Wayfinder dependencies
+        run: php artisan wayfinder:generate --with-form
 
       - name: Build Assets
         run: yarn build
-
-      - name: Generate Wayfinder dependencies
-        run: php artisan wayfinder:generate --with-form
 
       - name: Install SSH Key
         run: |
@@ -76,29 +75,9 @@ jobs:
       - name: Remove deployment directory
         run: |
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} rm -fR Personal
-
-      - name: Set ownership to your web server user (replace www-data with your web server user if different, e.g., nginx)
-        run: |
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} sudo chown -R www-data:www-data /var/www/personal/storage /var/www/personal/bootstrap/cache /var/www/personal/database
-
-      - name: Grant read/write permissions
-        run: |
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} sudo chmod -R 775 /var/www/personal/storage /var/www/personal/bootstrap/cache
-
+      
       - name: Run deployment artisan sequence
         run: |
-          # 1. Fix ownership for storage, bootstrap/cache, and database directories first so the web user owns them
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo chown -R www-data:www-data storage bootstrap/cache database"
-          
-          # 2. Ensure directories and sqlite file exist with correct permissions
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && mkdir -p storage/framework/{cache/data,sessions,views} storage/logs bootstrap/cache database"
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo -u www-data touch database/database.sqlite"
-          
-          # 3. Apply writable permissions
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "sudo chmod -R 775 /var/www/personal/storage /var/www/personal/bootstrap/cache /var/www/personal/database"
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "sudo chmod 664 /var/www/personal/database/database.sqlite"
-          
-          # 4. Run artisan commands
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan optimize:clear"
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan migrate --force"
 
