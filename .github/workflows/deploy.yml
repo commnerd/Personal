@@ -78,7 +78,7 @@ jobs:
       
       - name: Run deployment artisan sequence
         run: |
-          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan optimize:clear"
+          ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && sudo -u www-data php artisan optimize:clear"
           ssh ${{ secrets.PERSONAL_PRODUCTION_USERNAME }}@${{ secrets.PERSONAL_PRODUCTION_HOST }} "cd /var/www/personal && php artisan migrate --force"
 
       - name: Cleanup 
