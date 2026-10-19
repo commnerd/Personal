@@ -109,7 +109,7 @@
     </section>
 
     <!-- Social Links -->
-    <section class="py-12 bg-white">
+    <section id="connect" class="py-12 bg-white">
       <div class="max-w-4xl mx-auto px-4 text-center">
         <h3 class="text-2xl font-bold mb-6">Let's Connect</h3>
         <p class="text-gray-600 mb-8">Follow my journey and connect with me on social platforms</p>
