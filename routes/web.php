@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\{Auth, Route};
 use Laravel\Socialite\Socialite;
 
 Route::get('/', fn() => view('index'))->name('home');
+Route::get('/blog', fn() => view('blog'))->name('blog');
 Route::get('/resume', fn() => view('resume'))->name('resume');
 Route::get('/login', fn() => Socialite::driver('google')->redirect())->name('login');
 Route::get('/logout', function() {
@@ -29,6 +30,9 @@ Route::get('/resume/download', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::prefix('admin')->group(function() {
+        Route::inertia('', 'admin/Index');
+    });
 });
 
 require __DIR__.'/settings.php';
