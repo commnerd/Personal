@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog\Post;
 use Inertia\{Inertia, Response};
 
 class BlogPostController extends Controller
@@ -12,7 +13,9 @@ class BlogPostController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render('Admin/Blog/Index');
+        return Inertia::render('Admin/Blog/Index', [
+            'posts' => Post::all(),
+        ]);
     }
 
     /**
