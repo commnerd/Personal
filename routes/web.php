@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
     Route::name('admin.')->prefix('admin')->group(function() {
         Route::inertia('', 'Admin/Index')->name('admin');
-        Route::resource('/blog', \App\Http\Controllers\Admin\BlogPostController::class);
+        Route::resource('/blog', \App\Http\Controllers\Admin\BlogPostController::class)->parameter('blog', 'post');
     });
 });
 

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
+import { index } from '@/routes/admin/blog';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -25,7 +26,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
                 >
                     <h1>Blog</h1>
-                    <a href="#">Blog</a>
+                    <Link :href="index()">Blog</Link>
                 </div>
                 <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
