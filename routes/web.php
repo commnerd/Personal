@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 Route::get('/', fn() => view('index'))->name('home');
