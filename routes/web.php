@@ -31,7 +31,7 @@ Route::get('/resume/download', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
     Route::prefix('admin')->group(function() {
-        Route::inertia('', 'Admin/Index');
+        Route::inertia('', 'Admin/Index')->name('admin');
         Route::resource('/blog', \App\Http\Controllers\Admin\BlogPostController::class);
     });
 });
