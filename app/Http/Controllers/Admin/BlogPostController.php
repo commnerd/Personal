@@ -23,7 +23,7 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Blog/Create');
     }
 
     /**
@@ -47,7 +47,9 @@ class BlogPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return Inertia::render('Admin/Blog/Update', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -63,6 +65,7 @@ class BlogPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        dd($post->toArray());
+        $post->delete();
     }
 }
