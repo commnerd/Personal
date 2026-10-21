@@ -1,11 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Socialite;
 
 Route::get('/', fn() => view('index'))->name('home');
 Route::get('/resume', fn() => view('resume'))->name('resume');
+Route::get('/login', fn() => Socialite::driver('google')->redirect());
+Route::get('/login/callback', function() {
+    if($user = User::where('email', Socialite::driver('google')->user()->email)->first()) {
+        Auth::login($user, remember: true);
+        return redirect()->route('dashboard');
+    }
+    return redirect()->route('home');
+});
 Route::get('/resume/download', function () {
     $pdf = Pdf::loadView('resume-pdf');
 
