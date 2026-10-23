@@ -7,7 +7,7 @@ use Laravel\Socialite\Socialite;
 
 Route::get('/', fn() => view('index'))->name('home');
 Route::get('/resume', fn() => view('resume'))->name('resume');
-Route::get('/login', fn() => Socialite::driver('google')->redirect());
+Route::get('/login', fn() => Socialite::driver('google')->redirect())->name('login');
 Route::get('/login/callback', function() {
     if($user = User::where('email', Socialite::driver('google')->user()->email)->first()) {
         Auth::login($user, remember: true);
