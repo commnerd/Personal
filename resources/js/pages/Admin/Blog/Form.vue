@@ -22,7 +22,7 @@ const slugify = (v) => {
 <template>
     <Head title="Create/Edit Post" />
     <Form
-        v-bind="store.form()"
+        v-bind="post ? update.form(post.id) : store.form()"
         :reset-on-success="['post']"
         v-slot="{ errors, processing }"
         class="flex flex-col gap-6" >
