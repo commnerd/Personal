@@ -2,12 +2,12 @@
 import { Form, Head } from '@inertiajs/vue3';
 import { store, update } from '@/routes/admin/blog';
 import type { Post } from '@/types';
-import { ref, onMounted, useTemplateRef } from 'vue';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import InputError from '@/components/InputError.vue';
 import { Wysiwyg } from '@/components/ui/wysiwyg';
+import { Tags } from '@/components/ui/tags';
 
 const props = defineProps<{
     post?: Post
@@ -57,6 +57,13 @@ const slugify = (v) => {
                     :model-value="post.slug"
                 />
                 <InputError :message="errors.slug" />
+            </div>
+            <div class="grid gap-2">
+                <Label for="tags">Tags</Label>
+                <Tags
+                    
+                />
+                <InputError :message="errors.tags" />
             </div>
             <div class="grid gap-2">
                 <Label for="slug">Content</Label>
