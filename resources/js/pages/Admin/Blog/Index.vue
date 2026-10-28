@@ -2,7 +2,7 @@
 import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { admin } from '@/routes/admin';
-import { index, edit, destroy } from '@/routes/admin/blog';
+import { index, create, edit, destroy } from '@/routes/admin/blog';
 import type { BreadcrumbItem, Post } from '@/types';
 import Button from '@/components/ui/button/Button.vue';
 import { Link } from '@inertiajs/vue3'
@@ -33,6 +33,12 @@ defineProps({
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
             <div class="flex flex-row justify-center">
+                <Button
+                    class="bg-blue-600 hover:bg-blue-700 text-white mx-1 my-1"
+                    @click="router.visit(create())"
+                >Add New</Button>
+            </div>
+            <div class="flex flex-row justify-center">
                 <table>
                     <thead>
                         <tr>
@@ -43,7 +49,7 @@ defineProps({
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(post, _) in posts" :key="post.id">
+                        <tr v-for="post in posts" :key="post.id">
                             <td>{{ post.title }}</td>
                             <td>{{ post.slug }}</td>
                             <td>{{ post.published_at }}</td>

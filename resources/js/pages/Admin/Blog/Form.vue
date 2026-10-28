@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { Form, Head } from '@inertiajs/vue3';
 import { store, update } from '@/routes/admin/blog';
 import type { Post } from '@/types';
@@ -13,16 +14,24 @@ const props = defineProps<{
     post?: Post
 }>();
 
+const post = ref({
+    slug: '',
+} as Post);
+
 const slugify = (v) => {
-    props.post.slug = v.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    post.value.slug = v.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 };
+
+onMounted(() => {
+    post.value = props.post ? JSON.parse(JSON.stringify(props.post)) : { slug: '' };
+})
 
 </script>
 
 <template>
     <Head title="Create/Edit Post" />
     <Form
-        v-bind="post ? update.form(post.id) : store.form()"
+        v-bind="post?.id ? update.form(post?.id) : store.form()"
         :reset-on-success="['post']"
         v-slot="{ errors, processing }"
         class="flex flex-col gap-6" >
@@ -38,7 +47,7 @@ const slugify = (v) => {
                     :tabindex="1"
                     autocomplete="title"
                     placeholder="Title"
-                    :model-value="post.title"
+                    :model-value="post?.title"
                     @update:modelValue="slugify"
                 />
                 <InputError :message="errors.title" />
@@ -54,7 +63,7 @@ const slugify = (v) => {
                     :tabindex="1"
                     autocomplete="slug"
                     placeholder="Slug"
-                    :model-value="post.slug"
+                    :model-value="post?.slug"
                 />
                 <InputError :message="errors.slug" />
             </div>
@@ -76,7 +85,7 @@ const slugify = (v) => {
                     :tabindex="1"
                     autocomplete="content"
                     placeholder="Content"
-                    :model-value="post.content"
+                    :model-value="post?.content"
                 />
                 <InputError :message="errors.slug" />
             </div>

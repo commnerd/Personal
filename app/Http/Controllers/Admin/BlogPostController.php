@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog\Post;
+use App\Models\Blog\{Post, Tag, PostTag};
 use Inertia\{Inertia, Response};
 use App\Http\Requests\{StorePostRequest, UpdatePostRequest};
+use Illuminate\Support\Facades\DB;
 
 class BlogPostController extends Controller
 {
@@ -32,9 +33,25 @@ class BlogPostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $ary = $request->toArray();
-        $ary['user_id'] = auth()->user()->id;
-        Post::create($ary);
+        $rqAry = $request->toArray();
+        $rqAry['user_id'] = auth()->user()->id;
+
+        $storedTags = Tag::whereIn('title', $request->tags);
+        $unstoredTags = $request->tags->map(fn($tag) => $tag->title);
+
+        dd($unstoredTags);
+
+        
+        DB::transaction(function() use ($request, $rqAry, $tags) {
+            $post = Post::create($rqAry);
+
+            foreach($tags as $tag) {
+                PostTag::create([
+                    'post_id' => $post->id,
+                    'tag_id' => $tag->id,
+                ]);
+            }
+        });
     }
 
     /**
