@@ -4,7 +4,7 @@ import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
-import { index } from '@/routes/admin/blog';
+import { index as blogIndex } from '@/routes/admin/blog';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -12,6 +12,12 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: dashboard(),
     },
 ];
+
+defineProps<{
+    post_count: number,
+    tag_count: number,
+}>();
+
 </script>
 
 <template>
@@ -22,12 +28,25 @@ const breadcrumbs: BreadcrumbItem[] = [
             class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
         >
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <h1>Blog</h1>
-                    <Link :href="index()">Blog</Link>
-                </div>
+                <Link :href="blogIndex()">
+                    <div
+                        class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border p-3"
+                    >
+                        <h1 class="text-3xl text-center font-bold mb-3 w-full">Blog</h1>
+                        <table class="w-full">
+                            <tbody>
+                                <tr class="border-b border-solid border-slate-300">
+                                    <td class="w-[50%] px-3 text-right">Entry Count</td>
+                                    <td class="w-[50%] px-3 text-center">{{ post_count }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[50%] px-3 text-right">Tag Count</td>
+                                    <td class="w-[50%] px-3 text-center">{{ tag_count }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </Link>
                 <div
                     class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
                 >

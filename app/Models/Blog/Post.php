@@ -4,7 +4,7 @@ namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -30,8 +30,8 @@ class Post extends Model
      * 
      * @var HasManyThrough
      */
-    public function tags(): HasManyThrough
+    public function tags(): BelongsToMany
     {
-        return $this->hasManyThrough(Tag::class, PostTag::class);
+        return $this->belongsToMany(Tag::class, PostTag::class);
     }
 }
