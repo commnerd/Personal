@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, InfiniteScroll } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { admin } from '@/routes/admin';
 import { index, create, edit, destroy } from '@/routes/admin/blog';
@@ -20,9 +20,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     }
 ];
 
-defineProps({
-    posts: Array<Post>,
-});
+defineProps(['posts']);
 
 </script>
 
@@ -38,41 +36,43 @@ defineProps({
                 >Add New</Button>
             </div>
             <div class="flex flex-row w-full">
-                <table class="w-full">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Slug</th>
-                            <th>Tags</th>
-                            <th>Published Date</th>
-                            <th>Controls</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="post in posts.data" :key="post.id">
-                            <td class="px-1">{{ post.title }}</td>
-                            <td class="px-1">{{ post.slug }}</td>
-                            <td class="px-1 text-center">
-                                <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
-                                <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
-                                <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
-                                <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
-                                <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
-                            </td>
-                            <td class="px-1 text-center">{{ post.published_at }}</td>
-                            <td class="px-1 text-center">
-                                <Button
-                                    class="bg-blue-600 hover:bg-blue-700 text-white mx-1 my-1"
-                                    @click="router.visit(edit(post.id))"
-                                >Edit</Button>
-                                <Button
-                                    class="bg-red-600 hover:bg-red-700 text-white mx-1 ml-0"
-                                    @click="router.delete(destroy(post.id))"
-                                >Delete</Button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="w-full">
+                    <div>
+                        <div>
+                            <div class="inline">Title</div>
+                            <div class="inline">Slug</div>
+                            <div class="inline">Tags</div>
+                            <div class="inline">Published Date</div>
+                            <div class="inline">Controls</div>
+                        </div>
+                    </div>
+                    <InfiniteScroll data="posts" preserve-url>
+                        <div>
+                            <div v-for="post in posts.data" :key="post.id">
+                                <div class="px-1 inline">{{ post.title }}</div>
+                                <div class="px-1 inline">{{ post.slug }}</div>
+                                <div class="px-1 inline text-center">
+                                    <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
+                                    <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
+                                    <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
+                                    <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
+                                    <div class="inline rounded-xl bg-green-300 gap-4 p-1 mx-1">A tag</div>
+                                </div>
+                                <div class="px-1 inline text-center">{{ post.published_at }}</div>
+                                <div class="px-1 inline text-center">
+                                    <Button
+                                        class="bg-blue-600 hover:bg-blue-700 text-white mx-1 my-1"
+                                        @click="router.visit(edit(post.id))"
+                                    >Edit</Button>
+                                    <Button
+                                        class="bg-red-600 hover:bg-red-700 text-white mx-1 ml-0"
+                                        @click="router.delete(destroy(post.id))"
+                                    >Delete</Button>
+                                </div>
+                            </div>
+                        </div>
+                    </InfiniteScroll>                        
+                </div>
             </div>
         </div>
     </AppLayout>

@@ -16,7 +16,7 @@ class BlogPostController extends Controller
     public function index(): Response
     {
         return Inertia::render('Admin/Blog/Index', [
-            'posts' => Post::with('tags')->paginate(),
+            'posts' => Inertia::scroll(fn () => Post::with('tags')->paginate()),
         ]);
     }
 

@@ -13,7 +13,7 @@ class PostTagSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::chunk(50, function(Collection $posts) {
+        Post::chunk(500, function(Collection $posts) {
             foreach($posts as $post) {
                 $iterations = rand(2, 5);
                 for ($i = 0; $i < $iterations; $i++) {
